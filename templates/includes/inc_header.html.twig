@@ -1,0 +1,53 @@
+<!-- ______________________ CONTENEUR _______________________ -->
+     <section class="conteneur">
+           
+         {% include directory ~ '/templates/includes/inc_bandeau_off_canvas_susy.html.twig' %}   
+    
+           <!-- ______________________ HEADER _______________________ -->
+    <header id="header">
+    
+  
+        <div class="headHaut">
+
+      
+      {% if  site_logo %}
+          <div class="logoHead">
+              {{ site_logo }}
+          </div>
+      {% endif %}
+
+      {% if (menuDyn is not empty) %}  
+          {#
+          positionner le bloc fournissant le menu dans cette région, pour v2018,le bloc Menu Général suffit (avec classe mobilenav) + bloc avec JS (sans editeur)
+          #}
+          <nav class="menuOver">    
+              {{ menuDyn }}
+          </nav><!-- /menuOver -->
+      {% endif %}
+
+        </div><!-- /headHaut -->
+
+        <div class="headBas">
+            
+            {% if page.site_slogan is not empty %}
+        <div class="site-slogan">
+          {{ page.site_slogan }}
+          </div><!-- /site-slogan -->
+      {% endif %}
+
+         {% if page.site_mission is not empty %}
+        <div class="objectif">
+          {{ page.site_mission }}
+          </div><!-- /site-slogan -->
+      {% endif %}
+
+      {% if page.search_box is not empty %}
+        <div class="headSearch">
+          {{ page.search_box }}
+          </div><!-- /recherche -->
+      {% endif %}
+             
+         
+        </div><!-- /headBas -->
+       
+    </header> <!-- /header -->
