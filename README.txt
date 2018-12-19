@@ -34,8 +34,8 @@ BROWSER SYNC
 REGLAGES A FAIRE
 ----------------
 
-dans template.php :
-remplacer le nom du theme dans les fonctions necessaires.
+>> DEBUGAGE TWIG : passer debug:flase à true dans fichier service.yml dans dossier d'installation  du site
+par ex. /drupal-8/sites/DOSSIER_SITE/services.yml
 
 Changer le nom du fichier .info
 
@@ -101,3 +101,20 @@ JAVASCRIPT
 ------------------------
 LazyLoad : remplacer "src" par "data-src" pour images, video, etc, par exemple:
 >> data-src="https://www.youtube.com/embed/
+
+CONVERSION VERS TWIG
+------------------------
+https://phptotwig.com voir si fiable
+https://github.com/dongilbert/mautic/wiki/Converting-PHP-Templates-to-Twig
+https://www.drupal.org/docs/8/theming/drupal-twig-conversion-instructions-tplphp-to-htmltwig
+https://twig.symfony.com/doc/2.x/templates.html
+Tester un template : https://twigfiddle.com/
+
+de manière générale <?php ... ?> >> est remplacé par >> {% ... %}  
+pour l'inclusion de variables : print $xxx  >> devient >> {{ xxx }}
+
+      <?php if (!empty($logo)): ?> >> devient >> {% if (site_logo is not empty) %}  
+          <div class="logoHead"> >> devient >> <div class="logoHead">
+              <?php print $logo; ?> >> devient >> {{ site_logo }}
+          </div> >> devient >> </div>
+      <?php endif; ?> >> devient >> {% endif %}

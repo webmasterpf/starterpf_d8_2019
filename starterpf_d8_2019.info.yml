@@ -14,15 +14,18 @@ libraries-remove:
   - core/modules/views/css/views.module.css
 
 #Liste des librairies à charger (reprise du ficher MON_THEME.libraries.yml)
+#Transposition du chargement des CSS ou JS depuis le fichier info du D6
+# https://www.drupal.org/docs/8/theming/adding-stylesheets-css-and-javascript-js-to-a-drupal-8-theme
 libraries:
-  #Les librairies de style
-  - core/normalize
-  - starterpf_d8/css
-  - starterpf_d8/vendor
-  - starterpf_d8/navigation
-  - starterpf_d8/3rdparty
+  #Les fichiers (librairies) de style chargés pour toutes les pages. Utilise une Asset Library (bibliothèque) définie dans 
+  # le fichier NOM_THEME.libraries.yml
+#  - core/normalize
+  - starterpf_d8_2019/global-styling
+  - starterpf_d8_2019/css
+  - starterpf_d8_2019/3rdparty
   #Les librairies de javascript
-  - starterpf_d8/js
+  - starterpf_d8_2019/js
+  - starterpf_d8_2019/global-scripts
 
 
 regions:

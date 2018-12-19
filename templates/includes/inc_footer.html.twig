@@ -1,0 +1,17 @@
+<!-- ______________________ FOOTER _______________________ -->
+
+{% if page.footer|render %}
+    <footer id="footer">
+      <div class="container">
+        {{ page.footer }}
+      </div>
+      
+         <div id="bloc_stats">
+        {% include directory ~ '/templates/includes/google_font.html.twig' %}   
+        {% include directory ~ '/templates/includes/code_stats.html.twig' %}   
+      
+     </div>
+      
+      
+    </footer><!-- /#footer -->
+  {% endif %}
