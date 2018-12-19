@@ -1,0 +1,110 @@
+#Les espaces dans le nom du dossier / thème sont remplacés par des underscore
+name: Starter PF D8 2019
+type: theme
+description: 'Starter theme pour sites sous Drupal 8, basé sur Basic, Susy3'
+package: Core
+version: VERSION
+core: 8.x
+
+#Retrait des CSS ajoutées par le système - Core Drupal
+libraries-remove:
+  - core/assets/vendor/normalize-css/normalize.css
+  - core/modules/system/css/system.module.css
+  - core/modules/system/css/system.theme.css
+  - core/modules/views/css/views.module.css
+
+#Liste des librairies à charger (reprise du ficher MON_THEME.libraries.yml)
+libraries:
+  #Les librairies de style
+  - core/normalize
+  - starterpf_d8/css
+  - starterpf_d8/vendor
+  - starterpf_d8/navigation
+  - starterpf_d8/3rdparty
+  #Les librairies de javascript
+  - starterpf_d8/js
+
+
+regions:
+ #Régions de base - devient {{ page.header }}  dans fichier .twig    
+ #synthaxe : nom_region: 'Nom Région'
+  header: Header
+  help: 'Help'
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+  highlighted: 'Highlighted'
+  content: 'Content'
+  sidebar_first: 'Sidebar first'
+  sidebar_second: 'Sidebar second'
+  footer: 'Footer'
+  content_top: 'Content top'
+  content_top_node: 'Content top node'
+  formulaire: 'Zone formulaire bloc'
+  left: 'Colonne Gauche'
+  decoTitre: 'Titre deco image - Fiche Formations'
+  right: 'Colonne Droite'
+  content_bottom: 'Content bottom'
+  content_bottom_home: 'Content bottom homepage'
+
+
+  menuDyn: 'Menu Header - Menu dynamique JS'
+  navStatic: 'Navigation statique - Bloc'
+  site_slogan: 'Slogan du site - Bloc'
+  search_box: 'Zone recherche - Bloc'
+
+ #Bandeau haut de page accueil (si besoin)
+  bandeau1: 'Bandeau haut de page'
+
+ #Homepage pour site Provence Formation
+  annonceImg: 'Image pour annonce - Bloc'
+  blocLycee: 'Acces Lycees - Bloc'
+  Anim: 'Animation Flash - Bloc'
+  DiapoHP: 'Diaporama Homepage - Bloc'
+
+ #Regions customs pour site Provence Formation
+  centralBloc: 'Zone pour bloc central - View Bloc'
+  centre_partenaire: 'Zone centrale page partenaire'
+
+
+
+ #Diaporama HP selon layout choisi (décommenter pour choisir)
+   #DiapoPanoHP: 'Diaporama Panoramique Homepage - Bloc'
+   #DiapoGaucheHP: 'Diaporama Gauche Homepage - Bloc'
+   #DiapoDroiteHP: 'Diaporama Droite Homepage - Bloc'
+
+ #Diaporama panoramique
+   #HPBasG: 'Zone Bas Gauche HP - Bloc'
+   #HPBasD: 'Zone Bas Droit HP - Bloc'
+
+ #Diaporama vertical Gauche
+ #PartieDroite1: 'Zone Droite 1 HP - Bloc'
+ #PartieDroite2: 'Zone Droite 2 HP - Bloc'
+ #PartieDroite3: 'Zone Droite 3 HP - Bloc'
+
+ #Diaporama vertical Droite
+ #PartieGauche1: 'Zone Gauche 1 HP - Bloc'
+ #PartieGauche2: 'Zone Gauche 2 HP - Bloc'
+ #PartieGauche3: 'Zone Gauche 3 HP - Bloc'
+
+ #Region pour les node.tpl (ajouter dans fichier MON_THEME.theme)
+  actuAssociation: 'Zone pour RSS issu du site PF - Vue Bloc RSS'
+  node_col_1: 'Bloc pour colonne 1'
+  node_col_2: 'Bloc pour colonne 2'
+  node_col_3: 'Bloc pour colonne 3'
+  node_col_4: 'Bloc pour colonne 4'
+  node_col_5: 'Bloc pour colonne 5'
+
+ #Region pour page poles formation (ajouter dans fichier MON_THEME.theme)
+  pole_col1: ' Pôle formation - Colonne 1'
+  pole_col2: ' Pôle formation - Colonne 2'
+  pole_col3: ' Pôle formation - Colonne 3'
+  pole_col4: ' Pôle formation - Colonne 4'
+
+ #Regions pour la page actu (ajouter dans fichier MON_THEME.theme)
+  revue_presse: 'Zone pour les revues de presse - Vue bloc'
+  sortie_action: 'Zone pour les sorties/actions - Vue bloc'
+  actuAssociation: 'Zone pour RSS issu du site PF - Vue Bloc RSS'
+  projets: 'Zone pour les projets - Vue Bloc'
+  intervenants: 'Zone pour les Intervenants - Vue Bloc'
+ #Region pour formulaire
+  formulaire: 'Formulaire (centre) - Webform Bloc'
