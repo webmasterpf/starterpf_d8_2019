@@ -1,5 +1,5 @@
 <?php
-
+/* ---$$$  REMPLACE LE FICHIER TEMPLATE.PHP DANS THEMES D6 OU D7 $$$--- */
 /**
  * @file
  * Preprocess functions for Basic.
@@ -10,7 +10,7 @@ use Drupal\Core\Cache\CacheableMetadata;
 /**
  * Prepares variables for the html.html.twig template.
  */
-function basic_preprocess_html(&$variables) {
+function starterpf_d8_2019_preprocess_html(&$variables) {
   try {
     $variables['is_front'] = \Drupal::service('path.matcher')->isFrontPage();
   }
@@ -49,7 +49,135 @@ function basic_preprocess_html(&$variables) {
 /**
  * Prepares variables for the field.html.twig template.
  */
-function basic_preprocess_field(&$variables, $hook) {
+function starterpf_d8_2019_preprocess_field(&$variables, $hook) {
   // Make additional variables available to the template.
   $variables['bundle'] = $variables['element']['#bundle'];
+}
+/* ////////////////////////////////// 
+ * --- FONCTIONS PROPRES AU THEME ---
+ //////////////////////////////////// */
+
+
+/** https://atendesigngroup.com/blog/making-region-content-available-node-templates-drupal-8
+ */
+/**
+* Implements hook_preprocess_node() for NODE document templates.
+*/
+function starterpf_d8_2019_preprocess_node(&$variables) {
+  // Allowed view modes
+  $view_mode = $variables['view_mode']; // Retrieve view mode
+  $allowed_view_modes = ['full']; // Array of allowed view modes (for performance so as to not execute on unneeded nodes)
+ 
+  // If view mode is in allowed view modes list, pass to starterpf_d8_2019_add_regions_to_node()
+  if(in_array($view_mode, $allowed_view_modes)) {
+    // Allowed regions (for performance so as to not execute for unneeded region)
+    // Liste des régions utilisées directement dans les node.html.twig
+    $allowed_regions = [
+      'pole_col1','pole_col2','pole_col3','pole_col4',
+      'node_col_1','node_col_2','node_col_3','node_col_4','node_col_5',
+      'revue_presse','sortie_action','actuAssociation','projets','intervenants'
+      ];
+    starterpf_d8_2019_add_regions_to_node($allowed_regions, $variables);
+  }
+}
+ 
+/**
+* THEME_add_regions_to_node
+*/
+ 
+function starterpf_d8_2019_add_regions_to_node($allowed_regions, &$variables) {
+  // Retrieve active theme
+  $theme = \Drupal::theme()->getActiveTheme()->getName();
+ 
+  // Retrieve theme regions
+  $available_regions = system_region_list($theme, 'REGIONS_ALL');
+ 
+  // Validate allowed regions with available regions
+  $regions = array_intersect(array_keys($available_regions), $allowed_regions);
+ 
+  // For each region
+  foreach ($regions as $key => $region) {
+ 
+    // Load region blocks
+    $blocks = entity_load_multiple_by_properties('block', array('theme' => $theme, 'region' => $region));
+ 
+    // Sort ‘em
+    uasort($blocks, 'Drupal\block\Entity\Block::sort');
+ 
+    // Capture viewable blocks and their settings to $build
+    $build = array();
+    foreach ($blocks as $key => $block) {
+      if ($block->access('view')) {
+        $build[$key] = entity_view($block, 'block');
+      }
+    }
+ 
+    // Add build to region
+    $variables[$region] = $build;
+  }
+}
+/** TEMPLATE SUGGESTION pour les template de Regions incluses dans les Template de Node
+http://dannyenglander.com/blog/drupal-8-theming-tutorial-how-craft-custom-theme-hook-suggestions-and-templates
+ * 
+ * Fonctionne pas
+ *  */
+/**
+ * Implements hook_theme_suggestions_HOOK_alter(). REGION
+ * 
+ */
+function starterpf_d8_2019_theme_suggestions_region_alter(&$suggestions, $vars, $hook) {
+// kint($vars);
+    // Define a variable for the #region name.
+  $region = $vars['elements']['#region'];
+  
+
+  // Define an array of our postscript regions.Suggestions disponibles pour les régions listées
+  $region_postscript = array(
+     'pole_col1','pole_col2','pole_col3','pole_col4',
+      'node_col_1','node_col_2','node_col_3','node_col_4','node_col_5',
+      'revue_presse','sortie_action','actuAssociation','projets','intervenants'
+  );
+
+  // If we are in any of these regions, create a theme hook suggestion.
+if (in_array($region, $region_postscript)) {
+//  if (in_array($region)) {
+    $suggestions[] = 'region' . '__' . 'custom';
+    $suggestions[] = 'region__' . $block->getRegion() . '__' . $variables['elements']['#id'];
+  }
+}
+/**
+ * Implements hook_theme_suggestions_HOOK_alter(). BLOCK
+ * 
+ */
+//Besoin de composant Symfony pour 2e code de suggestions
+use Drupal\block\Entity\Block;
+function starterpf_d8_2019_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+//    kint($vars);
+    
+    $block = $variables['elements'];
+    $blockType = $block['#configuration']['provider'];
+    // Condition sur le type de block pour fournir des suggestions
+    if ($blockType == "block_content") {
+        $bundle = $block['content']['#block_content']->bundle();
+        $blockUuid = $block['content']['#block_content']->uuid();
+        $blockId = $block['#id'];
+        $suggestions[] = 'block__' . $blockType . '__' . $bundle;
+        $suggestions[] = 'block__' . $blockType . '__' . $bundle . '__' . $blockId;
+        $suggestions[] = 'block__' . $blockType . '__' . $bundle . '__' . $blockUuid;
+    }
+
+    // Autre suggestion de template selon la région dans laquelle est le bloc
+    // https://drupal.stackexchange.com/questions/192616/how-to-make-a-theme-hook-suggestion-for-blocks-according-to-region
+    
+    if (!empty($variables['elements']['#id'])) {
+    $block = Block::load($variables['elements']['#id']);
+    $suggestions[] = 'block__' . $block->getRegion() . '__' . $variables['elements']['#id'];
+  }
+  /* Use this 'else if' only if you are using page_manager module and want to know which region is the block */
+  else if (isset($variables['elements']['#configuration']['region'])) {
+    $suggestions[] = 'block__page_' . $variables['elements']['#configuration']['region'] . '__' . end(explode(':', $variables['elements']['#plugin_id']));
+  }
+  
+  return $suggestions;
+    
 }
