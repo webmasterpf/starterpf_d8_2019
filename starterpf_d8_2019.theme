@@ -73,8 +73,8 @@ function starterpf_d8_2019_preprocess_node(&$variables) {
     // Allowed regions (for performance so as to not execute for unneeded region)
     // Liste des régions utilisées directement dans les node.html.twig
     $allowed_regions = [
-      'pole_col1','pole_col2','pole_col3','pole_col4',
-      'node_col_1','node_col_2','node_col_3','node_col_4','node_col_5',
+      'pole_zone1','pole_zone2','pole_zone3','pole_zone4',
+      'zone_1','zone_2','zone_3','zone_4','zone_5',
       'revue_presse','sortie_action','actuAssociation','projets','intervenants'
       ];
     starterpf_d8_2019_add_regions_to_node($allowed_regions, $variables);
@@ -133,9 +133,9 @@ function starterpf_d8_2019_theme_suggestions_region_alter(&$suggestions, $vars, 
 
   // Define an array of our postscript regions.Suggestions disponibles pour les régions listées
   $region_postscript = array(
-     'pole_col1','pole_col2','pole_col3','pole_col4',
-      'node_col_1','node_col_2','node_col_3','node_col_4','node_col_5',
-      'revue_presse','sortie_action','actuAssociation','projets','intervenants'
+     'pole_zone1','pole_zone2','pole_zone3','pole_zone4',
+      'zone_1','zone_2','zone_3','zone_4','zone_5'
+      
   );
 
   // If we are in any of these regions, create a theme hook suggestion.

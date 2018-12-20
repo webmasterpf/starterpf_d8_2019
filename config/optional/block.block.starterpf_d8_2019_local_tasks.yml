@@ -2,9 +2,9 @@ langcode: en
 status: true
 dependencies:
   theme:
-    - basic
-id: basic_local_tasks
-theme: basic
+    - starterpf_d8_2019
+id: starterpf_d8_2019_local_tasks
+theme: starterpf_d8_2019
 region: content
 weight: -40
 provider: null

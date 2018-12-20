@@ -1,3 +1,4 @@
+# nom_theme.libraries.yml (multiple libraries can be added to a libraries.yml file, these would appear below the cuddly-slider libraries added earlier)
 #Transposition du chargement des CSS ou JS depuis le fichier info du D6
 global-styling:
   version: 1.x
@@ -55,20 +56,20 @@ global-scripts:
   # loaded on all pages. Consider implimenting your scripts through theme libraries if you wish to
   # avoid this. https://www.drupal.org/developing/api/8/assets
 
-tabs:
-  version: VERSION
-  css:
-    component:
-      css/components/tabs.css: {}
+#tabs:
+#  version: VERSION
+#  css:
+#    component:
+#      css/components/tabs.css: {}
+#
+#messages:
+#  version: VERSION
+#  css:
+#    component:
+#      css/components/messages.css: {}
 
-messages:
-  version: VERSION
-  css:
-    component:
-      css/components/messages.css: {}
-
-ie8:
-  version: VERSION
-  header: true
-  js:
-    js/selectivizr-min.js: { browsers: { IE: 'lte IE 8', '!IE': false }, minified: true, preprocess: false }
+#ie8:
+#  version: VERSION
+#  header: true
+#  js:
+#    js/selectivizr-min.js: { browsers: { IE: 'lte IE 8', '!IE': false }, minified: true, preprocess: false }

@@ -14,7 +14,7 @@
   'use strict';
 
   // To understand behaviors, see https://www.drupal.org/node/2269515
-  Drupal.behaviors.basic = {
+  Drupal.behaviors.starterpf_d8_2019 = {
     attach: function (context, settings) {
 
       // Execute code once the DOM is ready. $(handler) not required

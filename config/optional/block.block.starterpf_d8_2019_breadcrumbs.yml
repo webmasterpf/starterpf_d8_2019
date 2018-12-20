@@ -4,9 +4,9 @@ dependencies:
   module:
     - system
   theme:
-    - basic
-id: basic_breadcrumbs
-theme: basic
+    - starterpf_d8_2019
+id: starterpf_d8_2019_breadcrumbs
+theme: starterpf_d8_2019
 region: content
 weight: -45
 provider: null

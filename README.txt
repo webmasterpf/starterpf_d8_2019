@@ -118,3 +118,8 @@ pour l'inclusion de variables : print $xxx  >> devient >> {{ xxx }}
               <?php print $logo; ?> >> devient >> {{ site_logo }}
           </div> >> devient >> </div>
       <?php endif; ?> >> devient >> {% endif %}
+
+https://www.drupal.org/docs/8/theming/adding-regions-to-a-theme
+https://atendesigngroup.com/blog/making-region-content-available-node-templates-drupal-8
+Créer des template pour chaque région inclus dans un node.Pour une région créée au niveau d'une page,il faut utiliser 
+les déclarer dans le fichier THEMENAME.info.yml 
