@@ -57,6 +57,31 @@ function starterpf_d8_2019_preprocess_field(&$variables, $hook) {
  * --- FONCTIONS PROPRES AU THEME ---
  //////////////////////////////////// */
 
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ * Suggestion de Template de type page--
+ * 
+ */
+function starterpf_d8_2019_theme_suggestions_page_alter(&$suggestions, $variables) {
+  $path = \Drupal::requestStack()->getCurrentRequest()->getPathInfo();
+  if ($path != '/') {
+    $path = trim($path, '/');
+    $arg = str_replace(["/", '-'], ['_', '_'], $path);
+    $suggestions[] = 'page__' . $arg;
+  }
+  #Suggestions pour les nodes
+   $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node instanceof \Drupal\node\NodeInterface) {
+    $suggestions[] = 'page__' . $node->bundle();
+    $suggestions[] = 'page__node_' . $node->bundle();
+  }
+  
+  #Suggestions pour les types de contenus
+   if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    $content_type = $node->bundle();
+    $suggestions[] = 'page__'.$content_type;
+  }
+}
 
 /** https://atendesigngroup.com/blog/making-region-content-available-node-templates-drupal-8
  */
@@ -73,9 +98,8 @@ function starterpf_d8_2019_preprocess_node(&$variables) {
     // Allowed regions (for performance so as to not execute for unneeded region)
     // Liste des régions utilisées directement dans les node.html.twig
     $allowed_regions = [
-      'pole_zone1','pole_zone2','pole_zone3','pole_zone4',
-      'zone_1','zone_2','zone_3','zone_4','zone_5',
-      'revue_presse','sortie_action','actuAssociation','projets','intervenants'
+    'pole_zone1','pole_zone2','pole_zone3','pole_zone4',
+      'zone_1','zone_2','zone_3','zone_4','zone_5'
       ];
     starterpf_d8_2019_add_regions_to_node($allowed_regions, $variables);
   }

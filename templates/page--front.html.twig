@@ -1,0 +1,68 @@
+{% set main_menu = page.primary_menu|render %}
+{% set secondary_menu = page.secondary_menu|render %}
+<div{{ attributes.addClass(
+  'layout-container',
+  main_menu or secondary_menu ? 'with-navigation',
+  secondary_menu ? 'with-subnav'
+) }}>
+<!-- ______________________ LAYOUT HOMEPAGE LARGE _______________________ -->
+  <!-- ______________________ HEADER _______________________ -->
+{#  Inclusion du markup du Header pour plus de lisibilité #}
+
+{% include directory ~ '/templates/includes/inc_header.html.twig' %}   
+  
+<!-- ______________________ ANNONCE _______________________ -->
+
+{% if  page.AnnonceAlaUne %}
+    <div class="annonce_1 annonce_alaUne">
+        {{ page.AnnonceAlaUne}}
+    </div> <!-- /#content-top -->
+{% endif %}
+
+<!-- ______________________ ANNONCE DEUIL _______________________ -->
+
+{% if  page.AnnonceDeuil %}
+    <div class="annonce_2">
+        {{ page.AnnonceDeuil}}
+    </div> <!-- /#content-top -->
+{% endif %}
+<!-- ______________________ ZONE DIAPO PLEINE LARGEUR _______________________ -->
+
+{% if  page.DiapoHPFull %}
+    <div class="HPDiapo">{{ page.DiapoHPFull}}</div>
+{% endif %}
+
+
+
+<!-- ______________________  ACCES RUBRIQUES  _______________________ -->
+{% if  page.RubriquesHP1 %}
+    <div class="acces_rubriques">{{ page.RubriquesHP1}}</div>
+{% endif %}
+
+<!-- ______________________  ACCES RUBRIQUES 2  _______________________ -->
+{% if  page.RubriquesHP2 %}
+    <div class="acces_rubriques">{{ page.RubriquesHP2}}</div>
+{% endif %}
+
+<!-- ______________________  ACCES RUBRIQUES 3  _______________________ -->
+{% if  page.RubriquesHP3 %}
+    <div class="acces_rubriques">{{ page.RubriquesHP3}}</div>
+{% endif %}                 
+
+<!-- ______________________ ACCES LYCEES _______________________ -->
+{% if  page.AccesLycees %}
+    <div class="acces_rubriques">{{ page.AccesLycees}}</div>
+{% endif %}   
+<!-- ______________________ ACCES LOGOS PARTENAIRES _______________________ -->
+{% if  page.LogoPart %}
+    <div class="logo_partenaires">{{ page.LogoPart}}</div>
+{% endif %}   
+
+  <!-- ______________________ FOOTER _______________________ -->
+{# Inclusion du markup du Footer pour plus de lisibilité #}
+
+{% include directory ~ '/templates/includes/inc_footer.html.twig' %}   
+  
+  
+
+</div><!-- /.layout-container -->

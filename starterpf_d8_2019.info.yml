@@ -19,15 +19,14 @@ libraries-remove:
 libraries:
   #Les fichiers (librairies) de style chargés pour toutes les pages. Utilise une Asset Library (bibliothèque) définie dans 
   # le fichier NOM_THEME.libraries.yml
+  #Les librairies de style
 #  - core/normalize
   - starterpf_d8_2019/global-styling
-  - starterpf_d8_2019/css
-  - starterpf_d8_2019/3rdparty
+#  - starterpf_d8_2019/css
+#  - starterpf_d8_2019/3rdparty
   #Les librairies de javascript
-  - starterpf_d8_2019/js
+#  - starterpf_d8_2019/js
   - starterpf_d8_2019/global-scripts
-
-
 regions:
  #Régions de base - devient {{ page.header }}  dans fichier .twig    
  #synthaxe : nom_region: 'Nom Région'
@@ -45,10 +44,10 @@ regions:
   content_top_node: 'Content top node'
   formulaire: 'Zone formulaire bloc'
   left: 'Zone Gauche'
-  decoTitre: 'Titre deco image - Fiche Formations'
+  
   right: 'Zone Droite'
   content_bottom: 'Content bottom'
-  content_bottom_home: 'Content bottom homepage'
+  
 
 #Regions Custom Redesign Susy3 - 2018 et suivant
   menuDyn: 'Menu Header - Menu dynamique JS'
