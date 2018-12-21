@@ -7,6 +7,7 @@ global-styling:
     css:
         theme:
            css/application.css: {}
+        3rdparty:   
             # Style pour Flexslider
            3rdparty/flexslider/flexslider.css: {}
             #Style pour Bxslider
@@ -17,12 +18,13 @@ global-styling:
            3rdparty/chocolat/chocolat.css: {}
             #Style pour Lightslider (galerie RWD)
            3rdparty/lightslider/css/lightslider.css: {}
+        js:  
             #Style pour Responsive Slides (diaporama RWD)
            js/jquery_plugin/responsiveslides/responsiveslides.css: {}
             
 global-scripts:
     version: VERSION
-    js: 
+    js:
         js/navmenu.js: {}   
         js/modernizr.js: {}
         js/jquery_plugin/jquery.flexslider.js: {}
@@ -35,6 +37,8 @@ global-scripts:
         js/jquery_plugin/responsiveslides/responsiveslides.min.js: {}
         js/jquery_plugin/lazyload/jquery.lazyloadxt.extra.min.js: {}
         js/jquery_plugin/stacktable.min.js: {}
+          
+        
         3rdparty/bxslider/js/jquery.bxslider.js: {}
         3rdparty/lightslider/js/lightslider.js: {}
     dependencies:
