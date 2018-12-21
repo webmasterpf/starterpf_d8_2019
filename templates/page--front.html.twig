@@ -13,7 +13,7 @@
   
 <!-- ______________________ ANNONCE _______________________ -->
 
-{% if  page.AnnonceAlaUne %}
+{% if  page.AnnonceAlaUne is not empty %}
     <div class="annonce_1 annonce_alaUne">
         {{ page.AnnonceAlaUne}}
     </div> <!-- /#content-top -->
@@ -21,40 +21,40 @@
 
 <!-- ______________________ ANNONCE DEUIL _______________________ -->
 
-{% if  page.AnnonceDeuil %}
+{% if  page.AnnonceDeuil is not empty %}
     <div class="annonce_2">
         {{ page.AnnonceDeuil}}
     </div> <!-- /#content-top -->
 {% endif %}
 <!-- ______________________ ZONE DIAPO PLEINE LARGEUR _______________________ -->
 
-{% if  page.DiapoHPFull %}
+{% if  page.DiapoHPFull is not empty %}
     <div class="HPDiapo">{{ page.DiapoHPFull}}</div>
 {% endif %}
 
 
 
-<!-- ______________________  ACCES RUBRIQUES  _______________________ -->
-{% if  page.RubriquesHP1 %}
+<!-- ______________________ ACCES RUBRIQUES  _______________________ -->
+{% if  page.RubriquesHP1 is not empty %}
     <div class="acces_rubriques">{{ page.RubriquesHP1}}</div>
 {% endif %}
 
-<!-- ______________________  ACCES RUBRIQUES 2  _______________________ -->
-{% if  page.RubriquesHP2 %}
+<!-- ______________________ ACCES RUBRIQUES 2  _______________________ -->
+{% if  page.RubriquesHP2 is not empty %}
     <div class="acces_rubriques">{{ page.RubriquesHP2}}</div>
 {% endif %}
 
-<!-- ______________________  ACCES RUBRIQUES 3  _______________________ -->
-{% if  page.RubriquesHP3 %}
+<!-- ______________________ ACCES RUBRIQUES 3  _______________________ -->
+{% if  page.RubriquesHP3 is not empty %}
     <div class="acces_rubriques">{{ page.RubriquesHP3}}</div>
 {% endif %}                 
 
-<!-- ______________________ ACCES LYCEES _______________________ -->
-{% if  page.AccesLycees %}
+<!-- ______________________ ACCES LYCEES / VIDEO LYCEE _______________________ -->
+{% if  page.AccesLycees is not empty %}
     <div class="acces_rubriques">{{ page.AccesLycees}}</div>
 {% endif %}   
 <!-- ______________________ ACCES LOGOS PARTENAIRES _______________________ -->
-{% if  page.LogoPart %}
+{% if  page.LogoPart is not empty %}
     <div class="logo_partenaires">{{ page.LogoPart}}</div>
 {% endif %}   
 
