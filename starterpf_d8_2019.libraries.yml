@@ -1,7 +1,7 @@
 # nom_theme.libraries.yml (multiple libraries can be added to a libraries.yml file, these would appear below the cuddly-slider libraries added earlier)
 #https://drupal.stackexchange.com/q/274233/8753
 #Transposition du chargement des CSS ou JS depuis le fichier info du D6
-# Toujours utiliser css > theme puis chemin vers fichier css (idem pour js) pas possible de mélanger les types de fichiers
+# les CSS et les JS n'utilisent pas la même synthaxe pour le groupement de fichiers.
 global-styling:
     version: VERSION
     css:
