@@ -31,22 +31,18 @@ regions:
  #Régions de base - devient {{ page.header }}  dans fichier .twig    
  #synthaxe : nom_region: 'Nom Région'
  #Regions par défaut
-  header: Header
-  help: 'Help'
-  page_top: 'Page top'
-  page_bottom: 'Page bottom'
-  highlighted: 'Highlighted'
-  content: 'Content'
-  sidebar_first: 'Sidebar first'
-  sidebar_second: 'Sidebar second'
-  footer: 'Footer'
-  content_top: 'Content top'
-  content_top_node: 'Content top node'
-  formulaire: 'Zone formulaire bloc'
-  left: 'Zone Gauche'
+  header: 'Header - Défaut'
+  help: 'Help - Défaut'
+  page_top: 'Page top - Défaut'
+  page_bottom: 'Page bottom - Défaut'
+  highlighted: 'Highlighted - Défaut'
+  content: 'Content - Défaut'
+  sidebar_first: 'Sidebar first - Défaut'
+  sidebar_second: 'Sidebar second - Défaut'
+  footer: 'Footer - Défaut'
+  left: 'Zone Gauche - Défaut'
+  right: 'Zone Droite - Défaut'
   
-  right: 'Zone Droite'
-  content_bottom: 'Content bottom'
   
 
 #Regions Custom Redesign Susy3 - 2018 et suivant
@@ -54,6 +50,10 @@ regions:
   navStatic: 'Navigation statique - Bloc'
   site_slogan: 'Slogan du site - Bloc'
   search_box: 'Zone recherche - Bloc'
+  content_bottom: 'Content bottom - Custom'
+  content_top: 'Content top - Custom'
+  content_top_node: 'Content top node - Custom'
+  formulaire: 'Zone formulaire bloc - Custom'
 
  #Bandeau haut de page accueil (si besoin)
   bandeau1: 'Bandeau haut de page'
@@ -65,25 +65,25 @@ regions:
   RubriquesHP1:  'Accès Rubriques 1 Homepage - Bloc'
   RubriquesHP2:  'Accès Rubriques 2 Homepage - Bloc'
   RubriquesHP3:  'Accès Rubriques 3 Homepage - Bloc'
-  AccesLycees:  'Accès Lycées Homepage - Bloc'
+  AccesLycees:  'Video Lycée Homepage - Bloc'
   LogoPart:  'Logos Partenaires Homepage - Bloc'
 
  #Regions customs pour site Provence Formation
-  centralBloc: 'Zone pour bloc central - View Bloc'
-  centre_partenaire: 'Zone centrale page partenaire'
+#  centralBloc: 'Zone pour bloc central - View Bloc'
+#  centre_partenaire: 'Zone centrale page partenaire'
 
 
 
  #Region pour les node.tpl (ajouter dans fichier MON_THEME.theme)
   
-  zone_1: 'Bloc pour zone 1'
-  zone_2: 'Bloc pour zone 2'
-  zone_3: 'Bloc pour zone 3'
-  zone_4: 'Bloc pour zone 4'
-  zone_5: 'Bloc pour zone 5'
+  Zone_1: 'Zone 1 - Bloc'
+  Zone_2: 'Zone 2 - Bloc'
+  Zone_3: 'Zone 3 - Bloc'
+  Zone_4: 'Zone 4 - Bloc'
+  Zone_5: 'Zone 5 - Bloc'
 
  #Region pour page poles formation (ajouter dans fichier MON_THEME.theme)
-  pole_zone1: ' Pôle formation - Zone 1'
-  pole_zone2: ' Pôle formation - Zone 2'
-  pole_zone3: ' Pôle formation - Zone 3'
-  pole_zone4: ' Pôle formation - Zone 4'
+  pole_Zone1: ' Pôle formation - Zone 1'
+  pole_Zone2: ' Pôle formation - Zone 2'
+  pole_Zone3: ' Pôle formation - Zone 3'
+  pole_Zone4: ' Pôle formation - Zone 4'
