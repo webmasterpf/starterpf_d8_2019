@@ -1,48 +1,50 @@
 # nom_theme.libraries.yml (multiple libraries can be added to a libraries.yml file, these would appear below the cuddly-slider libraries added earlier)
+#https://drupal.stackexchange.com/q/274233/8753
 #Transposition du chargement des CSS ou JS depuis le fichier info du D6
+# Toujours utiliser css > theme puis chemin vers fichier css (idem pour js) pas possible de mélanger les types de fichiers
 global-styling:
     version: VERSION
     css:
         theme:
            css/application.css: {}
-    3rdparty: 
-        theme:
+#    3rdparty: 
+#        theme:
             # Style pour Flexslider
-            3rdparty/flexslider/flexslider.css: {}
+           3rdparty/flexslider/flexslider.css: {}
             #Style pour Bxslider
-            3rdparty/bxslider/css/jquery.bxslider.css: {}
+           3rdparty/bxslider/css/jquery.bxslider.css: {}
             #Style pour BaguetteBox
-            3rdparty/baguettebox/baguetteBox.min.css: {}
+           3rdparty/baguettebox/baguetteBox.min.css: {}
             #Style pour Chocolat (vignettes zoomables RWD)
-            3rdparty/chocolat/chocolat.css: {}
+           3rdparty/chocolat/chocolat.css: {}
             #Style pour Lightslider (galerie RWD)
-            3rdparty/lightslider/css/lightslider.css: {}
-    js:
-        theme:  
+           3rdparty/lightslider/css/lightslider.css: {}
+#    js:
+#        theme:  
             #Style pour Responsive Slides (diaporama RWD)
-            js/jquery_plugin/responsiveslides/responsiveslides.css: {}
+           js/jquery_plugin/responsiveslides/responsiveslides.css: {}
             
 global-scripts:
     version: VERSION
-    3rdparty:
-      theme:
-          3rdparty/bxslider/js/jquery.bxslider.js: {}
-          3rdparty/lightslider/js/lightslider.js: {}
     js: 
-      js/navmenu.js: {}   
-      js/modernizr.js: {}
-      theme:
-       js/jquery_plugin/jquery.flexslider.js: {}
-       js/jquery_plugin/stacktable.min.js: {}
-       js/jquery_plugin/jquery.floatit.js: {}
-       js/jquery_plugin/stickUp.js: {}
-       js/jquery_plugin/jquery.masonry.min.js: {}
-       js/jquery_plugin/baguettebox/baguetteBox.min.js: {}
-       js/jquery_plugin/chocolat/jquery.chocolat.min.js: {}
-       js/jquery_plugin/responsiveslides/responsiveslides.min.js: {}
-       js/jquery_plugin/lazyload/jquery.lazyloadxt.extra.min.js: {}
-       js/jquery_plugin/stacktable.min.js: {}
+        js/navmenu.js: {}   
+        js/modernizr.js: {}
+#      theme:
+        js/jquery_plugin/jquery.flexslider.js: {}
+        js/jquery_plugin/stacktable.min.js: {}
+        js/jquery_plugin/jquery.floatit.js: {}
+        js/jquery_plugin/stickUp.js: {}
+        js/jquery_plugin/jquery.masonry.min.js: {}
+        js/jquery_plugin/baguettebox/baguetteBox.min.js: {}
+        js/jquery_plugin/chocolat/jquery.chocolat.min.js: {}
+        js/jquery_plugin/responsiveslides/responsiveslides.min.js: {}
+        js/jquery_plugin/lazyload/jquery.lazyloadxt.extra.min.js: {}
+        js/jquery_plugin/stacktable.min.js: {}
   #   js/build/scripts.js: {}
+#      3rdparty:
+#      theme:
+        3rdparty/bxslider/js/jquery.bxslider.js: {}
+        3rdparty/lightslider/js/lightslider.js: {}
     dependencies:
   #   - core/drupal
        - core/jquery
@@ -68,6 +70,3 @@ global-scripts:
 #  header: true
 #  js:
 #    js/selectivizr-min.js: { browsers: { IE: 'lte IE 8', '!IE': false }, minified: true, preprocess: false }       
-
-       
-           
