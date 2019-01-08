@@ -9,20 +9,27 @@ Utilisation de Gulp + NodeJS
 
 MODULES NODE.JS via NPM
 ----------------------------------
+https://www.supinfo.com/articles/single/946-npm-package-manager-nodejs
+
 Installation de Gulp
-:/var/www/drupal-6/sites/all/themes/dossier_projet$ sudo npm init (création du fichier  package.json + dossier node_modules)
-:/var/www/drupal-6/sites/all/themes/dossier_projet$ npm install gulp --save-dev
+:/var/www/drupal-8/themes/custom/dossier_projet$ sudo npm init (création du fichier  package.json + dossier node_modules)
+:/var/www/drupal-8/themes/custom/dossier_projet$ npm install gulp --save-dev
 
 Plugin pour Gulp (permet de charger tous les plugins)
-:/var/www/drupal-6/sites/all/themes/dossier_projet$ npm install gulp-load-plugins --save-dev
+:/var/www/drupal-8/themes/custom/dossier_projet$ npm install gulp-load-plugins --save-dev
 
 Plugin pour Sass:
-npm install --save-dev  event-stream gulp-util node-sass-import-once gulp-sass  gulp-autoprefixer gulp-size gulp-shell gulp-notify notify-send gulp-sourcemaps typey susy node-normalize-scss gulp-plumber gulp-postcss
+npm install --save-dev  event-stream gulp-util node-sass-import-once gulp-sass gulp-size gulp-shell gulp-notify notify-send gulp-sourcemaps typey susy node-normalize-scss gulp-plumber gulp-postcss
 
 Vérifier versions des npm:
 npm-check
 
+Désinstaller un package:
+npm uninstall <nom du package>
+
 !! Remplacer gulp-autoprefixer par autoprefixer pour avoir la dernière version du package.Utiliser avec PostCSS
+https://github.com/postcss/autoprefixer
+npm install --save-dev autoprefixer gulp-postcss
 
 https://github.com/at-import/breakpoint
 

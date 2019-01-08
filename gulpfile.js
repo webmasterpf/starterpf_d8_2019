@@ -188,7 +188,7 @@ gulp.task('browser-sync', function() {
 browserSync.init({
         //changer l'adresse du site pour lequel utiliser browserSync, solution par variable fonctionne pas
 //        proxy: '.urlSite.',
-        proxy: 'http://d6-provence-formation.vmdev/',
+        proxy: 'http://d8-celony.vmdev/',
         open: false,
         logLevel: 'info',//pour avoir toutes les infos ,utiliser "debug", pour infos de base "info"
         logConnections: true
@@ -200,9 +200,9 @@ gulp.task('default', ['browser-sync'], function(){
 //    gulp.task('default', function(){
   gulp.watch(basePaths.src, ['sasscompil']);
   gulp.watch(folderPaths.styles.src, bs_reload);
-  gulp.watch(folderPaths.templates.d6, bs_reload);
-  gulp.watch(folderPaths.templates.d6nodestpl, bs_reload);
-  gulp.watch(folderPaths.settings.d6, bs_reload);
+  gulp.watch(folderPaths.templates.d8, bs_reload);
+//  gulp.watch(folderPaths.templates.d6nodestpl, bs_reload);
+  gulp.watch(folderPaths.settings.d8, bs_reload);
   gulp.watch(folderPaths.js.jsd68, bs_reload);
 //  gulp.watch(basePaths.src, ['drush']);
 //  gulp.watch(folderPaths.templates.d6, ['drush']);
