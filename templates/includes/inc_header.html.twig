@@ -10,18 +10,18 @@
         <div class="headHaut">
 
       
-      {% if  site_logo %}
+      {% if  page.site_logo %}
           <div class="logoHead">
-              {{ site_logo }}
+              {{ page.site_logo }}
           </div>
       {% endif %}
 
-      {% if (menuDyn is not empty) %}  
+      {% if (page.menuDyn is not empty) %}  
           {#
           positionner le bloc fournissant le menu dans cette région, pour v2018,le bloc Menu Général suffit (avec classe mobilenav) + bloc avec JS (sans editeur)
           #}
           <nav class="menuOver">    
-              {{ menuDyn }}
+              {{ page.menuDyn }}
           </nav><!-- /menuOver -->
       {% endif %}
 

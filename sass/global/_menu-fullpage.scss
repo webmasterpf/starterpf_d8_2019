@@ -40,7 +40,7 @@ body .conteneur{
             &::before{
                 //Ajout d'une indication sur présence du menu
                 content: "Menu ->";
-                color:$orange-fonce;
+                color:$violet;//Couleur du texte
                 @include font-size(s);//utilisation de typey
                 font-family: $FontRaleway;
                     left: -4em;
@@ -67,7 +67,7 @@ body .conteneur{
         position: absolute;
         width: 100%;
         height: 100%;
-        background: $orange-fonce;
+        background: $vert;//Couleur de fond du menu ouvert
         opacity: 0.9;
         ul{
             list-style: none;
@@ -124,7 +124,7 @@ body .conteneur{
              width: em(25px);
         height: em(2px);
         border-radius: em(10px);
-        background-color: $orange-fonce;
+        background-color: $violet;//Couleur de l'accès menu
     }
     .top-menu {
         top: em(5px);
