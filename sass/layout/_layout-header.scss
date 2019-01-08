@@ -18,7 +18,7 @@ body .conteneur #header {
     .headHaut {
 
         @include clearfixsusy3;//Dispo sur tous supports
-        .logoHead {
+        .logoHead, .site-logo {
             padding: span(1) 0 0;
             @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
                 padding: span(0.1) 0 1em 0;
@@ -29,11 +29,11 @@ body .conteneur #header {
                 width: 100%;
                 @include breakpoint(($mobile,$mobilelandscape)){           }
                 @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){    
-                    width: 70%;
+                    width: 100%;
                     margin: 0;
                     padding: 0;
                     //display: block;//commenter si logo pas collé à gauche
-                    max-height: 5em;//si logo trop gros
+                    max-height: 15em;//si logo trop gros
                     object-fit: contain;
                 }
 
@@ -102,12 +102,18 @@ body .conteneur #header {
 }
 
 .site-name {
+    clear: both;
+    background: $vert;
     a {
         text-decoration: none;
         color: white;
-        text-transform: uppercase;
+        text-transform: initial;
+          @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+        text-align: left;
+        padding: em(3px) 0 0 span(0.1);
     }
-    padding: em(160px) 0 0 0;
+    }
+    padding: 0;
     margin: 0;
 }
 
@@ -115,11 +121,12 @@ body .conteneur #header {
     color: white;
     font-size: small;
     text-align: center;
-
+    background: $vert;
+    clear: both;
 
     @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
         text-align: left;
-        padding: em(3px) 0 0 1em;
+        padding: span(0.01) 0 0 span(0.1);
     }
     a {
         text-decoration: none;

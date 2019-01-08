@@ -19,43 +19,24 @@
 
     {% if  node.field_image_deco_lycee.value is not empty %}
     
-        {{ node.field_image_deco_lycee.value }}
+        {{ node.field_image_deco_lycee.value}}
     
     {% endif %}
     
+
     
-  {% if title_prefix or title_suffix or display_submitted or unpublished or page is empty and label %}
-    <header>
-      {{ title_prefix }}
-      {% if not page and label %}
-        <h2{{ title_attributes.addClass(title_classes) }}>
-          <a href="{{ url }}" rel="bookmark">{{ label }}</a>
-        </h2>
-      {% endif %}
-      {{ title_suffix }}
-
-      {% if display_submitted %}
-        <div class="submitted">
-          {{ author_picture }}
-          {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
-          {{ metadata }}
-        </div>
-      {% endif %}
-
-      {% if not node.published %}
-        <p class="node--unpublished">{{ 'Unpublished'|t }}</p>
-      {% endif %}
-    </header>
-  {% endif %}
-
-  <div{{ content_attributes.addClass('content') }}>
-    {{ content|without('links') }}
-  </div><!-- /.content -->
-
-  {% if content.links %}
-    <div class="links">
-      {{ content.links }}
-    </div><!-- /.links -->
-  {% endif %}
-
+        {% if  content.field_image_deco_lycee is not empty %}
+    
+        {{ content.field_image_deco_lycee }}
+    
+    {% endif %}
+   
+        {# Affichage du contenu du champ body uniquement #}
+    {{ content.body }}
+    
+    
+    {# Affichage d'une liste de valeurs des champs custom liens et fichiers #}
+    {#
+    {% include directory ~ '/templates/includes/dedicates_inc/inc_plycee_doc_liens.html.twig' %}   
+    #}
 </article><!-- /.node -->

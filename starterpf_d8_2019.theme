@@ -57,6 +57,11 @@ function starterpf_d8_2019_preprocess_field(&$variables, $hook) {
  * --- FONCTIONS PROPRES AU THEME ---
  //////////////////////////////////// */
 
+/* Afficher librement les slogans ou noms du site*/
+function starterpf_d8_2019_preprocess_page(&$variables) {
+  $variables['site_name'] = \Drupal::config('system.site')->get('name');
+}
+
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
  * Suggestion de Template de type page--
