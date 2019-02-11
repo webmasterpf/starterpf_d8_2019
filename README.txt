@@ -41,7 +41,7 @@ BROWSER SYNC
 REGLAGES A FAIRE
 ----------------
 
->> DEBUGAGE TWIG : passer debug:flase à true dans fichier service.yml dans dossier d'installation  du site
+>> DEBUGAGE TWIG : passer debug:false à true dans fichier service.yml dans dossier d'installation  du site
 par ex. /drupal-8/sites/DOSSIER_SITE/services.yml
 
 Changer le nom du fichier .info
