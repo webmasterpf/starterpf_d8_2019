@@ -26,11 +26,11 @@ global-scripts:
     version: VERSION
     js:
 #        js/navmenu.js: {}   
-        js/modernizr.js: {}
+#        js/modernizr.js: {}
 #        chargement des scripts qui utilisent la version de jQuery par défaut du site
-#        js/js_jquery_defaut.js: {}
+        js/js_jquery_defaut.js: {}
 #     mise en place du noConflict pour utiliser plusieurs versions de jQuery   
-#        js/jquery_init.js: {}
+        js/jquery_init.js: {}
 #       chargement des plugins qui utilisent une version de jQuery plus récente
         js/jquery_plugin/jquery.flexslider.js: {}
         js/jquery_plugin/stacktable.min.js: {}
@@ -48,8 +48,8 @@ global-scripts:
         3rdparty/lightslider/js/lightslider.js: {}
      #  *** Utilisation des plugins Jquery  plus récents - Toujours terminer avec ce JS***
         js/js_jquery_new.js: {}
-    #    //  mise à disposition des 2 versions de jQuery
-#        js/jquery_exit.js: {}
+    #    //  mise à disposition des 2 versions de jQuery - Voir si utile
+        js/jquery_exit.js: {}
     dependencies:
   #   - core/drupal
        - core/jquery
