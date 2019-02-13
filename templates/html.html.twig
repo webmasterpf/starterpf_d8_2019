@@ -42,27 +42,11 @@
 {% else -%}
   <html{{ html_attributes }}>
 {% endif %}
-  <head>
-    <head-placeholder token="{{ placeholder_token }}">
-    <title>{{ head_title|safe_join(' | ') }}</title>
-    <css-placeholder token="{{ placeholder_token }}">
-    <js-placeholder token="{{ placeholder_token }}">
-  </head>
-  {% set classes = [] %}
-  {% for role in user.roles %}
-    {% set classes = classes|merge(['role--' ~ role|clean_class]) %}
-  {% endfor %}
 
-  {% set sidebar_first = page.sidebar_first|render %}
-  {% set sidebar_second = page.sidebar_second|render %}
-  <body{{ attributes.addClass(classes,
-    not is_front ? 'with-subnav',
-    sidebar_first ? 'sidebar-first',
-    sidebar_second ? 'sidebar-second',
-    (sidebar_first and not sidebar_second) or (sidebar_second and not sidebar_first) ? 'one-sidebar',
-    (sidebar_first and sidebar_second) ? 'two-sidebars',
-    (not sidebar_first and not sidebar_second) ? 'no-sidebar'
-  ) }}>
+  {#<head> voir @inc_header.html.twig#}
+{% include directory ~ '/includes/inc_header.html.twig' %}   
+   
+
     <div id="skip">
       <a href="#main-menu" class="visually-hidden focusable skip-link">
         {{ 'Skip to main navigation'|t }}
@@ -71,11 +55,13 @@
     {{ page_top }}
     {{ page }}
     {{ page_bottom }}
+    
+    
     <js-bottom-placeholder token="{{ placeholder_token }}">
     {% if browser_sync.enabled %}
       <script id="__bs_script__">
       document.write("<script async src='http://{{ browser_sync.host }}:{{ browser_sync.port }}/browser-sync/browser-sync-client.js'><\/script>".replace("HOST", location.hostname));
       </script>
     {% endif %}
-  </body>
-</html>
+    
+    {% include directory ~ '/includes/inc_footer.html.twig' %}   
