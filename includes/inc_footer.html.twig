@@ -1,0 +1,27 @@
+<!-- ______________________ FOOTER _______________________ -->
+{#{%  if  page.footer_message or page.footer_block is not empty %}      #}
+
+<footer id="footer">
+{% if page.footer|render is not empty %}          
+                        {{ page.footer }}
+                        {#
+            {{ page.footer_message}}
+            {{ page.footer_block}}
+                #}
+            
+     <div id="bloc_stats">
+        {% include directory ~ '/js/google_font.php' %}   
+        {% include directory ~ '/js/code_stats.php' %}   
+
+     </div>
+</footer> <!-- /footer -->
+      {% endif %}
+       
+    </section> 
+    <!-- ______________________ /CONTENEUR _______________________ -->
+    {#
+    {% include directory ~ '/includes/drupal_debug/inc_drupal_debug.html.twig' %}          
+    #}
+   
+  </body>
+</html>
