@@ -24,20 +24,30 @@
     
     <js-placeholder token="{{ placeholder_token }}">
   </head>
+    {% set classes = [] %}
+  {% for role in user.roles %}
+    {% set classes = classes|merge(['role--' ~ role|clean_class]) %}
+  {% endfor %}
 
- <body class="<?php print $body_classes; ?>">
+  {% set sidebar_first = page.sidebar_first|render %}
+  {% set sidebar_second = page.sidebar_second|render %}
+  <body{{ attributes.addClass(classes,
+    not is_front ? 'with-subnav',
+    sidebar_first ? 'sidebar-first',
+    sidebar_second ? 'sidebar-second',
+    (sidebar_first and not sidebar_second) or (sidebar_second and not sidebar_first) ? 'one-sidebar',
+    (sidebar_first and sidebar_second) ? 'two-sidebars',
+    (not sidebar_first and not sidebar_second) ? 'no-sidebar'
+  ) }}>
+
+ 
  <!-- ______________________ PAGE TOP BANDEAU _______________________ -->
- <?php
- //global $theme_path; include_once ($theme_path . '/includes/inc_bandeau_coulissant_css.php');
- ?>
- <?php
- //global $theme_path; include ($theme_path . '/includes/inc_bandeau_coulissant_js.php');
- ?>
+
 <!-- ______________________ CONTENEUR _______________________ -->
      <section class="conteneur">
-      <?php
- global $theme_path; include ($theme_path . '/includes/inc_bandeau_off_canvas_susy.php');
- ?>
+  {#
+         {% include directory ~ '/templates/includes/inc_bandeau_off_canvas_susy.html.twig' %}   
+     #}    
     <!-- ______________________ HEADER _______________________ -->
     <header id="header">
 
@@ -45,16 +55,19 @@
         <div class="headHaut">
 
             <div class="logoHead">
-                <?php if (!empty($logo)): ?>
+                {% if  page.logo is not empty %}
                     <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" class="logo"><img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>"/></a>
-                <?php endif; ?>
+                {% endif %}
             </div>
       
-            <?php
-            //- positionner le bloc fournissant le menu dans cette région, pour v2018,le bloc Menu Général suffit (avec classe mobilenav) + bloc avec JS (sans editeur)
-            if (!empty($menuDyn)): ?>
+{#
+/**
+positionner le bloc fournissant le menu dans cette région, pour v2018,le bloc Menu Général suffit (avec classe mobilenav) + bloc avec JS (sans editeur)
+*/
+#}
+                {%  if  page.menuDyn is not empty %}
 <nav class="menuOver">    
-          <?php print $menuDyn; ?>
+          {{ page.menuDyn}}
     
 <!--     <a href="javascript:void(0)" class="icon">
 <div class="hamburger">
@@ -67,7 +80,7 @@
 </nav>
            
             <!-- /menuHead  -->        
-    <?php endif; ?>
+    {% endif %}
 
         
 
@@ -76,23 +89,23 @@
         </div><!-- /headHaut -->
         <div class="headBas">
 
-            <?php if (!empty($site_slogan)): ?>
+            {%  if  page.site_slogan is not empty %}
                 <div class="site-slogan">
-                    <?php print $site_slogan; ?>
+            {{ page.site_slogan}}
                 </div><!-- /site-slogan -->
-            <?php endif; ?>
+            {% endif %}
                 
-                          <?php if (!empty($mission)): ?>
+            {%  if  page.mission is not empty %}
                 <div class="objectif">
-                    <?php print $mission; ?>
+                    {{ page.mission}}
                 </div><!-- /site-mission -->
-            <?php endif; ?>
+            {% endif %}
 
 
             <div class="headSearch">
-                <?php if (!empty($search_box)): ?>
-                    <?php print $search_box ?>
-                <?php endif; ?>
+                {%  if  page.search_box is not empty %}
+                {{ page.search_box}}
+                {% endif %}
             </div><!-- /recherche -->
             
             
