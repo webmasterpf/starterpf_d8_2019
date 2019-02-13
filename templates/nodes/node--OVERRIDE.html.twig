@@ -1,7 +1,11 @@
 <!-- TEMPLATE DE NODE CUSTOM - TYPE DE CONTENU -->
-{# Create classes array. The 'node' class is required for contextual edit links. #}
+{# Create classes array. The 'node' class is required for contextual edit links. 
+Permet d'ajouter des classes dynamiques ou non aux éléments du markup
+#}
 {% set classes = [
-  'node'
+'node',
+'node--type-' ~ node.bundle|clean_class,
+'node-id-' ~ node.id
 ] %}
 
 {# BEM inspired class syntax: https://en.bem.info/
@@ -48,6 +52,10 @@ Créer un template de champ pour pouvoir organiser la sortie HTML : field--field
 
 {# Plutôt utiliser l'objet node que content car il n'est pas soumis au type de sortie d'affichage #}
 {{ node.field_name|field_label }}
+
+{# Affichage du contenu des balises titre ou alt d'une image #}
+{{ node.field_image.title }}
+{{ node.field_image.alt }}
       
   <h2> Affichage champ pour upload fichiers : méthode node </h2>
 
@@ -56,6 +64,14 @@ Créer un template de champ pour pouvoir organiser la sortie HTML : field--field
   
 {{ content[‘#node’].nid.value }}
 
+
+{# Affichage conditionnel du contenu d'un champ image #}
+    {% set image_deco = content.field_image_deco_lycee|render|trim %}
+    {% if  image_deco is not empty %}
+        <span {{image_attribute.addClass(image_classes) }}>
+                {{ content.field_image_deco_lycee}}
+    </span>
+    {% endif %}
 
   {% if content.field_to_render %}
     <div id="nom_champ" class="actu-nom_champ">
