@@ -1,9 +1,18 @@
 
-{# Create classes array. The 'node' class is required for contextual edit links. #}
+{# Create classes array. The 'node' class is required for contextual edit links. 
+Permet d'ajouter des classes dynamiques ou non aux éléments du markup
+#}
 {% set classes = [
-  'node'
-] %}
+'node',
+'node--type-' ~ node.bundle|clean_class
 
+] %}
+{% set image_attribute = create_attribute() %}
+{% set image_classes = [
+
+'image--type-' ~ node.bundle|clean_class
+
+] %}
 {# BEM inspired class syntax: https://en.bem.info/
    Enable this code if you would like node classes like "article article--layout-teaser", where article is the content type and teaser is the view mode.
 {% set classes = classes|merge([
@@ -15,12 +24,13 @@
 ] %}
 #}
 <!--______________NODE TPL POUR PAGE.TPL CUSTOM  ________________ -->
-<article{{ attributes.addClass(classes) }}>
+<article{{ attributes.addClass(classes).setAttribute('id', 'node-'~node.id) }}>
 
-    {% if  node.field_image_deco_lycee.value is not empty %}
-    
-        {{ node.field_image_deco_lycee.value }}
-    
+    {% set image_deco = content.field_image_deco_lycee|render|trim %}
+    {% if  image_deco is not empty %}
+        <span {{image_attribute.addClass(image_classes) }}>
+                {{ content.field_image_deco_lycee}}
+    </span>
     {% endif %}
     
     
