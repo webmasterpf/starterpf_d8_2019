@@ -31,7 +31,8 @@ var folderPaths = {
     templates: {
         d6: basePaths.project + '**/*.tpl.php',
         d6nodestpl: basePaths.project + 'node/**/*.tpl.php',
-        d8: basePaths.project + '**/*.html.twig'
+        d8: basePaths.project + '**/*.html.twig',
+        d8nodestpl: basePaths.project + 'nodes/**/*.html.twig'
     },
     settings: {
         d6: basePaths.project + '**/*.php',

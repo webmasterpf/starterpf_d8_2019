@@ -65,7 +65,7 @@ Créer un template de champ pour pouvoir organiser la sortie HTML : field--field
 {{ content[‘#node’].nid.value }}
 
 
-{# Affichage conditionnel du contenu d'un champ image #}
+{# Affichage conditionnel du contenu d'un champ image - technique possible pour test sur autre champ #}
     {% set image_deco = content.field_image_deco_lycee|render|trim %}
     {% if  image_deco is not empty %}
         <span {{image_attribute.addClass(image_classes) }}>
@@ -73,7 +73,7 @@ Créer un template de champ pour pouvoir organiser la sortie HTML : field--field
     </span>
     {% endif %}
 
-  {% if content.field_to_render %}
+    {% if content.field_to_render is not empty %}
     <div id="nom_champ" class="actu-nom_champ">
       {{ content.field_to_render }}
     </div><!-- /.nom_champ -->

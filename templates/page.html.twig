@@ -1,11 +1,13 @@
 {% set main_menu = page.primary_menu|render %}
 {% set secondary_menu = page.secondary_menu|render %}
+
+
 <div{{ attributes.addClass(
   'layout-container',
   main_menu or secondary_menu ? 'with-navigation',
   secondary_menu ? 'with-subnav'
 ) }}>
-
+    
   <!-- ______________________ HEADER _______________________ -->
 {#  Inclusion du markup du Header pour plus de lisibilité 
 Voir fichier @html.html.twig
@@ -58,7 +60,14 @@ Voir fichier @html.html.twig
     
     
     <!-- ______________________ CONTENU CENTRAL _______________________ -->
-    <article class="middle-content">
+    {# 
+Permet d'ajouter des classes dynamiques ou non aux éléments du markup
+#}
+    <article{{ attributes.addClass(
+'middle-content',
+'node--type-' ~ node.bundle|clean_class,
+'node-id-' ~ node.id
+).removeClass('layout-container') }}>
 {{ page.content }}
     </article> <!-- /#content-area -->
 
