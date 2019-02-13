@@ -59,7 +59,8 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
   {% endif %}
 
   <div{{ content_attributes.addClass('content') }}>
-    {{ content|without('links') }}
+    
+    {{ content.body }}
   </div><!-- /.content -->
 
   {% if content.links %}
