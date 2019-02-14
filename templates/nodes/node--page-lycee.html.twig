@@ -8,11 +8,18 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
 
 ] %}
 {% set image_attribute = create_attribute() %}
+{% set imagecontainer_attribute = create_attribute() %}
 {% set image_classes = [
-
+'illustration-'~ node.bundle|clean_class,
 'image--type-' ~ node.bundle|clean_class
 
-] %}
+]%}
+{% set imagecontainer_classes = [
+'page-association',
+'imagecontainer--type-' ~ node.bundle|clean_class
+
+]
+%}
 {# BEM inspired class syntax: https://en.bem.info/
    Enable this code if you would like node classes like "article article--layout-teaser", where article is the content type and teaser is the view mode.
 {% set classes = classes|merge([
@@ -26,13 +33,17 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
 <!--______________NODE TPL POUR PAGE.TPL CUSTOM  ________________ -->
 <article{{ attributes.addClass(classes).setAttribute('id', 'node-'~node.id) }}>
 
+    <!--______________ ILLUSTRATION et TITRE ________________ -->
+    <div {{ imagecontainer_attribute.addClass(imagecontainer_classes).setAttribute('id', 'zone-illustration') }}>
+          
     {% set image_deco = content.field_image_deco_lycee|render|trim %}
-    {% if  image_deco is not empty %}
-        <span {{image_attribute.addClass(image_classes) }}>
-                {{ content.field_image_deco_lycee}}
-    </span>
-    {% endif %}
-    
+    {% if  image_deco or node.label is not empty %}
+         <div  {{image_attribute.setAttribute('id', 'illustration-pleinepage').addClass(image_classes) }}>
+                   <h1 class="titre_overlay titre_page">{{node.label}}</h1>
+                  {{ content.field_image_deco_lycee.0}}
+            </div>
+        {% endif %}
+    </div>
     
   {% if title_prefix or title_suffix or display_submitted or unpublished or page is empty and label %}
     <header>
