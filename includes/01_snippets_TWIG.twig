@@ -1,0 +1,33 @@
+{# empty Twig template #}
+{#
+/* 02/2019 Liste les fichiers uploadés par
+          * filefield and linkfield  avec création d'une liste dynamique, exclusion des champs vides                
+#}
+{% if node.field_doc_joints.value or node.field_lien_page_lycee.value is not empty %}
+<div class="bloc_docs_utiles_plycee">
+    {{ node.field_doc_joints.title }}
+    <ul>
+        {# //Parcourir le tableau field_NAME de l'objet $node pour lister le contenu clé/valeur #}
+    {% for key, fichier in node.field_doc_joints.value %}
+        {# //Ne pas afficher les champs vides du tableau #}
+        {% if node.field_doc_joints.value is not empty %}
+<li>{{ content.field_doc_joints[key] }}</li>
+    {% endif %}
+{% endfor %}
+    
+            {# //Parcourir le tableau field_NAME de l'objet $node pour lister le contenu clé/valeur #}
+            {% for key, lien in node.field_lien_page_lycee %}
+        {# //Ne pas afficher les champs vides du tableau #}
+        {% if node.field_lien_page_lycee is not empty %}
+    <li>{{ content.field_lien_page_lycee[key] }}</li>
+    {% endif %}
+{% endfor %}    
+    
+    </ul>
+    
+    
+  {% for item in items %}
+    <div class="gallery-image-item">{{ item.content }}</div>
+  {% endfor %}
+</div>
+{% endif %}
