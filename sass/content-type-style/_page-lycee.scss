@@ -12,46 +12,41 @@
 
 /*######-------- ||| ORDRE FLEXBOX ||| --------######*/
 body .conteneur .conteneur-flex{
-    #zone-1.page-lycee {order:1;}
-    #zone-1.page-lycee span{display: none;}
-    #zone-2.page-lycee {order:1;}
-    #zone-3.page-lycee {order:2;}
+    #zone-1.type-page-lycee {order:1;}
+    #zone-1.type-page-lycee span{display: none;}
+    #zone-2.type-page-lycee {order:1;}
+    #zone-3.type-page-lycee {order:2;}
     @include breakpoint ($desktop){
-        #zone-1.page-lycee {order:1;}
-        #zone-1.page-lycee span{display: initial;}
-        #zone-2.page-lycee {order:2;}
-        #zone-3.page-lycee {order:3;}
+        #zone-1.type-page-lycee {order:1;}
+        #zone-1.type-page-lycee span{display: initial;}
+        #zone-2.type-page-lycee {order:2;}
+        #zone-3.type-page-lycee {order:3;}
     }
 }
 /*######-------- ||| LAYOUT SPECIFIQUE ||| --------######*/
-.logos_lycee{
-    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-        width: span(3 of $desktopcol);
-        margin-left: span(1 wide);//push
-        display: inline-block;
-    }
-}
-aside.logo-lycee,aside.logo-lycee-metiers{
-    margin: span(0.01) 0;
-    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-        float: left;
-        
-    }
-}
-
-.lycee-coordlogo{
-    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-        float: right;
-        width: span(7 of $desktopcol);
-        padding: span(0.01);
+#zone-illustration.type-page-lycee{
+    #illustration-pleinepage {
+        position: relative;
+        /*display: inline-block;*/
+        overflow: hidden;
+        /*min-height: 15vw;*/
+        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+            /*min-height: 20vw;*/
+        }
+        img{
+            @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+                margin: 0 12vw;
+                max-height: 30vw;
+                transform: scale(1.4);
+            }
+        }
     }
 }
 /*######-------- ||| BORDURES ||| --------######*/
 body .conteneur{
     @include breakpoint ($desktop){
-        #zone-2.page-lycee{}
+        #zone-2.type-page-lycee{}
     }
-
 }
 /*######-------- ||| BREAKPOINTS ||| --------######*/
 @include breakpoint ($mobile){
@@ -72,14 +67,14 @@ h1.titre_overlay{
 h1.titre_page{
     @include titre-page;
     color: $blanc-casse;
-    @include rgba-background($orange-fonce, 0.8);
+    @include rgba-background($vert, 0.8);
 
 }
 /*¤¤¤ STYLES COMMUNS ¤¤¤*/
-#zone-1.page-lycee,
-#zone-2.page-lycee,
-#zone-3.page-lycee,
-#zone-4.page-lycee
+#zone-1.type-page-lycee,
+#zone-2.type-page-lycee,
+#zone-3.type-page-lycee,
+#zone-4.type-page-lycee
 {
     p{
         padding: em(5px);
@@ -99,31 +94,13 @@ h1.titre_page{
         }
 
     }
-
 }
 
 /*------------------------------------
         ¤¤¤ STYLES PROPRES ¤¤¤
 ______________________________*/
-#zone-illustration.page-lycee{
-    #illustration-pleinepage {
-        position: relative;
-        /*display: inline-block;*/
-        overflow: hidden;
-        /*min-height: 15vw;*/
-        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-            /*min-height: 20vw;*/
-        }
-        img{
-            @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-                margin: 0 12vw;
-                max-height: 30vw;
-                transform: scale(1.4);
-            }
-        }
-    }
-}
-#zone-1.page-lycee{
+
+#zone-1.type-page-lycee{
     h2{}
     h3{}
     h4{}
@@ -141,80 +118,11 @@ ______________________________*/
         border: em(2px) solid $violet;
         padding: em(2px);
     }
-    .lycee-coordlogo {
-        background: $gris-anthracite;
-        display:block;
-        color:$blanc-casse;
-        font-size: medium;
-/*        img[src*="logo"]{
-            @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-                float: left;
-                margin: 0 span(0.5);
-            }   
-        }
-        img[src*="label"]{
-            @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-                padding: 0;
-                transform: translate(em(-550px), em(-40px));
-    
-            }
-        }*/
-h2#logo_lpp{
-    color: $blanc-casse;
-    font-size: large;
-}
-a{
-    color:$blanc-casse;
-    font-weight:bold;
-    &:hover{
-    color:$orange-fonce;
-        
-    }
-}
-    }
-    div.illus-lycee{
-        img{
-
-            transform: scale(0.8);
-        }
-    }
-    a{
-        &:hover{}
-    }
-
-    h2 a{}
-    h2 a:hover{}
-    h3 a{}
-    h3 a:hover{}
-    h4 a{}
-    h4 a:hover{}
-    aside.diapo_lycee{
-        display: block;
-        margin: 0 auto;
-        width: em(175px) !important;
-        width: em(174px);/*IE*/
-        * {//cible le contenu
-           position:relative;
-           /*position:relative !important;*/
-           min-height: 100%;
-        }
-        .views_slideshow_cycle_main{
-            /*position:relative !important;*/
-
-
-        }
-        .views_slideshow_cycle_slide{
-            overflow: auto;
-        }
-        img{
-            border: em(2px) solid $violet;
-            margin: em(10px) 0 0;
-        }
-    }
+   
 
 } 
 /*######-------- ZONE 2 --------######*/
-#zone-2.page-lycee{
+#zone-2.type-page-lycee{
     h2,h3,h4,p,ul,ol,img{
         margin: 0;
     }
@@ -355,7 +263,7 @@ a{
 
 
 /*######-------- ZONE 3 --------######*/
-#zone-3.page-lycee{
+#zone-3.type-page-lycee{
     span#lycee-formation{
         background: $orange-fonce;
         display: grid;
@@ -445,7 +353,7 @@ a{
 
 }
 /*######-------- ZONE 4 --------######*/
-#zone-4.page-lycee{
+#zone-4.type-page-lycee{
     span#gmap-lycee{
         @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
             padding: span(0.4);
