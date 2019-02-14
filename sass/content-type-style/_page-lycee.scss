@@ -118,66 +118,7 @@ ______________________________*/
         border: em(2px) solid $violet;
         padding: em(2px);
     }
-   
-
-} 
-/*######-------- ZONE 2 --------######*/
-#zone-2.type-page-lycee{
-    h2,h3,h4,p,ul,ol,img{
-        margin: 0;
-    }
-    h2{
-        color: $vert;
-        padding: em(5px);
-    }
-    h3{
-        color: $violet;
-        padding: em(5px);
-    }
-    h4{
-        padding: em(5px);
-        color: $violet;
-    }
-    p,li{
-        @include font-size(m);//utilisation de typey
-        padding: em(5px);
-        line-height: 1.5em;
-    }
-    ul{
-        padding: em(5px);
-    }
-    img{
-
-    }
-    a{
-        color: $violet;
-        text-decoration: none;
-        padding: em(2px);
-        &:hover{
-            color: white;
-            background: $violet;
-        }
-    }
-    form{margin: 0 6em;}
-    table{
-        margin: 0 auto;
-        //display:table;//casse le système de stacktable js
-        tbody{
-            max-width: 100%;
-
-            tr{
-                border:0;
-            }
-            tr.even{
-                background: $gris-clair;
-            }
-            tr.odd{
-                background: $gris-clair-moyen;
-            }
-            td{}
-        }
-    }
-    div.content{
+   div.content{
         .entrefilet{
             @include backgroundImage('bg-merci.gif');
             display: block;
@@ -252,6 +193,77 @@ ______________________________*/
                 height: 100%;
 
             }
+        }
+    }   
+
+} 
+/*######-------- ZONE 2 --------######*/
+#zone-2.type-page-lycee{
+    h2,h3,h4,p,ul,ol,img{
+        margin: 0;
+    }
+    h2{
+        color: $vert;
+        padding: em(5px);
+    }
+    h3{
+        color: $violet;
+        padding: em(5px);
+    }
+    h4{
+        padding: em(5px);
+        color: $violet;
+    }
+    p,li{
+        @include font-size(m);//utilisation de typey
+        padding: em(5px);
+        line-height: 1.5em;
+    }
+    ul{
+        padding: em(5px);
+    }
+    img{
+
+    }
+    a{
+        color: $violet;
+        text-decoration: none;
+        padding: em(2px);
+        &:hover{
+            color: white;
+            background: $violet;
+        }
+    }
+    form{margin: 0 6em;}
+    table{
+        margin: 0 auto;
+        //display:table;//casse le système de stacktable js
+        tbody{
+            max-width: 100%;
+
+            tr{
+                border:0;
+            }
+            tr.even{
+                background: $gris-clair;
+            }
+            tr.odd{
+                background: $gris-clair-moyen;
+            }
+            td{}
+        }
+    }
+    .bloc_docs_utiles_plycee{
+        max-width: span(4);
+        padding: span(0.02);
+        margin: span(0.2);
+        @include backgroundImage(('BG/bg_site_ce_docs_2019.jpg'),0 0, repeat);
+        @include arrondis();
+        ul{
+     
+        }
+        li{
+            list-style: inside;
         }
     }
 
