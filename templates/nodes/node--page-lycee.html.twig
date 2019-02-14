@@ -9,15 +9,35 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
 ] %}
 {% set image_attribute = create_attribute() %}
 {% set imagecontainer_attribute = create_attribute() %}
+{% set zone1_attribute = create_attribute() %}
+{% set zone2_attribute = create_attribute() %}
+{% set zone3_attribute = create_attribute() %}
 {% set image_classes = [
 'illustration-'~ node.bundle|clean_class,
 'image--type-' ~ node.bundle|clean_class
 
 ]%}
 {% set imagecontainer_classes = [
-'page-association',
-'imagecontainer--type-' ~ node.bundle|clean_class
+'imagecontainer',
+'type-' ~ node.bundle|clean_class
+]
+%}
+{% set zone1_classes = [
 
+'zone1_layout_9_3',
+'type-' ~ node.bundle|clean_class
+]
+%}
+{% set zone2_classes = [
+
+'zone2_layout_9_3',
+'type-' ~ node.bundle|clean_class
+]
+%}
+{% set zone3_classes = [
+'zone_layout_max_centre',
+'zone3_layout_9_3',
+'type-' ~ node.bundle|clean_class
 ]
 %}
 {# BEM inspired class syntax: https://en.bem.info/
@@ -33,19 +53,7 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
 <!--______________NODE TPL POUR PAGE.TPL CUSTOM  ________________ -->
 <article{{ attributes.addClass(classes).setAttribute('id', 'node-'~node.id) }}>
 
-    <!--______________ ILLUSTRATION et TITRE ________________ -->
-    <div {{ imagecontainer_attribute.addClass(imagecontainer_classes).setAttribute('id', 'zone-illustration') }}>
-          
-    {% set image_deco = content.field_image_deco_lycee|render|trim %}
-    {% if  image_deco or node.label is not empty %}
-         <div  {{image_attribute.setAttribute('id', 'illustration-pleinepage').addClass(image_classes) }}>
-                   <h1 class="titre_overlay titre_page">{{node.label}}</h1>
-                  {{ content.field_image_deco_lycee.0}}
-            </div>
-        {% endif %}
-    </div>
-    
-  {% if title_prefix or title_suffix or display_submitted or unpublished or page is empty and label %}
+    {% if title_prefix or title_suffix or display_submitted or unpublished or page is empty and label %}
     <header>
       {{ title_prefix }}
       {% if not page and label %}
@@ -68,12 +76,30 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
       {% endif %}
     </header>
   {% endif %}
-
+    
+    <!--______________ ILLUSTRATION et TITRE ________________ -->
+    <div {{ imagecontainer_attribute.addClass(imagecontainer_classes).setAttribute('id', 'zone-illustration') }}>
+          
+    {% set image_deco = content.field_image_deco_lycee|render|trim %}
+    {% if  image_deco or node.label is not empty %}
+         <div  {{image_attribute.setAttribute('id', 'illustration-pleinepage').addClass(image_classes) }}>
+                   <h1 class="titre_overlay titre_page">{{node.label}}</h1>
+                  {{ content.field_image_deco_lycee.0}}
+            </div>
+        {% endif %}
+    </div><!-- /zone-illustration -->
+    
+  <!--______________ZONE 1________________ -->
+  <div {{ zone1_attribute.addClass(zone1_classes).setAttribute('id', 'zone-1') }}>
   <div{{ content_attributes.addClass('content') }}>
     
     {{ content.body }}
   </div><!-- /.content -->
+</div> <!-- /zone-1-->
 
+  <!--______________ZONE 2________________ -->
+  <div {{ zone2_attribute.addClass(zone2_classes).setAttribute('id', 'zone-2') }}>
+        
   {% include directory ~ '/includes/dedicates_inc/inc_plycee_doc_liens.html.twig' %}   
   
   {% if content.links %}
@@ -81,5 +107,6 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
       {{ content.links }}
     </div><!-- /.links -->
   {% endif %}
-
+  </div><!-- /zone-2 -->
+  
 </article><!-- /.node -->
