@@ -278,11 +278,54 @@ ______________________________*/
         }
         li{
             list-style: square;
+            list-style: none;
             list-style-position: inside;
-            @include font-size(s);//utilisation de typey
+            padding: span(0.1) 0;
+            @include font-size(m);//utilisation de typey
             a{
                 background: $gris-clair;
+                color: $violet;
+                
+                text-decoration:none;
+                padding: span(0.02);
+                &:hover{
+                color: $gris-anthracite;
+                    background: $vert;
+                }
             }
+            a[href*=".pdf"]{
+            &::before{
+                @include backgroundImage("PNG/Fichiers@3x.png");
+                background-size: contain;
+                content: "";
+                position: relative;
+                vertical-align: sub;
+                padding: em(10px);
+                margin:em(3px);
+                transition:0.5s all;
+                display: inline-block;
+                transform: scale(1);
+            }
+        }
+        img.filefield-icon{
+
+            display: none;//initial
+        }
+        a[href*="/"]:not([href*=".pdf"]) { //pour cibler les liens externes et internes, exclure les pdf
+            &::before{
+                @include backgroundImage("PNG/liens@3x.png");
+                background-size: contain;
+                content: "";
+                position: relative;
+                vertical-align: sub;
+                padding: em(10px);
+                margin:em(3px);
+                transition:0.5s all;
+                display: inline-block;
+                transform: scale(1);
+            }
+
+        }
         }
     }
 
