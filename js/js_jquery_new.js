@@ -414,13 +414,14 @@ $('#block-menu-menu-menu-general').click(function() {
         
 //Retrait de l'autoplay des videos Vimeo
 //https://stackoverflow.com/questions/49053072/change-part-of-src-attribute-of-iframe-with-jquery
-  var oldSrc = $("#media-vimeo-1 iframe").attr("src"); //Get the src of the iframe
-  var newSrc = oldSrc.replace("autoplay=1", "autoplay=0"); //Replace "autoplay=1" by "autoplay=0"
-  
-  $("#media-vimeo-1 iframe").attr("src", newSrc); //Change the src attr to the new value
-    console.log("Retrait de l'autoplay de Vimeo: ");
-  console.log("Old Src: " + oldSrc);
-  console.log("New Src: " + newSrc);
+//
+//  var oldSrc = $("#media-vimeo-1 iframe").attr("src"); //Get the src of the iframe
+//  var newSrc = oldSrc.replace("autoplay=1", "autoplay=0"); //Replace "autoplay=1" by "autoplay=0"
+//  
+//  $("#media-vimeo-1 iframe").attr("src", newSrc); //Change the src attr to the new value
+//    console.log("Retrait de l'autoplay de Vimeo: ");
+//  console.log("Old Src: " + oldSrc);
+//  console.log("New Src: " + newSrc);
 
         
         
