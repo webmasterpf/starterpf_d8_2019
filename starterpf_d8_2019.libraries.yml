@@ -27,6 +27,9 @@ global-scripts:
     js:
 #        js/navmenu.js: {}   
 #        js/modernizr.js: {}
+#       chargement des plugins qui utilisent la version de jQuery par défaut du site
+        js/jquery_plugin/selectnav.min.js: {}
+        js/jquery_plugin/jquery.sticky-kit.js: {}
 #        chargement des scripts qui utilisent la version de jQuery par défaut du site
         js/js_jquery_defaut.js: {}
 #     mise en place du noConflict pour utiliser plusieurs versions de jQuery   
