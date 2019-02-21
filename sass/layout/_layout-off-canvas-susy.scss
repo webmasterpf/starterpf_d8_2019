@@ -39,7 +39,7 @@ body .conteneur {
     .menu-toggle, .transformer.is-open > .menu-toggle{
         position: absolute;
         padding: 0 gutter();
-        /*Coins arrondis*/
+        /*- Coins arrondis -*/
         border-radius: 0 0 em(8px) em(8px);
         background: #555;
         color: #fff;
@@ -54,6 +54,7 @@ body .conteneur {
         -webkit-transform: rotate(0deg);*/
         transform: rotate(0deg);
     }
+    
     @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
         $off-canvas-height: 7.8em;   
         $off-canvas-top: 10.3em;   
@@ -97,3 +98,11 @@ body .conteneur {
         }
     }
 }
+//Gestion de l'affichage avec D8 
+body.role--authenticated{
+        //ne pas afficher si connecté
+        .off-canvas, .menu-toggle{
+            display: none;
+            visibility: hidden;
+        }
+    }
