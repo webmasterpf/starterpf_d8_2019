@@ -18,7 +18,7 @@ body .conteneur{
     }
 
     .icon {
-        z-index: 999;
+        z-index: 1050;//chgt pour D8 sinon passe en dessous et inaccessible
         position: relative;
         display: block;
         float: right;
