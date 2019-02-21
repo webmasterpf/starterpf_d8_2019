@@ -299,7 +299,7 @@ body .conteneur {
                 }
             }
         }
-        aside.acces-contact{
+        aside.liste-acces-contact{
             ul{
                 //pas besoin de fixer un display en mobile, vertical automatique
                 max-width: span(11);
@@ -333,7 +333,8 @@ body .conteneur {
                         font-weight: bold;
                         color: whitesmoke;
 
-                        @include backgroundImage("SVG/bg_acces_contact.svg");
+                        
+                        @include backgroundImage(('SVG/bg_acces_contact.svg'), 0 0 , no-repeat);
                         background-size: cover;
                         background-clip: padding-box;
                         min-width: inherit;
@@ -361,98 +362,41 @@ body .conteneur {
                     }
 
                 }
-
-                .views-row-1{
-                    a:hover{
-                        @include backgroundImage("SVG/bg_acces_contact.svg", 25.5% top);
-                        background-size: cover;
+                li{
+                    &.nid-23{//Contact
+                             a:hover{
+                                 @include backgroundImage(('SVG/bg_acces_contact.svg'), 25.5% top);
+                                 background-size: cover;
+                             }
+                    }
+                    &.nid-xx{//Liens
+                             a:hover{
+                                 @include backgroundImage(('SVG/bg_acces_contact.svg'), 51% top);
+                                 background-size: cover;
+                             }
+                    }
+                    &.nid-21{//Inscription
+                             a:hover{
+                                 @include backgroundImage(('SVG/bg_acces_contact.svg'), 76% top);
+                                 background-size: cover;
+                             }
+                    }
+                    &.nid-xx{//Infos
+                             a:hover{
+                                 @include backgroundImage(('SVG/bg_acces_contact.svg'), 100% top);
+                                 background-size: cover;
+                             }
                     }
                 }
-                .views-row-2{
-                    a:hover{
-                        @include backgroundImage("SVG/bg_acces_contact.svg", 51% top);
-                        background-size: cover;
-                    }
-                }
-                .views-row-3{
-                    a:hover{
-                        @include backgroundImage("SVG/bg_acces_contact.svg", 76% top);
-                        background-size: cover;
-                    }
-                }
-                .views-row-4{
-                    a:hover{
-                        @include backgroundImage("SVG/bg_acces_contact.svg", 100%  top);
-                        background-size: cover;
-                    }
-                }
+                
             }
         }
         aside.AccesLycees{
 
             ul.acces-lycees{
-                display: grid;//conserve ordre des lignes
-                @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-                    display: flex;
-                    justify-content: center;
-                    flex-wrap: wrap;
-                }
-                li{
-                    list-style: none;
-                    margin: 0;
-                    text-align:center;
-                    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-                        width: span(1 of 4);
-                        margin: span(0.0001);
-                    }
-                }
-                li.views-row-1{
-                    order:9;
-                    background: $orange-fonce;
-                }
-                li.views-row-2{
-                    order:1;
-                    background: $bleu-turquoise;
-                }
-                li.views-row-3{
-                    order:2;
-                    background: $gris-clair-moyen;
-                }
-                li.views-row-4{
-                    order:3;
-                    background: $vert;
-                }
-                li.views-row-5{
-                    order:4;
-                    background: $orange;
-                }
-                li.views-row-6{
-                    order:6;
-                    background: $rouge;
-                }
-                li.views-row-7{
-                    order:7;
-                    background: $violet;
-                    object{
-                        display: none !important;//Exclu la video du rocher de l'affichage
-                    }
-                }
-                li.views-row-8{
-                    order:8;
-                    background: $rose-fushia;
-                }
-                li.views-row-9{
-                    order:5;
-                    background: transparent;
-                    iframe{
-                        margin: em(18px) 0 !important;
-                    }
-                    a{
-                        display: none;
-                    }
-
-                }
+                //Code ici
             }
+        }
 
 
 
@@ -491,11 +435,12 @@ body .conteneur {
                 opacity: 0.8;
 
             }
-        }
+       
     }
 
 
-    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){/*    //Dimensions pour les pc
+    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+         //Dimensions pour les pc
         //Taille du conteneur du groupe    
         .annonce_1{}
         .annonce_2{}
@@ -505,7 +450,8 @@ body .conteneur {
 
     }
 
-    @include breakpoint($tablet) {/*     //Dimensions pour les tablettes*/
+    @include breakpoint($tablet) {
+  //Dimensions pour les tablettes
         .annonce_1{}
         .annonce_2{}
         .HPDiapo{}
