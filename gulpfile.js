@@ -40,8 +40,10 @@ var folderPaths = {
     },
     js: {
         jsd68: basePaths.project + 'js/**/*.js'
+    },
+    ymlsettings: {
+        d8yml: basePaths.project + '**/*.yml'
     }
-
 };
 
 //Variable pour les gems (à adapter selon environnement)
@@ -205,6 +207,7 @@ gulp.task('default', ['browser-sync'], function(){
 //  gulp.watch(folderPaths.templates.d6nodestpl, bs_reload);
   gulp.watch(folderPaths.settings.d8, bs_reload);
   gulp.watch(folderPaths.js.jsd68, bs_reload);
+  gulp.watch(folderPaths.ymlsettings.d8yml, bs_reload);
 //  gulp.watch(basePaths.src, ['drush']);
 //  gulp.watch(folderPaths.templates.d6, ['drush']);
 //  gulp.watch(folderPaths.js.jsd68, ['drush']);
