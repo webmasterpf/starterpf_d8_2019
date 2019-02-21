@@ -65,10 +65,34 @@ body.not-front.logged-in{
   }
 }
 
-/*-- EDIT MODE --*/
-ul.primary{
-    a{
-        color: $violet;
-        font-size: small;
+/*-- EDIT MODE --D8 --*/
+// Tabs.
+nav.tabs{
+    @include backgroundImage(('BG/bg_nav_backoffice.gif'),0 0, repeat);
+    padding:em(5px);
+    ul.tabs {
+  width: 100%;
+  margin: 0 0 em(5px);
+  border-bottom: em(1px) solid $gris-clair-moyen;
+
+  li {
+    display: inline-block;
+  }
+
+  a {
+    display: block;
+    border: em(1px) solid $gris-clair-moyen;
+    border-bottom: 0;
+    border-radius: em(3px) em(3px) 0 0;
+    padding: em(3px);
+    color: $gris-clair;
+    background: $gris-anthracite;
+    text-decoration: none;
+    &:hover{
+        color: $gris-anthracite;
+        background: $orange-fonce;
     }
+  }
 }
+}
+
