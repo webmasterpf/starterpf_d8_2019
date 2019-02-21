@@ -61,7 +61,8 @@ body .conteneur{
                 clear: both;
             }
             p{
-               //Voir fichier typos.scss pour taille
+               //Voir fichier typos.scss pour taille ou override ici
+               @include font-size(m);//utilisation de typey
             }
         }
 
