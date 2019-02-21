@@ -42,7 +42,8 @@
     margin:0 auto;
     padding:em(5px) 0;
     max-width: 100%;
-    background: white url(../images/bg_footer.jpg) no-repeat bottom right;
+    @include backgroundImage(('BG/bg_footer@4x.png'), no-repeat, right bottom);//nouvelle mixin 2018
+    
     text-align: left;
     color: $gris-clair-moyen;
     height:auto;
@@ -88,7 +89,7 @@
     margin:0 auto;
     padding:em(10px) 0;
     max-width: 100%;
-    background: white url(../images/bg_footer.jpg) no-repeat bottom right;
+    @include backgroundImage(('BG/bg_footer@4x.png'), no-repeat, right bottom);//nouvelle mixin 2018
     text-align: left;
     color: #9898a6;
     height:auto;
