@@ -12,13 +12,13 @@
 }
 
 @mixin clearfix() {
-    &:before,
-        &:after {
+    &::before,
+        &::after {
         content: "";
         display: table;
         clear: both;
     }
-    &:after {
+    &::after {
         clear: both;
     }
 }
@@ -56,8 +56,8 @@
 
 $imagedir:'../images/'; // definir ici le chemin vers le dossier image
 
-@mixin backgroundImage($filename,$position:0 0,$repeat: no-repeat) {
-    background: transparent url('#{$imagedir}#{$filename}') $position $repeat;
+@mixin backgroundImage($filename,$couleur:transparent,$position:top left,$repeat: no-repeat) {
+    background: $couleur url('#{$imagedir}#{$filename}') $position $repeat;
 }
 @mixin maskImage($filename,$position:0 0,$repeat: no-repeat, $taille: 50%) {
     mask: url('#{$imagedir}#{$filename}') $repeat $position;
@@ -68,6 +68,28 @@ $imagedir:'../images/'; // definir ici le chemin vers le dossier image
 
 */
    //En travaux !!!
+}
+@mixin backgroundImageTransparentRGBA($filename,$color, $opacity,$couleur:transparent,$position:top left,$repeat: no-repeat) {
+    /*position: relative;*/
+    background:  linear-gradient(rgba($color, $opacity),rgba($color, $opacity)),$couleur url('#{$imagedir}#{$filename}') $position $repeat;
+    }
+    @mixin backgroundImageOpacity($filename,$couleur:transparent,$position: top,$repeat: no-repeat,$left:0,$bgsize:contain)    {
+          &::before{
+             background: $couleur url('#{$imagedir}#{$filename}') $position $repeat;
+             position: absolute;
+             top:0;
+             left: $left;
+             content: "";
+             opacity: 0.05;
+             width: 100%;
+             height: 100%;
+             display: block;
+             background-size: $bgsize;
+             z-index: -10;//Sinon liens inopérants
+         }   
+    }
+@mixin backgroundRGBA($color, $opacity){
+    background: rgba($color, $opacity);
 }
 /*---------- PIE pour CSS3 IE --------------*/
 @mixin PIE {
@@ -93,7 +115,7 @@ $imagedir:'../images/'; // definir ici le chemin vers le dossier image
                         bottom: 1054.4vw;//83%*/
 
 
-            @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+            @include breakpoint(($desktop,$desktopwide,$mobilelandscape)){
                 
                 display: inline-block;
                 margin: 0 0 0 span(0.1);
@@ -104,23 +126,39 @@ $imagedir:'../images/'; // definir ici le chemin vers le dossier image
                 transform: translate(0%, 5%);
                 max-height: 2.7vw;
             }
+            @include breakpoint(($tablet,$tabletlandscape,$tablet-hd,$tabletlandscape-hd)){
+
+                display: inline-block;
+                margin: 0 0 0 span(0.1);
+                top: 0;//120% 17vw mieux comme ça avec titre en haut et non en bas de la photo
+                transform: translate(0%, 5%);
+                max-height: 31vw;
+            }
             &:before {
-                content: '';
+                content: "";
                 display: inline-block;
                 height: 100%;
                 vertical-align: middle;
             }
         }
 /*------- GESTION DU TEXTE -------------*/
+/*
+https://openweb.eu.org/articles/la-gestion-de-la-cesure-en-css
+https://www.creativejuiz.fr/blog/css-css3/controles-fin-des-cesures-css4-text
+*/
 @mixin txt-cesure($typecesure : break-word,$typecesure2 : break-word){
     word-wrap: $typecesure;
     word-break: $typecesure2;
     overflow-wrap: break-word;
+    
 }
 @mixin txt-ellipse($hyphenation:auto,$surplustxt:ellipsis){
     overflow:hidden; 
     hyphens: $hyphenation;
     text-overflow: $surplustxt;
+    hyphenate-limit-chars: 6 3 2;//CSS4 - expérimental
+    hyphenate-character: "\2010";//CSS4 - expérimental
+    hyphenate-limit-zone:em(20px);
 }
 @mixin txt-colonnes($param1:avoid-column,$param2:avoid){
     break-inside: $param1;//empêche césure au milieu de l'élément 
@@ -156,6 +194,7 @@ $imagedir:'../images/'; // definir ici le chemin vers le dossier image
     max-height: 100%;
     object-fit: cover;//permet que l'image occupe tout l'espace mais il faut définir une taille
     width: 100%;
+    
     @-moz-document url-prefix() {  
         img{
             width: 100%;
@@ -188,15 +227,18 @@ $imagedir:'../images/'; // definir ici le chemin vers le dossier image
     transition: all 100ms ease-in;
 
 }
+@mixin transition-hover($duree: 0.5s,$type: ease){
+    transition: all $duree $type;
+}
 @mixin image-overlay($filename,$position:0 0,$repeat: repeat){
-     content: "";
-                        top: 0;
-                        left: 0;
-                        bottom: 0;
-                        right: 0;
-                        position: absolute;
-                        z-index: 2;
-                        background: transparent url('#{$imagedir}#{$filename}') $position $repeat;
+    content: "";
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: 2;
+    background: transparent url('#{$imagedir}#{$filename}') $position $repeat;
                         
 }
 /*----------  FORMULAIRES RWD -----------*/
@@ -325,18 +367,27 @@ $imagedir:'../images/'; // definir ici le chemin vers le dossier image
     -khtml-opacity : $opacite;
 }
 
-@mixin rgba-background($color, $opacity) {
-    /*position: relative;*/
-    background: $color;
-    background: rgba($color, $opacity);
-    -pie-background: rgba($color, $opacity);
-    @include PIE;
-}
+
 
 @mixin arrondis ($angle : 0.5em){
     -moz-border-radius: $angle;
     -webkit-border-radius: $angle;
     border-radius: $angle;
+}
+
+/* ------ ANIMATIONS CSS3 -----*/
+@mixin anim-coulisseX($duree:1s,$iterations:10,$starttranslateX:0,$midtranslateX:1vw,$finaltranslateX:0){
+    animation-name: coulisse;
+    animation-duration: $duree;
+    animation-timing-function: linear;
+    animation-iteration-count: $iterations; 
+
+
+    @keyframes coulisse {  
+        0% { transform: translateX($starttranslateX); }
+        50% { transform: translateX($midtranslateX); }
+        100% { transform: translateX($finaltranslateX);}
+    }
 }
 @mixin clignote($duree:1s,$startopacity:1.0,$midopacity:0.0,$finalopacity:1.0){
     -webkit-animation-name: blinker;
@@ -465,6 +516,27 @@ $imagedir:'../images/'; // definir ici le chemin vers le dossier image
 @mixin border-L-orange { border-left: em(1px) solid $orange;}
 
 /*------- HACK pour Navigateurs -------------*/
+
+@mixin hack-Webkit($element:table){
+ //ciblage de webkit  - choisir à quel élément appliquer le hack
+    @media screen and (-webkit-min-device-pixel-ratio:0) { 
+        #{$element}{
+            margin: 0 0 span(0.1) 0;
+            display: block;
+            min-width:100%;//pour chrome
+        }
+}
+}
+@mixin hack-Firefox($element:li){
+    //ciblage de Firefox et - choisir à quel élément appliquer le hack                   
+    @-moz-document url-prefix() {
+        #{$element}{
+            margin: 0 0 span(0.1) 0;
+            display: inline-block;
+            width:100%;
+        }
+    }
+}
 @mixin hack-IE(){
     //ciblage de IE10+
     @media screen and (min-width:0\0) {
@@ -475,6 +547,7 @@ $imagedir:'../images/'; // definir ici le chemin vers le dossier image
 @mixin hack-Edge(){
     //ciblage de MS Edge                    
     @supports (-ms-ime-align: auto) {
+        
         display: inline-block;
         width:100%;
     }
