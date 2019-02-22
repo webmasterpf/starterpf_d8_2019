@@ -527,9 +527,9 @@ body .conteneur {
                     }
                     &.nid-23{//contact
                                          a:hover{
-                                             @include backgroundImage(('SVG/bg_acces_contact_blanc_transp.svg'),$violet, 0% top, no-repeat);
+                                             @include backgroundImage(('SVG/bg_acces_contact_blanc_transp.svg'),$violet, -3% 75%, no-repeat);
                                              /*@include backgroundImage(("PNG/bg_acces_contact@4x.png"),$violet, 25.5% top, no-repeat);*/
-                                             background-size: cover;
+                                             background-size: 600%;
                                          }
                     }
                     &.nid-21{//inscriptions
