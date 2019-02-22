@@ -2,8 +2,8 @@
 // créer des fichiers _node-TYPE.scss et les importer dans application.scss
 
 /*-------------------------------------|
-|     CONTENU CUSTOM NODE.TPL |
-|     FRONTPAGE INSTITUTIONNEL  |
+|       CONTENU CUSTOM NODE.TPL        |
+|       FRONTPAGE INSTITUTIONNEL       |
 |--------------------------------------*/
 
 //@include breakpoint ($mobile){}
@@ -22,9 +22,31 @@
             float: none;
             @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
 
+
                 float: none;
             }
-            
+
+
+
+        }
+    }
+}
+aside.DiapoHPFull{
+    min-height: 35vw;
+    max-height: 136vw;
+    overflow: hidden;
+
+    img{
+        transform: translate(0%,0%);
+        @include adaptable-img();
+    }
+    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+        min-height: 25vw;
+        max-height: 38vw;//Pour petites résolutions
+        img{
+            zoom: 0.8;
+            transform: scale (0.8);
+            transform: translate(0,-30%);
         }
     }
 }
@@ -47,10 +69,13 @@
                 }
                 img,object{
                     @include adaptable-img;
-                    max-height: 15vw;
-                    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+                    max-height: 50vw;
+                    @include breakpoint(($desktop,$desktopwide,$mobilelandscape)){
                         max-height: 8vw;
                     }
+                    @include breakpoint(($tablet,$tabletlandscape)){
+                        max-height: 10vw;
+                }
                 }
                 a{
                     display: block;
@@ -72,7 +97,7 @@ ul.rubriques-administratives{
     }
     li{
         margin: 0 0 em(5px) 0;
-       
+
         @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
             max-width: 20%;
             @include txt-colonnes;
@@ -94,10 +119,13 @@ body .conteneur {
            display: none;
            @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
                display: initial;
-               @include backgroundImage (('bg-merci.gif'));
+               @include backgroundImage (('PNG/breaking-news@4x.png'));
+               @include backgroundImage (('PNG/notification@4x.png'));
+               background-size: contain;
                text-indent: -9000px;
                float: left;
                height: em(80px);
+               width: em(80px);
                margin-left: span(0.1);
            }
         }
@@ -105,29 +133,69 @@ body .conteneur {
             list-style: none;
 
             li{
-                @include breakpoint ($mobile){
-                    width: 95%;
-                    margin: 0 0 span(0.2) span(0.2);
-                    float: none;
-                }
                 list-style: none;
-                margin: span(0.1) 0 span(0.1) span(0.2);
+                color: $gris-anthracite;
+                max-width: 95%;
+                margin: span(0.1) 0 span(0.2) span(0.2);
+                float: none;
+/*                @include breakpoint ($mobile){
+                    width: 95%;
+                    margin: span(0.1) 0 span(0.2) span(0.2);
+                    float: none;
+                }*/
+                @include breakpoint(($desktop,$desktopwide,$mobilelandscape,
+                $tablet,$tabletlandscape
+                )){
+                        margin: span(0.1) 0 span(0.1) span(0.2);
                 float: left;
+                }
+                @include breakpoint(($desktop,$desktopwide,$mobilelandscape)){
+            
+                max-width: 30%;
+                }
+                @include breakpoint(($tablet,$tabletlandscape)){
+                max-width: 25%;    
+              
+                }
+               
             }
             .breaking-news-element{
-                padding: span(0.005);
-                border: em(3px) $orange-fonce solid;
+                
+                border: em(3px) transparent solid;
+                background: $orange-fonce;
+                transition-property: background !important;
+                transition: all .3s ease;
                 font-family: $FontRaleway;
-                @include font-size(m);//utilisation de typey;
-
+                @include font-size(m);//utilisation de typey
                 text-transform: uppercase;
+                cursor:pointer;
+                @include breakpoint(($tablet,$tabletlandscape)){
+                    @include font-size(xs);//utilisation de typey
+                }
+                &::before{
+                    transform: scale(0)!important;
+                }
+                &:hover{
+                    transition: all .3s ease;
+                    transform: translateZ(0)!important;
+                    border: em(3px) $orange-fonce solid;
+                    background: transparent;
+                color: $gris-anthracite;
+                &::before{
+                    transform: scale(1)!important;
+                }
+                }
             }
             a{
-                color: $gris-anthracite;
+                display: block;
+                padding: span(0.005);
                 text-decoration:none;
-
+                text-align: center;
+                color: $blanc-casse;
                 &:hover{
-                    color: $gris-clair-moyen;
+                    color: $gris-anthracite;
+                    /*color: $gris-clair-moyen;*/
+                    transition: .5s ease;
                 }
             }
         }
@@ -143,16 +211,14 @@ body .conteneur {
 
                 }
                 list-style: none;
-
-
+                
             }
             .breaking-news{
                 padding: span(0.005);
                 border: em(3px) $noir solid;
                 font-family: $FontRaleway;
-                @include font-size(m);//utilisation de typey;
-                @include backgroundImage(('deuil.png'), no-repeat, top right);//nouvelle mixin 2018
-
+                @include font-size(m);//utilisation de typey
+                @include backgroundImage(('PNG/deuil.png'),top right,no-repeat); //nouvelle mixin 2018
                 text-transform: uppercase;
             }
             a{
@@ -171,34 +237,41 @@ body .conteneur {
         a{
             color: white;
             font-family: $FontRaleway;
-            font-size: xx-large;
+            
             text-decoration: none;
         }
         img{
-            zoom: 1.7;
-            transform: scale (1.7);
-            transform: translate(0,-25%);
+            //Voir Layout Spécifique Ligne34
         }
         .bxslider-hp{
             a{
-                padding: 0 0 0 span(0.1);
+//                padding: 0 0 0 span(0.1);
                 display: block;
             }
+            .bx-caption{
+                a{
+                    @include font-size(m);//utilisation de typey
+                    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+                        @include font-size(xl);//utilisation de typey
+                    }
+                }
+            }
         }
+        
     }
     .acces_rubriques{
 
         ul.rubriques-administratives{
             list-style: none;
             @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-                
+
             }
             li{
                 margin: 0 0 em(5px) 0;
                 background: $gris-anthracite;
                 color: whitesmoke;
                 @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-                
+
                 }
                 &:hover{
                     background: $orange-fonce;
@@ -206,6 +279,10 @@ body .conteneur {
                 img{
                     object-fit: cover;//permet que l'image occupe tout l'espace mais il faut définir une taille
                     width: 100%;
+                    max-height: 85vw;
+                    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+                    max-height: 14.5vw;    
+                    }
                     &:hover{
                         filter: grayscale(100%);
                     }
@@ -253,7 +330,7 @@ body .conteneur {
                     }
                 }
                 span.accroche-admin{
-                    @include font-size(s);//utilisation de typey;
+                    @include font-size(xs);//utilisation de typey
                     padding: em(6px);
                     display: block;
                     word-break: break-word;
@@ -267,19 +344,32 @@ body .conteneur {
                 //pas besoin de fixer un display en mobile, vertical automatique
                 max-width: span(11);
                 margin:0 auto;
-                @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-                    display:flex;
+                padding: span(0.02);
+                @include breakpoint(($desktop,$desktopwide,$tabletlandscape)){
+/*                    column-count: 6;
+                    column-fill: balance;
+                    white-space: normal;*/
+                    display: flex;
+                    flex-flow: row;
+                }
+                @include breakpoint(($mobilelandscape,$tablet)){
+                     column-count: 3;
+                    column-fill: balance;
+                    white-space: normal;
                 }
                 li{
                     list-style: none;
-                    width: 95%;
+                    
                     margin: 0 0 span(0.2) span(0.2);
                     float: none;
+                    
+                    @include txt-cesure;
+                    @include txt-colonnes;
 
                     @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-                        margin: span(0.1);
-                        float: left;
-                        min-width: span(1);
+
+                        @include hack-Edge;
+                        @include hack-IE;
                     }
                     a{
                         background: $orange-fonce;
@@ -288,12 +378,24 @@ body .conteneur {
                         padding: span(0.1);
                         text-decoration: none;
                         text-align: center;
-                        @include font-size(xl);//utilisation de typey;
+                        @include font-size(l);//utilisation de typey
                         transition-duration: 0.4s;
+                        @include txt-ellipse;
                         @include txt-cesure(break-word);
+                        @include breakpoint(($mobilelandscape,$tablet)){
+                        @include font-size(s);//utilisation de typey    
+                        }
                         &:hover{
                             background: $gris-clair-moyen;
                             color: $orange-fonce;
+                        }
+                    }
+                    //Ciblage du lien concernant les JPO pour style différent
+                    a[href*="portes-ouvertes"]{
+                        
+                        @include clignote(1.8s);
+                        &:hover{
+                        
                         }
                     }
                 }
@@ -301,102 +403,228 @@ body .conteneur {
         }
         aside.liste-acces-contact{
             ul{
-                //pas besoin de fixer un display en mobile, vertical automatique
+                //pas besoin de fixer un display en mobile, vertical automatique - mobile first
                 max-width: span(11);
-                margin: 0 span(2);
-                @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-                    display:flex;
-                    /*max-width: span(11);*/
-                    margin:0 span(2);
+                margin: span(0.5)  span(2);
+                @include breakpoint(($desktop,$desktopwide,
+                $tablet-hd,$tabletlandscape-hd
+                )){
+                    display:inline-block;
+                    column-count: 4;
+                    column-fill: balance;
+                    white-space: normal;
+                }
+                @include breakpoint($tablet){
+                    margin: span(0.5) span(0.2);    
+                }
+                @include breakpoint(($mobilelandscape,$tabletlandscape)){
+                     display:inline-block;
+                    column-count: 4;
+                    column-fill: balance;
+                    white-space: normal;
+                    //centrer le UL
+                    margin: 0 10vw;
+                    max-width: 95%;
+                }
+                @include breakpoint(($tablet,$mobile-galaxyShd,$mobile-iphonehd)){
+                     display:inline-block;
+                    column-count: 1;
+                    column-fill: balance;
+                    white-space: normal;
+                    //centrer le UL
+                    margin: 0 5vw;
+                    width: 95%;
                 }
                 li{
                     list-style: none;
                     width: 95%;
                     margin: 0 0 span(0.2) span(0.2);
-                    float: none;
-                    display: inline-block;
 
-
-                    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-                        margin: span(0.25);
-                        float: left;
-                        /*min-width: span(3);*/
-                        width: inherit;
+                    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,
+                    $tablet,$tabletlandscape,$tablet-hd,$tabletlandscape-hd)){
+                        @include txt-cesure;
+                        @include txt-colonnes;
                         @include hack-Edge;
+                        @include hack-IE;
+                        margin: 0;
+                        padding: 0 span(0.9);
                     }
-
-                    a{
+                    @include breakpoint(($tablet,$tabletlandscape,$tablet-hd,$tabletlandscape-hd)){
+                          padding: span(0.9);
+                    }
+                    span.titre-admin{
                         display: block;
-                        padding: span(4.6) 0;
-                        text-decoration: none;
-                        text-transform: uppercase;
-                        font-weight: bold;
-                        color: whitesmoke;
-
-                        
-                        @include backgroundImage(('SVG/bg_acces_contact.svg'), 0 0 , no-repeat);
-                        background-size: cover;
-                        background-clip: padding-box;
-                        min-width: inherit;
-                        min-height:  inherit; 
-                        transition-duration: 0.0s;//Permet de jouer sur un effet de slide
-                        text-align: center;
-                        @include txt-cesure(break-word);
-                        shape-outside: polygon(0 0, 100% 0, 100% 100%, 30% 100%);
-                        clip-path: circle(50% at 50% 50%);
-
-                        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-                            padding: span(5) span(1) 0;
+                        text-align:center;
+                        @include breakpoint(($desktop,$desktopwide,
+                        $tablet-hd,$tabletlandscape-hd)){
                             min-height: 11vw;          
                             min-width: 11vw;
-                            word-spacing: em(3px);
+                            max-width: 11vw;
+                            max-height: 11vw;
+                            vertical-align: middle;
                         }
-                        &:hover{
-
-
-                            /*        @include backgroundImage("SVG/bg_acces_contact.svg", -29em top);*/
+                        @include breakpoint(($tablet,$tabletlandscape)){
+                            max-width: 20vw;
+                            min-height: 14vw;
+                        }
+                        @include breakpoint($mobilelandscape){
+                            max-width: 20vw;
+                            min-width: 12vw;
+                            min-height: 20vw;
+                        }
+                        @include breakpoint(($mobile-galaxyShd,$mobile-iphonehd)){
+                            max-width: 50vw;
+                            max-height: 50vw;
+                            margin: 0 auto;
+                        }
+                        a{
+                            display: block;
+                            padding: span(4.6) span(0.1);
+                            text-decoration: none;
+                            text-transform: uppercase;
+                            font-weight: bold;
+                            color: $blanc-casse;
+                            @include font-size(xs);//utilisation de typey
+                            /*@include backgroundImage("SVG/bg_acces_contact.svg");*/
                             background-size: cover;
+                            
+                            min-width: inherit;
+                            min-height:  inherit; 
+                            transition-duration: 0.0s;//Permet de jouer sur un effet de slide
+                            text-align: center;
+                            @include txt-cesure(break-word);
+                            /*  Forme arrondie pour les boutons - pb avec taille sur mobile
+                        
+                        background-clip: padding-box;
+                                                shape-outside: polygon(0 0, 100% 0, 100% 100%, 30% 100%);
+                                                clip-path: circle(50% at 50% 50%);*/
+                        /* Coins arrondis pour les boutons - passe mieux sur mobile*/
+                            @include arrondis(4em);  
+                            background-color: $vert; //Couleur de fond des boutons
 
-                            text-indent: em(-9000px);
+                            @include breakpoint(($desktop,$desktopwide)){
+                                max-width: 11vw;
+                                max-height: 11vw;
+                                @include font-size(m);//utilisation de typey
+                                word-spacing: em(3px);
+
+                            }
+                            @include breakpoint(($mobilelandscape,$mobilelandscape-galaxyShd)){
+                            @include arrondis(2em);      
+                            @include font-size(xxs);//utilisation de typey
+                            }
+                            @include breakpoint(($tablet,$tabletlandscape,$tablet-hd,$tabletlandscape-hd)){
+                                 @include arrondis(3em);  
+                                 @include font-size(xs);//utilisation de typey
+                            }
+                            &:hover{
+
+                                /*        @include backgroundImage("SVG/bg_acces_contact.svg", -29em top);*/
+                                /*background: $violet;//Couleur de fond des boutons au rollover - Surpasse couleur donnée dans mixin backgroundImage, empêche image*/
+                                text-indent: em(-9000px);
+                            }
                         }
                     }
+                    &.nid-23{//contact
+                                         a:hover{
+                                             @include backgroundImage(('SVG/bg_acces_contact_gris_transp.svg'),$violet, 25.5% top, no-repeat);
+                                             /*@include backgroundImage(("PNG/bg_acces_contact@4x.png"),$violet, 25.5% top, no-repeat);*/
+                                             background-size: cover;
+                                         }
+                    }
+                    &.nid-21{//inscriptions
+                                         a:hover{
+                                             @include backgroundImage("SVG/bg_acces_contact.svg",$orange-fonce,  76% top);
+                                             /*@include backgroundImage(("PNG/bg_acces_contact@4x.png"),  76% top, no-repeat);*/
+                                             background-size: cover;
+                                         }
+                    }
+                    &.nid-xx{//actus
+                                          a:hover{
+                                         /*@include backgroundImage(("PNG/bg_acces_contact@4x.png"),  100% top, no-repeat);*/
+                                         @include backgroundImage("SVG/bg_acces_contact.svg",$orange-fonce,  100% top);
+                                              background-size: cover;
+                                          }
+                    }
+                    &.nid-xx{//liens utiles
+                                          a:hover{
+                                         /*@include backgroundImage(("PNG/bg_acces_contact@4x.png"),  51% top, no-repeat);*/     
+                                              @include backgroundImage("SVG/bg_acces_contact.svg",$orange-fonce,  51%  top);
+                                              background-size: cover;
+                                          }
+                    }  
 
                 }
-                li{
-                    &.nid-23{//Contact
-                             a:hover{
-                                 @include backgroundImage(('SVG/bg_acces_contact.svg'), 25.5% top);
-                                 background-size: cover;
-                             }
-                    }
-                    &.nid-xx{//Liens
-                             a:hover{
-                                 @include backgroundImage(('SVG/bg_acces_contact.svg'), 51% top);
-                                 background-size: cover;
-                             }
-                    }
-                    &.nid-21{//Inscription
-                             a:hover{
-                                 @include backgroundImage(('SVG/bg_acces_contact.svg'), 76% top);
-                                 background-size: cover;
-                             }
-                    }
-                    &.nid-xx{//Infos
-                             a:hover{
-                                 @include backgroundImage(('SVG/bg_acces_contact.svg'), 100% top);
-                                 background-size: cover;
-                             }
-                    }
-                }
-                
+
+
             }
         }
         aside.AccesLycees{
 
             ul.acces-lycees{
-                //Code ici
+                display: grid;//conserve ordre des lignes
+                @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+                    display: flex;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                }
+                li{
+                    list-style: none;
+                    margin: 0;
+                    text-align:center;
+                    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+                        width: span(1 of 4);
+                        margin: span(0.0001);
+                    }
+                }
+                li.views-row-1{
+                    order:9;
+                    background: $orange-fonce;
+                }
+                li.views-row-2{
+                    order:1;
+                    background: $bleu-turquoise;
+                }
+                li.views-row-3{
+                    order:2;
+                    background: $gris-clair-moyen;
+                }
+                li.views-row-4{
+                    order:3;
+                    background: $vert;
+                }
+                li.views-row-5{
+                    order:4;
+                    background: $orange;
+                }
+                li.views-row-6{
+                    order:6;
+                    background: $rouge;
+                }
+                li.views-row-7{
+                    order:7;
+                    background: $violet;
+                    object{
+                        display: none !important;//Exclu la video du rocher de l'affichage
+                    }
+                }
+                li.views-row-8{
+                    order:8;
+                    background: $rose-fushia;
+                }
+                li.views-row-9{
+                    order:5;
+                    background: transparent;
+                    iframe{
+                        margin: em(18px) 0 !important;
+                        border:0;
+                    }
+                    a{
+                        display: none;
+                    }
+
+                }
             }
-        }
 
 
 
@@ -415,7 +643,7 @@ body .conteneur {
             img { 
                 @include adaptable-img();
                 contain:content;
-                
+
                 opacity: 0;
                 transition-duration: 0.4s;
                 &:hover{
@@ -426,7 +654,7 @@ body .conteneur {
                 text-decoration: none;
                 color: whitesmoke;
                 text-transform: uppercase;
-                @include font-size(m);//utilisation de typey;
+                @include font-size(m);//utilisation de typey
                 transition-duration: 0.4s;
                 &:hover{}
             }
@@ -435,12 +663,11 @@ body .conteneur {
                 opacity: 0.8;
 
             }
-       
+        }
     }
 
 
-    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-         //Dimensions pour les pc
+    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){/*    //Dimensions pour les pc
         //Taille du conteneur du groupe    
         .annonce_1{}
         .annonce_2{}
@@ -450,8 +677,7 @@ body .conteneur {
 
     }
 
-    @include breakpoint($tablet) {
-  //Dimensions pour les tablettes
+    @include breakpoint($tablet) {/*     //Dimensions pour les tablettes*/
         .annonce_1{}
         .annonce_2{}
         .HPDiapo{}

@@ -40,7 +40,7 @@ function starterpf_d8_2019_preprocess_html(&$variables) {
   $theme_name = \Drupal::theme()->getActiveTheme()->getName();
   $theme_settings = \Drupal::config($theme_name . '.settings');
   CacheableMetadata::createFromRenderArray($variables)
-    ->addCacheableDependency($theme_settings)
+//    ->addCacheableDependency($theme_settings)
     ->applyTo($variables);
   // Union all theme setting variables to the html.html.twig template.
   $variables += $theme_settings->getOriginal();

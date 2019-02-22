@@ -30,3 +30,8 @@
   'block-' ~ configuration.provider|clean_class,
   attributes.id
 ]) %}
+{% block content %}
+  {% if content %}
+      <aside {{ attributes.addClass()}}>{{ content }}</aside>
+  {% endif %}
+{% endblock %}

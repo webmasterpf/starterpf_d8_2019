@@ -412,7 +412,13 @@ $('#block-menu-menu-menu-general').click(function() {
   });
 });
         
-//Retrait de l'autoplay des videos Vimeo
+//deplacement du code pour vimeo
+
+        
+        
+    });
+    
+    //Retrait de l'autoplay des videos Vimeo
 //https://stackoverflow.com/questions/49053072/change-part-of-src-attribute-of-iframe-with-jquery
 //
 //  var oldSrc = $("#media-vimeo-1 iframe").attr("src"); //Get the src of the iframe
@@ -422,10 +428,6 @@ $('#block-menu-menu-menu-general').click(function() {
 //    console.log("Retrait de l'autoplay de Vimeo: ");
 //  console.log("Old Src: " + oldSrc);
 //  console.log("New Src: " + newSrc);
-
-        
-        
-    });
 
 //  Utilisation du Lazyload pour les éléments contenus dans certains conteneurs
     $('.conteneur').find('img').lazyLoadXT();

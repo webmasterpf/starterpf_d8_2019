@@ -100,9 +100,11 @@ body .conteneur {
 }
 //Gestion de l'affichage avec D8 
 body.role--authenticated{
+    padding:0;
         //ne pas afficher si connecté
-        .off-canvas, .menu-toggle{
+        .off-canvas, .menu-toggle, .close, .bandeau-pagetop{
             display: none;
-            visibility: hidden;
+            /*visibility: hidden;*/
         }
+        
     }

@@ -25,16 +25,16 @@ global-styling:
 global-scripts:
     version: VERSION
     js:
-#        js/navmenu.js: {}   
-#        js/modernizr.js: {}
-#       chargement des plugins qui utilisent la version de jQuery par défaut du site
+#        js/navmenu.js: {}   //issu de Basic
+#        js/modernizr.js: {} //issu de Basic
+#       chargement des plugins qui utilisent la version de jQuery par défaut du site - exD6
         js/jquery_plugin/selectnav.min.js: {}
         js/jquery_plugin/jquery.sticky-kit.js: {}
-#        chargement des scripts qui utilisent la version de jQuery par défaut du site
+#        chargement des scripts qui utilisent la version de jQuery par défaut du site - exD6
         js/js_jquery_defaut.js: {}
-#     mise en place du noConflict pour utiliser plusieurs versions de jQuery   
+#     mise en place du noConflict pour utiliser plusieurs versions de jQuery   - exD6
         js/jquery_init.js: {}
-#       chargement des plugins qui utilisent une version de jQuery plus récente
+#       chargement des plugins qui utilisent une version de jQuery plus récente - exD6
         js/jquery_plugin/jquery.flexslider.js: {}
         js/jquery_plugin/stacktable.min.js: {}
         js/jquery_plugin/jquery.floatit.js: {}
@@ -54,8 +54,11 @@ global-scripts:
     #    //  mise à disposition des 2 versions de jQuery - Voir si utile
         js/jquery_exit.js: {}
     dependencies:
-  #   - core/drupal
+       - core/drupal
        - core/jquery
+       - core/drupalSettings
+       - core/jquery.once
+       - core/modernizr
        
 # Uncomment the code above to load scripts.js file on all pages. This file also requires JQuery to be
   # loaded on all pages. Consider implimenting your scripts through theme libraries if you wish to
