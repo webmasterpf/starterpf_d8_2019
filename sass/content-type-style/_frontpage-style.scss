@@ -260,7 +260,12 @@ body .conteneur {
         
     }
     .acces_rubriques{
-
+        p{
+            line-height: 0;
+        }
+        div#block-videopresentationdulycee{
+                        text-align: center;
+        }
         ul.rubriques-administratives{
             list-style: none;
             @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
@@ -402,6 +407,7 @@ body .conteneur {
             }
         }
         aside.liste-acces-contact{
+      
             ul{
                 //pas besoin de fixer un display en mobile, vertical automatique - mobile first
                 max-width: span(11);
@@ -527,30 +533,26 @@ body .conteneur {
                     }
                     &.nid-23{//contact
                                          a:hover{
-                                             @include backgroundImage(('SVG/bg_acces_contact_blanc_transp.svg'),$violet, -3% 75%, no-repeat);
-                                             /*@include backgroundImage(("PNG/bg_acces_contact@4x.png"),$violet, 25.5% top, no-repeat);*/
-                                             background-size: 600%;
+                                             @include backgroundImage(('SVG/bg_acces_contact_blanc_transp.svg'),$violet, -9% 58%, no-repeat);
+                                             background-size: 400%;
                                          }
                     }
                     &.nid-21{//inscriptions
                                          a:hover{
-                                             @include backgroundImage("SVG/bg_acces_contact.svg",$orange-fonce,  76% top);
-                                             /*@include backgroundImage(("PNG/bg_acces_contact@4x.png"),  76% top, no-repeat);*/
-                                             background-size: cover;
+                                         @include backgroundImage(('SVG/bg_acces_contact_blanc_transp.svg'),$violet, 71% 58%, no-repeat);
+                                         background-size: 400%;
                                          }
                     }
-                    &.nid-xx{//actus
+                    &.nid-39{//actus
                                           a:hover{
-                                         /*@include backgroundImage(("PNG/bg_acces_contact@4x.png"),  100% top, no-repeat);*/
-                                         @include backgroundImage("SVG/bg_acces_contact.svg",$orange-fonce,  100% top);
-                                              background-size: cover;
+                                         @include backgroundImage(('SVG/bg_acces_contact_blanc_transp.svg'),$violet, 108% 58%, no-repeat);
+                                          background-size: 400%;
                                           }
                     }
                     &.nid-xx{//liens utiles
                                           a:hover{
-                                         /*@include backgroundImage(("PNG/bg_acces_contact@4x.png"),  51% top, no-repeat);*/     
-                                              @include backgroundImage("SVG/bg_acces_contact.svg",$orange-fonce,  51%  top);
-                                              background-size: cover;
+                                         @include backgroundImage(('SVG/bg_acces_contact_blanc_transp.svg'),$violet, 31% 58%, no-repeat);
+                                          background-size: 400%;
                                           }
                     }  
 
