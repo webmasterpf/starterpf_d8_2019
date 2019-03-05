@@ -309,33 +309,37 @@ $('#block-service_links-service_links').floatit({
         $("#media-youtube-default-external-object-1").removeAttr("style");
         $("#media-youtube-1").remove();
         
-        //Reset des attributs de l'iframe puis réglage des nouvelles valeurs des attributs
-        $('#media-vimeo-1 iframe').each(function () {
+        
+        //Reset des attributs de l'iframe puis réglage des nouvelles valeurs des attributs, alignement avec plugin JQuery
+        $(".acces_rubriques iframe").each(function () {
             $(this).removeAttr('width');
             $(this).removeAttr('height');
+            $(this).removeAttr('align');
         });
-         if (parseInt($(window).width()) > 500) {
-        $("#zone-1 #media-vimeo-1 iframe").height('23vw').width('100vw');
-$("#zone-2 #media-vimeo-1 iframe").height('23vw').width('100vw');
-$("#zone-1 #media-youtube-1").height('23vw').width('100vw');
-$("#zone-2 #media-youtube-1").height('23vw').width('100vw');
-    }
+        if (parseInt($(window).width()) > 1500) {
+            $("#zone-1 #media-vimeo-1 iframe").height('23vw').width('100vw');
+            $("#zone-2 #media-vimeo-1 iframe").height('23vw').width('100vw');
+            $("#zone-1 #media-youtube-1").height('23vw').width('100vw');
+            $("#zone-2 #media-youtube-1").height('23vw').width('100vw');
+            $(".acces_rubriques iframe").height('143vh').width('97vw');
+
+        }
 
 
 // Taille auto pour les images des logos partenaires sur accueil
-$(".logo_partenaires img").height('auto').width('auto');
-$(".acces-lycees #media-vimeo-1 iframe").height('11.5vw').width('20vw');
+        $(".logo_partenaires img").height('auto').width('auto');
+        $(".acces-lycees #media-vimeo-1 iframe").height('11.5vw').width('20vw');
 
 //Taille auto des images sur les pages espace
-     $('.page-espace li img').each(function () {
+        $('.page-espace li img').each(function () {
             $(this).removeAttr('width');
             $(this).removeAttr('height');
         });
 //$(".page-espace li img").height('auto').width('auto');
 
 //Retrait Taille des images sur les pages espace Entreprise et Partenaires
-$(".nav-espace-entreprise li img").removeAttr("style");
-$(".nav-espace-partenaire li img").removeAttr("style");
+        $(".nav-espace-entreprise li img").removeAttr("style");
+        $(".nav-espace-partenaire li img").removeAttr("style");
 
 
         //Retrait position:absolute sur le Views Slideshow       
@@ -345,8 +349,8 @@ $(".nav-espace-partenaire li img").removeAttr("style");
 //Style pour les iframes contenus dans des § pour le RWD - ajout de classe pour traitement CSS+JS
         $(".contenu-vdl p:has(iframe)").addClass('external-content');
         $(".page-lycee p:has(iframe)").addClass('external-content');
-$(".page-contact p:has(iframe)").addClass('external-content');
-$(".contenu-international p:has(iframe)").addClass('external-content');
+        $(".page-contact p:has(iframe)").addClass('external-content');
+        $(".contenu-international p:has(iframe)").addClass('external-content');
     });
 
      function resizeIframe(obj) {
