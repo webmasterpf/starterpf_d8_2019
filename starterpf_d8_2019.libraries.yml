@@ -45,7 +45,7 @@ global-scripts:
         js/jquery_plugin/responsiveslides/responsiveslides.min.js: {}
         js/jquery_plugin/lazyload/jquery.lazyloadxt.extra.min.js: {}
         js/jquery_plugin/stacktable.min.js: {}
-          
+        js/jquery_plugin/vertical-align.min.js: {}  
         
         3rdparty/bxslider/js/jquery.bxslider.js: {}
         3rdparty/lightslider/js/lightslider.js: {}
