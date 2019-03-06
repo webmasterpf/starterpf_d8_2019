@@ -122,8 +122,8 @@ ul.rubriques-administratives{
             column-count: $nb-elements;
             column-fill: balance;
             white-space: normal;
-            width: span(6.5 of $desktopcol); //si 4 items alors 8; si 3 items alors 6.5
-            margin-left: span(3.5 wide);//push - si 4 items alors 2; si 3 items alors 3.5
+            width: span(6.75 of $desktopcol); //si 4 items alors 8; si 3 items alors 6.5
+            margin-left: span(3.05 wide);//push - si 4 items alors 2; si 3 items alors 3.5
         }
         @include breakpoint($tablet){
             margin: span(0.5) span(0.2);    

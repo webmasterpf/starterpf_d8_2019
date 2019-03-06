@@ -110,6 +110,7 @@ body .conteneur{
         @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
             @include clearfix;
             display: grid;
+          
         }
     }
 

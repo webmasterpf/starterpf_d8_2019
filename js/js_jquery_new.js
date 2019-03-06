@@ -321,7 +321,7 @@ $('#block-service_links-service_links').floatit({
             $("#zone-2 #media-vimeo-1 iframe").height('23vw').width('100vw');
             $("#zone-1 #media-youtube-1").height('23vw').width('100vw');
             $("#zone-2 #media-youtube-1").height('23vw').width('100vw');
-            $(".acces_rubriques iframe").height('143vh').width('97vw');
+            $(".acces_rubriques iframe").height('95vh').width('60vw');//Video site CE D8
 
         }
 
