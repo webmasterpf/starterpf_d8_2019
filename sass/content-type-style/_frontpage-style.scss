@@ -114,11 +114,12 @@ ul.rubriques-administratives{
         //pas besoin de fixer un display en mobile, vertical automatique - mobile first
         max-width: span(11);
         margin: span(0.5)  span(0.2);
+        $nb-elements:3;//ajuster le nombre d'items réels pour éviter les bugs FF ou Edge - RAS Chrome
         @include breakpoint(($desktop,$desktopwide,
         $tablet-hd,$tabletlandscape-hd
         )){
             display:inline-block;
-            column-count: 4;
+            column-count: $nb-elements;
             column-fill: balance;
             white-space: normal;
             width: span(6.5 of $desktopcol); //si 4 items alors 8; si 3 items alors 6.5
@@ -129,7 +130,7 @@ ul.rubriques-administratives{
         }
         @include breakpoint(($mobilelandscape,$tabletlandscape)){
             display:inline-block;
-            column-count: 4;
+            column-count: $nb-elements;
             column-fill: balance;
             white-space: normal;
             //centrer le UL
