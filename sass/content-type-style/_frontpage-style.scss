@@ -108,6 +108,43 @@ ul.rubriques-administratives{
             cursor: pointer;
         }
     }}
+ aside.liste-acces-contact{
+      
+            ul{
+                //pas besoin de fixer un display en mobile, vertical automatique - mobile first
+                max-width: span(11);
+                margin: span(0.5)  span(2);
+                @include breakpoint(($desktop,$desktopwide,
+                $tablet-hd,$tabletlandscape-hd
+                )){
+                    display:inline-block;
+                    column-count: 4;
+                    column-fill: balance;
+                    white-space: normal;
+                }
+                @include breakpoint($tablet){
+                    margin: span(0.5) span(0.2);    
+                }
+                @include breakpoint(($mobilelandscape,$tabletlandscape)){
+                     display:inline-block;
+                    column-count: 4;
+                    column-fill: balance;
+                    white-space: normal;
+                    //centrer le UL
+                    margin: 0 10vw;
+                    max-width: 95%;
+                }
+                @include breakpoint(($tablet,$mobile-galaxyShd,$mobile-iphonehd)){
+                     display:inline-block;
+                    column-count: 1;
+                    column-fill: balance;
+                    white-space: normal;
+                    //centrer le UL
+                    margin: 0 5vw;
+                    width: 95%;
+                }
+            }
+ }
 /*######-------- ||| STYLE ||| --------######*/
 
 //Code imbriqué à 100%
@@ -411,38 +448,7 @@ body .conteneur {
         aside.liste-acces-contact{
       
             ul{
-                //pas besoin de fixer un display en mobile, vertical automatique - mobile first
-                max-width: span(11);
-                margin: span(0.5)  span(2);
-                @include breakpoint(($desktop,$desktopwide,
-                $tablet-hd,$tabletlandscape-hd
-                )){
-                    display:inline-block;
-                    column-count: 4;
-                    column-fill: balance;
-                    white-space: normal;
-                }
-                @include breakpoint($tablet){
-                    margin: span(0.5) span(0.2);    
-                }
-                @include breakpoint(($mobilelandscape,$tabletlandscape)){
-                     display:inline-block;
-                    column-count: 4;
-                    column-fill: balance;
-                    white-space: normal;
-                    //centrer le UL
-                    margin: 0 10vw;
-                    max-width: 95%;
-                }
-                @include breakpoint(($tablet,$mobile-galaxyShd,$mobile-iphonehd)){
-                     display:inline-block;
-                    column-count: 1;
-                    column-fill: balance;
-                    white-space: normal;
-                    //centrer le UL
-                    margin: 0 5vw;
-                    width: 95%;
-                }
+                //Voir layout ht de page pour réglages du bloc
                 li{
                     list-style: none;
                     width: 95%;
