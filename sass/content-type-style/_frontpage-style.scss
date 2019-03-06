@@ -94,6 +94,8 @@ ul.rubriques-administratives{
     @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
         column-count: 5;
         display: flex;
+        width: span(10 of $desktopcol);
+        margin-left: span(1 wide);//push
     }
     li{
         margin: 0 0 em(5px) 0;
@@ -263,8 +265,8 @@ body .conteneur {
         p{
             line-height: 0;
         }
-        div#block-videopresentationdulycee{
-                        text-align: center;
+        div#block-videopresentationdulycee{ //video en page d'accueil'
+         text-align: center;
         }
         ul.rubriques-administratives{
             list-style: none;
@@ -273,13 +275,13 @@ body .conteneur {
             }
             li{
                 margin: 0 0 em(5px) 0;
-                background: $gris-anthracite;
+                background: $vert;//Couleur de fond des acces Rub Admin
                 color: whitesmoke;
                 @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
 
                 }
                 &:hover{
-                    background: $orange-fonce;
+                    background: $violet;//Couleur de fond hover des acces Rub Admin
                 }
                 img{
                     object-fit: cover;//permet que l'image occupe tout l'espace mais il faut définir une taille
