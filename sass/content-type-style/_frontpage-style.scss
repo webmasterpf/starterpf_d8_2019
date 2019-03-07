@@ -381,6 +381,7 @@ body .conteneur {
                     padding: em(6px);
                     display: block;
                     word-break: break-word;
+                    font-weight: normal !important;//inclusion du span dans celui du titre pour lien (via views)
                 }
             }
         }
