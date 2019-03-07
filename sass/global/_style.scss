@@ -5,7 +5,7 @@
 /*------- EFFETS VISUELS GENERIQUES--------------*/
 
 
-/**-- style du fil d'ariane --**/
+/**-- style du fil d'ariane - D8: ajouter la classe dans le bloc dédié --**/
 
 .ariane, .breadcrumb {
     display: none;
@@ -16,6 +16,9 @@
         text-decoration: none;
         @include font-size(s);//taille avec typey
 //        background: chocolate;//supprimer en PROD
+li{
+    list-style: none;
+}
         a {
             color: $orange-fonce;
             text-decoration: none;

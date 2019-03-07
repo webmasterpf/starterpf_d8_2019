@@ -6,9 +6,20 @@
 |       PAGE LYCEE                     |
 |--------------------------------------*/
 
-//@include breakpoint ($mobile){}
-//@include breakpoint ($desktop){}
-//@include breakpoint ($tablet){}
+//@include breakpoint ($desktop){}  : $desktopwide  $mobile  $mobile-iphonehd   $mobile-iphoneX   
+/*
+$mobile-galaxyShd  
+$mobile-galaxyS6  
+$tablet  
+$tablet-hd 
+
+// Breakpoint pour les format paysage 
+$mobilelandscape 
+$mobilelandscape-galaxyShd   
+$tabletlandscape
+$tabletlandscape-hd:
+*/
+
 
 /*######-------- ||| ORDRE FLEXBOX ||| --------######*/
 body .conteneur .conteneur-flex{
@@ -38,10 +49,16 @@ article.middle-content{
             /*min-height: 20vw;*/
         }
         img{
-            @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-                margin: 0 12vw;
+            @include breakpoint(($desktop,$tablet)){
+                margin: 0 7vw;
                 max-height: 30vw;
-                transform: scale(1.4);
+                transform: scale(2.25);
+            }
+            @include breakpoint(($desktopwide,$mobilelandscape,$tabletlandscape)){
+                margin: 0;
+/*                margin: 0 12vw;
+                max-height: 30vw;
+                transform: scale(1.9);*/
             }
         }
     }
@@ -65,13 +82,14 @@ h1.titre-lycee,h1.title-classes{
     color: $violet;
     line-height: 1.0em
 }
+/*---- REGLAGE GLOBAL - supprimer autres réglages si existent - retirer le bloc dédié de l'affichage pour ne pas doublonner'*/
 h1.titre_overlay{
     @include titre_overlay();
 }
 h1.titre_page{
     @include titre-page;
     color: $blanc-casse;
-    @include backgroundRGBA($vert, 0.8);
+    @include backgroundRGBA($vert, 1);
 
 }
 /*¤¤¤ STYLES COMMUNS ¤¤¤*/
@@ -87,25 +105,25 @@ h1.titre_page{
     }
     u{
         font-weight: bold;
-        color: $bleu-turquoise;
+        color: $vert;
     }
     h2{
         @include font-size(l);//utilisation de typey
-        color: $orange-fonce;
+        color: $violet;
     }
     h3{
         @include font-size(m);//utilisation de typey
-        color: $orange-fonce;
+        color: $vert;
     }
     a{
         text-decoration: none;
-        color: $orange-fonce;
+        color: $violet;
         &:hover{
             text-decoration: underline;
         }
     }
     strong{
-        color: $orange-fonce;
+        color: $vert;
     }
 }
 
@@ -268,7 +286,7 @@ ______________________________*/
         }
     }
     .bloc_docs_utiles_plycee{
-        max-width: span(5);
+        max-width: span(6);
         padding: span(0.02);
         margin: span(0.2);
         @include backgroundImage(('BG/bg_site_ce_docs_2019.jpg'),transparent,0 0, repeat);
@@ -281,13 +299,16 @@ ______________________________*/
             list-style: none;
             list-style-position: inside;
             padding: span(0.1) 0;
-            @include font-size(m);//utilisation de typey
+            @include font-size(s);//utilisation de typey
+            span{
+                //padding: span(0.01);
+            }
             a{
                 background: $gris-clair;
                 color: $violet;
                 
                 text-decoration:none;
-                padding: span(0.02);
+                padding: span(0.01) span(0.03);
                 &:hover{
                 color: $gris-anthracite;
                     background: $vert;

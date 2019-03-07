@@ -79,6 +79,7 @@ aside.DiapoHPFull{
                 }
                 a{
                     display: block;
+                    cursor: pointer;//pour Edge
                 }
                 object{
                     pointer-events: none;
@@ -108,9 +109,46 @@ ul.rubriques-administratives{
             cursor: pointer;
         }
     }}
+    
+ul.rubriques-speciales{
+        //pas besoin de fixer un display en mobile, vertical automatique - mobile first
+        max-width: span(11);
+        margin: span(0.5)  span(0.2);
+        $nb-elements:5;//ajuster le nombre d'items réels pour éviter les bugs FF ou Edge - RAS Chrome
+        @include breakpoint(($desktop,$desktopwide,
+        $tablet-hd,$tabletlandscape-hd
+        )){
+            display:inline-block;
+            column-count: $nb-elements;
+            column-fill: balance;
+            white-space: normal;
+            width: span(6.75 of $desktopcol); //si 4 items alors 8; si 3 items alors 6.5
+            margin-left: span(3.05 wide);//push - si 4 items alors 2; si 3 items alors 3.5
+        }
+        @include breakpoint($tablet){
+            margin: span(0.5) span(0.2);    
+        }
+        @include breakpoint(($mobilelandscape,$tabletlandscape)){
+            display:inline-block;
+            column-count: $nb-elements;
+            column-fill: balance;
+            white-space: normal;
+            //centrer le UL
+            margin: 0 10vw;
+            max-width: 95%;
+        }
+        @include breakpoint(($tablet,$mobile-galaxyShd,$mobile-iphonehd)){
+            display:inline-block;
+            column-count: 1;
+            column-fill: balance;
+            white-space: normal;
+            //centrer le UL
+            margin: 0 5vw;
+            width: 95%;
+        }
+    }
 
-
-    ul.rubriques-speciales{
+    ul.rubriques-contact{
         //pas besoin de fixer un display en mobile, vertical automatique - mobile first
         max-width: span(11);
         margin: span(0.5)  span(0.2);
@@ -386,7 +424,7 @@ body .conteneur {
             }
         }
         aside.contenus-speciaux{
-
+            //ajouter la classe au niveau du bloc dans admin/structure/block
 
             ul{
                 //pas besoin de fixer un display en mobile, vertical automatique
@@ -420,7 +458,7 @@ body .conteneur {
                         @include hack-IE;
                     }
                     a{
-                        background: $orange-fonce;
+                        background: $violet;//Changer la couleur du BG ici
                         color: whitesmoke;
                         display: block;
                         padding: span(0.1);
@@ -434,8 +472,8 @@ body .conteneur {
                             @include font-size(s);//utilisation de typey    
                         }
                         &:hover{
-                            background: $gris-clair-moyen;
-                            color: $orange-fonce;
+                            background: $vert;//Changer la couleur du BG hover ici
+                            color: $gris-clair;
                         }
                     }
                     //Ciblage du lien concernant les JPO pour style différent
@@ -450,7 +488,7 @@ body .conteneur {
             }
         }
         aside.liste-acces-contact{
-
+            //ajouter la classe au niveau du bloc dans admin/structure/block
             ul{
                 //Voir layout ht de page pour réglages du bloc
                 li{
