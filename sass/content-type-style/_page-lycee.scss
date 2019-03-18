@@ -102,10 +102,12 @@ h1.titre_page{
         @include font-size(m);//utilisation de typey
         padding: em(5px);
         line-height: 1.5em;
+        list-style-position: inside;
     }
     u{
         font-weight: bold;
         color: $vert;
+        
     }
     h2{
         @include font-size(l);//utilisation de typey
