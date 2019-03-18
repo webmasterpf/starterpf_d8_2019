@@ -3,14 +3,14 @@
 {% if page.footer|render is not empty %}          
                         {{ page.footer }}
         
-{#            
+            
      <div id="bloc_stats">
-         
-        {% include directory ~ '/js/google_font.php' %}   
-        {% include directory ~ '/js/code_stats.php' %}   
+         {# chargement des typos #}      
+        {% include directory ~ '/js/google_font.html.twig' %}   
+        {% include directory ~ '/js/code_stats.html.twig' %}   
 
      </div>
-#}
+
    {% endif %}
 </footer> <!-- /footer -->
    
