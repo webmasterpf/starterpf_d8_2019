@@ -48,7 +48,7 @@ body .conteneur{
         max-height: 30vw;//Pour pouvoir augmenter ensuite la hauteur des images via bx-wrapper dans _bxslider-cyrano.scss
         img{
             //Avec Diapo il faut séparer le contenu du conteneur à cause de la position absolute. Position générique.
-            transform: translate(0%,-12%);
+            transform: translate(0%,-5%);
         }
            .view-Diapo-multichoix{
             transform: translate(0%,-12%);
@@ -132,7 +132,11 @@ body .conteneur{
 
 /*######-------- ||| STYLE ||| --------######*/
 //Pour H1 voir _page-lycee.scss
-   
+h1.titre-page-fiche-formation{
+    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+    top: em(50px);
+    }
+}  
 /*¤¤¤ STYLES COMMUNS ¤¤¤*/
 #zone-1.type-page-fiche-formation,
 #zone-2.type-page-fiche-formation,
