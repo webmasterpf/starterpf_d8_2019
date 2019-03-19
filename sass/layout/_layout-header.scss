@@ -60,7 +60,7 @@ body .conteneur #header {
             padding: em(5px) 0 0 0 //Ajoute un padding pour positionner boite
         }
     }
-    .headSearch{
+    .headSearch{ 
         margin: 0 30%;
         padding: 0;
         @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
@@ -81,11 +81,10 @@ body .conteneur #header {
 /*---- HEADER BAS ----*/
 
 .headBas {
-    background: $gris-anthracite;//Modifier la couleur du fond de la partie basse selon couleur du lycée
+    background: $vert;//Modifier la couleur du fond de la partie basse selon couleur du lycée
 }
 
 .headSearch {
-
     //background: transparent url("../images/'bg_recherche.gif') no-repeat scroll 6em em(7px);
     /*.form-item > label{color: #DDD;font-family: $AristaFont;font-size: medium;}*/
     input[type=image]{
