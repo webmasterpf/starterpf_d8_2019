@@ -164,4 +164,22 @@ body .conteneur{
         }
     }
     
+    /*---  2 ZONES EGALES - FICHE FORMATION ---*/
+    .zone1_layout_6_6{
+        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+            width: span(5.5 of $desktopcol);
+            float:left;
+            margin-left: span(0.5 narrow);//push
+        }
+    }
+    .zone2_layout_6_6{
+        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+            width: span(5.5 of $desktopcol);
+            float:left;
+            @include clearfixsusy3;
+        }
+    }
+
+    
+    
 }
