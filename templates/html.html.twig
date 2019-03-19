@@ -56,6 +56,16 @@
     {{ page }}
     {{ page_bottom }}
     
+    <!-- ______________________ ACCES RUBRIQUES 3  _______________________ -->
+{% if  page.RubriquesHP3 is not empty %}
+    <div class="acces_rubriques">{{page.RubriquesHP3}}</div>
+{% endif %}                 
+
+
+<!-- ______________________ ACCES LOGOS PARTENAIRES _______________________ -->
+{% if  page.LogoPart is not empty %}
+    <div class="logo_partenaires">{{page.LogoPart}}</div>
+{% endif %}  
     
     <js-bottom-placeholder token="{{ placeholder_token }}">
     {% if browser_sync.enabled %}
