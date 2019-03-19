@@ -31,6 +31,34 @@ body .conteneur{
 }
 
 /*######-------- ||| LAYOUT SPECIFIQUE ||| --------######*/
+#zone-diaporama.type-page-fiche-formation{
+    // utiliser bxslider-cyrano.scss" pour régler le bx-viewport ou bx-caption
+    min-height: 35vw;
+    max-height: 90vw;
+    overflow: hidden;
+
+    img{
+        transform: translate(0%,0%);
+    }
+    @include breakpoint(($mobile-iphonehd,$mobile-galaxyS6)){
+        background:  $rose-fushia;
+    }
+    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+        min-height: 20vw;
+        max-height: 30vw;//Pour pouvoir augmenter ensuite la hauteur des images via bx-wrapper dans _bxslider-cyrano.scss
+        img{
+            //Avec Diapo il faut séparer le contenu du conteneur à cause de la position absolute. Position générique.
+            transform: translate(0%,-12%);
+        }
+           .view-Diapo-multichoix{
+            transform: translate(0%,-12%);
+        }
+        
+    }
+
+}
+
+
 #zone-1.type-page-fiche-formation{
     .complement-titre-fiche{
         @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
@@ -50,7 +78,27 @@ body .conteneur{
         }
     }
 }
+#zone-2.type-page-fiche-formation{
+    .bloc_docs_utiles_ficheform{
+        margin: span(0.01) auto;
+        padding: span(0.01);
+        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+            width: span(7);
+
+        }
+    }
+
+}
 #zone-3.type-page-fiche-formation{
+    .bloc_complement_actu_ficheform{
+         margin: span(0.01) auto;
+        padding: span(0.01);
+        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+            width: span(7);
+        }
+    
+    }
+    
     article.paragraphe-section-europe{
         column-count: inherit;
         margin: span(0.2) 0;
@@ -83,7 +131,8 @@ body .conteneur{
 }
 
 /*######-------- ||| STYLE ||| --------######*/
-
+//Pour H1 voir _page-lycee.scss
+   
 /*¤¤¤ STYLES COMMUNS ¤¤¤*/
 #zone-1.type-page-fiche-formation,
 #zone-2.type-page-fiche-formation,
@@ -117,36 +166,9 @@ body .conteneur{
     a{
         text-decoration: none;
         color: $violet;
-        /*Effet Bounce to Top*/
-        display: inline-block;
-        vertical-align: middle;
-        transform: perspective(1px) translateZ(0);
-        box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-        position: relative;
-        transition-property: color;
-        transition-duration: 0.5s;
-        &:before{
-            content: "";
-            position: absolute;
-            z-index: -1;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: $vert;
-            transform: scaleY(0);
-            transform-origin: 50% 100%;
-            transition-property: transform;
-            transition-duration: 0.5s;
-            transition-timing-function: ease-out;
-        }
+        @include rollover-effect($vert);//Effet rollover CSS3
         &:hover{
-            text-decoration: underline;
-            /*background: $vert;*/
-            &:before{
-                transform: scaleY(1);
-                transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
-            }
+            text-decoration: none;
         }
     }
     strong{
@@ -205,7 +227,81 @@ ______________________________*/
     }
     aside.ficheform-savoirplus{}
 }
-#zone-2.type-page-fiche-formation{}
+#zone-2.type-page-fiche-formation{
+        aside.ficheform-savoirplus,.bloc_docs_utiles_ficheform{
+        @include backgroundImage(("BG/stripe_rose.png"),transparent,repeat, top left);
+        background-color: $gris-clair;
+        @include arrondis(1em);
+           
+        a{
+            background: $gris-clair;
+            color: $violet;
+
+            text-decoration:none;
+            padding: span(0.01) span(0.03);
+            &:hover{
+                                color: $gris-anthracite;
+                                    background: $vert;
+            }
+            &[href*=".pdf"]{
+                &::before{
+                    @include backgroundImage("PNG/Fichiers@3x.png");
+                    background-size: contain;
+                    content: "";
+                    position: relative;
+                    vertical-align: sub;
+                    padding: em(10px);
+                    margin:em(3px);
+                    transition:0.5s all;
+                    display: inline-block;
+                    transform: scale(1);
+                }
+            }
+            img.filefield-icon{
+
+                display: none;//initial
+            }
+            &[href*="/"]:not([href*=".pdf"]) { //pour cibler les liens externes et internes, exclure les pdf
+                                               &::before{
+                                                   @include backgroundImage("PNG/liens@3x.png");
+                                                   background-size: contain;
+                                                   content: "";
+                                                    position: relative;
+                                                   vertical-align: sub;
+                                                   padding: em(10px);
+                                                   margin:em(3px);
+                                                   transition:0.5s all;
+                                                   display: inline-block;
+                                                   transform: scale(1);
+                                               }
+
+            }
+        }
+          
+        .views-field-title >span{
+            color: $orange-fonce;
+            background: $gris-anthracite;
+            text-align: center;
+            font-weight: bold;
+            transform: rotate(-1deg);
+            max-width: fit-content;
+            display: block;
+            @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+                margin: 0 0 0 span(5.5);
+                padding: span(0.001);
+            }
+        }
+        ul{
+            
+
+            li{
+                list-style: none;
+                list-style-position: inside;
+                @include font-size(s);//utilisation de typey
+            }
+        }
+    }
+}
 #zone-3.type-page-fiche-formation{
     h3{
         transform: rotate(-1deg);
@@ -224,106 +320,30 @@ ______________________________*/
             list-style: square;
         }
     }
-    h2.lien-section-europe{
-        
-        margin: span(0.01) auto;
-        padding:0;
-        *{
-             @include font-size(l);//utilisation de typey
-            color: $bleu-turquoise;
-            background: $blanc-casse;
-            position: relative;
-            padding: span(0.01);
-            
-            @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-            display: block;
-            margin: 0 auto;
-            max-width: fit-content;//Marche pas sous Edge
-            width: 30%;
-            }
-            //Effet coin retourné
-            &:before{
-                 content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  border-width: 0 em(10px) em(10px) 0;
-  border-style: solid;
-  border-color: $bleu-turquoise ;
+    .bloc_complement_actu_ficheform{
+        @include backgroundImage(("BG/stripe_violet.png"),transparent,repeat, top left);
+        @include arrondis(1em);
+        a{
+            background: $gris-clair;
+            color: $violet;
+            text-decoration:none;
+            padding: span(0.01) span(0.03);
+            &:hover{
+/*                color: $gris-anthracite;
+                background: $vert;*/
             }
         }
-           
-    }
-    article.paragraphe-section-europe{
-        h3{
-            color: $blanc-casse;
-            background: $bleu-turquoise;
-            @include txt-cesure;
-            @include font-size(s);//utilisation de typey
-            margin: em(10px) em(20px);
-        }
-        h4{
-            @include font-size(m);//utilisation de typey
-            color: $gris-anthracite;
+        ul{
+                        
+            li{
+                //suppression des puces
+                list-style-type: none;
+            }
         }
     }
 
-    aside.ficheform-savoirplus{
-        
-        background-color: $gris-clair;
-        
-        @include arrondis(1em);
-        
-    
-        a{
-            color: $bleu-turquoise;
-            text-decoration: none;
-        }
-        &a:hover{
-            text-decoration: underline;
-        }
-        .views-field-title >span{
-            color: $orange-fonce;
-            background: $gris-anthracite;
-            text-align: center;
-            font-weight: bold;
-            transform: rotate(-1deg);
-            max-width: fit-content;
-            display: block;
-            @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-                margin: 0 0 0 span(5.5);
-                padding: span(0.001);
-            }
-        }
-        ul{
-            li{
-                list-style: square;
-                list-style-position: inside;
-                @include font-size(s);//utilisation de typey
-            }
-        }
-    }
-    aside.lycees-possibles{
-        @include backgroundImage("PNG/lieux@3x.png", bottom right);
-        background-size: contain;
-        ul{
-            @include backgroundImage("motif_img_overlay.png", repeat, top left);
-            
-            li{
-                list-style: none;
-                a{
-         
-                    &:hover{
-                        background: $orange-fonce;
-                        color: $gris-anthracite;
-                        text-decoration: none;
-                    }
-                }
-                
-            }
-        }
-    
-    }
+
+
 }
 #zone-4.type-page-fiche-formation{}
 #zone-5.type-page-fiche-formation{}
