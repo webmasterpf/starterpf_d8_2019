@@ -3,9 +3,11 @@
           * filefield and linkfield  avec création d'une liste dynamique, exclusion des champs vides                
 #}
 
-{% if node.field_fiche_formation.value or node.field_lien_externe.value or node.field_lien_interne is not empty %}
+{% if node.field_fiche_formation.value or node.field_lien_externe.value or node.field_lien_interne.value is not empty %}
 <div class="bloc_docs_utiles_ficheform">
-    {{ node.field_fiche_formation.title }}
+    
+    {{ node.field_fiche_formation|field_label }}
+   
     <ul>
         {# //Parcourir le tableau field_NAME de l'objet $node pour lister le contenu clé/valeur #}
     {% for key, fichier in node.field_fiche_formation.value %}

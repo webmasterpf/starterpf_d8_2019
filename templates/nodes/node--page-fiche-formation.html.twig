@@ -30,14 +30,12 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
 ]
 %}
 {% set zone2_classes = [
-'zone_layout_max_centre',
-
+'zone1_layout_6_6',
 'type-' ~ node.bundle|clean_class
 ]
 %} {#'zone2_layout_9_3',#}
 {% set zone3_classes = [
-'zone_layout_max_centre',
-'zone3_layout_9_3',
+'zone2_layout_6_6',
 'type-' ~ node.bundle|clean_class
 ]
 %}
@@ -79,13 +77,13 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
   {% endif %}
     
     <!--______________ ILLUSTRATION et TITRE ________________ -->
-    <div {{ imagecontainer_attribute.addClass(imagecontainer_classes).setAttribute('id', 'zone-illustration') }}>
+    <div {{ imagecontainer_attribute.addClass(imagecontainer_classes).setAttribute('id', 'zone-diaporama') }}>
           
-    {% set image_deco = content.field_diapo_fiche_flash|render|trim %}
+    {% set image_deco = content.field_illustration_contenu_diapo|render|trim %}
     {% if  image_deco or node.label is not empty %}
          <div  {{image_attribute.setAttribute('id', 'illustration-pleinepage').addClass(image_classes) }}>
                    <h1 class="titre_overlay titre_page">{{node.label}}</h1>
-                  {{ content.field_diapo_fiche_flash.0}}
+                  {{ content.field_illustration_contenu_diapo.0}}
             </div>
         {% endif %}
     </div><!-- /zone-illustration -->
@@ -101,13 +99,21 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
   <!--______________ZONE 2________________ -->
   <div {{ zone2_attribute.addClass(zone2_classes).setAttribute('id', 'zone-2') }}>
         
-  {% include directory ~ '/includes/dedicates_inc/inc_plycee_doc_liens.html.twig' %}   
+  {% include directory ~ '/includes/dedicates_inc/inc_ficheform_infos_utiles.html.twig' %}   
   
+  
+  </div><!-- /zone-2 -->
+  
+    <!--______________ ZONE 3 ________________ -->
+  <div {{ zone3_attribute.addClass(zone3_classes).setAttribute('id', 'zone-3') }}>
+    {% include directory ~ '/includes/dedicates_inc/inc_ficheform_complement_actu.html.twig' %}       
+
   {% if content.links %}
     <div class="links">
       {{ content.links }}
     </div><!-- /.links -->
   {% endif %}
-  </div><!-- /zone-2 -->
+
+  </div><!-- /zone-3 -->
   
 </article><!-- /.node -->

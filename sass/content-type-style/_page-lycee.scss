@@ -83,6 +83,7 @@ h1.titre-lycee,h1.title-classes{
     line-height: 1.0em
 }
 /*---- REGLAGE GLOBAL - supprimer autres réglages si existent - retirer le bloc dédié de l'affichage pour ne pas doublonner'*/
+//Commun pour tous les H1 titre du site - 
 h1.titre_overlay{
     @include titre_overlay();
 }
@@ -92,6 +93,7 @@ h1.titre_page{
     @include backgroundRGBA($vert, 1);
 
 }
+
 /*¤¤¤ STYLES COMMUNS ¤¤¤*/
 #zone-1.type-page-lycee,
 #zone-2.type-page-lycee,

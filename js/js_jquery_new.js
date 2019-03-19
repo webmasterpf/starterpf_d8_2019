@@ -109,7 +109,8 @@
             captions: false,
             auto: true,
             autoStart: true,
-            pager: false
+            pager: false,
+            keyboardEnabled: true
         });
 
         console.log('Chargement des paramètres de BxSlider HP');

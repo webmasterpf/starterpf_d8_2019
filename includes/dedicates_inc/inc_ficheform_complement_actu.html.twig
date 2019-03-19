@@ -6,6 +6,7 @@
 {% if node.field_passerelle.value or node.field_vue_evenements.value is not empty %}
 <div class="bloc_complement_actu_ficheform">
     {{ node.field_passerelle.title }}
+    {% if node.field_passerelle.value  is not empty %}
     <ul>
         {# //Parcourir le tableau field_NAME de l'objet $node pour lister le contenu clé/valeur #}
     {% for key, fichier in node.field_passerelle.value %}
@@ -15,10 +16,12 @@
     {% endif %}
 {% endfor %}
     </ul>
+    {% endif %}
             {# //Parcourir le tableau field_NAME de l'objet $node pour lister le contenu clé/valeur #}
         
         {# //Ne pas afficher les champs vides du tableau #}
         {% if node.field_vue_evenements is not empty %}
+            <h3>Evènements récents</h3>
             {{ content.field_vue_evenements.0 }}
         {% endif %}
 </div>        
