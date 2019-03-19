@@ -7,11 +7,18 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
 'node--type-' ~ node.bundle|clean_class
 
 ] %}
+{% set titre_attribute = create_attribute() %}
 {% set image_attribute = create_attribute() %}
 {% set imagecontainer_attribute = create_attribute() %}
 {% set zone1_attribute = create_attribute() %}
 {% set zone2_attribute = create_attribute() %}
 {% set zone3_attribute = create_attribute() %}
+{% set titre_classes = [
+'titre_overlay', 
+'titre_page',
+'titre-' ~ node.bundle|clean_class
+]
+%}
 {% set image_classes = [
 'illustration-'~ node.bundle|clean_class,
 'image--type-' ~ node.bundle|clean_class
@@ -83,7 +90,7 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
     {% set image_deco = content.field_image_deco_lycee|render|trim %}
     {% if  image_deco or node.label is not empty %}
          <div  {{image_attribute.setAttribute('id', 'illustration-pleinepage').addClass(image_classes) }}>
-                   <h1 class="titre_overlay titre_page">{{node.label}}</h1>
+                  <h1 {{ titre_attribute.addClass(titre_classes) }}>{{node.label}}</h1>
                   {{ content.field_image_deco_lycee.0}}
             </div>
         {% endif %}
