@@ -1,0 +1,28 @@
+{#
+/* 02/2019 Liste les fichiers uploadés par
+          * filefield and linkfield  avec création d'une liste dynamique, exclusion des champs vides                
+#}
+
+{% if node.field_passerelle.value or node.field_vue_evenements.value is not empty %}
+<div class="bloc_complement_actu_ficheform">
+    {{ node.field_passerelle.title }}
+    <ul>
+        {# //Parcourir le tableau field_NAME de l'objet $node pour lister le contenu clé/valeur #}
+    {% for key, fichier in node.field_passerelle.value %}
+        {# //Ne pas afficher les champs vides du tableau #}
+        {% if node.field_passerelle.value is not empty %}
+<li>{{ content.field_passerelle[key] }}</li>
+    {% endif %}
+{% endfor %}
+    </ul>
+            {# //Parcourir le tableau field_NAME de l'objet $node pour lister le contenu clé/valeur #}
+        
+        {# //Ne pas afficher les champs vides du tableau #}
+        {% if node.field_vue_evenements is not empty %}
+  {{ content.field_vue_evenements.0 }}
+    {% endif %}
+ 
+            
+         
+    
+{% endif %}
