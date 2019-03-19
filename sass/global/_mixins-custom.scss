@@ -119,7 +119,7 @@ $imagedir:'../images/'; // definir ici le chemin vers le dossier image
                 
                 display: inline-block;
                 margin: 0 0 0 span(0.1);
-                top: 0;//120% 17vw mieux comme ça avec titre en haut et non en bas de la photo
+                top: em(50px);//120% 17vw mieux comme ça avec titre en haut et non en bas de la photo
                 /*                left: 0;
                                 right: 60vw;//60%
                                 bottom: -10.4vw;//-29.5%*/
