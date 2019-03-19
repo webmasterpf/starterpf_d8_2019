@@ -1,0 +1,36 @@
+{#
+/* 02/2019 Liste les fichiers uploadés par
+          * filefield and linkfield  avec création d'une liste dynamique, exclusion des champs vides                
+#}
+
+{% if node.field_fiche_formation.value or node.field_lien_externe.value or node.field_lien_interne is not empty %}
+<div class="bloc_docs_utiles_ficheform">
+    {{ node.field_fiche_formation.title }}
+    <ul>
+        {# //Parcourir le tableau field_NAME de l'objet $node pour lister le contenu clé/valeur #}
+    {% for key, fichier in node.field_fiche_formation.value %}
+        {# //Ne pas afficher les champs vides du tableau #}
+        {% if node.field_fiche_formation.value is not empty %}
+<li>{{ content.field_fiche_formation[key] }}</li>
+    {% endif %}
+{% endfor %}
+    
+            {# //Parcourir le tableau field_NAME de l'objet $node pour lister le contenu clé/valeur #}
+            {% for key, lien in node.field_lien_externe %}
+        {# //Ne pas afficher les champs vides du tableau #}
+        {% if node.field_lien_externe is not empty %}
+    <li>{{ content.field_lien_externe[key] }}</li>
+    {% endif %}
+{% endfor %}   
+            
+                        {# //Parcourir le tableau field_NAME de l'objet $node pour lister le contenu clé/valeur #}
+            {% for key, lien in node.field_lien_interne %}
+        {# //Ne pas afficher les champs vides du tableau #}
+        {% if node.field_lien_interne is not empty %}
+    <li>{{ content.field_lien_interne[key] }}</li>
+    {% endif %}
+{% endfor %}   
+    
+    </ul>
+</div>
+{% endif %}
