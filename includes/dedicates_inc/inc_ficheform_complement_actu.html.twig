@@ -19,10 +19,8 @@
         
         {# //Ne pas afficher les champs vides du tableau #}
         {% if node.field_vue_evenements is not empty %}
-  {{ content.field_vue_evenements.0 }}
-    {% endif %}
- 
-            
-         
+            {{ content.field_vue_evenements.0 }}
+        {% endif %}
+</div>        
     
 {% endif %}
