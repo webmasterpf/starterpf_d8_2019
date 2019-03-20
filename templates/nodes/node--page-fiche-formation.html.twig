@@ -8,6 +8,7 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
 
 ] %}
 {% set titre_attribute = create_attribute() %}
+{% set taxo_attribute = create_attribute() %}
 {% set image_attribute = create_attribute() %}
 {% set imagecontainer_attribute = create_attribute() %}
 {% set zone1_attribute = create_attribute() %}
@@ -17,8 +18,11 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
 'titre_overlay', 
 'titre_page',
 'titre-' ~ node.bundle|clean_class
-]
-%}
+]%}
+{% set taxo_classes = [
+'terme-pole', 
+'term-' ~ content.field_pole_formation.0|clean_class
+]%}
 {% set image_classes = [
 'illustration-'~ node.bundle|clean_class,
 'image--type-' ~ node.bundle|clean_class
@@ -97,6 +101,9 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
     
   <!--______________ZONE 1________________ -->
   <div {{ zone1_attribute.addClass(zone1_classes).setAttribute('id', 'zone-1') }}>
+      {# Récupération du terme de taxonomie du pôle#}
+      <span {{ taxo_attribute.addClass(taxo_classes) }}> {{ content.field_pole_formation.0 }} </span>
+
   <div{{ content_attributes.addClass('content') }}>
     
     {{ content.body }}
