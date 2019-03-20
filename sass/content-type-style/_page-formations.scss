@@ -15,11 +15,11 @@
 
 /*######-------- ||| ORDRE FLEXBOX ||| --------######*/
 body .conteneur .conteneur-flex{
-    #zone-1.page-formations{order:1;}
-    #zone-2.page-formations{order:2;}
-    #zone-3.page-formations{order:3;}
-    #zone-4.page-formations{}
-    #zone-5.page-formations{}
+    #zone-1.type-page-pole{order:1;}
+    #zone-2.type-page-pole{order:2;}
+    #zone-3.type-page-pole{order:3;}
+    #zone-4.type-page-pole{}
+    #zone-5.type-page-pole{}
     @include breakpoint ($desktop){}
 }
 
@@ -32,7 +32,7 @@ body .conteneur{
 }
 
 /*######-------- ||| LAYOUT SPECIFIQUE ||| --------######*/
-#zone-illustration.page-formations{
+#zone-illustration.type-page-pole{
     min-height: 35vw;
     max-height: 90vw;
     overflow: hidden;
@@ -49,7 +49,7 @@ body .conteneur{
         }
     }
 }
-#zone-1.page-formations{
+#zone-1.type-page-pole{
     >.content{
         column-count: 0;
         @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
@@ -59,7 +59,7 @@ body .conteneur{
             padding: span(0.1);
         }
     }
-    aside.liste-formations-initiales{
+    /*aside.liste-formations-initiales{*/
         div.bef-select-as-radios{
             @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
                 column-count: 4;
@@ -106,30 +106,31 @@ body .conteneur{
                 }
             }
         }
-    }
+    /*}*/   
 }
 /*######-------- ||| STYLE ||| --------######*/
 
 /*¤¤¤ STYLES COMMUNS ¤¤¤*/
-#zone-illustration.page-formations{
-    h1.titre_overlay{
-        @include titre_overlay();
+//Pour H1 voir _page-lycee.scss
+h1.titre-page-pole{
+    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+    top: em(50px);
     }
-}
+}  
 
-#zone-1.page-formations,
-#zone-2.page-formations,
-#zone-3.page-formations,
-#zone-4.page-formations,
-#zone-5.page-formations
+#zone-1.type-page-pole,
+#zone-2.type-page-pole,
+#zone-3.type-page-pole,
+#zone-4.type-page-pole,
+#zone-5.type-page-pole
 {}
 
 /*------------------------------------
         ¤¤¤ STYLES PROPRES ¤¤¤
 ______________________________*/
 
-#zone-1.page-formations{
-    aside.liste-formations-initiales{
+#zone-1.type-page-pole{
+    /*aside.liste-formations-initiales{*/
         //Style du filtrage de la vue
         div.bef-select-as-radios{
             div.form-item{
@@ -231,13 +232,13 @@ ______________________________*/
                        @include image-overlay('motif_img_overlay.png', 0 0, repeat);
                    }
                 }
-                &.tid-98{
+                &.tid-1{
                     background: $violet;
                 }
-                &.tid-99{
+                &.tid-2{
                     background: $vert;
                 }
-                &.tid-100{
+                &.tid-9{
                     background: $jaune;
                     *{
                         color: $gris-anthracite;//cas particulier du fond clair
@@ -269,9 +270,9 @@ ______________________________*/
                 }
             }
         }
-    }
+    /*}*/
 }
-#zone-2.page-formations{}
-#zone-3.page-formations{}
-#zone-4.page-formations{}
-#zone-5.page-formations{}
+#zone-2.type-page-pole{}
+#zone-3.type-page-pole{}
+#zone-4.type-page-pole{}
+#zone-5.type-page-pole{}
