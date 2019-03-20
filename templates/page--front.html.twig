@@ -46,19 +46,21 @@ Voir fichier @html.html.twig
 {% endif %}
 
 <!-- ______________________ ACCES RUBRIQUES 3  _______________________ -->
+{#
 {% if  page.RubriquesHP3 is not empty %}
     <div class="acces_rubriques">{{page.RubriquesHP3}}</div>
 {% endif %}                 
-
+#}
 <!-- ______________________ ACCES LYCEES / VIDEO LYCEE _______________________ -->
 {% if  page.AccesLycees is not empty %}
     <div class="acces_rubriques">{{page.AccesLycees}}</div>
 {% endif %}   
 <!-- ______________________ ACCES LOGOS PARTENAIRES _______________________ -->
+{#
 {% if  page.LogoPart is not empty %}
     <div class="logo_partenaires">{{page.LogoPart}}</div>
 {% endif %}   
-
+#}
   <!-- ______________________ FOOTER _______________________ -->
 {# Inclusion du markup du Footer pour plus de lisibilité 
 Voir fichier @html.html.twig
