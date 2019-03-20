@@ -66,6 +66,13 @@ body .conteneur{
             margin: span(0.02) auto;   
         }
     }
+    span.terme-pole{
+        text-align: center;
+        display: block;
+        width: span(2);
+        margin: 0 auto span(0.1) auto;
+        
+    }
     .content{
         column-count: inherit;
         @include breakpoint(($desktop,$desktopwide,$tabletlandscape)){
@@ -183,26 +190,6 @@ h1.titre-page-fiche-formation{
 /*------------------------------------
         ¤¤¤ STYLES PROPRES ¤¤¤
 ______________________________*/
-.illustration-fiche{
-    h1{
-        &.pole-98{
-            &::before{
-                @include backgroundImage("PNG/CAP_ATMFC@4x.png");
-                    background-size: contain;
-                             content: "";
-                        position: relative;
-                        vertical-align: sub;
-                        padding: em(10px);
-                        margin:em(3px);
-                        transition:0.5s all;
-            }
-            
-        }
-        &.pole-98{}
-        &.pole-98{}
-        &.pole-98{}
-    }
-}
 #zone-1.type-page-fiche-formation{
     .complement-titre-fiche{
 
@@ -216,6 +203,14 @@ ______________________________*/
             margin: span(0.01) 0;
             @include font-size(m);//utilisation de typey
         }
+    }
+    span.terme-pole{
+     background: $violet;
+    color: $gris-clair-typo;
+    @include ombrage-effet-incurve($HauteurHalo:0.5em);
+    a{
+    color: $blanc-casse;    
+    }
     }
     .content{
          h3{
@@ -233,7 +228,7 @@ ______________________________*/
 }
 #zone-2.type-page-fiche-formation{
         aside.ficheform-savoirplus,.bloc_docs_utiles_ficheform{
-        @include backgroundImage(("BG/stripe_rose.png"),transparent,repeat, top left);
+        @include backgroundImage(("BG/stripe_rose_violet_pastel.png"),transparent,repeat, top left);
         background-color: $gris-clair;
         @include arrondis(1em);
            
@@ -342,6 +337,7 @@ ______________________________*/
             li{
                 //suppression des puces
                 list-style-type: none;
+                @include font-size(s);//utilisation de typey
             }
         }
     }

@@ -27,17 +27,19 @@ Voir fichier @html.html.twig
         
 
 
-    <div class="content-top">
-        {{ page.breadcrumb }} 
-        {% if page.content_top %} 
+    
+        
+        {% if page.content_top is not empty %} 
+            <div class="content-top">
             {{ page.content_top }}
+            </div> <!-- /#content-top -->
         {% endif %}
         
-    </div> <!-- /#content-top -->
+    
 
 
-      {% if page.highlighted|render %}
-              <div id="highlighted">{{ page.highlighted }}</div>
+        {% if page.highlighted is not empty  %}
+              <div id="highlighted">{{ page.highlighted |render }}</div>
             {% endif %}
 
      {#       {{ title_prefix }}

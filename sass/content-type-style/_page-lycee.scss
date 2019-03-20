@@ -90,7 +90,7 @@ h1.titre_overlay{
 h1.titre_page{
     @include titre-page;
     color: $blanc-casse;
-    @include backgroundRGBA($vert, 1);
+    @include backgroundRGBA($vert, 0.9);
 
 }
 

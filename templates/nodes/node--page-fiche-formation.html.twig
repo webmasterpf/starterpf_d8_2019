@@ -21,7 +21,7 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
 ]%}
 {% set taxo_classes = [
 'terme-pole', 
-'term-' ~ content.field_pole_formation.0|clean_class
+'term-' ~ content.field_pole_formation.0.name.value|clean_class
 ]%}
 {% set image_classes = [
 'illustration-'~ node.bundle|clean_class,

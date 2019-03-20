@@ -109,6 +109,13 @@ If you want to render a formatted output, use either the ui to configure a custo
   {{ drupal_field('field_desired_field', 'taxonomy_term', tid) }}
 {% endif %}
       
+Autre méthode pour afficher un terme de taxo (cliquable)
+ {{ content.field_NAME[0] }}
+  {% for key, value in content.field_NAME %}
+         {% if key > 0 %}
+             {{ content.field_NAME[key] }}
+          {% endif %}
+  {% endfor %}
       
       
   </div><!-- /.content -->
