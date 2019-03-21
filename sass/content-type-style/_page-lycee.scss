@@ -40,28 +40,24 @@ article.middle-content{
     @include clearfixsusy3;
 }
 #zone-illustration.type-page-lycee{
-    #illustration-pleinepage {
-        position: relative;
-        /*display: inline-block;*/
+    #illustration-pleinepage{
+        min-height: 35vw;
+        max-height: 90vw;
         overflow: hidden;
-        /*min-height: 15vw;*/
-        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-            /*min-height: 20vw;*/
-        }
+        position:relative;
         img{
-            @include breakpoint(($desktop,$tablet)){
-                margin: 0 7vw;
-                max-height: 30vw;
-                transform: scale(2.25);
-            }
-            @include breakpoint(($desktopwide,$mobilelandscape,$tabletlandscape)){
-                margin: 0;
-/*                margin: 0 12vw;
-                max-height: 30vw;
-                transform: scale(1.9);*/
+            transform: translate(0%,0%);
+            @include adaptable-img();
+        }
+        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+            min-height: 25vw;
+            max-height: 30vw;
+            img{
+                transform: translate(0%,-6%);
             }
         }
     }
+
 }
 /*######-------- ||| BORDURES ||| --------######*/
 body .conteneur{
