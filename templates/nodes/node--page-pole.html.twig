@@ -14,6 +14,8 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
 {% set zone1_attribute = create_attribute() %}
 {% set zone2_attribute = create_attribute() %}
 {% set zone3_attribute = create_attribute() %}
+{% set vuebloc_attribute = create_attribute() %}
+
 {% set titre_classes = [
 'titre_overlay', 
 'titre_page',
@@ -48,8 +50,11 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
 {% set zone3_classes = [
 'zone2_layout_6_6',
 'type-' ~ node.bundle|clean_class
-]
-%}
+]%}
+{% set vuebloc_classes = [
+'liste-formations-initiales',
+'type-' ~ node.bundle|clean_class
+]%}
 {# BEM inspired class syntax: https://en.bem.info/
    Enable this code if you would like node classes like "article article--layout-teaser", where article is the content type and teaser is the view mode.
 {% set classes = classes|merge([
@@ -88,7 +93,7 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
   {% endif %}
     
     <!--______________ ILLUSTRATION et TITRE ________________ -->
-    <div {{ imagecontainer_attribute.addClass(imagecontainer_classes).setAttribute('id', 'zone-diaporama') }}>
+    <div {{ imagecontainer_attribute.addClass(imagecontainer_classes).setAttribute('id', 'zone-illustration') }}>
           
     {% set image_deco = content.field_image_deco_lycee|render|trim %}
     {% if  image_deco or node.label is not empty %}
@@ -106,11 +111,13 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
     
     {{ content.body }}
     
-        {% if node.field_inserer_liste is not empty %}
-            
-            {{ content.field_inserer_liste.0 }}
-        {% endif %}
+
   </div><!-- /.content -->
+          {% if node.field_inserer_liste is not empty %}
+            <aside {{ vuebloc_attribute.addClass(vuebloc_classes) }}>
+            {{ content.field_inserer_liste.0 }}
+            </aside>
+        {% endif %}
 </div> <!-- /zone-1-->
 
   

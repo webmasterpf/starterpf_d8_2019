@@ -39,6 +39,7 @@ body .conteneur{
 
     img{
         transform: translate(0%,0%);
+        @include adaptable-img();
     }
     @include breakpoint(($mobile-iphonehd,$mobile-galaxyS6)){
         background:  $rose-fushia;
@@ -320,7 +321,8 @@ ______________________________*/
         }
     }
     .bloc_complement_actu_ficheform{
-        @include backgroundImage(("BG/stripe_violet.png"),transparent,repeat, top left);
+        @include backgroundImage(("BG/stripe_vert_vert_pastel.png"),transparent,repeat, top left);
+        //@include backgroundImage(("BG/stripe_violet.png"),transparent,repeat, top left);
         @include arrondis(1em);
         a{
             background: $gris-clair;
@@ -328,8 +330,8 @@ ______________________________*/
             text-decoration:none;
             padding: span(0.01) span(0.03);
             &:hover{
-/*                color: $gris-anthracite;
-                background: $vert;*/
+                color: $gris-anthracite;
+                /*background: $vert;*/
             }
         }
         ul{
