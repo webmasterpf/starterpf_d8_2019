@@ -60,14 +60,17 @@
 {% if  page.RubriquesHP3 is not empty %}
     <div class="acces_rubriques">{{page.RubriquesHP3}}</div>
 {% endif %}                 
-
+<!-- _____ /ACCES RUBRIQUES 3  ____ -->
 
 <!-- ______________________ ACCES LOGOS PARTENAIRES _______________________ -->
 {% if  page.LogoPart is not empty %}
     <div class="logo_partenaires">{{page.LogoPart}}</div>
 {% endif %}  
-    
-    <js-bottom-placeholder token="{{ placeholder_token }}">
+<!-- ___ /ACCES LOGOS PARTENAIRES ____ -->
+
+{#
+Déplacement du bloc de chargement des JS du core Drupal et modules dans le fichier du footer, juste avant la fermeture du body
+#}
     {% if browser_sync.enabled %}
       <script id="__bs_script__">
       document.write("<script async src='http://{{ browser_sync.host }}:{{ browser_sync.port }}/browser-sync/browser-sync-client.js'><\/script>".replace("HOST", location.hostname));
