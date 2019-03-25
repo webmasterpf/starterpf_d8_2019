@@ -1,179 +1,321 @@
 // Regroupe le style pour le contenu des node.tpl custom
 // créer des fichiers _node-TYPE.scss et les importer dans application.scss
 
+/*-------------------------------------|
+|       CONTENU CUSTOM NODE.TPL        |
+|       PAGE GLOBALE VDL  LISTE      |
+|--------------------------------------*/
+
 //@include breakpoint ($mobile){}
 //@include breakpoint ($desktop){}
 //@include breakpoint ($tablet){}
 
-/*----------------------------------------
-*****~~~~~~ PAGE VDL  ~~~~~~~~~~~~*********
------LISTE DES VDL - TEMPLATE VUES -----
-------------------------------------------*/
 /*######-------- ||| ORDRE FLEXBOX ||| --------######*/
-body .conteneur {
-
-    #colonne-1.vdl-liste{order:1;}
-    #colonne-2.vdl-liste{order:2;}
-    #colonne-3.vdl-liste{order:3;}
+body .conteneur .conteneur-flex{
+    #zone-1.type-page-globale{order:2;}
+    #zone-2.type-page-globale{order:1;}
+    #zone-3.type-page-globale{order:3;}
     @include breakpoint ($desktop){
-   
+        #zone-1.type-page-globale{order:1;}
+        #zone-2.type-page-globale{order:2;}
+        #zone-3.type-page-globale{order:3;}
     }
 }
 
 /*######-------- ||| BORDURES ||| --------######*/
 body .conteneur {
     @include breakpoint ($desktop){
-        #colonne-2.vie-lycee{
-            @include border-L-violet;
+        #zone-2.type-page-globale{}
+    }
+
+}
+/*######-------- ||| LAYOUT SPECIFIQUE ||| --------######*/
+#zone-illustration.type-page-globale{
+    #illustration-pleinepage{
+        min-height: 35vw;
+        max-height: 90vw;
+        overflow: hidden;
+        position:relative;
+        img{
+            transform: translate(0%,0%);
+            @include adaptable-img();
         }
+        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+            min-height: 25vw;
+            max-height: 30vw;
+            img{
+                transform: translate(0%,-6%);
+            }
         }
-    
+    }
+
+}
+#zone-1.type-page-globale{
+    >.content{
+        column-count: 0;
+        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+            column-count: 1;
+            column-fill: balance;
+            white-space: normal;
+            padding: span(0.1);
+        }
+    }
+    aside.liste-vdl{
+        .bef-exposed-form{
+            @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+                column-count: 4;
+                column-fill: balance;
+                white-space: normal;
+                padding: span(0.02);
+            }
+            div.form-item{
+                margin: 0 0 span(0.01) 0;   
+                @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+                    @include  txt-colonnes();
+
+                    padding: span(0.35);
+                }
+            }
+        }
+        .item-list{
+            @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+                /*width: span(12);*/
+            }
+            ul.liste-vdl-lycee{
+                @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+/*                                        column-count: 5;
+                                        column-fill: auto;
+                                        white-space: normal;*/
+                    //Flex pour avoir classement horizontal
+                    display: flex;
+                    flex-wrap:wrap;
+                    padding: 0 0 0 span(0.1);
+                }
+                li{
+                    padding: 0;
+                    margin: span(0.1) 0;
+                    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+
+                        /*@include hack-Edge;*/
+                        @include hack-IE;
+                        @include  txt-colonnes();
+                        /* Définir le nombre de colonnes via flex*/
+                        flex: 1 0 17%; // 21% = 4 col , 17% = 5 col
+                        margin: 0 span(0.1) span(0.1) 0;
+                        display: inline-block;
+                        width: span(1.8);
+
+                        :not(img):not(a):not(.complement){
+                            padding: span(0.1);
+
+                        }
+
+                    }
+                    a{
+                        display: block;
+                        overflow: hidden;// Pour empêcher image de sortir
+                    }
+                }
+            }
+        }
+
+    }
 }
 /*######-------- ||| STYLE ||| --------######*/
-h1.titre_page_vdl{
-    color: $violet;
-     font-size: x-large;
-     line-height: 1.0em;
-}
-#colonne-2.vie-lycee{
-    h2,h3,h4,p,ul,ol,img{
-        margin: 0;
+//Pour H1 voir _page-lycee.scss
+h1.titre-page-globale{
+    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+        top: em(10px);
+        left: em(10px);
     }
-    h2{
-        color: $violet;
-        padding: em(5px);
-    }
-    h3{
-        color: $violet;
-        padding: em(5px);
-    }
-    h4{
-        padding: em(5px);
-        color: $violet;
-    }
-    p{
+}  
+/*¤¤¤ STYLES COMMUNS ¤¤¤*/
+
+#zone-1.type-page-globale,
+#zone-2.type-page-globale,
+#zone-3.type-page-globale{
+    p,ul,li{
+        @include font-size(m);//utilisation de typey
         padding: em(5px);
         line-height: 1.5em;
-            }
-    ul{
-        padding: em(5px);
-            }
-    img{
-        
     }
-    a{
-        color: $violet;
-        text-decoration: none;
-        padding: em(2px);
-        &:hover{
-            color: white;
-            background: $violet;
-        }
-    }
-    form{
-        margin: 0.5em auto;
-    }
-    table{
-        margin: 0 auto;
-        display:table;
-        tbody{
-            max-width: 100%;
-
-            tr{
-                border:0;
-            }
-            tr.even{
-                background: $gris-clair;
-            }
-            tr.odd{
-                background: $gris-clair-moyen;
-                color: $gris-clair;
-            }
-            td{}
-        }
-    }
-    table#archives-info-admin,.item-list-activites{
-    
-    h3{
-        color: $violet;
-        padding:5px;
-        text-align:center;
-    }
-    a{
-        color: black;
-        text-decoration: none;
-        display:block;
-        &:hover{
-            color: black;
-            text-decoration: underline;
-            background: 0;
-        }
-    }
-
-    ul{
-        list-style: none;
-    }
-    li{
-        list-style: none;
-        background: $gris-clair;
-        padding: 3px;
-        margin:0 3px 3px;
-    }
-    .views-field-title a{
+    u{
         font-weight: bold;
-        text-transform: capitalize;
-        color: $vert;
+        color: $bleu-turquoise;
     }
-    .view-liste-activites-lycee a.field-content{
-        color: red;
+    h2{
+        @include font-size(l);//utilisation de typey
+        color: $orange-fonce;
     }
-}
+    h3{
+        @include font-size(m);//utilisation de typey
+        color: $orange-fonce;
+    }
+    a{
+        text-decoration: none;
+        color: $orange-fonce;
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+    strong{
+        color: $orange-fonce;
+    }
 }
 
 
-/*--------------------------------------------
-**********************************************
-        VUE BLOC VDL ARCHIVES FILTRE EXPOSE
----------------------------------------------*/
-#vue-bloc-vdl-archives{
-    width: 99%;
-    margin: 0 auto;
+/*------------------------------------
+        ¤¤¤ STYLES PROPRES ¤¤¤
+______________________________*/
+#zone-1.type-page-globale{
+
+    aside.liste-vdl{
+        //Style du filtrage de la vue
+        .bef-exposed-form{
+            div.form-item{
+                background: $vert;
+                color: $blanc-casse;
+                text-align: center;
+                cursor: pointer;
+                label{
+                    cursor: pointer;
+                    &:after{
+                        /*                        content: "PôLE";
+                                                color:$orange-fonce;
+                                                @include font-size(l);//utilisation de typey
+                                                font-family: $FontRaleway;*/
+                    }
+                }
+                &:hover:not(#edit-term-node-tid-depth-limited-All-wrapper){
+
+                    @include backgroundImage(('BG/BG_Filtres_Exposes.png'), transparent, center -0.5em , no-repeat );
+                    background-size:60%;
+                    background-color: $violet;
+                    label{
+                        @include opacity(0.45);
+                    }
+                }
+            }
+        }
+        .views-exposed-form{
+            //Masquer la roue bleue de drupal
+            .ajax-progress-throbber {
+                display: none;
+            }
+            .views-exposed-widget{
+                padding: 0;
+                margin: 0;
+                float: none;
+            }
+            //Style du bouton de filtrage
+            .views-submit-button{
+                float: none;
+                margin: 0 auto;
+                width:25vw;
+                padding:0;
+                @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+                    width: 10vw;
+                }
+                input[type="submit"] {
+                    background: $orange-fonce;
+                    border: em(1px) dashed $gris-anthracite;
+                    color: $blanc-casse;
+                    @include font-size(l);//utilisation de typey
+                    font-family: $FontArvo;
+                }
+            }
+        }
+        //Masquage du module additionnel du module (bug peut être corrigé via patch)
+        .view-filters{
+            #edit-children-of-wrapper{
+                display: none;
+                visibility: hidden;
+            }
+        }
+        //Style des éléments de la vue
+        ul.liste-vdl-lycee{
+            li{
+                list-style: none;
+                color: $blanc-casse;
+                @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+                    @include ombrage-bloc(0em,0em,0.5em,$gris-anthracite);
+
+                }
+
+                &.tid-13{//Europe
+                    background: $vert;
+                    *{
+                        color: $gris-anthracite;//cas particulier du fond clair
+                    }
+                }
+                &.tid-15{//Sortie-Actions
+                  
+                    background: $jaune;
+                    *{
+                        color: $gris-anthracite;//cas particulier du fond clair
+                    }
+                }
+                &.tid-14{//Partenaires
+                
+                    background: $violet;
+                }
+         
+                a{
+                    color: $blanc-casse;
+                    text-decoration: none;
+                    font-weight: bold;
+                    @include font-size(l);//utilisation de typey
+
+                }
+                span{
+                    display: block;
+                    font-weight: bold;
+                }
+                span.titre-vdl{
+                    //classe ajoutée dans la vue - réécriture du champ
+                    /*border: em(1px) dashed;//couleur héritée du LI parent*/
+                    text-transform: capitalize;
+                }
+                span.extrait-vdl {
+                    //classe ajoutée dans la vue - réécriture du champ
+                    font-weight:initial; /*we revert back the inherited style*/
+                    @include font-size(s);//utilisation de typey
+                }
+                /*                    &:matches(.complement){
+                                        font-weight: initial;
+                                    }*/
+
+                span.illus-vdl{
+                    img {
+                         @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+                        transform: translate(-17% );
+                         }
+                    }
+                    a {//uniquement les "a" sur l'image
+                        position:relative;//pour overlay image
+                        &:before{
+                            
+                            @include image-overlay('motif_img_overlay.png', 0 0, repeat);
+                        }
+
+                    }
+                }
+
+
+            }
+
+        }
+    }
 }
-#vue-bloc-vdl-archives table{
-    
-}
-#vue-bloc-vdl-archives tbody{}
-#vue-bloc-vdl-archives tr{
-    margin:5px 3px;
-    display: block;
-    background: #EFEFEF;
-}
-#vue-bloc-vdl-archives td{
-    padding: 3px;
-}
-#vue-bloc-vdl-archives td a{
-    font-weight: bold;
-    text-transform: capitalize;
-    color: #AEC81F;
-    text-decoration: none;
-}
-#vue-bloc-vdl-archives td a:hover{
-    color: black;
+#zone-2.type-page-globale{
+
 }
 
-/*________ FOYER (liste) - FORMULAIRE EXPOSE ________*/
-#views-exposed-form-liste-actu-foyer-page-1,#views-exposed-form-liste-activites-lycee-block-2,#views-exposed-form-liste-activites-lycee-block-3
-{
-    width: 65%;margin: 0 auto;padding: 5px;
-    background:$violet;
-    @include backgroundRGBA($violet,0.35);
-    
-    label
-    {
-        color: $gris-anthracite;text-align: center;
-        font-size: small;
-    }
-    select{
-        font-size: small;
-    }
+
+
+
+
+
+#zone-3.type-page-globale{
+
 }

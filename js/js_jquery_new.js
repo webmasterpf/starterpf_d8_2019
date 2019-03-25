@@ -295,7 +295,7 @@ $('#block-service_links-service_links').floatit({
 
 //Changer la casse des titres H1 qui sont en Majuscules
         $('h1').css('text-transform', 'capitalize');
-        $('.titre-vdl a').css('text-transform', 'lowercase');
+//        $('.liste-vdl-lycee .titre-vdl a').css('text-transform', 'lowercase');
         $('#liste-vdl span.titre-vdl > a').css('text-transform', 'lowercase');
 
 //Retirer les style en ligne issus de copier/coller

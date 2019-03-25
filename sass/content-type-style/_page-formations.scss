@@ -244,8 +244,8 @@ ______________________________*/
                 span.illustration >a {//uniquement les "a" sur l'image
                    position:relative;//pour overlay image
                    &:before{
-
                        @include image-overlay('motif_img_overlay.png', 0 0, repeat);
+                       
                    }
                 }
                 &.tid-1{

@@ -30,7 +30,7 @@ body .conteneur {
 
 }
 /*######-------- ||| LAYOUT SPECIFIQUE ||| --------######*/
-#zone-illustration.node--type-page-actualites{
+#zone-illustration.type-page-actualites{
     #illustration-pleinepage{
         min-height: 35vw;
         max-height: 90vw;
@@ -54,7 +54,7 @@ body .conteneur {
     >.content{
         column-count: 0;
         @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-            column-count: 2;
+            column-count: 1;
             column-fill: balance;
             white-space: normal;
             padding: span(0.1);
@@ -95,7 +95,8 @@ body .conteneur {
                     padding: 0;
                     margin: span(0.1) 0;
                     @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-
+                          /* Définir le nombre de colonnes via flex*/
+                        flex: 1 0 17%; // 21% = 4 col , 17% = 5 col
                         /*@include hack-Edge;*/
                         @include hack-IE;
                         @include  txt-colonnes();
@@ -111,6 +112,7 @@ body .conteneur {
                     }
                     a{
                         display: block;
+                        overflow: hidden;// Pour empêcher image de sortir
                     }
                 }
             }
@@ -122,7 +124,8 @@ body .conteneur {
 //Pour H1 voir _page-lycee.scss
 h1.titre-page-actualites{
     @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-        top: em(50px);
+        top: em(10px);
+        left: em(10px);
     }
 }  
 /*¤¤¤ STYLES COMMUNS ¤¤¤*/
@@ -247,13 +250,7 @@ ______________________________*/
                 &.tid-20{
                     background: $violet;
                 }
-                a{
-                    color: $blanc-casse;
-                    text-decoration: none;
-                    font-weight: bold;
-                    @include font-size(m);//utilisation de typey
-
-                }
+         
                 a{
                     color: $blanc-casse;
                     text-decoration: none;
@@ -272,18 +269,29 @@ ______________________________*/
                 span.extrait-actu {
                     //classe ajoutée dans la vue - réécriture du champ
                     font-weight:initial; /*we revert back the inherited style*/
+                    @include font-size(s);//utilisation de typey
                 }
                 /*                    &:matches(.complement){
                                         font-weight: initial;
                                     }*/
 
-                span.illus-actu >a {//uniquement les "a" sur l'image
-                                    position:relative;//pour overlay image
-                                    &:before{
-                                        @include backgroundImage(('motif_img_overlay.png'), transparent, 0 0 , repeat );
+                span.illus-actu {
+                    img{
+                        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+                        transform: translate(-17% );
+                         }
+                        
+                    }
+                    >a {//uniquement les "a" sur l'image
+                        position:relative;//pour overlay image
+                        &:before{
 
-                                    }
+                            @include image-overlay('motif_img_overlay.png', 0 0, repeat);
+                        }
+                    }
                 }
+
+
             }
 
         }
