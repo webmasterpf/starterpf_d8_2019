@@ -78,3 +78,9 @@ Déplacement du bloc de chargement des JS du core Drupal et modules dans le fich
     {% endif %}
     
     {% include directory ~ '/includes/inc_footer.html.twig' %}   
+    
+     {# IMPORTANT !! Toujours placer le chargment des JS du core et modules juste avant la fermeture du body !!!#}
+       <js-bottom-placeholder token="{{ placeholder_token }}">
+
+  </body>
+</html>
