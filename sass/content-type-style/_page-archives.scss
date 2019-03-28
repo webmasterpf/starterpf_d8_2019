@@ -1,153 +1,203 @@
 // Regroupe le style pour le contenu des node.tpl custom
-// créer des fichiers _CONTENT-TYPE.scss et les importer dans application.scss
+// créer des fichiers _node-TYPE.scss et les importer dans application.scss
 
 /*-------------------------------------|
-|       CONTENU CUSTOM                |
-|               NODE.TPL                      |
-|               PAGE ARCHIVE              |
+|     CONTENU CUSTOM NODE.TPL |
+|       PAGE ARCHIVES  LISTE -      |
+|           Type  page_vdl_liste      |
 |--------------------------------------*/
 
 //@include breakpoint ($mobile){}
 //@include breakpoint ($desktop){}
 //@include breakpoint ($tablet){}
-//@include breakpoint(($desktop,$tablet)){}
+// @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){}
 
 /*######-------- ||| ORDRE FLEXBOX ||| --------######*/
 body .conteneur .conteneur-flex{
-    #colonne-1.CLASS_NAME{order:1;}
-    #colonne-2.CLASS_NAME{order:2;}
-    #colonne-3.CLASS_NAME{order:3;}
-    @include breakpoint ($desktop){}
+    #zone-1.type-page-vdl-liste{order:2;}
+    #zone-2.type-page-vdl-liste{order:1;}
+    #zone-3.type-page-vdl-liste{order:3;}
+    @include breakpoint ($desktop){
+        #zone-1.type-page-vdl-liste{order:1;}
+        #zone-2.type-page-vdl-liste{order:2;}
+        #zone-3.type-page-vdl-liste{order:3;}
+    }
 }
 
 /*######-------- ||| BORDURES ||| --------######*/
-body .conteneur{
-    @include breakpoint(($desktop,$tablet)){
-        #colonne-2.page-archive{
-          @include border-L-rose;
-        }
+body .conteneur {
+    @include breakpoint ($desktop){
+        #zone-2.type-page-vdl-liste{}
     }
 
 }
-/*######-------- ||| STYLE ||| --------######*/
-h1.titre_page_archives{
-    color: $rose-fushia;
-}
-
-/*¤¤¤ STYLES COMMUNS ¤¤¤*/
-#colonne-1.page-archive,
-#colonne-2.page-archive,
-#colonne-3.page-archive
-{
-    #archives{
-               /*Liste des archives*/
-        table{
-            width: 98%;
-            margin: 0 auto;
-            border: 0;
-        }
-        tbody{}
-        tr{
-            background: $gris-clair;
-            background-color: $gris-clair;
-            display: block;
-            margin: em(2px) 0;
-            border: 0;
-            &:hover{
-                background: #EFA0CA;   
-                border-right: $rose-fushia solid em(2px);
-
-            }
-        }
-
+/*######-------- ||| LAYOUT SPECIFIQUE ||| --------######*/
+#zone-illustration.type-page-vdl-liste{
+    #illustration-pleinepage{
+        min-height: 35vw;
+        max-height: 90vw;
+        overflow: hidden;
+        position:relative;
         img{
-            border: $violet solid em(1px);
-            float: right;
-            margin: em(2px) em(4px);
-            padding: em(2px);
+            transform: translate(0%,0%);
+            @include adaptable-img();
         }
-        tr a{
-            color: $rose-fushia;
-            text-decoration: none;
-            padding: em(2px);
-            font-weight: bold;
-            &:hover{
-                color: white;
-                
+        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+            min-height: 25vw;
+            max-height: 30vw;
+            img{
+                transform: translate(0%,-6%);
             }
-        }
-        td{
-            padding:em(2px) 0;
-            display: inline-block;
-            width: 100%;
-            border: 0;
-            &:hover{
-                
-            }
-            span{
-                font-size: small;
-            }
-        }
-
-        .views-field-tid{
-            text-align: right;
-            font-size: x-small;
-            font-style: italic;
-
         }
     }
-     /*Bloc filtre exposé archives*/
-        .archives-exposed{
-            width: 95%;
-            margin: 0 auto;
-            .views-widget-filter-field_date_evenement_value{
-                width: 35%;
+
+}
+#zone-1.type-page-vdl-liste{
+    >.content{
+        column-count: 0;
+        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+            column-count: 1;
+            column-fill: balance;
+            white-space: normal;
+            padding: span(0.1);
+        }
+    }
+    aside.liste-archives{
+        //Mise en colonnes des pages archives - node 27-28
+        ul.pager__items{
+            li{
+                @include horizontal-list-item();
             }
-            .views-exposed-widgets{
-                width: inherit;
-                padding: em(5px);
-                margin: em(5px);
-                background: $gris-clair;
-                border: $rose-fushia solid em(2px);
-                label{
-                    font-size: x-small;
+        }
+        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+
+       
+                column-count: 5;
+                column-fill: balance;
+                white-space: normal;
+                padding: span(0.1);
+
+            
+            @include clearfixsusy3;
+            nav.pager{
+                @include clearfixsusy3;
+                  column-span: all;//la pagination utilise toute la largeur
+                  
+                ul.pager__items{
+                  width: span(4);
+                  margin: 0 auto;
+                    padding: span(0.1);
+                    
                 }
             }
-
         }
-
+        
+        .item-list{
+            @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+                @include txt-cesure;
+                @include txt-colonnes;//évite cassure au milieu d'un élément pour FF et autres navigateurs
+                @include hack-Firefox;
+                @include hack-Edge;
+                @include hack-IE;
+                margin: 0;
+                padding: 0;
+            }
+        }
+    }
 }
+/*######-------- ||| STYLE ||| --------######*/
+//Pour H1 voir _page-lycee.scss
+h1.titre-page-globale{
+    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+        top: em(10px);
+        left: em(10px);
+    }
+}  
+/*¤¤¤ STYLES COMMUNS ¤¤¤*/
+
+#zone-1.type-page-vdl-liste,
+#zone-2.type-page-vdl-liste,
+#zone-3.type-page-vdl-liste{
+    p,ul,li{
+        @include font-size(m);//utilisation de typey
+        padding: em(5px);
+        line-height: 1.5em;
+    }
+    u{
+        font-weight: bold;
+        color: $bleu-turquoise;
+    }
+    h2{
+        @include font-size(l);//utilisation de typey
+        color: $orange-fonce;
+    }
+    h3{
+        @include font-size(m);//utilisation de typey
+        color: $orange-fonce;
+    }
+    a{
+        text-decoration: none;
+        color: $orange-fonce;
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+    strong{
+        color: $orange-fonce;
+    }
+}
+
 
 /*------------------------------------
         ¤¤¤ STYLES PROPRES ¤¤¤
 ______________________________*/
-
-#colonne-1.page-archive{}
-#colonne-2.page-archive{
-    ul.pager{
-        a{
-            color: $rose-fushia;
-            text-decoration: none;
-            &:hover{
-                color: $violet;
-            }
-
+#zone-1.type-page-vdl-liste{
+    aside.liste-archives{
+        //Style des blocs pour page archive
+        @include hack-Webkit();
+        @include hack-Firefox(table);
+        div.item-list{
+            border:0;
+            background: $vert;
+            min-width:100%;//pour chrome et FF
         }
-      li  a:active{
-            color: $violet;
+        h3{
+            color: $blanc-casse;
             font-weight: bold;
+            min-width: 100%;
+            display: block;
+            text-transform: capitalize;
+            text-align: center;
+        }
+        li:not(.pager__item){//ne pas styler les éléments de pagination
+             border-top: em(1px) dotted $blanc-casse;
+                padding:span(0.01);
+                list-style: none;
+        }
+        a:not(.pager__item){
+            color: $blanc-casse;
+            text-decoration: none;
+            padding: em(3px);
+            &:hover{
+                text-decoration: none;
+                background: $violet;
+            }
+        }
+        ul.pager__items{
+            li.is-active{
+                a{
+                    background: $violet;
+                    @include arrondis(0.35em);
+                }
+            }
         }
     }
-    .actuGlobale-archives{
-   text-align: center;
-}
-.actuGlobale-archives a{
-    font-size: small;
-    color: $violet;
-    margin: em(5px);
-    font-family:$AristaFont;
-    &:hover{}
 }
 
+#zone-2.type-page-vdl-liste{
+
 }
-#colonne-3.page-archive{}
+
+#zone-3.type-page-vdl-liste{
+
+}
