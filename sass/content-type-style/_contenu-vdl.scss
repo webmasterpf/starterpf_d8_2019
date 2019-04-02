@@ -78,7 +78,45 @@ h1.titre-page-globale{
     }
 }  
 /*¤¤¤ STYLES COMMUNS ¤¤¤*/
-#zone-1.type-page-europe,
+$typedecontenu: type-page-europe, CLASS_NAME_CONTENU, CLASS_NAME_CONTENU;
+$zones: zone-1, zone-2, zone-3;
+@each $zone in $zones {
+    @each $type in $typedecontenu{
+        ##{$zone}.#{$type} 
+        {
+            p,ul,li{
+            @include font-size(m);//utilisation de typey
+            padding: em(5px);
+            line-height: 1.5em;
+            list-style-position: inside;
+        }
+        u{
+            font-weight: bold;
+            color: $vert;
+
+        }
+        h2{
+            @include font-size(l);//utilisation de typey
+            color: $violet;
+        }
+        h3{
+            @include font-size(m);//utilisation de typey
+            color: $vert;
+        }
+        a{
+            text-decoration: none;
+            color: $violet;
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+        strong{
+            color: $vert;
+        }
+        }
+    }
+}
+/*#zone-1.type-page-europe,
 #zone-2.type-page-europe,
 #zone-3.type-page-europe,
 #zone-4.type-page-europe
@@ -112,7 +150,7 @@ h1.titre-page-globale{
     strong{
         color: $vert;
     }
-}
+}*/
 /*------------------------------------
         ¤¤¤ STYLES PROPRES ¤¤¤
 ______________________________*/
