@@ -21,7 +21,7 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
 ]%}
 {% set taxo_classes = [
 'terme-pole', 
-'term-' ~ content.field_pole_formation.0.name.value|clean_class
+'terme-' ~ content.field_pole_formation[0]['#title']|clean_class | replace({"^" : ""}),
 ]%}
 {% set image_classes = [
 'illustration-'~ node.bundle|clean_class,
@@ -101,7 +101,7 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
     
   <!--______________ZONE 1________________ -->
   <div {{ zone1_attribute.addClass(zone1_classes).setAttribute('id', 'zone-1') }}>
-      {# Récupération du terme de taxonomie du pôle#}
+      {# Récupération du terme de taxonomie du pôle #}
       <span {{ taxo_attribute.addClass(taxo_classes) }}> {{ content.field_pole_formation.0 }} </span>
 
   <div{{ content_attributes.addClass('content') }}>
