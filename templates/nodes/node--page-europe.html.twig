@@ -52,7 +52,7 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
 'type-' ~ node.bundle|clean_class
 ]%}
 {% set vuebloc_classes = [
-'liste-archives',
+'galerie',
 'type-' ~ node.bundle|clean_class
 ]%}
 {# BEM inspired class syntax: https://en.bem.info/
@@ -116,25 +116,25 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
     
 
   </div><!-- /.content -->
-          {% if node.field_galerie_image_vdl is not empty %}
-            <aside {{ vuebloc_attribute.addClass(vuebloc_classes) }}>
-            {{ content.field_galerie_image_vdl.0 }}
-            </aside>
-        {% endif %}
+
 </div> <!-- /zone-1-->
 <!--______________ZONE 2________________ -->
   <div {{ zone2_attribute.addClass(zone2_classes).setAttribute('id', 'zone-2') }}>
-        
 
-  
+
+            {% if node.field_inserer_liste is not empty %}
+            <aside {{ vuebloc_attribute.addClass(vuebloc_classes) }}>
+            {{ content.field_inserer_liste.0 }}
+            </aside>
+        {% endif %}
   
   </div><!-- /zone-2 -->
   
     <!--______________ ZONE 3 ________________ -->
   <div {{ zone3_attribute.addClass(zone3_classes).setAttribute('id', 'zone-3') }}>
-      {#
-    {% include directory ~ '/includes/dedicates_inc/inc_celony_actu.html.twig' %}       
-#}
+
+    {% include directory ~ '/includes/regions_inc/inc_region_zone_1.html.twig' %}       
+
   {% if content.links %}
     <div class="links">
       {{ content.links }}

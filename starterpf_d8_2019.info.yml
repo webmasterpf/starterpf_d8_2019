@@ -76,11 +76,11 @@ regions:
 
  #Region pour les node.tpl (ajouter dans fichier MON_THEME.theme)
   
-  Zone_1: 'Zone 1 - Bloc'
-  Zone_2: 'Zone 2 - Bloc'
-  Zone_3: 'Zone 3 - Bloc'
-  Zone_4: 'Zone 4 - Bloc'
-  Zone_5: 'Zone 5 - Bloc'
+  region_Zone_1: 'Zone 1 - Bloc'
+  region_Zone_2: 'Zone 2 - Bloc'
+  region_Zone_3: 'Zone 3 - Bloc'
+  region_Zone_4: 'Zone 4 - Bloc'
+  region_Zone_5: 'Zone 5 - Bloc'
 
  #Region pour page poles formation (ajouter dans fichier MON_THEME.theme)
   pole_Zone1: ' Pôle formation - Zone 1'
