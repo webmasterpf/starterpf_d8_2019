@@ -1,0 +1,23 @@
+{#
+/* 
+ * Permet de créer une region dans les node.tpl
+ * <p>LA REGION EXISTE</p>
+ */
+IMPORTANT: respecter la casse !! le nom de la région doit être identique dans le fichier
+.theme 
+
+#}
+{% set region_attribute = create_attribute() %}
+{% set noderegion_classes = [
+'uneclasse',
+'type-' ~ node.bundle|clean_class
+]
+%}
+
+
+{% if  region_Zone_4 is not empty %}
+    <div {{ region_attribute.addClass(noderegion_classes).setAttribute('id', 'region-zone-4') }}>
+        {{ region_Zone_4 }}
+    </div> <!-- /#region-zone_4 -->
+{% endif %}
+
