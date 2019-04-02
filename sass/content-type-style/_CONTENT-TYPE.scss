@@ -40,6 +40,47 @@ body .conteneur{
 /*######-------- ||| STYLE ||| --------######*/
 
 /*¤¤¤ STYLES COMMUNS ¤¤¤*/
+//https://benfrain.com/working-with-lists-and-each-loops-in-sass-with-the-index-and-nth-function/
+//https://clubmate.fi/lists-in-sass-syntax-and-use-cases-with-examples/
+
+$typedecontenu: type-page-europe, CLASS_NAME_CONTENU, CLASS_NAME_CONTENU;
+$zones: zone-1, zone-2, zone-3;
+@each $zone in $zones {
+    @each $type in $typedecontenu{
+        ##{$zone}.#{$type} 
+        {
+            p,ul,li{
+            @include font-size(m);//utilisation de typey
+            padding: em(5px);
+            line-height: 1.5em;
+            list-style-position: inside;
+        }
+        u{
+            font-weight: bold;
+            color: $vert;
+
+        }
+        h2{
+            @include font-size(l);//utilisation de typey
+            color: $violet;
+        }
+        h3{
+            @include font-size(m);//utilisation de typey
+            color: $vert;
+        }
+        a{
+            text-decoration: none;
+            color: $violet;
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+        strong{
+            color: $vert;
+        }
+        }
+    }
+}
 #zone-1.CLASS_NAME_CONTENU,
 #zone-2.CLASS_NAME_CONTENU,
 #zone-3.CLASS_NAME_CONTENU,
@@ -56,3 +97,34 @@ ______________________________*/
 #zone-3.CLASS_NAME_CONTENU{}
 #zone-4.CLASS_NAME_CONTENU{}
 #zone-5.CLASS_NAME_CONTENU{}
+
+/*--------------------------------------
+
+
+*/
+.CLASS_NAME_ITEM{
+            // Autiliser dans le cas de classes nombreuses avec partie variable, et style commun partiellement
+            //Liste dynamique des IDs en Sass pour alléger le code, définition d'une variable qui liste les IDs
+            //Lister les IDs qui nécéssitent une classe auquelles sera appliqué un style commun
+            $idsformations: 98,99,100,101,102,103,106,107;//1ère boucle
+            $idsspecificites: 145,166;//2ème boucle
+            @each $i in $idsformations{
+                div#PARTIE-FIXE-#{$i}-wrapper{
+                    label{
+                        cursor: pointer;
+        
+                    }
+                    &:hover:not(#edit-term-node-tid-depth-limited-All-wrapper){
+                                //Style commun sur le hover
+                        &::after{
+                            //abandon solution pseudo élément,ne fonctionne pas
+                        }
+
+                        label{
+                            //Style commun sur le label
+                        }
+                    }
+                }
+            }
+}
+   
