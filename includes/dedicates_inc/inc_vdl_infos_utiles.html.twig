@@ -3,7 +3,7 @@
   * filefield and linkfield  avec création d'une liste dynamique, exclusion des champs vides                
 #}
 
-{% if node.field_fiche_action.value or node.field_lien_utile_vdl.value or node.field_lien_interne.value is not empty %}
+{% if node.field_relatif_formation.value or node.field_fiche_action.value or node.field_lien_utile_vdl.value or node.field_lien_interne.value is not empty %}
 <div class="bloc_docs_utiles_vdl">
     
      {% if node.field_relatif_formation.value is not empty %}
