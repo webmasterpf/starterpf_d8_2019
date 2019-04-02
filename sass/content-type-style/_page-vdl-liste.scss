@@ -134,32 +134,34 @@ h1.titre-page-globale{
 #zone-1.type-page-globale,
 #zone-2.type-page-globale,
 #zone-3.type-page-globale{
-    p,ul,li{
+  p,ul,li{
         @include font-size(m);//utilisation de typey
         padding: em(5px);
         line-height: 1.5em;
+        list-style-position: inside;
     }
     u{
         font-weight: bold;
-        color: $bleu-turquoise;
+        color: $vert;
+        
     }
     h2{
         @include font-size(l);//utilisation de typey
-        color: $orange-fonce;
+        color: $violet;
     }
     h3{
         @include font-size(m);//utilisation de typey
-        color: $orange-fonce;
+        color: $vert;
     }
     a{
         text-decoration: none;
-        color: $orange-fonce;
+        color: $violet;
         &:hover{
             text-decoration: underline;
         }
     }
     strong{
-        color: $orange-fonce;
+        color: $vert;
     }
 }
 

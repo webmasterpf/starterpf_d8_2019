@@ -9,15 +9,17 @@ Override du style de galerie vignettes BaguetteBox
 
 //définir ici les types de contenus qui appliqueront ce style & layout
 // Vignettes carrées à la suite
-.actu-presse,.contenu-international
+.type-page-europe
 {
-    aside.galerie .galerieBaguetteBox .view-content
+    aside.galerie .galerieBaguetteBox
 {
     @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-     column-count: 6;
+     column-count: 3;
                 column-fill: balance; 
     }
-    > div.views-row{
+    span.item-galerie{
+        //Classe ajoutée dans la vue via le champ de réécriture > PARAMÈTRES D'AFFICHAGE 
+        // > Personnaliser le code HTML de l'enveloppe du champ et de l'étiquette  > Créer une classe CSS
         /*Technique des colonnes plus efficace et passe sous Edge*/
                /*width: span(1 of 3);*/
                 /*margin: span(0.0001);*/

@@ -1,182 +1,129 @@
 // Regroupe le style pour le contenu des node.tpl custom
-// Concerne toutes les pages qui créer du contenu :
-// Sortie, Projet, APE, Entreprise, Innonvations, Intervenant
+// créer des fichiers _node-TYPE.scss et les importer dans application.scss
 
 /*-------------------------------------|
-|       CONTENU CUSTOM NODE.TPL        |
-|           CONTENU VDL                |
+|     CONTENU CUSTOM NODE.TPL |
+|       PAGE ARCHIVES  LISTE -      |
+|           Type  page_vdl_liste      |
 |--------------------------------------*/
 
 //@include breakpoint ($mobile){}
 //@include breakpoint ($desktop){}
 //@include breakpoint ($tablet){}
+// @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){}
 
 /*######-------- ||| ORDRE FLEXBOX ||| --------######*/
-body .conteneur {
-
-    #colonne-1.contenu-vdl{order:1;}
-    #colonne-2.contenu-vdl{order:2;}
-    #colonne-3.contenu-vdl{order:3;}
+body .conteneur .conteneur-flex{
+    #zone-1.type-page-europe{order:2;}
+    #zone-2.type-page-europe{order:1;}
+    #zone-3.type-page-europe{order:3;}
     @include breakpoint ($desktop){
-   
+        #zone-1.type-page-europe{order:1;}
+        #zone-2.type-page-europe{order:2;}
+        #zone-3.type-page-europe{order:3;}
     }
 }
 
 /*######-------- ||| BORDURES ||| --------######*/
 body .conteneur {
     @include breakpoint ($desktop){
-        #colonne-2.contenu-vdl{
-            @include border-L-rose;
+        #zone-2.type-page-europe{}
+    }
+
+}
+/*######-------- ||| LAYOUT SPECIFIQUE ||| --------######*/
+#zone-illustration.type-page-europe{
+    #illustration-pleinepage{
+        min-height: 35vw;
+        max-height: 90vw;
+        overflow: hidden;
+        position:relative;
+        img{
+            transform: translate(0%,0%);
+            @include adaptable-img();
         }
+        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+            min-height: 25vw;
+            max-height: 30vw;
+            img{
+                transform: translate(0%,-50%);
+            }
         }
+    }
+
+}
+#zone-1.type-page-europe
+{
+    >.content{
+        column-count: 0;
+        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+            column-count: 1;
+            column-fill: balance;
+            white-space: normal;
+            padding: span(0.1);
+        }
+    }
     
 }
+#zone-2.type-page-europe
+{}
+#zone-3.type-page-europe
+{}
 /*######-------- ||| STYLE ||| --------######*/
-h1.vdl_titre{
-    color: $violet;
-  
-}
-h2{color: $rose-fushia;}
-h3{color: $violet;}
+//Pour H1 voir _page-lycee.scss
+h1.titre-page-globale{
+    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+        top: em(10px);
+        left: em(10px);
+    }
+}  
 /*¤¤¤ STYLES COMMUNS ¤¤¤*/
-#colonne-1.contenu-vdl,
-#colonne-2.contenu-vdl,
-#colonne-3.contenu-vdl{
-    p{
-    padding: em(5px);
-}
-span{
-    font-size: small;
-    padding: em(5px);
-}
-strong,b{
-    color: $rose-fushia;
-}
-    a{
+#zone-1.type-page-europe,
+#zone-2.type-page-europe,
+#zone-3.type-page-europe,
+#zone-4.type-page-europe
+{
+ p,ul,li{
+        @include font-size(m);//utilisation de typey
+        padding: em(5px);
+        line-height: 1.5em;
+        list-style-position: inside;
+    }
+    u{
+        font-weight: bold;
+        color: $vert;
+        
+    }
+    h2{
+        @include font-size(l);//utilisation de typey
         color: $violet;
+    }
+    h3{
+        @include font-size(m);//utilisation de typey
+        color: $vert;
+    }
+    a{
         text-decoration: none;
+        color: $violet;
         &:hover{
             text-decoration: underline;
         }
-        
     }
-    
+    strong{
+        color: $vert;
+    }
 }
-
-
 /*------------------------------------
         ¤¤¤ STYLES PROPRES ¤¤¤
 ______________________________*/
-#colonne-1.contenu-vdl{
-
-    .vdl-passerelle{
-        background: url('../images/bg_point_rp.gif') repeat top left;
-        margin: em(10px);
-        padding: em(5px);
-        text-align: center;
-        width: auto;
-        font-size: small;
-        @include arrondis(em(10px));
-        a{
-            text-decoration: none;
-            color: $rose-fushia;
-        }
-    }
-    .vdl-illustration{
-        img{
-            border: em(2px) solid $rose-fushia;
-            /*        margin: em(5px) 0;
-                    margin-left: 12%;//centrer l'image'*/
-            @include img-centered;
-          @include zoom-css3(1);
-            &:hover{
-                @include zoom-css3-hover(1.05);
-            }
-
-        }
-    }
-}
-#colonne-2.contenu-vdl{
-    .galerie-vdl{
-    
-    margin: em(5px) 0;
-}
-/*Galerie lightbox*/
-.galerie-vdl .image-gallery-nodes ul li {
-    background: none repeat scroll 0 0 transparent;
-    display: inline-block;
-    height: em(100px);
-    list-style-type: none;
-    text-align: center;
-    width: em(150px);
-}
-.galerie-vdl .image-gallery-nodes ul li img{
-    
-}
-aside.vdl-video{
-    width: 95%;
-    margin: em(15px) auto;
-    @include breakpoint ($desktop){
-        position: relative;
-        padding-bottom: 56.25%;
-        padding-top: em(35px);
-        height: 0;
-        overflow: initial;
-    }
-    iframe,object{
-        border: em(2px) solid $violet;
-        padding: em(1px);
-        @include img-centered;
-        max-width: 95%;
-
-        @include breakpoint ($desktop){
-            position: absolute;
-            top:0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-
-        }
-    }
+#zone-1.type-page-europe{
+   
 }
 
-}
-#colonne-3.contenu-vdl{
-    #vdl-docs h3{
-   font-family:Arista,trebuchet-MS,sans-serif;
-    text-align: center;
-    color: #950F7E;
-    padding: 5px 0;
-    font-size: 20px;
-    margin: 0 0 5px 0;
-}
-#vdl-docs table{
-    background: #EFEFEF;
-    border: 3px solid #D0D1D2;
-    width: 225px;
-    margin: 0 auto;
-     box-shadow:0px 0px 7px 1px #564E4E;
-    -moz-box-shadow:0px 0px 7px 1px #564E4E;
-    -webkit-box-shadow:0px 0px 7px 1px #564E4E;
-    behavior: url(/sites/all/libraries/PIE/PIE.htc);
-   position: relative;
-}
-#vdl-docs td{
-    text-align: center;
-}
-#vdl-docs td a{
-    text-decoration: none;
-    color: #543F4F;
-    
-}
-#vdl-docs td a:hover{
-     background: #E2007A;
-    border-radius: 10px;
-}
-#vdl-docs .filefield-icon{
-    display: none;
-}
+#zone-2.type-page-europe{
 
 }
 
+#zone-3.type-page-europe{
 
+}

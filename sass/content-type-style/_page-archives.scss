@@ -29,7 +29,6 @@ body .conteneur {
     @include breakpoint ($desktop){
         #zone-2.type-page-vdl-liste{}
     }
-
 }
 /*######-------- ||| LAYOUT SPECIFIQUE ||| --------######*/
 #zone-illustration.type-page-vdl-liste{
@@ -71,27 +70,27 @@ body .conteneur {
         }
         @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
 
-       
+
                 column-count: 5;
                 column-fill: balance;
                 white-space: normal;
                 padding: span(0.1);
 
-            
+
             @include clearfixsusy3;
             nav.pager{
                 @include clearfixsusy3;
                   column-span: all;//la pagination utilise toute la largeur
-                  
+
                 ul.pager__items{
                   width: span(4);
                   margin: 0 auto;
                     padding: span(0.1);
-                    
+
                 }
             }
         }
-        
+
         .item-list{
             @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
                 @include txt-cesure;
@@ -112,7 +111,7 @@ h1.titre-page-globale{
         top: em(10px);
         left: em(10px);
     }
-}  
+}
 /*¤¤¤ STYLES COMMUNS ¤¤¤*/
 
 #zone-1.type-page-vdl-liste,
