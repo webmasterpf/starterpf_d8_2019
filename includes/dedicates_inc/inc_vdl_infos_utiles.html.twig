@@ -5,6 +5,7 @@
 
 {# ---*** Les classes à appliquer aux éléments  ***--- #}
 {% set champ1_attribute = create_attribute() %}
+{% set champ1bis_attribute = create_attribute() %}
 {% set champ2_attribute = create_attribute() %}
 {% set champ3_attribute = create_attribute() %}
 
@@ -13,12 +14,16 @@
 'champ-' ~ node.field_relatif_formation.fieldDefinition.name | replace({"_" : "-"}), 
 'titre-' ~ node.bundle|clean_class
 ]%}
+{% set champ1bis_classes = [
+'label-' ~ node.field_relatif_formation.fieldDefinition.name | replace({"_" : "-"}), 
+]%}
 {# ---*** Le contenu de l'include ***--- #}
 {% if node.field_relatif_formation.value or node.field_fiche_action.value or node.field_lien_utile_vdl.value or node.field_lien_interne.value is not empty %}
 <div class="bloc_docs_utiles_vdl">
     
      {% if node.field_relatif_formation.value is not empty %}
-         <span> {{ content.field_relatif_formation|field_label }}</span>
+         <span {{ champ1bis_attribute.addClass(champ1bis_classes) }}>
+             {{ content.field_relatif_formation|field_label }}</span>
          <span {{ champ1_attribute.addClass(champ1_classes).setAttribute('id', 'champ-1') }}>
            {{content.field_relatif_formation.0}}</span>
     {% endif %}
