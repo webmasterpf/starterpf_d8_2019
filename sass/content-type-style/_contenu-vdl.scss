@@ -63,7 +63,17 @@ body .conteneur {
             padding: span(0.1);
         }
     }
-    
+    .bloc_docs_utiles_vdl{
+        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+            float: right;
+            margin: span(0.1);
+            padding: span(0.02);
+            max-width: span(4);
+            .label-field-relatif-formation{
+                @include clearfixsusy3;
+            }
+        }
+    }
 }
 #zone-2.type-page-europe
 {}
@@ -76,13 +86,14 @@ h1.titre-page-globale{
         top: em(10px);
         left: em(10px);
     }
-}  
+}
 /*¤¤¤ STYLES COMMUNS ¤¤¤*/
-$typedecontenu: type-page-europe, CLASS_NAME_CONTENU, CLASS_NAME_CONTENU;
+//Permet de créer facilement les styles communs à des IDs ou/et classes
+$typedecontenu: type-page-europe, CLASS_NAME_CONTENU, CLASS_NAME_CONTENU2;
 $zones: zone-1, zone-2, zone-3;
 @each $zone in $zones {
     @each $type in $typedecontenu{
-        ##{$zone}.#{$type} 
+        ##{$zone}.#{$type}
         {
             p,ul,li{
             @include font-size(m);//utilisation de typey
@@ -106,8 +117,9 @@ $zones: zone-1, zone-2, zone-3;
         a{
             text-decoration: none;
             color: $violet;
+            @include rollover-effect($vert);//Effet rollover CSS3
             &:hover{
-                text-decoration: underline;
+                text-decoration: none;
             }
         }
         strong{
@@ -116,46 +128,42 @@ $zones: zone-1, zone-2, zone-3;
         }
     }
 }
-/*#zone-1.type-page-europe,
-#zone-2.type-page-europe,
-#zone-3.type-page-europe,
-#zone-4.type-page-europe
-{
- p,ul,li{
-        @include font-size(m);//utilisation de typey
-        padding: em(5px);
-        line-height: 1.5em;
-        list-style-position: inside;
-    }
-    u{
-        font-weight: bold;
-        color: $vert;
-        
-    }
-    h2{
-        @include font-size(l);//utilisation de typey
-        color: $violet;
-    }
-    h3{
-        @include font-size(m);//utilisation de typey
-        color: $vert;
-    }
-    a{
-        text-decoration: none;
-        color: $violet;
-        &:hover{
-            text-decoration: underline;
-        }
-    }
-    strong{
-        color: $vert;
-    }
-}*/
 /*------------------------------------
         ¤¤¤ STYLES PROPRES ¤¤¤
 ______________________________*/
 #zone-1.type-page-europe{
-   
+    .bloc_docs_utiles_vdl{
+        @include backgroundImage(("BG/stripe_rose_violet_pastel.png"),transparent,repeat, top left);
+             @include arrondis(1em);
+        a{
+            background: $gris-clair;
+            color: $violet;
+            text-decoration:none;
+            padding: span(0.01) span(0.03);
+            &:hover{
+                color: $gris-anthracite;
+                /*background: $vert;*/
+            }
+        }
+        ul{
+
+            li{
+                //suppression des puces
+                list-style-type: none;
+                @include font-size(s);//utilisation de typey
+            }
+        }
+        //Style spécifique
+        .champ-field-relatif-formation{
+            a{
+                @include font-size(s);//utilisation de typey
+            }
+        }
+        .label-field-relatif-formation{
+            font-weight: bold;
+            background: $vert;
+            }
+    }
 }
 
 #zone-2.type-page-europe{
