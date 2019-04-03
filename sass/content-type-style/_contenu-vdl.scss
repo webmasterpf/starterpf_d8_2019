@@ -1,175 +1,257 @@
 // Regroupe le style pour le contenu des node.tpl custom
 // créer des fichiers _node-TYPE.scss et les importer dans application.scss
-
 /*-------------------------------------|
 |     CONTENU CUSTOM NODE.TPL |
 |       PAGE ARCHIVES  LISTE -      |
 |           Type  page_vdl_liste      |
 |--------------------------------------*/
-
 //@include breakpoint ($mobile){}
 //@include breakpoint ($desktop){}
 //@include breakpoint ($tablet){}
 // @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){}
-
 /*######-------- ||| ORDRE FLEXBOX ||| --------######*/
-body .conteneur .conteneur-flex{
-    #zone-1.type-page-europe{order:2;}
-    #zone-2.type-page-europe{order:1;}
-    #zone-3.type-page-europe{order:3;}
-    @include breakpoint ($desktop){
-        #zone-1.type-page-europe{order:1;}
-        #zone-2.type-page-europe{order:2;}
-        #zone-3.type-page-europe{order:3;}
+
+body .conteneur .conteneur-flex {
+  #zone-1.type-page-europe {
+    order: 2;
+  }
+
+  #zone-2.type-page-europe {
+    order: 1;
+  }
+
+  #zone-3.type-page-europe {
+    order: 3;
+  }
+  @include breakpoint ($desktop) {
+    #zone-1.type-page-europe {
+      order: 1;
     }
+
+    #zone-2.type-page-europe {
+      order: 2;
+    }
+
+    #zone-3.type-page-europe {
+      order: 3;
+    }
+  }
 }
-
 /*######-------- ||| BORDURES ||| --------######*/
-body .conteneur {
-    @include breakpoint ($desktop){
-        #zone-2.type-page-europe{}
-    }
 
+body .conteneur {
+  @include breakpoint ($desktop) {
+    #zone-2.type-page-europe {}
+  }
 }
 /*######-------- ||| LAYOUT SPECIFIQUE ||| --------######*/
-#zone-illustration.type-page-europe{
-    #illustration-pleinepage{
-        min-height: 35vw;
-        max-height: 90vw;
-        overflow: hidden;
-        position:relative;
-        img{
-            transform: translate(0%,0%);
-            @include adaptable-img();
-        }
-        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-            min-height: 25vw;
-            max-height: 30vw;
-            img{
-                transform: translate(0%,-50%);
-            }
-        }
+
+#zone-illustration.type-page-europe {
+  #illustration-pleinepage {
+    min-height: 35vw;
+    max-height: 90vw;
+    overflow: hidden;
+    position: relative;
+
+    img {
+      transform: translate(0%,0%);
+      @include adaptable-img();
+    }
+    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+      min-height: 25vw;
+      max-height: 30vw;
+
+      img {
+        transform: translate(0%,-50%);
+      }
+    }
+  }
+}
+
+#zone-1.type-page-europe {
+  > .content {
+    column-count: 0;
+    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+      column-count: 1;
+      column-fill: balance;
+      white-space: normal;
+      padding: span(0.1);
+    }
+  }
+
+  .bloc_docs_utiles_vdl {
+    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+      float: right;
+      margin: span(0.1);
+      padding: span(0.02);
+      max-width: span(4);
+
+      .label-field-relatif-formation {
+        @include clearfixsusy3;
+      }
+    }
+  }
+}
+
+#zone-2.type-page-europe {
+  .galerie {
+    img {
+      @include adaptable-img();
+    }
+    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+      max-width: span(10);
+      margin: span(0.1) auto;
+      padding: span(0.02);
+    }
+  }
+}
+
+#zone-3.type-page-europe {
+  #region-zone-3 {
+    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+      max-width: span(8);
+      margin: span(0.1) auto;
+      padding: span(0.02);
     }
 
-}
-#zone-1.type-page-europe
-{
-    >.content{
-        column-count: 0;
-        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-            column-count: 1;
-            column-fill: balance;
-            white-space: normal;
-            padding: span(0.1);
-        }
+    h2 {
+      max-width: 80%;
+      margin: 0 auto;
     }
-    .bloc_docs_utiles_vdl{
-        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-            float: right;
-            margin: span(0.1);
-            padding: span(0.02);
-            max-width: span(4);
-            .label-field-relatif-formation{
-                @include clearfixsusy3;
-            }
-        }
-    }
+  }
 }
-#zone-2.type-page-europe
-{}
-#zone-3.type-page-europe
-{}
 /*######-------- ||| STYLE ||| --------######*/
 //Pour H1 voir _page-lycee.scss
-h1.titre-page-globale{
-    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-        top: em(10px);
-        left: em(10px);
-    }
+
+h1.titre-page-globale {
+  @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+    top: em(10px);
+    left: em(10px);
+  }
 }
 /*¤¤¤ STYLES COMMUNS ¤¤¤*/
 //Permet de créer facilement les styles communs à des IDs ou/et classes
 $typedecontenu: type-page-europe, CLASS_NAME_CONTENU, CLASS_NAME_CONTENU2;
 $zones: zone-1, zone-2, zone-3;
 @each $zone in $zones {
-    @each $type in $typedecontenu{
-        ##{$zone}.#{$type}
-        {
-            p,ul,li{
-            @include font-size(m);//utilisation de typey
-            padding: em(5px);
-            line-height: 1.5em;
-            list-style-position: inside;
-        }
-        u{
-            font-weight: bold;
-            color: $vert;
+  @each $type in $typedecontenu {
+    ##{$zone}.#{$type} {
+      li,
+      p,
+      ul {
+        @include font-size(m); //utilisation de typey
+        padding: em(5px);
+        line-height: 1.5em;
+        list-style-position: inside;
+      }
 
+      u {
+        font-weight: bold;
+        color: $vert;
+      }
+
+      h2 {
+        @include font-size(l); //utilisation de typey
+        color: $violet;
+      }
+
+      h3 {
+        @include font-size(m); //utilisation de typey
+        color: $vert;
+      }
+
+      a {
+        text-decoration: none;
+        color: $violet;
+
+        &:hover {
+          text-decoration: none;
         }
-        h2{
-            @include font-size(l);//utilisation de typey
-            color: $violet;
-        }
-        h3{
-            @include font-size(m);//utilisation de typey
-            color: $vert;
-        }
-        a{
-            text-decoration: none;
-            color: $violet;
-            @include rollover-effect($vert);//Effet rollover CSS3
-            &:hover{
-                text-decoration: none;
-            }
-        }
-        strong{
-            color: $vert;
-        }
-        }
+      }
+
+      strong {
+        color: $vert;
+      }
     }
+  }
 }
 /*------------------------------------
         ¤¤¤ STYLES PROPRES ¤¤¤
 ______________________________*/
-#zone-1.type-page-europe{
-    .bloc_docs_utiles_vdl{
-        @include backgroundImage(("BG/stripe_rose_violet_pastel.png"),transparent,repeat, top left);
-             @include arrondis(1em);
-        a{
-            background: $gris-clair;
-            color: $violet;
-            text-decoration:none;
-            padding: span(0.01) span(0.03);
-            &:hover{
-                color: $gris-anthracite;
-                /*background: $vert;*/
-            }
-        }
-        ul{
 
-            li{
-                //suppression des puces
-                list-style-type: none;
-                @include font-size(s);//utilisation de typey
-            }
-        }
-        //Style spécifique
-        .champ-field-relatif-formation{
-            a{
-                @include font-size(s);//utilisation de typey
-            }
-        }
-        .label-field-relatif-formation{
-            font-weight: bold;
-            background: $vert;
-            }
+#zone-1.type-page-europe {
+  .bloc_docs_utiles_vdl {
+    @include backgroundImage(("BG/stripe_rose_violet_pastel.png"),transparent,repeat, top left);
+    @include arrondis(1em);
+
+    a {
+      background: $gris-clair;
+      color: $violet;
+      text-decoration: none;
+      padding: span(0.01) span(0.03);
+      @include rollover-effect($vert); //Effet rollover CSS3
+
+      &:hover {
+        color: $gris-clair;
+      }
     }
+
+    ul {
+      li {
+        //suppression des puces
+        list-style-type: none;
+        @include font-size(s); //utilisation de typey
+      }
+    }
+    //Style spécifique
+    .champ-field-relatif-formation {
+      a {
+        @include font-size(s); //utilisation de typey
+        font-style: italic;
+      }
+    }
+
+    .label-field-relatif-formation {
+      font-weight: bold;
+      color: $gris-clair;
+      background: $vert;
+      padding: span(0.02);
+      margin: 0 0 0 span(0.2);
+    }
+  }
 }
 
-#zone-2.type-page-europe{
-
+#zone-2.type-page-europe {
+  .galerie{
+    img{
+      @include transition-hover(75ms);
+      &:hover{
+        @include zoom-css3-hover(0.95);
+      }
+    }
+  }
 }
 
-#zone-3.type-page-europe{
 
+#zone-3.type-page-europe {
+  #region-zone-3.type-page-europe {
+    @include backgroundImage(("BG/stripe_vert_vert_pastel.png"),transparent,repeat, top left);
+    @include arrondis(1em);
+
+    a {
+      background: $gris-clair;
+      @include rollover-effect($vert); //Effet rollover CSS3
+    }
+
+    h2 {
+      @include backgroundRGBA($gris-clair,0.7);
+      text-align: center;
+    }
+
+    ul {
+      li {
+        list-style: none;
+      }
+    }
+  }
 }
