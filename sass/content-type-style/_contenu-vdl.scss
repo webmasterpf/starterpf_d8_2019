@@ -10,7 +10,6 @@
 //@include breakpoint ($tablet){}
 // @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){}
 /*######-------- ||| ORDRE FLEXBOX ||| --------######*/
-
 body .conteneur .conteneur-flex {
   #zone-1.type-page-europe {
     order: 2;
@@ -38,14 +37,12 @@ body .conteneur .conteneur-flex {
   }
 }
 /*######-------- ||| BORDURES ||| --------######*/
-
 body .conteneur {
   @include breakpoint ($desktop) {
     #zone-2.type-page-europe {}
   }
 }
 /*######-------- ||| LAYOUT SPECIFIQUE ||| --------######*/
-
 #zone-illustration.type-page-europe {
   #illustration-pleinepage {
     min-height: 35vw;
@@ -86,7 +83,10 @@ body .conteneur {
       padding: span(0.02);
       max-width: span(4);
 
+      .champ-field-relatif-formation,
+      .label-field-lien-utile-vdl,
       .label-field-relatif-formation {
+        //Besoin de simuler un br pour avoir un saut de ligne entre chaque éléments
         @include clearfixsusy3;
       }
     }
@@ -178,7 +178,6 @@ $zones: zone-1, zone-2, zone-3;
 /*------------------------------------
         ¤¤¤ STYLES PROPRES ¤¤¤
 ______________________________*/
-
 #zone-1.type-page-europe {
   .bloc_docs_utiles_vdl {
     @include backgroundImage(("BG/stripe_rose_violet_pastel.png"),transparent,repeat, top left);
@@ -191,8 +190,47 @@ ______________________________*/
       padding: span(0.01) span(0.03);
       @include rollover-effect($vert); //Effet rollover CSS3
 
-      &:hover {
+      &:hover:not([href*="fiche"]) {
         color: $gris-clair;
+        background: $violet;
+      }
+    }
+
+    a {
+      &[href*=".pdf"] {
+        &::before {
+          @include backgroundImage("PNG/Fichiers@3x.png");
+          background-size: contain;
+          content: "";
+          position: relative;
+          vertical-align: sub;
+          padding: em(10px);
+          margin: em(3px);
+          transition: 0.5s all;
+          display: inline-block;
+          transform: scale(1);
+        }
+      }
+
+      img.filefield-icon {
+        display: none; //initial
+      }
+
+      &[href*="http"],
+      &[href*="actu"]:not([href$=".pdf"]):not([href*="fiche"]) {
+        //pour cibler les liens externes et internes, exclure les pdf et le lien interne
+        &::before {
+          @include backgroundImage("PNG/liens@3x.png");
+          background-size: contain;
+          content: "";
+          position: relative;
+          vertical-align: sub;
+          padding: em(10px);
+          margin: em(3px);
+          transition: 0.5s all;
+          display: inline-block;
+          transform: scale(1);
+        }
       }
     }
 
@@ -205,8 +243,9 @@ ______________________________*/
     }
     //Style spécifique
     .champ-field-relatif-formation {
+      max-width: 90%;
       a {
-        @include font-size(s); //utilisation de typey
+        @include font-size(m); //utilisation de typey
         font-style: italic;
       }
     }
@@ -216,22 +255,30 @@ ______________________________*/
       color: $gris-clair;
       background: $vert;
       padding: span(0.02);
+      margin: 0 0 span(0.2) span(0.2);
+    }
+
+    .label-field-lien-utile-vdl {
+      font-weight: bold;
+      color: $gris-clair;
+      background: $violet;
+      padding: span(0.02);
       margin: 0 0 0 span(0.2);
     }
   }
 }
 
 #zone-2.type-page-europe {
-  .galerie{
-    img{
+  .galerie {
+    img {
       @include transition-hover(75ms);
-      &:hover{
+
+      &:hover {
         @include zoom-css3-hover(0.95);
       }
     }
   }
 }
-
 
 #zone-3.type-page-europe {
   #region-zone-3.type-page-europe {
@@ -245,6 +292,7 @@ ______________________________*/
 
     h2 {
       @include backgroundRGBA($gris-clair,0.7);
+      //background: repeating-linear-gradient(to bottom ,$gris-clair 10px, transparent 17px);
       text-align: center;
     }
 
