@@ -32,39 +32,45 @@
       </ul>
 
     {% endif %}
-    <ul>
-      <li {{ champ2_attribute.addClass(champ2_classes) }}>
-        {{ content.field_fiche_action|field_label }}
-        //
-        {{ content.field_lien_utile_vdl|field_label }}
-      </li>
-    </ul>
 
-    <ul>
-      {# //Parcourir le tableau field_NAME de l'objet $node pour lister le contenu clé/valeur #}
-      {% for key, fichier in node.field_fiche_action.value %}
-        {# //Ne pas afficher les champs vides du tableau #}
-        {% if node.field_fiche_action.value is not empty %}
-          <li>{{ content.field_fiche_action[key] }}</li>
-        {% endif %}
-      {% endfor %}
+    {% if node.field_fiche_action.value or node.field_lien_utile_vdl.value is not empty %}
+      <ul>
+        <li {{ champ2_attribute.addClass(champ2_classes) }}>
+          {{ content.field_fiche_action|field_label }}
+          {% if node.field_lien_utile_vdl is not empty %}
+            //
+            {{ content.field_lien_utile_vdl|field_label }}
+          {% endif %}
+        </li>
+      </ul>
 
-      {# //Parcourir le tableau field_NAME de l'objet $node pour lister le contenu clé/valeur #}
-      {% for key, lien in node.field_lien_utile_vdl %}
-        {# //Ne pas afficher les champs vides du tableau #}
-        {% if node.field_lien_utile_vdl is not empty %}
-          <li>{{ content.field_lien_utile_vdl[key] }}</li>
-        {% endif %}
-      {% endfor %}
+      <ul>
+        {# //Parcourir le tableau field_NAME de l'objet $node pour lister le contenu clé/valeur #}
+        {% for key, fichier in node.field_fiche_action.value %}
+          {# //Ne pas afficher les champs vides du tableau #}
+          {% if node.field_fiche_action.value is not empty %}
+            <li>{{ content.field_fiche_action[key] }}</li>
+          {% endif %}
+        {% endfor %}
 
-      {# Parcourir le tableau field_NAME de l'objet $node pour lister le contenu clé/valeur #}
-      {% for key, lien in node.field_lien_interne %}
-        {# Ne pas afficher les champs vides du tableau #}
-        {% if node.field_lien_interne is not empty %}
-          <li>{{ content.field_lien_interne[key] }}</li>
-        {% endif %}
-      {% endfor %}
+        {# //Parcourir le tableau field_NAME de l'objet $node pour lister le contenu clé/valeur #}
+        {% for key, lien in node.field_lien_utile_vdl %}
+          {# //Ne pas afficher les champs vides du tableau #}
+          {% if node.field_lien_utile_vdl is not empty %}
+            <li>{{ content.field_lien_utile_vdl[key] }}</li>
+          {% endif %}
+        {% endfor %}
 
-    </ul>
+        {# Parcourir le tableau field_NAME de l'objet $node pour lister le contenu clé/valeur #}
+        {% for key, lien in node.field_lien_interne %}
+          {# Ne pas afficher les champs vides du tableau #}
+          {% if node.field_lien_interne is not empty %}
+            <li>{{ content.field_lien_interne[key] }}</li>
+          {% endif %}
+        {% endfor %}
+
+      </ul>
+    {% endif %}
+    {# / endif pour bloc doc utiles #}
   </div>
 {% endif %}

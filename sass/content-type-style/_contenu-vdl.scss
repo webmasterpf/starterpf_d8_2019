@@ -10,6 +10,7 @@
 //@include breakpoint ($tablet){}
 // @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){}
 /*######-------- ||| ORDRE FLEXBOX ||| --------######*/
+
 body .conteneur .conteneur-flex {
   #zone-1.type-page-europe {
     order: 2;
@@ -37,92 +38,109 @@ body .conteneur .conteneur-flex {
   }
 }
 /*######-------- ||| BORDURES ||| --------######*/
+
 body .conteneur {
   @include breakpoint ($desktop) {
     #zone-2.type-page-europe {}
   }
 }
 /*######-------- ||| LAYOUT SPECIFIQUE ||| --------######*/
-#zone-illustration.type-page-europe {
-  #illustration-pleinepage {
-    min-height: 35vw;
-    max-height: 90vw;
-    overflow: hidden;
-    position: relative;
+$typedecontenu: type-page-europe,type-page-sorties-actions, type-page-partenaires;
+$zonesimg: zone-illustration;
+@each $zone in $zonesimg {
+  @each $type in $typedecontenu {
+    ##{$zone}.#{$type} {
+      #illustration-pleinepage {
+        min-height: 35vw;
+        max-height: 90vw;
+        overflow: hidden;
+        position: relative;
 
-    img {
-      transform: translate(0%,0%);
-      @include adaptable-img();
-    }
-    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
-      min-height: 25vw;
-      max-height: 30vw;
+        img {
+          transform: translate(0%,0%);
+          @include adaptable-img();
+        }
+        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+          min-height: 25vw;
+          max-height: 30vw;
 
-      img {
-        transform: translate(0%,-50%);
+          img {
+            transform: translate(0%,-35%);
+          }
+        }
       }
     }
   }
 }
+$typedecontenu: type-page-europe, type-page-sorties-actions, type-page-partenaires;
+$zones: zone-1, zone-2, zone-3;
+@each $zone in $zones {
+  @each $type in $typedecontenu {
+    ##{$zone}.#{$type} {
+      > .content {
+        column-count: 0;
+        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+          column-count: 1;
+          column-fill: balance;
+          white-space: normal;
+          padding: span(0.1);
+        }
+      }
 
-#zone-1.type-page-europe {
-  > .content {
-    column-count: 0;
-    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
-      column-count: 1;
-      column-fill: balance;
-      white-space: normal;
-      padding: span(0.1);
-    }
-  }
+      .bloc_docs_utiles_vdl {
+        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+          float: right;
+          margin: span(0.1);
+          padding: span(0.02);
+          max-width: span(4);
 
-  .bloc_docs_utiles_vdl {
-    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
-      float: right;
-      margin: span(0.1);
-      padding: span(0.02);
-      max-width: span(4);
-
-      .champ-field-relatif-formation,
-      .label-field-lien-utile-vdl,
-      .label-field-relatif-formation {
-        //Besoin de simuler un br pour avoir un saut de ligne entre chaque éléments
-        @include clearfixsusy3;
+          .champ-field-relatif-formation,
+          .label-field-lien-utile-vdl,
+          .label-field-relatif-formation {
+            //Besoin de simuler un br pour avoir un saut de ligne entre chaque éléments
+            @include clearfixsusy3;
+          }
+        }
       }
     }
   }
 }
-
-#zone-2.type-page-europe {
-  .galerie {
-    img {
-      @include adaptable-img();
-    }
-    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
-      max-width: span(10);
-      margin: span(0.1) auto;
-      padding: span(0.02);
+@each $zone in $zones {
+  @each $type in $typedecontenu {
+    ##{$zone}.#{$type} {
+      .galerie {
+        img {
+          @include adaptable-img();
+        }
+        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+          max-width: span(10);
+          margin: span(0.1) auto;
+          padding: span(0.02);
+        }
+      }
     }
   }
 }
+@each $zone in $zones {
+  @each $type in $typedecontenu {
+    ##{$zone}.#{$type} {
+      #region-zone-3 {
+        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+          max-width: span(8);
+          margin: span(0.1) auto;
+          padding: span(0.02);
+        }
 
-#zone-3.type-page-europe {
-  #region-zone-3 {
-    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
-      max-width: span(8);
-      margin: span(0.1) auto;
-      padding: span(0.02);
-    }
-
-    h2 {
-      max-width: 80%;
-      margin: 0 auto;
+        h2 {
+          max-width: 80%;
+          margin: 0 auto;
+        }
+      }
     }
   }
 }
 /*######-------- ||| STYLE ||| --------######*/
 //Pour H1 voir _page-lycee.scss
-
 h1.titre-page-globale {
   @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
     top: em(10px);
@@ -131,7 +149,7 @@ h1.titre-page-globale {
 }
 /*¤¤¤ STYLES COMMUNS ¤¤¤*/
 //Permet de créer facilement les styles communs à des IDs ou/et classes
-$typedecontenu: type-page-europe, CLASS_NAME_CONTENU, CLASS_NAME_CONTENU2;
+$typedecontenu: type-page-europe, type-page-sorties-actions, type-page-partenaires;
 $zones: zone-1, zone-2, zone-3;
 @each $zone in $zones {
   @each $type in $typedecontenu {
@@ -178,127 +196,144 @@ $zones: zone-1, zone-2, zone-3;
 /*------------------------------------
         ¤¤¤ STYLES PROPRES ¤¤¤
 ______________________________*/
-#zone-1.type-page-europe {
-  .bloc_docs_utiles_vdl {
-    @include backgroundImage(("BG/stripe_rose_violet_pastel.png"),transparent,repeat, top left);
-    @include arrondis(1em);
+$typedecontenu: type-page-europe, type-page-sorties-actions, type-page-partenaires;
+$zones: zone-1, zone-2, zone-3;
+@each $zone in $zones {
+  @each $type in $typedecontenu {
+    ##{$zone}.#{$type} {
+      .bloc_docs_utiles_vdl {
+        @include backgroundImage(("BG/stripe_rose_violet_pastel.png"),transparent,repeat, top left);
+        @include arrondis(1em);
 
-    a {
-      background: $gris-clair;
-      color: $violet;
-      text-decoration: none;
-      padding: span(0.01) span(0.03);
-      @include rollover-effect($vert); //Effet rollover CSS3
+        a {
+          background: $gris-clair;
+          color: $violet;
+          text-decoration: none;
+          padding: span(0.01) span(0.03);
+          @include rollover-effect($vert); //Effet rollover CSS3
 
-      &:hover:not([href*="fiche"]) {
-        color: $gris-clair;
-        background: $violet;
-      }
-    }
-
-    a {
-      &[href*=".pdf"] {
-        &::before {
-          @include backgroundImage("PNG/Fichiers@3x.png");
-          background-size: contain;
-          content: "";
-          position: relative;
-          vertical-align: sub;
-          padding: em(10px);
-          margin: em(3px);
-          transition: 0.5s all;
-          display: inline-block;
-          transform: scale(1);
+          &:hover:not([href*="fiche"]) {
+            color: $gris-clair;
+            background: $violet;
+          }
         }
-      }
 
-      img.filefield-icon {
-        display: none; //initial
-      }
+        a {
+          &[href*=".pdf"] {
+            &::before {
+              @include backgroundImage("PNG/Fichiers@3x.png");
+              background-size: contain;
+              content: "";
+              position: relative;
+              vertical-align: sub;
+              padding: em(10px);
+              margin: em(3px);
+              transition: 0.5s all;
+              display: inline-block;
+              transform: scale(1);
+            }
+          }
 
-      &[href*="http"],
-      &[href*="actu"]:not([href$=".pdf"]):not([href*="fiche"]) {
-        //pour cibler les liens externes et internes, exclure les pdf et le lien interne
-        &::before {
-          @include backgroundImage("PNG/liens@3x.png");
-          background-size: contain;
-          content: "";
-          position: relative;
-          vertical-align: sub;
-          padding: em(10px);
-          margin: em(3px);
-          transition: 0.5s all;
-          display: inline-block;
-          transform: scale(1);
+          img.filefield-icon {
+            display: none; //initial
+          }
+
+          &[href*="http"],
+          &[href*="actu"]:not([href$=".pdf"]):not([href*="fiche"]) {
+            //pour cibler les liens externes et internes, exclure les pdf et le lien interne
+            &::before {
+              @include backgroundImage(("PNG/liens@3x.png"),transparent,no-repeat, top left);
+              background-size: contain;
+              content: "";
+              position: relative;
+              vertical-align: sub;
+              padding: em(10px);
+              margin: em(3px);
+              transition: 0.5s all;
+              display: inline-block;
+              transform: scale(1);
+            }
+          }
         }
-      }
-    }
 
-    ul {
-      li {
-        //suppression des puces
-        list-style-type: none;
-        @include font-size(s); //utilisation de typey
-      }
-    }
-    //Style spécifique
-    .champ-field-relatif-formation {
-      max-width: 90%;
-      a {
-        @include font-size(m); //utilisation de typey
-        font-style: italic;
-      }
-    }
+        ul {
+          li {
+            //suppression des puces
+            list-style-type: none;
+            @include font-size(s); //utilisation de typey
+          }
+        }
+        //Style spécifique
+        .champ-field-relatif-formation {
+          max-width: 90%;
 
-    .label-field-relatif-formation {
-      font-weight: bold;
-      color: $gris-clair;
-      background: $vert;
-      padding: span(0.02);
-      margin: 0 0 span(0.2) span(0.2);
-    }
+          a {
+            @include font-size(m); //utilisation de typey
+            font-style: italic;
+          }
+        }
 
-    .label-field-lien-utile-vdl {
-      font-weight: bold;
-      color: $gris-clair;
-      background: $violet;
-      padding: span(0.02);
-      margin: 0 0 0 span(0.2);
-    }
-  }
-}
+        .label-field-relatif-formation {
+          font-weight: bold;
+          color: $gris-clair;
+          background: $vert;
+          padding: span(0.02);
+          margin: 0 0 span(0.2) span(0.2);
+        }
 
-#zone-2.type-page-europe {
-  .galerie {
-    img {
-      @include transition-hover(75ms);
-
-      &:hover {
-        @include zoom-css3-hover(0.95);
+        .label-field-lien-utile-vdl {
+          font-weight: bold;
+          color: $gris-clair;
+          background: $violet;
+          padding: span(0.02);
+          margin: 0 0 0 span(0.2);
+        }
       }
     }
   }
 }
+$typedecontenu: type-page-europe, type-page-sorties-actions, type-page-partenaires;
+$zones: zone-1, zone-2, zone-3;
+@each $zone in $zones {
+  @each $type in $typedecontenu {
+    ##{$zone}.#{$type} {
+      .galerie {
+        img {
+          @include transition-hover(75ms);
 
-#zone-3.type-page-europe {
-  #region-zone-3.type-page-europe {
-    @include backgroundImage(("BG/stripe_vert_vert_pastel.png"),transparent,repeat, top left);
-    @include arrondis(1em);
-
-    a {
-      background: $gris-clair;
-      @include rollover-effect($vert); //Effet rollover CSS3
+          &:hover {
+            @include zoom-css3-hover(0.95);
+          }
+        }
+      }
     }
+  }
+}
+$typedecontenu: type-page-europe,type-page-sorties-actions, type-page-partenaires;
+$zones: zone-1, zone-2, zone-3;
+@each $zone in $zones {
+  @each $type in $typedecontenu {
+    ##{$zone}.#{$type} {
+      #region-zone-3 {
+        @include backgroundImage(("BG/stripe_vert_vert_pastel.png"),transparent,repeat, top left);
+        @include arrondis(1em);
 
-    h2 {
-      @include backgroundRGBA($gris-clair,0.7);
-      //background: repeating-linear-gradient(to bottom ,$gris-clair 10px, transparent 17px);
-      text-align: center;
-    }
+        a {
+          background: $gris-clair;
+          @include rollover-effect($vert); //Effet rollover CSS3
+        }
 
-    ul {
-      li {
-        list-style: none;
+        h2 {
+          @include backgroundRGBA($gris-clair,0.7);
+          //background: repeating-linear-gradient(to bottom ,$gris-clair 10px, transparent 17px);
+          text-align: center;
+        }
+
+        ul {
+          li {
+            list-style: none;
+          }
+        }
       }
     }
   }
