@@ -1,0 +1,139 @@
+{# Create classes array. The 'node' class is required for contextual edit links.
+Permet d'ajouter des classes dynamiques ou non aux éléments du markup
+#}
+{% set classes = [
+'node',
+'node--type-' ~ node.bundle|clean_class
+
+] %}
+{% set titre_attribute = create_attribute() %}
+{% set image_attribute = create_attribute() %}
+{% set imagecontainer_attribute = create_attribute() %}
+{% set zone1_attribute = create_attribute() %}
+{% set zone2_attribute = create_attribute() %}
+{% set zone3_attribute = create_attribute() %}
+{% set vuebloc_attribute = create_attribute() %}
+
+{% set titre_classes = [
+'titre_overlay',
+'titre_page',
+'titre-' ~ node.bundle|clean_class
+]
+%}
+{% set image_classes = [
+'illustration-'~ node.bundle|clean_class,
+'image--type-' ~ node.bundle|clean_class
+
+]%}
+{% set imagecontainer_classes = [
+'imagecontainer',
+'type-' ~ node.bundle|clean_class
+]
+%}
+{% set zone1_classes = [
+
+'zone1_layout_9_3',
+'type-' ~ node.bundle|clean_class
+]
+%}
+{% set zone2_classes = [
+
+'zone2_layout_9_3',
+'type-' ~ node.bundle|clean_class
+]
+%}
+{% set zone3_classes = [
+'zone_layout_max_centre',
+'zone3_layout_9_3',
+'type-' ~ node.bundle|clean_class
+]%}
+{% set vuebloc_classes = [
+'galerie',
+'type-' ~ node.bundle|clean_class
+]%}
+{# BEM inspired class syntax: https://en.bem.info/
+   Enable this code if you would like node classes like "article article--layout-teaser", where article is the content type and teaser is the view mode.
+{% set classes = classes|merge([
+  node.bundle|clean_class,
+  view_mode ? node.bundle|clean_class ~ '--layout-' ~ view_mode|clean_class
+]) %}
+{% set title_classes = [
+  node.bundle|clean_class ~ '__title'
+] %}
+#}
+<!--______________NODE TPL POUR CONTENU CDI.TPL CUSTOM ________________ -->
+<article{{ attributes.addclass(classes).setattribute('id', 'node-'~node.id) }}>
+
+  {% if title_prefix or title_suffix or display_submitted or unpublished or page is empty and label %}
+    <header>
+      {{ title_prefix }}
+      {% if not page and label %}
+        <h2{{ title_attributes.addClass(title_classes) }}>
+          <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+        </h2>
+      {% endif %}
+      {{ title_suffix }}
+
+      {% if display_submitted %}
+        <div class="submitted">
+          {{ author_picture }}
+          {% trans %}Submitted by
+          {{ author_name }}
+          on
+          {{ date }}{% endtrans %}
+          {{ metadata }}
+        </div>
+      {% endif %}
+
+      {% if not node.published %}
+        <p class="node--unpublished">{{ 'Unpublished'|t }}</p>
+      {% endif %}
+    </header>
+  {% endif %}
+
+  <!--______________ ILLUSTRATION et TITRE ________________ -->
+  <div {{ imagecontainer_attribute.addClass(imagecontainer_classes).setAttribute('id', 'zone-illustration') }}>
+
+    {% set image_deco = content.field_image_deco_lycee | render | trim %}
+    {% if image_deco or node.label is not empty %}
+      <div {{image_attribute.setAttribute('id', 'illustration-pleinepage').addClass(image_classes) }}>
+        <h1 {{ titre_attribute.addClass(titre_classes) }}>{{node.label}}</h1>
+        {{ content.field_image_deco_lycee.0}}
+      </div>
+    {% endif %}
+  </div>
+  <!-- /zone-illustration -->
+
+  <!--______________ZONE 1________________ -->
+  <div {{ zone1_attribute.addClass(zone1_classes).setAttribute('id', 'zone-1') }}>
+    <div{{ content_attributes.addclass('content') }}>
+
+      {{ content.body }}
+    </div>
+    <!-- /.content -->
+
+    {% if node.field_inserer_liste is not empty %}
+      <aside {{ vuebloc_attribute.addClass(vuebloc_classes) }}>
+        {{ content.field_inserer_liste.0 }}
+      </aside>
+    {% endif %}
+
+  </div>
+  <!-- /zone-1-->
+
+  <!--______________ZONE 2________________ -->
+  <div {{ zone2_attribute.addClass(zone2_classes).setAttribute('id', 'zone-2') }}>
+
+    {% include directory ~ '/includes/dedicates_inc/inc_cdi_infos_utiles.html.twig' %}
+
+    {% if content.links %}
+      <div class="links">
+        {{ content.links }}
+      </div>
+      <!-- /.links -->
+    {% endif %}
+  </div>
+  <!-- /zone-2 -->
+
+</article>
+<!-- /.node -->

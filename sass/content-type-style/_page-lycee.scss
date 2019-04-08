@@ -1,468 +1,538 @@
 // Regroupe le style pour le contenu des node.tpl custom
 // créer des fichiers _node-TYPE.scss et les importer dans application.scss
-
 /*-------------------------------------|
 |       CONTENU CUSTOM NODE.TPL        |
 |       PAGE LYCEE                     |
 |--------------------------------------*/
-
-//@include breakpoint ($desktop){}  : $desktopwide  $mobile  $mobile-iphonehd   $mobile-iphoneX   
+//@include breakpoint ($desktop){}  : $desktopwide  $mobile  $mobile-iphonehd   $mobile-iphoneX
 /*
-$mobile-galaxyShd  
-$mobile-galaxyS6  
-$tablet  
-$tablet-hd 
+$mobile-galaxyShd
+$mobile-galaxyS6
+$tablet
+$tablet-hd
 
-// Breakpoint pour les format paysage 
-$mobilelandscape 
-$mobilelandscape-galaxyShd   
+// Breakpoint pour les format paysage
+$mobilelandscape
+$mobilelandscape-galaxyShd
 $tabletlandscape
 $tabletlandscape-hd:
 */
-
-
 /*######-------- ||| ORDRE FLEXBOX ||| --------######*/
-body .conteneur .conteneur-flex{
-    #zone-1.type-page-lycee {order:1;}
-    #zone-1.type-page-lycee span{display: none;}
-    #zone-2.type-page-lycee {order:1;}
-    #zone-3.type-page-lycee {order:2;}
-    @include breakpoint ($desktop){
-        #zone-1.type-page-lycee {order:1;}
-        #zone-1.type-page-lycee span{display: initial;}
-        #zone-2.type-page-lycee {order:2;}
-        #zone-3.type-page-lycee {order:3;}
+body .conteneur .conteneur-flex {
+  #zone-1.type-page-lycee {
+    order: 1;
+  }
+
+  #zone-1.type-page-lycee span {
+    display: none;
+  }
+
+  #zone-2.type-page-lycee {
+    order: 1;
+  }
+
+  #zone-3.type-page-lycee {
+    order: 2;
+  }
+  @include breakpoint ($desktop) {
+    #zone-1.type-page-lycee {
+      order: 1;
     }
+
+    #zone-1.type-page-lycee span {
+      display: initial;
+    }
+
+    #zone-2.type-page-lycee {
+      order: 2;
+    }
+
+    #zone-3.type-page-lycee {
+      order: 3;
+    }
+  }
 }
 /*######-------- ||| LAYOUT SPECIFIQUE ||| --------######*/
-article.middle-content{
-    //Empêche les flottants de sortir du conteneur
-    @include clearfixsusy3;
+
+article.middle-content {
+  //Empêche les flottants de sortir du conteneur
+  @include clearfixsusy3;
 }
-#zone-illustration.type-page-lycee{
-    #illustration-pleinepage{
+$typedecontenu: type-page-lycee,type-contenu-cdi;
+$zonesimg: zone-illustration;
+@each $zone in $zonesimg {
+  @each $type in $typedecontenu {
+    ##{$zone}.#{$type} {
+      #illustration-pleinepage {
         min-height: 35vw;
         max-height: 90vw;
         overflow: hidden;
-        position:relative;
-        img{
-            transform: translate(0%,0%);
-            @include adaptable-img();
-        }
-        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-            min-height: 25vw;
-            max-height: 30vw;
-            img{
-                transform: translate(0%,-6%);
-            }
-        }
-    }
+        position: relative;
 
+        img {
+          transform: translate(0%,0%);
+          @include adaptable-img();
+        }
+        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+          min-height: 25vw;
+          max-height: 30vw;
+
+          img {
+            transform: translate(0%,-6%);
+          }
+        }
+      }
+      }
+  }
+}
+$typedecontenu: type-page-lycee,type-contenu-cdi;
+$zones: zone-1, zone-2, zone-3;
+@each $zone in $zones {
+  @each $type in $typedecontenu {
+    ##{$zone}.#{$type} {}
+  }
 }
 /*######-------- ||| BORDURES ||| --------######*/
-body .conteneur{
-    @include breakpoint ($desktop){
-        #zone-2.type-page-lycee{}
-    }
+
+body .conteneur {
+  @include breakpoint ($desktop) {
+    #zone-2.type-page-lycee {}
+  }
 }
 /*######-------- ||| BREAKPOINTS ||| --------######*/
-@include breakpoint ($mobile){
-    aside.deco-lycee{
-        display: none;
-    }
+@include breakpoint ($mobile) {
+  aside.deco-lycee {
+    display: none;
+  }
 }
-
 /*######-------- ||| STYLE ||| --------######*/
-h1.titre-lycee,h1.title-classes{
-    font-size: em(24px);
-    color: $violet;
-    line-height: 1.0em
+
+h1.title-classes,
+h1.titre-lycee {
+  font-size: em(24px);
+  color: $violet;
+  line-height: 1.0em;
 }
 /*---- REGLAGE GLOBAL - supprimer autres réglages si existent - retirer le bloc dédié de l'affichage pour ne pas doublonner'*/
-//Commun pour tous les H1 titre du site - 
-h1.titre_overlay{
-    @include titre_overlay();
-}
-h1.titre_page{
-    @include titre-page;
-    color: $blanc-casse;
-    @include backgroundRGBA($vert, 0.9);
+//Commun pour tous les H1 titre du site -
 
+h1.titre_overlay {
+  @include titre_overlay();
 }
 
+h1.titre_page {
+  @include titre-page;
+  color: $blanc-casse;
+  @include backgroundRGBA($vert, 0.9);
+}
 /*¤¤¤ STYLES COMMUNS ¤¤¤*/
-#zone-1.type-page-lycee,
-#zone-2.type-page-lycee,
-#zone-3.type-page-lycee,
-#zone-4.type-page-lycee
-{
- p,ul,li{
-        @include font-size(m);//utilisation de typey
+//Permet de créer facilement les styles communs à des IDs ou/et classes
+// !! Le tableau type de contenu est repris du layout spécifique, idem pour les zones
+@each $zone in $zones {
+  @each $type in $typedecontenu {
+    ##{$zone}.#{$type} {
+      li,
+      p,
+      ul {
+        @include font-size(m); //utilisation de typey
         padding: em(5px);
         line-height: 1.5em;
         list-style-position: inside;
-    }
-    u{
+      }
+
+      u {
         font-weight: bold;
         color: $vert;
-        
-    }
-    h2{
-        @include font-size(l);//utilisation de typey
+      }
+
+      h2 {
+        @include font-size(l); //utilisation de typey
         color: $violet;
-    }
-    h3{
-        @include font-size(m);//utilisation de typey
+      }
+
+      h3 {
+        @include font-size(m); //utilisation de typey
         color: $vert;
-    }
-    a{
+      }
+
+      a {
         text-decoration: none;
         color: $violet;
-        &:hover{
-            text-decoration: underline;
-        }
-    }
-    strong{
-        color: $vert;
-    }
-}
 
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      strong {
+        color: $vert;
+      }
+    }
+  }
+}
 /*------------------------------------
         ¤¤¤ STYLES PROPRES ¤¤¤
 ______________________________*/
+#zone-1.type-page-lycee {
+  h2 {}
 
-#zone-1.type-page-lycee{
-    h2{}
-    h3{}
-    h4{}
-    p{}
-    ul{
-        width: auto;
+  h3 {}
+
+  h4 {}
+
+  p {}
+
+  ul {
+    width: auto;
+  }
+
+  img {
+    //@include ombrage(0.3em,0,0,0.1em);
+    display: block;
+    margin: 0 auto;
+    @include adaptable-img;
+    width: auto;
+    float: none;
+    border: em(2px) solid $violet;
+    padding: em(2px);
+  }
+
+  div.content {
+    .entrefilet {
+      @include backgroundImage('bg-merci.gif');
+      display: block;
+      color: $orange-fonce;
+      @include font-size(l); //utilisation de typey
+      text-transform: capitalize;
+      font-weight: bold;
+      @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+        padding: span(0.2);
+        transform: translate(1%,2%);
+        float: right;
+        margin: span(0.1);
+        min-width: span(3);
+        max-width: span(5);
+      }
     }
-    img{
-        //@include ombrage(0.3em,0,0,0.1em);
-        display: block;
-        margin: 0 auto;
-        @include adaptable-img;
-        width: auto;
-        float: none;
-        border: em(2px) solid $violet;
-        padding: em(2px);
+    //style pour le dernier élément § de content
+    p.external-content {
+      width: 95%;
+      margin: em(15px) auto;
+      @include breakpoint ($desktop) {
+        position: relative;
+        padding-bottom: 56.25%;
+        padding-top: em(85px);
+        height: 0;
+        overflow: initial;
+      }
     }
-   div.content{
-        .entrefilet{
-            @include backgroundImage('bg-merci.gif');
-            display: block;
-            color: $orange-fonce;
-            @include font-size(l);//utilisation de typey
-            text-transform: capitalize;
-            font-weight: bold;
-            @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-            padding: span(0.2);
-            transform: translate(1%,2%);
-            float: right;
-                margin: span(0.1);
-                min-width: span(3);
-                max-width: span(5);
-            }
-        }
-        //style pour le dernier élément § de content
-        p.external-content{
-            width: 95%;
-            margin: em(15px) auto;
-            @include breakpoint ($desktop){
-                position: relative;
-                padding-bottom: 56.25%;
-                padding-top: em(85px);
-                height: 0;
-                overflow: initial;
-            }
-        }
-        //style particulier pour le 1er § qui ne contient pas la iframe 
-        p,p:first-child {
-            margin: 0 em(15px);
-            padding: 0;
-        }
-        iframe,object{
-            border: em(2px) solid $violet;
-            margin: span(0.2);
-            @include img-centered;
-            max-width: 95%;
-
-            @include breakpoint ($desktop){
-                //permet affichage complet de l'iframe
-                position: relative;
-                top:0;
-                left: 0;
-                max-width: 100%;
-                max-height: 100%;
-
-            }
-        }
+    //style particulier pour le 1er § qui ne contient pas la iframe
+    p,
+    p:first-child {
+      margin: 0 em(15px);
+      padding: 0;
     }
 
-    #video_lycee{
-        width: 95%;
-        margin: em(15px) auto;
-        @include breakpoint ($desktop){
-            position: relative;
-            padding-bottom: 56.25%;
-            padding-top: em(35px);
-            height: 0;
-            overflow: initial;
-        }
-        iframe,object{
-            border: em(2px) solid $violet;
-            padding: em(1px);
-            @include img-centered;
-            max-width: 95%;
+    iframe,
+    object {
+      border: em(2px) solid $violet;
+      margin: span(0.2);
+      @include img-centered;
+      max-width: 95%;
+      @include breakpoint ($desktop) {
+        //permet affichage complet de l'iframe
+        position: relative;
+        top: 0;
+        left: 0;
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+  }
 
-            @include breakpoint ($desktop){
-                position: absolute;
-                top:0;
-                left: 0;
-                width: 100%;
-                height: 100%;
+  #video_lycee {
+    width: 95%;
+    margin: em(15px) auto;
+    @include breakpoint ($desktop) {
+      position: relative;
+      padding-bottom: 56.25%;
+      padding-top: em(35px);
+      height: 0;
+      overflow: initial;
+    }
 
-            }
-        }
-    }   
-
-} 
+    iframe,
+    object {
+      border: em(2px) solid $violet;
+      padding: em(1px);
+      @include img-centered;
+      max-width: 95%;
+      @include breakpoint ($desktop) {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}
 /*######-------- ZONE 2 --------######*/
-#zone-2.type-page-lycee{
-    h2,h3,h4,p,ul,ol,img{
-        margin: 0;
-    }
-    h2{
-        color: $vert;
-        padding: em(5px);
-    }
-    h3{
-        color: $violet;
-        padding: em(5px);
-    }
-    h4{
-        padding: em(5px);
-        color: $violet;
-    }
-    p,li{
-        @include font-size(m);//utilisation de typey
-        padding: em(5px);
-        line-height: 1.5em;
-    }
-    ul{
-        padding: em(5px);
-    }
-    img{
 
+#zone-2.type-page-lycee {
+  h2,
+  h3,
+  h4,
+  img,
+  ol,
+  p,
+  ul {
+    margin: 0;
+  }
+
+  h2 {
+    color: $vert;
+    padding: em(5px);
+  }
+
+  h3 {
+    color: $violet;
+    padding: em(5px);
+  }
+
+  h4 {
+    padding: em(5px);
+    color: $violet;
+  }
+
+  li,
+  p {
+    @include font-size(m); //utilisation de typey
+    padding: em(5px);
+    line-height: 1.5em;
+  }
+
+  ul {
+    padding: em(5px);
+  }
+
+  img {}
+
+  a {
+    color: $violet;
+    text-decoration: none;
+    padding: em(2px);
+
+    &:hover {
+      color: white;
+      background: $violet;
     }
-    a{
+  }
+
+  form {
+    margin: 0 6em;
+  }
+
+  table {
+    margin: 0 auto;
+    //display:table;//casse le système de stacktable js
+    tbody {
+      max-width: 100%;
+
+      tr {
+        border: 0;
+      }
+
+      tr.even {
+        background: $gris-clair;
+      }
+
+      tr.odd {
+        background: $gris-clair-moyen;
+      }
+
+      td {}
+    }
+  }
+
+  .bloc_docs_utiles_plycee {
+    max-width: span(6);
+    padding: span(0.02);
+    margin: span(0.2);
+    @include backgroundImage(("BG/stripe_rosepale_violet_pastel.png"),transparent,repeat, top left);
+    /*@include backgroundImage(('BG/bg_site_ce_docs_2019.jpg'),transparent,0 0, repeat);*/
+    @include arrondis();
+
+    ul {}
+
+    li {
+      list-style: square;
+      list-style: none;
+      list-style-position: inside;
+      padding: span(0.1) 0;
+      @include font-size(s); //utilisation de typey
+
+      span {
+        //padding: span(0.01);
+      }
+
+      a {
+        background: $gris-clair;
         color: $violet;
         text-decoration: none;
-        padding: em(2px);
-        &:hover{
-            color: white;
-            background: $violet;
+        padding: span(0.01) span(0.03);
+
+        &:hover {
+          color: $gris-anthracite;
+          background: $vert;
         }
+      }
+
+      a[href*=".pdf"] {
+        &::before {
+          @include backgroundImage("PNG/Fichiers@3x.png");
+          background-size: contain;
+          content: "";
+          position: relative;
+          vertical-align: sub;
+          padding: em(10px);
+          margin: em(3px);
+          transition: 0.5s all;
+          display: inline-block;
+          transform: scale(1);
+        }
+      }
+
+      img.filefield-icon {
+        display: none; //initial
+      }
+
+      a[href*="/"]:not([href*=".pdf"]) {
+        //pour cibler les liens externes et internes, exclure les pdf
+        &::before {
+          @include backgroundImage("PNG/liens@3x.png");
+          background-size: contain;
+          content: "";
+          position: relative;
+          vertical-align: sub;
+          padding: em(10px);
+          margin: em(3px);
+          transition: 0.5s all;
+          display: inline-block;
+          transform: scale(1);
+        }
+      }
     }
-    form{margin: 0 6em;}
-    table{
-        margin: 0 auto;
-        //display:table;//casse le système de stacktable js
-        tbody{
-            max-width: 100%;
-
-            tr{
-                border:0;
-            }
-            tr.even{
-                background: $gris-clair;
-            }
-            tr.odd{
-                background: $gris-clair-moyen;
-            }
-            td{}
-        }
-    }
-    .bloc_docs_utiles_plycee{
-        max-width: span(6);
-        padding: span(0.02);
-        margin: span(0.2);
-        @include backgroundImage(("BG/stripe_rosepale_violet_pastel.png"),transparent,repeat, top left);
-        /*@include backgroundImage(('BG/bg_site_ce_docs_2019.jpg'),transparent,0 0, repeat);*/
-        @include arrondis();
-        ul{
-     
-        }
-        li{
-            list-style: square;
-            list-style: none;
-            list-style-position: inside;
-            padding: span(0.1) 0;
-            @include font-size(s);//utilisation de typey
-            span{
-                //padding: span(0.01);
-            }
-            a{
-                background: $gris-clair;
-                color: $violet;
-                
-                text-decoration:none;
-                padding: span(0.01) span(0.03);
-                &:hover{
-                color: $gris-anthracite;
-                    background: $vert;
-                }
-            }
-            a[href*=".pdf"]{
-            &::before{
-                @include backgroundImage("PNG/Fichiers@3x.png");
-                background-size: contain;
-                content: "";
-                position: relative;
-                vertical-align: sub;
-                padding: em(10px);
-                margin:em(3px);
-                transition:0.5s all;
-                display: inline-block;
-                transform: scale(1);
-            }
-        }
-        img.filefield-icon{
-
-            display: none;//initial
-        }
-        a[href*="/"]:not([href*=".pdf"]) { //pour cibler les liens externes et internes, exclure les pdf
-            &::before{
-                @include backgroundImage("PNG/liens@3x.png");
-                background-size: contain;
-                content: "";
-                position: relative;
-                vertical-align: sub;
-                padding: em(10px);
-                margin:em(3px);
-                transition:0.5s all;
-                display: inline-block;
-                transform: scale(1);
-            }
-
-        }
-        }
-    }
-
+  }
 }
-
-#zone-2.page-classes{
-    padding: 0.5em;
-}
-
 
 /*######-------- ZONE 3 --------######*/
-#zone-3.type-page-lycee{
-    span#lycee-formation{
-        background: $orange-fonce;
-        display: grid;
-        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-            padding: span(0.5) span(1);
 
-        }
-        h3{
-            color: $blanc-casse;
-            text-transform: uppercase;
-            font-size: large;
-        }
-        ul.liste-formations-lycee{
-
-            li{
-                list-style:none;
-                margin:span(0.01);          
-                a{
-                    font-size: medium;
-                    color: $blanc-casse;
-                    text-decoration: none;
-                    padding: span(0.02);
-                    @include txt-cesure;
-                    &:hover{
-                        background: $gris-anthracite;
-                    }
-                }
-            }
-        }
-    }
-    #docs_lycee{
-
-        h3{
-            font-family:$AristaFont;
-            text-align: center;
-            color: $violet;
-            padding: 5px 0;
-            font-size: medium;
-            margin: 0 0 5px 0;
-        }
-
-        table{
-
-            margin: 0 auto;
-            width: 95%;
-
-            border: em(3px) solid $gris-clair-moyen;
-            background: #EFEFEF;
-            box-shadow:0px 0px 7px 1px $prune;
-            -moz-box-shadow: 3px $prune;
-            -webkit-box-shadow: 3px $prune;
-            behavior: url(/sites/all/libraries/PIE/PIE.htc);
-            position: relative;
-        }
-        tbody{
-            border: 0;
-            padding: em(10px) em(15px);
-
-        }
-        tr{
-            border: 0;
-            background: 0;
-
-        }
-        td{
-            text-align: center;
-
-            a{
-                display: block;
-                color: $prune;
-                text-decoration: none;
-
-                font-size: small;
-                &:hover{
-                    background: $rose-fushia;
-                    @include arrondis(em(10px));
-                    @include PIE;
-                    position: relative;
-                }
-            }
-        }
-        
-        .filefield-icon{
-            display: none;
-        }
+#zone-3.type-page-lycee {
+  span#lycee-formation {
+    background: $orange-fonce;
+    display: grid;
+    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+      padding: span(0.5) span(1);
     }
 
+    h3 {
+      color: $blanc-casse;
+      text-transform: uppercase;
+      font-size: large;
+    }
+
+    ul.liste-formations-lycee {
+      li {
+        list-style: none;
+        margin: span(0.01);
+
+        a {
+          font-size: medium;
+          color: $blanc-casse;
+          text-decoration: none;
+          padding: span(0.02);
+          @include txt-cesure;
+
+          &:hover {
+            background: $gris-anthracite;
+          }
+        }
+      }
+    }
+  }
+
+  #docs_lycee {
+    h3 {
+      font-family: $AristaFont;
+      text-align: center;
+      color: $violet;
+      padding: 5px 0;
+      font-size: medium;
+      margin: 0 0 5px;
+    }
+
+    table {
+      margin: 0 auto;
+      width: 95%;
+      border: em(3px) solid $gris-clair-moyen;
+      background: #EFEFEF;
+      box-shadow: 0 0 7px 1px $prune;
+      -moz-box-shadow: 3px $prune;
+      -webkit-box-shadow: 3px $prune;
+      behavior: url("/sites/all/libraries/PIE/PIE.htc");
+      position: relative;
+    }
+
+    tbody {
+      border: 0;
+      padding: em(10px) em(15px);
+    }
+
+    tr {
+      border: 0;
+      background: 0;
+    }
+
+    td {
+      text-align: center;
+
+      a {
+        display: block;
+        color: $prune;
+        text-decoration: none;
+        font-size: small;
+
+        &:hover {
+          background: $rose-fushia;
+          @include arrondis(em(10px));
+          @include PIE;
+          position: relative;
+        }
+      }
+    }
+
+    .filefield-icon {
+      display: none;
+    }
+  }
 }
 /*######-------- ZONE 4 --------######*/
-#zone-4.type-page-lycee{
-    span#gmap-lycee{
-        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-            padding: span(0.4);
-            display: grid;
-        }
+
+#zone-4.type-page-lycee {
+  span#gmap-lycee {
+    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+      padding: span(0.4);
+      display: grid;
     }
-    iframe[src*="maps"],
-    iframe[src*="umap"]
-    {
-        min-height: 100vw;
-        min-width: 35vw;
-        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-            min-height: 20vw;    
-        }
+  }
+
+  iframe[src*="maps"],
+  iframe[src*="umap"] {
+    min-height: 100vw;
+    min-width: 35vw;
+    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+      min-height: 20vw;
     }
+  }
 }
