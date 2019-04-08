@@ -1,218 +1,296 @@
 // Regroupe le style pour le contenu des node.tpl custom
-// créer des fichiers _node-TYPE.scss et les importer dans application.scss
-
+// créer des fichiers _CONTENT-TYPE.scss et les importer dans application.scss
 /*-------------------------------------|
 |       CONTENU CUSTOM               |
 |               NODE.TPL                      |
-|       CONTENU ACTUALITES        |
+|               MON TYPE                      |
 |--------------------------------------*/
-
 //@include breakpoint ($mobile){}
 //@include breakpoint ($desktop){}
 //@include breakpoint ($tablet){}
-
+//@include breakpoint(($desktop,$tablet)){}
+//@include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){}
+//Ressources sur Attributs et PseudoElements
+// https://tympanus.net/codrops/2013/07/05/using-custom-data-attributes-and-pseudo-elements/
 /*######-------- ||| ORDRE FLEXBOX ||| --------######*/
-body .conteneur .conteneur-flex{
-    #colonne-1.contenu-actu{order:1;}
-    #colonne-2.contenu-actu{order:2;}
-    #colonne-3.contenu-actu{order:3;}
-    @include breakpoint ($desktop){}
+body .conteneur .conteneur-flex {
+  #zone-1.type-contenu-actualites {
+    order: 1;
+  }
+
+  #zone-2.type-contenu-actualites {
+    order: 2;
+  }
+
+  #zone-3.type-contenu-actualites {
+    order: 3;
+  }
+
+  #zone-4.type-contenu-actualites {}
+
+  #zone-5.type-contenu-actualites {}
+  @include breakpoint ($desktop) {}
+}
+/*######-------- ||| BORDURES ||| --------######*/
+body .conteneur,
+body .conteneur .conteneur-flex {
+  @include breakpoint(($desktop,$tablet)) {}
+}
+/*######-------- ||| LAYOUT SPECIFIQUE ||| --------######*/
+article.middle-content {
+  //Empêche les flottants de sortir du conteneur
+  @include clearfixsusy3;
 }
 
-/*######-------- ||| BORDURES ||| --------######*/
-body .conteneur {
-    @include breakpoint ($desktop){
-        #colonne-2.contenu-actu{
-            @include border-L-rose;
-        }
-        #colonne-3.contenu-actu{
-            
-        }
-        }
-    
+#zone-illustration.type-contenu-actualites {
+  #illustration-pleinepage {
+    min-height: 35vw;
+    max-height: 90vw;
+    overflow: hidden;
+    position: relative;
+
+    img {
+      transform: translate(0%,0%);
+      @include adaptable-img();
+    }
+    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+      min-height: 25vw;
+      max-height: 30vw;
+
+      img {
+        transform: translate(0%,-35%);
+      }
+    }
+  }
+}
+
+#zone-1.type-contenu-actualites {
+  .bloc_docs_utiles_actu {
+    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+      float: right;
+      margin: span(0.1);
+      padding: span(0.02);
+      max-width: span(4);
+    }
+  }
+}
+
+#zone-2.type-contenu-actualites {
+  .galerie {
+    img {
+      @include adaptable-img();
+    }
+    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+      max-width: span(10);
+      margin: span(0.1) auto;
+      padding: span(0.02);
+    }
+  }
+}
+
+#zone-3.type-contenu-actualites {
+  #region-zone-3 {
+    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+      max-width: span(8);
+      margin: span(0.1) auto;
+      padding: span(0.02);
+    }
+
+    h2 {
+      max-width: 80%;
+      margin: 0 auto;
+    }
+  }
 }
 /*######-------- ||| STYLE ||| --------######*/
-
-h1.titre_actualites_content{
-    color: $rose-fushia;
-    font-family: $FontArvo;
+h1.titre-page-globale {
+  @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+    top: em(10px);
+    left: em(10px);
+  }
 }
-
 /*¤¤¤ STYLES COMMUNS ¤¤¤*/
-#colonne-1.contenu-actu,
-#colonne-2.contenu-actu,
-#colonne-3.contenu-actu{
-    h3{
-         padding: em(5px) 0;
-            font-size: medium;
-            margin: 0 0 em(5px) 0;
-    }
-}
-#gasquet-actus {
-    margin: em(15px) 0;
-    @include breakpoint ($desktop){
-        margin: 0;
-    }
-    h3{
-        font-family:$AristaFont;
-        text-align: center;
-        color: $rose-fushia;
-        font-size: medium;
-    }
-    table{
-        background: $gris-clair;
-        border: em(3px) solid $rose-fushia;
-        width: 95%;/*225px;*/
-        margin: 0 auto;
-        -moz-box-shadow:0px 0px 7px 1px $prune;
-        -webkit-box-shadow:0px 0px 7px 1px $prune;
-        box-shadow:0px 0px 7px 1px $prune;
-        cellspacing: 0;
-        @include PIE;
-        position: relative;
-    }
-    tr{
-        border: none;
-    }
-    td{
-        display: block;
-        margin: em(5px) 0;
-        text-align: center;
-    }
-    td a{
-        text-decoration: none;
-        color: $prune;
+//https://benfrain.com/working-with-lists-and-each-loops-in-sass-with-the-index-and-nth-function/
+//https://clubmate.fi/lists-in-sass-syntax-and-use-cases-with-examples/
+//Permet de créer facilement les styles communs à des IDs ou/et classes
+$typedecontenu: type-contenu-actualites, CLASS_NAME_CONTENU2, CLASS_NAME_CONTENU3; //2e boucle
+$zones: zone-1, zone-2, zone-3; //1ere boucle
+@each $zone in $zones {
+  @each $type in $typedecontenu {
+    ##{$zone}.#{$type} {
+      li,
+      p,
+      ul {
+        @include font-size(m); //utilisation de typey
         padding: em(5px);
-        font-size: x-small;
-    }
-    td a:hover{
-        background: $gris-clair-moyen;
-        border-radius: 10px;
-        behavior: url(/sites/all/libraries/PIE/PIE.htc);
-        position: relative;
-        color: $gris-clair;
-    }
-}
+        line-height: 1.5em;
+        list-style-position: inside;
+      }
 
-/*¤¤¤ STYLES PROPRES ¤¤¤*/
-#colonne-1.contenu-actu{
-    #actu-passerelle a{
-        text-decoration: none;
-        color: $rose-fushia;
-    }
-    #actu-passerelle, #taxo-custom{
-        background: url('../images/bg_point_rp.gif') repeat top left;
-        margin: em(10px);
-        padding: em(5px);
-        text-align: center;
-        width: auto;
-        font-size: small;
-        @include arrondis(em(10px));
-    }
-    #actu-illustration img{
-        border: em(2px) solid $rose-fushia;
-        margin: em(5px) 0;
-        margin-left: 12%;//centrer l'image'
-    }
-}
-#colonne-2.contenu-actu{
-    p{
-        padding: em(5px);
-    }
-    strong{
-        color: $violet;
-    }
-    a{
-        color: $rose-fushia;
-        text-decoration: none;
-        &:hover{
-            text-decoration: underline;
-        }
-    }
-    .galerie-vdl{
-        width: 95%;
-    }
-    /*Galerie lightbox*/
-    .galerie-vdl .image-gallery-nodes ul li {
-        background: none repeat scroll 0 0 transparent;
-        display: inline-block;
-        height: em(100px);
-        list-style-type: none;
-        text-align: center;
-        width: 150px;
-    }
-    .galerie-vdl .image-gallery-nodes ul li img{
-        border: em(3px) solid #EFEFEF;
-    }
-    #actu-video{
-        width: 95%;
-        margin: 0 auto;
-        border: em(2px) solid $gris-clair-moyen;
-    }
-    aside.actu-video{
-    width: 95%;
-    margin: em(15px) auto;
-    @include breakpoint ($desktop){
-        position: relative;
-        padding-bottom: 56.25%;
-        padding-top: em(35px);
-        height: 0;
-        overflow: initial;
-    }
-    iframe,object{
-        border: em(2px) solid $violet;
-        padding: em(1px);
-        @include img-centered;
-        max-width: 95%;
-
-        @include breakpoint ($desktop){
-            position: absolute;
-            top:0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-
-        }
-    }
-}
-}
-
-#colonne-3.contenu-actu{
-    #taxo-custom{
-        color: $bleu-turquoise;
+      u {
         font-weight: bold;
+        color: $vert;
+      }
+
+      h2 {
+        @include font-size(l); //utilisation de typey
+        color: $violet;
+      }
+
+      h3 {
+        @include font-size(m); //utilisation de typey
+        color: $vert;
+      }
+
+      a {
+        text-decoration: none;
+        color: $violet;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      strong {
+        color: $vert;
+      }
     }
-    #actu-docs {
-        h3{
-            font-family:$AristaFont;
-            text-align: center;
-            color: $violet;
-
-        }
-        table{
-            background: $gris-clair;
-            border: em(3px) solid $gris-clair-moyen;
-            width: 97%;
-            margin: 0 auto;
-            @include ombrage-bas($prune);
-            /*@include ombrage-bas(0, em(7px), em(1px), $prune);*/
-        }
-        td{
-            text-align: center;
-            a{
-                text-decoration: none;
-                color: $prune;
-                font-size:small;
-                &:hover{
-                    background: $rose-fushia;
-                    @include arrondis (em(10px));
-
-                }
-            }
-        }
-        .filefield-icon{
-            display: none;
-        }
-    }
-
+  }
 }
+/*------------------------------------
+        ¤¤¤ STYLES PROPRES ¤¤¤
+______________________________*/
+
+#zone-1.type-contenu-actualites {
+  .bloc_docs_utiles_actu {
+    @include backgroundImage(("BG/stripe_rose_violet_pastel.png"),transparent,repeat, top left);
+    @include arrondis(1em);
+
+    a {
+      background: $gris-clair;
+      color: $violet;
+      text-decoration: none;
+      padding: span(0.01) span(0.03);
+      @include rollover-effect($vert); //Effet rollover CSS3
+
+      &:hover:not([href*="fiche"]) {
+        color: $gris-clair;
+        background: $violet;
+      }
+    }
+
+    a {
+      &[href*=".pdf"] {
+        &::before {
+          @include backgroundImage("PNG/Fichiers@3x.png");
+          background-size: contain;
+          content: "";
+          position: relative;
+          vertical-align: sub;
+          padding: em(10px);
+          margin: em(3px);
+          transition: 0.5s all;
+          display: inline-block;
+          transform: scale(1);
+        }
+      }
+
+      img.filefield-icon {
+        display: none; //initial
+      }
+
+      &[href*="http"],
+      &[href*="actu"]:not([href$=".pdf"]):not([href*="fiche"]) {
+        //pour cibler les liens externes et internes, exclure les pdf et le lien interne
+        &::before {
+          @include backgroundImage(("PNG/liens@3x.png"),transparent,no-repeat, top left);
+          background-size: contain;
+          content: "";
+          position: relative;
+          vertical-align: sub;
+          padding: em(10px);
+          margin: em(3px);
+          transition: 0.5s all;
+          display: inline-block;
+          transform: scale(1);
+        }
+      }
+    }
+
+    ul {
+      li {
+        //suppression des puces
+        list-style-type: none;
+        @include font-size(s); //utilisation de typey
+      }
+    }
+    //Style spécifique
+    .champ-field-relatif-formation {
+      max-width: 90%;
+
+      a {
+        @include font-size(m); //utilisation de typey
+        font-style: italic;
+      }
+    }
+
+    .label-field-relatif-formation {
+      font-weight: bold;
+      color: $gris-clair;
+      background: $vert;
+      padding: span(0.02);
+      margin: 0 0 span(0.2) span(0.2);
+    }
+
+    .label-field-fichier-joint-rp,
+    .label-field-lien-internet-rp {
+      font-weight: bold;
+      color: $gris-clair;
+      background: $violet;
+      padding: span(0.02);
+      margin: 0 0 0 span(0.2);
+    }
+  }
+}
+
+#zone-2.type-contenu-actualites {
+  .galerie {
+    img {
+      @include transition-hover(75ms);
+
+      &:hover {
+        @include zoom-css3-hover(0.95);
+      }
+    }
+  }
+}
+
+#zone-3.type-contenu-actualites {
+  #region-zone-3 {
+    @include backgroundImage(("BG/stripe_vert_vert_pastel.png"),transparent,repeat, top left);
+    @include arrondis(1em);
+
+    a {
+      background: $gris-clair;
+      @include rollover-effect($vert); //Effet rollover CSS3
+    }
+
+    h2 {
+      @include backgroundRGBA($gris-clair,0.7);
+      //background: repeating-linear-gradient(to bottom ,$gris-clair 10px, transparent 17px);
+      text-align: center;
+    }
+
+    ul {
+      li {
+        list-style: none;
+      }
+    }
+  }
+}
+
+#zone-4.type-contenu-actualites {}
+
+#zone-5.type-contenu-actualites {}
+/*--------------------------------------
+----------------------------------------*/

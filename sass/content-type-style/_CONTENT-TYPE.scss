@@ -35,19 +35,54 @@ body .conteneur{
 }
 
 /*######-------- ||| LAYOUT SPECIFIQUE ||| --------######*/
+article.middle-content{
+    //Empêche les flottants de sortir du conteneur
+    @include clearfixsusy3;
+}
+#zone-illustration.CLASS_NAME_CONTENU1{
+    #illustration-pleinepage{
+        min-height: 35vw;
+        max-height: 90vw;
+        overflow: hidden;
+        position:relative;
+        img{
+            transform: translate(0%,0%);
+            @include adaptable-img();
+        }
+        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+            min-height: 25vw;
+            max-height: 30vw;
+            img{
+                transform: translate(0%,-6%);
+            }
+        }
+    }
 
+}
+#zone-1.CLASS_NAME_CONTENU1{}
+#zone-2.CLASS_NAME_CONTENU1{}
+#zone-3.CLASS_NAME_CONTENU1{}
+#zone-4.CLASS_NAME_CONTENU1{}
+#zone-5.CLASS_NAME_CONTENU1{}
 
 /*######-------- ||| STYLE ||| --------######*/
+h1.titre-page-globale {
+  @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+    top: em(10px);
+    left: em(10px);
+  }
+}
 
 /*¤¤¤ STYLES COMMUNS ¤¤¤*/
 //https://benfrain.com/working-with-lists-and-each-loops-in-sass-with-the-index-and-nth-function/
 //https://clubmate.fi/lists-in-sass-syntax-and-use-cases-with-examples/
+//Permet de créer facilement les styles communs à des IDs ou/et classes
 
-$typedecontenu: type-page-europe, CLASS_NAME_CONTENU, CLASS_NAME_CONTENU;
-$zones: zone-1, zone-2, zone-3;
+$typedecontenu: CLASS_NAME_CONTENU1, CLASS_NAME_CONTENU2, CLASS_NAME_CONTENU3;//2e boucle
+$zones: zone-1, zone-2, zone-3;//1ere boucle
 @each $zone in $zones {
     @each $type in $typedecontenu{
-        ##{$zone}.#{$type} 
+        ##{$zone}.#{$type}
         {
             p,ul,li{
             @include font-size(m);//utilisation de typey
@@ -81,12 +116,6 @@ $zones: zone-1, zone-2, zone-3;
         }
     }
 }
-#zone-1.CLASS_NAME_CONTENU,
-#zone-2.CLASS_NAME_CONTENU,
-#zone-3.CLASS_NAME_CONTENU,
-#zone-4.CLASS_NAME_CONTENU,
-#zone-5.CLASS_NAME_CONTENU
-{}
 
 /*------------------------------------
         ¤¤¤ STYLES PROPRES ¤¤¤
@@ -103,7 +132,7 @@ ______________________________*/
 
 */
 .CLASS_NAME_ITEM{
-            // Autiliser dans le cas de classes nombreuses avec partie variable, et style commun partiellement
+            // A utiliser dans le cas de classes nombreuses avec partie variable, et style commun partiellement
             //Liste dynamique des IDs en Sass pour alléger le code, définition d'une variable qui liste les IDs
             //Lister les IDs qui nécéssitent une classe auquelles sera appliqué un style commun
             $idsformations: 98,99,100,101,102,103,106,107;//1ère boucle
@@ -112,7 +141,7 @@ ______________________________*/
                 div#PARTIE-FIXE-#{$i}-wrapper{
                     label{
                         cursor: pointer;
-        
+
                     }
                     &:hover:not(#edit-term-node-tid-depth-limited-All-wrapper){
                                 //Style commun sur le hover
@@ -127,4 +156,3 @@ ______________________________*/
                 }
             }
 }
-   

@@ -80,7 +80,7 @@ Usage de Susy 3
 Il n'existe plus de mixins dans Susy3, tout passe par span()
 Ainsi:
 .classe{ @include container;} devient .classe { width: span (3);}
-.classe{ @include span( 12 of $desktopcol);} devient .classe { width: span( 12 of $desktopcol);} 
+.classe{ @include span( 12 of $desktopcol);} devient .classe { width: span( 12 of $desktopcol);}
 .classe{@include push (1); } devient .classe{ margin-left: span(1 wide); }
 .classe{@include pull (1); } devient .classe{ margin-left: 0 - span(3 wide); }
 
@@ -94,12 +94,12 @@ Ainsi:
 
 Diaporama homepage surimpression
 ------------------------------------
-Changer le code HTML dans Views 
+Changer le code HTML dans Views
 <div id="transparency"></div>
 <div id="contenu-diapo">
 <h2>[teaser]</h2>
 </div>
-par 
+par
 <div id="transparency">
 <h2>[teaser]</h2>
 </div>
@@ -117,10 +117,10 @@ https://www.drupal.org/docs/8/theming/drupal-twig-conversion-instructions-tplphp
 https://twig.symfony.com/doc/2.x/templates.html
 Tester un template : https://twigfiddle.com/
 
-de manière générale <?php ... ?> >> est remplacé par >> {% ... %}  
+de manière générale <?php ... ?> >> est remplacé par >> {% ... %}
 pour l'inclusion de variables : print $xxx  >> devient >> {{ xxx }}
 
-      <?php if (!empty($logo)): ?> >> devient >> {% if (site_logo is not empty) %}  
+      <?php if (!empty($logo)): ?> >> devient >> {% if (site_logo is not empty) %}
           <div class="logoHead"> >> devient >> <div class="logoHead">
               <?php print $logo; ?> >> devient >> {{ site_logo }}
           </div> >> devient >> </div>
@@ -128,5 +128,8 @@ pour l'inclusion de variables : print $xxx  >> devient >> {{ xxx }}
 
 https://www.drupal.org/docs/8/theming/adding-regions-to-a-theme
 https://atendesigngroup.com/blog/making-region-content-available-node-templates-drupal-8
-Créer des template pour chaque région inclus dans un node.Pour une région créée au niveau d'une page,il faut utiliser 
-les déclarer dans le fichier THEMENAME.info.yml 
+Créer des template pour chaque région inclus dans un node.Pour une région créée au niveau d'une page,il faut utiliser
+les déclarer dans le fichier THEMENAME.info.yml
+
+Réglages d'une vue pour exclure node courant:
+https://www.drupal.org/node/131547

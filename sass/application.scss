@@ -4,7 +4,7 @@
 
 // Importer les fichiers scss partiels (avec _) afin de compiler le
 // fichier css final utile pour le thème
-// Utiliser Gulp 
+// Utiliser Gulp
 // webmaster@vm-server1:~$ cd /var/www/drupal6/sites/all/themes/THEMENAMEFOLDER/
 // webmaster@vm-server1:/var/www/drupal6/sites/all/themes/THEMENAMEFOLDER/ $ gulp
 
@@ -65,7 +65,7 @@ breakpoint-2.7.1-
 @import "./layout/_layout-off-canvas-susy.scss";
 
 // Les BREAKPOINTS
-        
+
 /*@import "./layout/_layout-bp-tablet.scss";*/
 @import "./layout/_layout-bp-desktop.scss";
 //@import "./layout/layout-bp-mobile-landscape.scss";
@@ -109,7 +109,7 @@ breakpoint-2.7.1-
 @import "./content-type-style/_page-vdl-liste.scss";
 /*@import "./content-type-style/_node-vdl-global.scss";*/
 
-/*@import "./content-type-style/_contenu-actualite.scss";*/
+@import "./content-type-style/_contenu-actualite.scss";
 @import "./content-type-style/_contenu-vdl.scss";
 /*@import "./content-type-style/_contenu-cdi.scss";*/
 /*@import "./content-type-style/_webform-contact.scss";*/
@@ -123,7 +123,7 @@ breakpoint-2.7.1-
 @import "./content-type-style/_page-archives.scss";
 /*@import "./content-type-style/_page-erreur.scss";*/
 
-//Content type site 
+//Content type site
 
 /*@import "./content-type-style/_fiche-formation-pf.scss";*/
 

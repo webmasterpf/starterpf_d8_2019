@@ -97,7 +97,7 @@ $zones: zone-1, zone-2, zone-3;
           .champ-field-relatif-formation,
           .label-field-lien-utile-vdl,
           .label-field-relatif-formation {
-            //Besoin de simuler un br pour avoir un saut de ligne entre chaque éléments
+            //Besoin de simuler un br pour avoir un saut de ligne entre chaque éléments.HTML en liste plus efficace
             @include clearfixsusy3;
           }
         }

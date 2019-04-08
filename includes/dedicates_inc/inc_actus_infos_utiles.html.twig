@@ -1,0 +1,81 @@
+{#
+/* 03/2019 Liste les fichiers uploadés par
+  * filefield and linkfield  avec création d'une liste dynamique, exclusion des champs vides
+#}
+
+{# ---*** Les classes à appliquer aux éléments  ***--- #}
+{% set champ1_attribute = create_attribute() %}
+{% set champ1bis_attribute = create_attribute() %}
+{% set champ2_attribute = create_attribute() %}
+{% set champ3_attribute = create_attribute() %}
+
+{% set champ1_classes = [
+'champ-' ~ node.field_relatif_formation.fieldDefinition.name | replace({"_" : "-"}),
+'titre-' ~ node.bundle|clean_class
+]%}
+{% set champ1bis_classes = [
+'label-' ~ node.field_relatif_formation.fieldDefinition.name | replace({"_" : "-"}),
+]%}
+{% set champ2_classes = [
+'label-' ~ node.field_fichier_joint_rp.fieldDefinition.name | replace({"_" : "-"}),
+]%}
+{% set champ3_classes = [
+'label-' ~ node.field_lien_internet_rp.fieldDefinition.name | replace({"_" : "-"}),
+]%}
+{# ---*** Le contenu de l'include ***--- #}
+{% if node.field_relatif_formation.value or node.field_fichier_joint_rp.value or node.field_lien_internet_rp.value or node.field_fichier_audio_rp.value is not empty %}
+  <div class="bloc_docs_utiles_actu">
+
+    {% if node.field_fichier_joint_rp.value or node.field_fichier_audio_rp.value is not empty %}
+      {# Affichage des étiquettes des champs en tant que titres #}
+      <ul>
+        <li {{ champ2_attribute.addClass(champ2_classes) }}>
+          {{ content.field_fichier_joint_rp|field_label }}
+          {% if node.field_fichier_audio_rp is not empty %}
+            //
+            {{ content.field_fichier_audio_rp|field_label }}
+          {% endif %}
+        </li>
+      </ul>
+
+      <ul>
+        {# //Parcourir le tableau field_NAME de l'objet $node pour lister le contenu clé/valeur #}
+        {% for key, fichier in node.field_fichier_joint_rp.value %}
+          {# //Ne pas afficher les champs vides du tableau #}
+          {% if node.field_fichier_joint_rp.value is not empty %}
+            <li>{{ content.field_fichier_joint_rp[key] }}</li>
+          {% endif %}
+        {% endfor %}
+
+        {# Parcourir le tableau field_NAME de l'objet $node pour lister le contenu clé/valeur #}
+        {% for key, lien in node.field_fichier_audio_rp %}
+          {# Ne pas afficher les champs vides du tableau #}
+          {% if node.field_fichier_audio_rp is not empty %}
+            <li>{{ content.field_fichier_audio_rp[key] }}</li>
+          {% endif %}
+        {% endfor %}
+        {#
+-----****** LIENS INTERNET *******-------
+#}
+        {% if node.field_lien_internet_rp.value is not empty %}
+          {# Affichage des étiquettes des champs en tant que titres #}
+          <ul>
+            <li {{ champ3_attribute.addClass(champ3_classes) }}>
+              {{ content.field_lien_internet_rp|field_label }}
+
+            </li>
+          </ul>
+        {% endif %}
+        {# //Parcourir le tableau field_NAME de l'objet $node pour lister le contenu clé/valeur #}
+        {% for key, lien in node.field_lien_internet_rp %}
+          {# //Ne pas afficher les champs vides du tableau #}
+          {% if node.field_lien_internet_rp is not empty %}
+            <li>{{ content.field_lien_internet_rp[key] }}</li>
+          {% endif %}
+        {% endfor %}
+
+      </ul>
+    {% endif %}
+    {# / endif pour bloc doc utiles #}
+  </div>
+{% endif %}
