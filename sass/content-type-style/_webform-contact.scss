@@ -18,11 +18,11 @@
 
 /*######-------- ||| ORDRE FLEXBOX ||| --------######*/
 body .conteneur .conteneur-flex{
-    #zone-1.page-contact{order:1;}
-    #zone-2.page-contact{order:2;}
-    #zone-3.page-contact{order:3;}
-    #zone-4.page-contact{}
-    #zone-5.page-contact{}
+    #zone-1.type-webform{order:1;}
+    #zone-2.type-webform{order:2;}
+    #zone-3.type-webform{order:3;}
+    #zone-4.type-webform{}
+    #zone-5.type-webform{}
     @include breakpoint ($desktop){}
 }
 
@@ -35,14 +35,14 @@ body .conteneur{
 }
 
 /*######-------- ||| LAYOUT SPECIFIQUE ||| --------######*/
-#zone-illustration.page-contact{
+#zone-illustration.type-webform{
     min-height: 35vw;
     max-height: 90vw;
     overflow: hidden;
 
     @include backgroundImage('defaut_image_illustration_offre_ct.jpg');
-        @include background-size(cover);
-        
+    @include background-size(cover);
+
     img{
         transform: translate(0%,0%);
 
@@ -54,32 +54,15 @@ body .conteneur{
             transform: translate(0%,-15%);
         }
     }
-        
+
 }
-#zone-1.page-contact{
-      .content{
+#zone-1.type-webform{
+    .content{
         @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-        padding: span(0.2);
+            padding: span(0.2);
         }
     }
-        table,tbody,tr,td,form,input[type="text"],input[type="email"]{
-            width: 95%;
-            margin: 0 auto;
-            @include arrondis(1.5em);
-        @include backgroundImage("motif_img_overlay.png",0 0, repeat);
-    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-            width: 75%;
-        margin: span(0.1) auto; 
-        padding: span(0.1);
-        
-    }
-      }
-      textarea{
-            @include arrondis(1em);
-      }
-}
-#zone-2.page-contact{
-        iframe[src*="maps"],
+    iframe[src*="maps"],
     iframe[src*="umap"]
     {
         min-height: 110vw;
@@ -89,66 +72,104 @@ body .conteneur{
         }
     }
 }
+#zone-2.type-webform{
+
+    aside.formulaire{
+        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+            padding: span(0.2);
+        }
+        table,tbody,tr,td,form,input[type="text"],input[type="email"]{
+            width: 95%;
+            margin: 0 auto;
+            @include arrondis(1.5em);
+            @include backgroundImage(("motif_img_overlay.png"),transparent,repeat, top left);
+            @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+                width: 75%;
+                margin: span(0.1) auto; 
+                padding: span(0.1);
+
+            }
+        }
+        textarea{
+            @include arrondis(1em);
+        }
+    }
+
+}
 /*######-------- ||| STYLE ||| --------######*/
 
 /*¤¤¤ STYLES COMMUNS ¤¤¤*/
-#zone-1.page-contact,
-#zone-2.page-contact,
-#zone-3.page-contact,
-#zone-4.page-contact,
-#zone-5.page-contact
-{
-     p,ul,li{
-        @include font-size(m);//utilisation de typey
-        padding: em(5px);
-        line-height: 1.5em;
-    }
-    u{
-        font-weight: bold;
-        color: $bleu-turquoise;
-    }
-    h2{
-        @include font-size(l);//utilisation de typey
-        color: $orange-fonce;
-    }
-    h3{
-        @include font-size(m);//utilisation de typey
-        color: $gris-anthracite;
-    }
-    a{
-        text-decoration: none;
-        color: $orange-fonce;
-        &:hover{
-            text-decoration: underline;
+$typedecontenu: type-webform;//2e boucle -  CLASS_NAME_CONTENU2, CLASS_NAME_CONTENU3
+$zones: zone-1, zone-2;//1ere boucle
+@each $zone in $zones {
+    @each $type in $typedecontenu{
+        ##{$zone}.#{$type}
+        {
+            p,ul,li{
+                @include font-size(m);//utilisation de typey
+                padding: em(5px);
+                line-height: 1.5em;
+                list-style-position: inside;
+            }
+            u{
+                font-weight: bold;
+                color: $vert;
+
+            }
+            h2{
+                @include font-size(l);//utilisation de typey
+                color: $violet;
+            }
+            h3{
+                @include font-size(m);//utilisation de typey
+                color: $vert;
+            }
+            a{
+                text-decoration: none;
+                color: $violet;
+                &:hover{
+                    text-decoration: underline;
+                }
+            }
+            strong{
+                color: $vert;
+            }
         }
     }
-    strong{
-        color: $orange-fonce;
-    }
 }
+
 
 /*------------------------------------
         ¤¤¤ STYLES PROPRES ¤¤¤
 ______________________________*/
 
-#zone-1.page-contact{
-        table,tbody,tr,td,form,input[type="text"],input[type="email"]{
-    
-      }
-      input[type="text"],input[type="email"],textarea{
-          background: $gris-clair-moyen;
-          color: $blanc-casse;
-          padding: span(0.01);
-      }
-      tbody{
-          border: 0;
-      }
-}
-#zone-2.page-contact{
-    .localisation-lycees{
-        background: $gris-anthracite;
+#zone-1.type-webform{
+    iframe,object{
+        border: em(2px) solid $violet;
+        padding: span(0.01);
+        @include img-centered;
+        max-width: 65%;
+        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+            position: relative;
+            top:0;
+            left: 0;
+            width: 100vw;//Pas de % pour les iframes px ou vh vw
+            height: 100vh;
+            max-width: 95%;
+            padding: span(0.02);
+        }
     }
 }
-#zone-3.page-contact{}
-#zone-4.page-contact{}
-#zone-5.page-contact{}
+#zone-2.type-webform{
+    aside.formulaire{
+
+        input[type="text"],input[type="email"],textarea{
+            background: $vert;
+            color: $blanc-casse;
+            padding: span(0.01);
+        }
+    }
+}
+#zone-3.type-webform{}
+#zone-4.type-webform{}
+#zone-5.type-webform{}
