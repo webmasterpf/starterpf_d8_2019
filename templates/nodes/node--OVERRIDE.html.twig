@@ -46,7 +46,7 @@ https://blog.usejournal.com/getting-drupal-8-field-values-in-twig-22b80cb609bd
 Affichage de l'étiquette d'un champ custom avec test
 Créer un template de champ pour pouvoir organiser la sortie HTML : field--field-name.html.twig
 #}
-{% if node.field_myfield  %}
+{% if node.field_myfield is not empty  %}
 {{ node.field_myfield.fieldDefinition.label }}
 {# Affichage du contenu d'un champ custom #}
 {{ node.name_field.value|raw }} 

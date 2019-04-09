@@ -80,12 +80,12 @@ body .conteneur{
             }
         }
         ul.formations-initiales{
-            padding: span(0.1);
+            padding: 0;
             @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
                 column-count: 4;//adpater selon taille des blocs / images
                 column-fill: auto;
                 white-space: normal;
-                
+                padding: span(0.1);
             }
             li{
                 padding: 0;
