@@ -2,7 +2,7 @@
 // créer des fichiers _node-TYPE.scss et les importer dans application.scss
 /*-------------------------------------|
 |       CONTENU CUSTOM NODE.TPL        |
-|       PAGE LYCEE                     |
+|       PAGE LYCEE & CDI               |
 |--------------------------------------*/
 //@include breakpoint ($desktop){}  : $desktopwide  $mobile  $mobile-iphonehd   $mobile-iphoneX
 /*
@@ -18,6 +18,7 @@ $tabletlandscape
 $tabletlandscape-hd:
 */
 /*######-------- ||| ORDRE FLEXBOX ||| --------######*/
+
 body .conteneur .conteneur-flex {
   #zone-1.type-page-lycee {
     order: 1;
@@ -53,7 +54,6 @@ body .conteneur .conteneur-flex {
   }
 }
 /*######-------- ||| LAYOUT SPECIFIQUE ||| --------######*/
-
 article.middle-content {
   //Empêche les flottants de sortir du conteneur
   @include clearfixsusy3;
@@ -82,7 +82,7 @@ $zonesimg: zone-illustration;
           }
         }
       }
-      }
+    }
   }
 }
 $typedecontenu: type-page-lycee,type-contenu-cdi;
@@ -93,7 +93,6 @@ $zones: zone-1, zone-2, zone-3;
   }
 }
 /*######-------- ||| BORDURES ||| --------######*/
-
 body .conteneur {
   @include breakpoint ($desktop) {
     #zone-2.type-page-lycee {}
@@ -106,7 +105,6 @@ body .conteneur {
   }
 }
 /*######-------- ||| STYLE ||| --------######*/
-
 h1.title-classes,
 h1.titre-lycee {
   font-size: em(24px);
@@ -173,6 +171,8 @@ h1.titre_page {
 /*------------------------------------
         ¤¤¤ STYLES PROPRES ¤¤¤
 ______________________________*/
+
+#zone-1.type-contenu-cdi,
 #zone-1.type-page-lycee {
   h2 {}
 
@@ -278,7 +278,7 @@ ______________________________*/
   }
 }
 /*######-------- ZONE 2 --------######*/
-
+#zone-2.type-contenu-cdi,
 #zone-2.type-page-lycee {
   h2,
   h3,
@@ -355,13 +355,14 @@ ______________________________*/
     }
   }
 
+  .bloc_docs_utiles_cdi,
   .bloc_docs_utiles_plycee {
     max-width: span(6);
     padding: span(0.02);
     margin: span(0.2);
     @include backgroundImage(("BG/stripe_rosepale_violet_pastel.png"),transparent,repeat, top left);
-    /*@include backgroundImage(('BG/bg_site_ce_docs_2019.jpg'),transparent,0 0, repeat);*/
-    @include arrondis();
+
+    @include arrondis(1em);
 
     ul {}
 
@@ -423,11 +424,16 @@ ______________________________*/
         }
       }
     }
+    .label-field-lien-cdi{
+      font-weight: bold;
+      color: $gris-clair;
+      background: $violet;
+      padding: span(0.02);
+      margin: 0 0 0 span(0.2);
+    }
   }
 }
-
 /*######-------- ZONE 3 --------######*/
-
 #zone-3.type-page-lycee {
   span#lycee-formation {
     background: $orange-fonce;
@@ -518,7 +524,6 @@ ______________________________*/
   }
 }
 /*######-------- ZONE 4 --------######*/
-
 #zone-4.type-page-lycee {
   span#gmap-lycee {
     @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
