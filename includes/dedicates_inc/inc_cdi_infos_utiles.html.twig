@@ -28,50 +28,49 @@
 {% if node.field_fichiers_cdi.value or node.field_lien_cdi.value is not empty %}
   <div class="bloc_docs_utiles_cdi">
 
-    {% if node.field_fichiers_cdi.value or node.field_lien_cdi.value is not empty %}
+    {% if node.field_fichiers_cdi.value is not empty %}
       {# Affichage des étiquettes des champs en tant que titres #}
       <ul>
         <li {{ champ2_attribute.addClass(champ2_classes) }}>
           {{ content.field_fichiers_cdi|field_label }}
-          {#    {% if node.field_lien_cdi is not empty %}
-            //
-            {{ content.field_lien_cdi|field_label }}
-            #}
+
         </li>
       </ul>
-      {# / Fin affichage titre section / etiquettes #}
-      {# Début affichage des valeurs de chaque champ #}
-      <ul>
-        {# //Parcourir le tableau field_NAME de l'objet $node pour lister le contenu clé/valeur #}
-        {% for key, fichier in node.field_fichiers_cdi.value %}
-          {# //Ne pas afficher les champs vides du tableau #}
-          {% if node.field_fichiers_cdi.value is not empty %}
-            <li>{{ content.field_fichiers_cdi[key] }}</li>
-          {% endif %}
-        {% endfor %}
+    {% endif %}
+    {# / endif pour titre champs #}
+    {# / Fin affichage titre section / etiquettes #}
+    {# Début affichage des valeurs de chaque champ #}
+    <ul>
+      {# //Parcourir le tableau field_NAME de l'objet $node pour lister le contenu clé/valeur #}
+      {% for key, fichier in node.field_fichiers_cdi.value %}
+        {# //Ne pas afficher les champs vides du tableau #}
+        {% if node.field_fichiers_cdi.value is not empty %}
+          <li>{{ content.field_fichiers_cdi[key] }}</li>
+        {% endif %}
+      {% endfor %}
 
-        {#
+      {#
         -----****** LIENS INTERNET *******-------
         #}
-        {% if node.field_lien_cdi.value is not empty %}
-          {# Affichage des étiquettes des champs en tant que titres #}
-          <ul>
-            <li {{ champ3_attribute.addClass(champ3_classes) }}>
-              {{ content.field_lien_cdi|field_label }}
+      {% if node.field_lien_cdi.value is not empty %}
+        {# Affichage des étiquettes des champs en tant que titres #}
+        <ul>
+          <li {{ champ3_attribute.addClass(champ3_classes) }}>
+            {{ content.field_lien_cdi|field_label }}
 
-            </li>
-          </ul>
+          </li>
+        </ul>
+      {% endif %}
+      {# //Parcourir le tableau field_NAME de l'objet $node pour lister le contenu clé/valeur #}
+      {% for key, lien in node.field_lien_cdi %}
+        {# //Ne pas afficher les champs vides du tableau #}
+        {% if node.field_lien_cdi is not empty %}
+          <li>{{ content.field_lien_cdi[key] }}</li>
         {% endif %}
-        {# //Parcourir le tableau field_NAME de l'objet $node pour lister le contenu clé/valeur #}
-        {% for key, lien in node.field_lien_cdi %}
-          {# //Ne pas afficher les champs vides du tableau #}
-          {% if node.field_lien_cdi is not empty %}
-            <li>{{ content.field_lien_cdi[key] }}</li>
-          {% endif %}
-        {% endfor %}
+      {% endfor %}
 
-      </ul>
-    {% endif %}
-    {# / endif pour bloc doc utiles #}
+    </ul>
+
   </div>
 {% endif %}
+{# / endif pour bloc doc utiles #}
