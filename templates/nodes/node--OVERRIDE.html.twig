@@ -80,6 +80,12 @@ Créer un template de champ pour pouvoir organiser la sortie HTML : field--field
     </span>
     {% endif %}
 
+        {% if node.field_to_render is not empty %}
+      <aside {{ vuebloc_attribute.addClass(vuebloc_classes) }}>
+        {{ content.field_to_render.0 }}
+      </aside>
+    {% endif %}
+    
     {% if content.field_to_render is not empty %}
     <div id="nom_champ" class="actu-nom_champ">
       {{ content.field_to_render }}
