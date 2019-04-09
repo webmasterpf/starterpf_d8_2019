@@ -163,6 +163,18 @@ body .conteneur{
             float:left;
         }
     }
+      .zone1_layout_5_7{
+             @include breakpoint(($desktop)){
+            width: span(5 of $desktopcol);
+            float:left;
+        }
+    }
+    .zone2_layout_5_7{
+             @include breakpoint(($desktop)){
+            width: span(7 of $desktopcol);
+            float:left;
+        }
+    }
     
     /*---  2 ZONES EGALES - FICHE FORMATION ---*/
     .zone1_layout_6_6{
