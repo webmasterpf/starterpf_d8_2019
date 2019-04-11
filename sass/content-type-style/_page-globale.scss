@@ -1,0 +1,233 @@
+// Regroupe le style pour le contenu des node.tpl custom
+// créer des fichiers _CONTENT-TYPE.scss et les importer dans application.scss
+/*-------------------------------------|
+|         CONTENU CUSTOM               |
+|               NODE.TPL               |
+|             PAGE GLOBALE             |
+|--------------------------------------*/
+//@include breakpoint ($mobile){}
+//@include breakpoint ($desktop){}
+//@include breakpoint ($tablet){}
+//@include breakpoint(($desktop,$tablet)){}
+//@include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){}
+/*######-------- ||| ORDRE FLEXBOX ||| --------######*/
+
+body .conteneur .conteneur-flex {
+  #zone-1.type-page-globale {
+    order: 1;
+  }
+
+  #zone-2.type-page-globale {
+    order: 2;
+  }
+
+  #zone-3.type-page-globale {
+    order: 3;
+  }
+
+  #zone-4.type-page-globale {}
+
+  #zone-5.type-page-globale {}
+  @include breakpoint ($desktop) {}
+}
+/*######-------- ||| BORDURES ||| --------######*/
+/*######-------- ||| LAYOUT SPECIFIQUE ||| --------######*/
+article.middle-content {
+  //Empêche les flottants de sortir du conteneur
+  @include clearfixsusy3;
+}
+
+#zone-illustration.type-page-globale {
+  #illustration-pleinepage {
+    min-height: 35vw;
+    max-height: 90vw;
+    overflow: hidden;
+    position: relative;
+
+    img {
+      transform: translate(0%,0%);
+      @include adaptable-img();
+    }
+    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+      min-height: 25vw;
+      max-height: 30vw;
+
+      img {
+        transform: translate(0%,-6%);
+      }
+    }
+  }
+}
+
+#zone-1.type-page-globale {
+  padding: span(0.2) 0;
+  margin: 0;
+
+  ul {
+    margin: 0;
+  }
+
+  li {
+    display: table;
+    margin: 0 0 span(0.2);
+    padding: span(0.2) 0;
+    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+      min-width: 95%;
+    }
+
+  }
+
+  ul.acces-contenu-lycee {
+    column-count: 0;
+    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+      column-count: 2;
+      column-fill: balance;
+      white-space: normal;
+      padding: span(0.1);
+    }
+
+    li {
+      @include txt-colonnes();
+      @include hack-Edge;
+      @include hack-IE;
+
+      span.illus-lycee {
+        overflow: hidden;
+
+        img {
+          transform: scale(1);
+        }
+      }
+
+      span.complement,
+      span.titre-lycee {
+        padding: span(0.1);
+      }
+
+      span {
+        @include breakpoint(($mobilelandscape,$tablet,$tabletlandscape)) {
+          max-width: span(1);
+        }
+        @include breakpoint($desktop) {
+          max-width: 7vw;
+        }
+        @include breakpoint($desktopwide) {
+          max-width: 11vw;
+          padding: 0 0 0 span(0.01);
+        }
+      }
+
+      a {
+        display: inherit;
+      }
+    }
+  }
+}
+
+#zone-2.type-page-globale {}
+/*######-------- ||| STYLE ||| --------######*/
+
+h1.titre-page-globale {
+  @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+    top: em(10px);
+    left: em(10px);
+  }
+}
+/*¤¤¤ STYLES COMMUNS ¤¤¤*/
+//https://benfrain.com/working-with-lists-and-each-loops-in-sass-with-the-index-and-nth-function/
+//https://clubmate.fi/lists-in-sass-syntax-and-use-cases-with-examples/
+//Permet de créer facilement les styles communs à des IDs ou/et classes
+$typedecontenu: type-page-globale; //2e boucle , type-page-globale2, type-page-globale3
+$zones: zone-1; //1ere boucle , zone-2, zone-3
+@each $zone in $zones {
+  @each $type in $typedecontenu {
+    ##{$zone}.#{$type} {
+      li,
+      p,
+      ul {
+        @include font-size(m); //utilisation de typey
+        padding: em(5px);
+        line-height: 1.5em;
+        list-style-position: inside;
+      }
+
+      u {
+        font-weight: bold;
+        color: $vert;
+      }
+
+      h2 {
+        @include font-size(l); //utilisation de typey
+        color: $violet;
+      }
+
+      h3 {
+        @include font-size(m); //utilisation de typey
+        color: $vert;
+      }
+
+      a {
+        text-decoration: none;
+        color: $violet;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      strong {
+        color: $vert;
+      }
+    }
+  }
+}
+/*------------------------------------
+        ¤¤¤ STYLES PROPRES ¤¤¤
+______________________________*/
+#zone-1.type-page-globale {
+  ul.acces-contenu-lycee {
+    //Style général des éléments
+    li {
+      list-style: none;
+      background: $vert;
+      @include txt-cesure();
+
+      a {
+        color: $blanc-casse;
+        text-decoration: none;
+        font-weight: bold;
+        @include font-size(l); //utilisation de typey
+      }
+span.titre-lycee {
+  color: $blanc-casse;
+  @include txt-cesure();
+  display: inline-block;
+  float: left;
+}
+
+span.illus-lycee {
+  position: relative;
+  @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+    max-width: 70%;
+    float: left;
+    content: "";
+    padding: 0;
+  }
+
+        a {
+          &:before {
+            @include image-overlay('motif_img_overlay.png', 0 0, repeat);
+          }
+        }
+      }
+    }
+  }
+}
+
+#zone-2.type-page-globale {}
+
+#zone-3.type-page-globale {}
+
+#zone-4.type-page-globale {}
+
+#zone-5.type-page-globale {}

@@ -71,7 +71,7 @@ body .conteneur{
                 padding: span(0.02);
             }
             div.form-item{
-                margin: 0 0 span(0.01) 0;   
+                margin: 0 0 span(0.01) 0;
                 @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
                     @include  txt-colonnes();//Pour bug webkit avec box shadow et columns - aléatoire
 
@@ -82,7 +82,7 @@ body .conteneur{
         ul.formations-initiales{
             padding: 0;
             @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-                column-count: 4;//adpater selon taille des blocs / images
+                column-count: 4;//adapter selon taille des blocs / images
                 column-fill: auto;
                 white-space: normal;
                 padding: span(0.1);
@@ -92,22 +92,22 @@ body .conteneur{
                 margin: span(0.1) 0;
                 overflow: hidden;
                 @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-                
+
                     @include hack-Edge;
                     @include hack-IE;
-                    
+
                 @include  txt-colonnes();
                     margin: 0 0 span(0.1) 0;
-                    
+
                     :not(img):not(a):not(.complement){
                         /*padding: span(0.1);*/
-                        
+
                     }
                     span.illustration {
                         overflow: hidden;
                         img{
                             transform: scale(1);
-                        } 
+                        }
                     }
                     span.titre-fiche, span.complement{
                         padding: span(0.1);
@@ -119,7 +119,7 @@ body .conteneur{
                 }
             }
         }
-    }   
+    }
 }
 /*######-------- ||| STYLE ||| --------######*/
 
@@ -132,7 +132,7 @@ h1.titre-page-pole{
     top: em(10px);
     left: em(20px);
     }
-}  
+}
 
 #zone-1.type-page-pole,
 #zone-2.type-page-pole,
@@ -164,7 +164,7 @@ ______________________________*/
                     }
                 }
                 &:hover:not(#edit-term-node-tid-depth-limited-All-wrapper){
-                    
+
                     @include backgroundImage(('BG/BG_Filtres_Exposes.png'), transparent, center -8.5em , no-repeat );
                     background-size:60%;
                     background-color: $violet;
@@ -217,7 +217,7 @@ ______________________________*/
                 color: $blanc-casse;
                 @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
                     @include ombrage-bloc(0em,0em,0.5em,$gris-anthracite);
-                    
+
                 }
                 span{
                     font-weight: bold;
@@ -245,7 +245,7 @@ ______________________________*/
                    position:relative;//pour overlay image
                    &:before{
                        @include image-overlay('motif_img_overlay.png', 0 0, repeat);
-                       
+
                    }
                 }
                 &.tid-1{
@@ -266,7 +266,7 @@ ______________________________*/
                 }
                 &.tid-102{
                     background: $orange-fonce;
-                    
+
                 }
                 &.tid-103{
                     background: $rose-fushia;
