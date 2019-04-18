@@ -2,3 +2,4 @@
 /.ftpconfig
 /nbproject
 /.config.cson
+/*.cson
