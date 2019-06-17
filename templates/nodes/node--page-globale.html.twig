@@ -24,16 +24,22 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
 'terme-pole',
 'term-' ~ content.field_pole_formation.0.name.value|clean_class
 ]%}
-{% set image_classes = [
-'illustration-'~ node.bundle|clean_class,
-'image--type-' ~ node.bundle|clean_class
-
-]%}
+{# Classes et IDs pour conteneur image#}
 {% set imagecontainer_classes = [
 'imagecontainer',
 'type-' ~ node.bundle|clean_class
-]
-%}
+]%}
+{% set imagecontainer_ids = [
+'zone-illustration',
+
+]%}
+{#'illusconteneur-nid-' ~ node.id  pas possible d'avoir plusieurs IDs#}
+{% set image_classes = [
+'illustration-'~ node.bundle|clean_class,
+'image--type-' ~ node.bundle|clean_class,
+'illustration-nid-' ~ node.id
+]%}
+
 {# 'zone1_layout_9_3',#}
 {% set zone1_classes = [
 'zone_layout_max_centre',
@@ -99,7 +105,7 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
   {% endif %}
 
   <!--______________ ILLUSTRATION et TITRE ________________ -->
-  <div {{ imagecontainer_attribute.addClass(imagecontainer_classes).setAttribute('id', 'zone-illustration') }}>
+  <div {{ imagecontainer_attribute.addClass(imagecontainer_classes).setAttribute('id', imagecontainer_ids) }}>
 
     {% set image_deco = content.field_image_deco_lycee | render | trim %}
     {% if image_deco or node.label is not empty %}

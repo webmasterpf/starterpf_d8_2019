@@ -118,6 +118,20 @@ $zones: zone-1, zone-2, zone-3;
           padding: span(0.02);
         }
       }
+      .videos{
+        ul{
+          list-style: none;
+        }
+        iframe{
+          @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+          max-height: 90vh;
+          max-width: 60vw;
+          margin: 0 auto;
+          padding: span(0.02);
+          border: em(3px) solid $vert;
+        }
+        }
+      }
     }
   }
 }

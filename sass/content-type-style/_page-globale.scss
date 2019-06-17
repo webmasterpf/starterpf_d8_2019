@@ -55,13 +55,29 @@ article.middle-content {
       img {
         transform: translate(0%,-6%);
       }
+      // Position différente de l'image selon le nid.
+      &.illustration-nid-133{
+        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+          img {
+            transform: translate(0%,-37%);
+          }
+        }
+      }
+      &.illustration-nid-526{ //PAge rubrique lycée
+        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+          img {
+            transform: translate(0%,-31%);
+          }
+        }
+      }
     }
   }
 }
 
+
 #zone-1.type-page-globale {
   padding: span(0.2) 0;
-  margin: 0;
+
 
   ul {
     margin: 0;
@@ -72,7 +88,9 @@ article.middle-content {
     margin: 0 0 span(0.2);
     padding: span(0.2) 0;
     @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
-      min-width: 95%;
+      li::not(ul.liste-vdl-lycee){
+      min-width: 95%; //non appliqué sur éléments des listes VDL, géré par page-vdl-liste.scss
+      }
     }
 
   }

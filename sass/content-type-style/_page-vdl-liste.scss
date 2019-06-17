@@ -61,6 +61,7 @@ body .conteneur {
         }
     }
     aside.liste-vdl{
+
         .bef-exposed-form{
             @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
                 column-count: 4;
@@ -69,7 +70,7 @@ body .conteneur {
                 padding: span(0.02);
             }
             div.form-item{
-                margin: 0 0 span(0.01) 0;   
+                margin: 0 0 span(0.01) 0;
                 @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
                     @include  txt-colonnes();
 
@@ -100,7 +101,8 @@ body .conteneur {
                         @include hack-IE;
                         @include  txt-colonnes();
                         /* Définir le nombre de colonnes via flex*/
-                        flex: 1 0 17%; // 21% = 4 col , 17% = 5 col
+                        flex: 0 0 18%; // 21% = 4 col , 18% = 5 col
+                        
                         margin: 0 span(0.1) span(0.1) 0;
                         display: inline-block;
                         width: span(1.8);
@@ -128,7 +130,7 @@ h1.titre-page-globale{
         top: em(10px);
         left: em(10px);
     }
-}  
+}
 /*¤¤¤ STYLES COMMUNS ¤¤¤*/
 
 #zone-1.type-page-globale,
@@ -143,7 +145,7 @@ h1.titre-page-globale{
     u{
         font-weight: bold;
         color: $vert;
-        
+
     }
     h2{
         @include font-size(l);//utilisation de typey
@@ -239,6 +241,7 @@ ______________________________*/
             li{
                 list-style: none;
                 color: $blanc-casse;
+                background: $gris-clair-moyen;
                 @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
                     @include ombrage-bloc(0em,0em,0.5em,$gris-anthracite);
 
@@ -251,17 +254,17 @@ ______________________________*/
                     }
                 }
                 &.tid-15{//Sortie-Actions
-                  
+
                     background: $jaune;
                     *{
                         color: $gris-anthracite;//cas particulier du fond clair
                     }
                 }
                 &.tid-14{//Partenaires
-                
+
                     background: $violet;
                 }
-         
+
                 a{
                     color: $blanc-casse;
                     text-decoration: none;
@@ -296,7 +299,7 @@ ______________________________*/
                     a {//uniquement les "a" sur l'image
                         position:relative;//pour overlay image
                         &:before{
-                            
+
                             @include image-overlay('motif_img_overlay.png', 0 0, repeat);
                         }
 

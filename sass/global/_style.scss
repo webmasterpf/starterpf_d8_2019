@@ -12,15 +12,21 @@
     @include breakpoint ($desktop){
         display: block;
         padding: 0 0 0 0.3em;
-        color: $orange-fonce;
+        color: $vert;
         text-decoration: none;
         @include font-size(s);//taille avec typey
 //        background: chocolate;//supprimer en PROD
 li{
     list-style: none;
+    float: left;
+    margin: 0 em(5px);
+    ::after{
+      content: ">>";
+      margin: 0 0 0 em(5px);
+    }
 }
         a {
-            color: $orange-fonce;
+            color: $vert;
             text-decoration: none;
               font-size: small;
             &:hover {
@@ -49,7 +55,7 @@ table{
             border:0;
             .odd,&:odd{
                 background: $gris-clair;
-                
+
             }
             .even,&:even{
                 background: $gris-clair-moyen;

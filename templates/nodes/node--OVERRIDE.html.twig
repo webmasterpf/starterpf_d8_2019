@@ -1,12 +1,12 @@
 <!-- TEMPLATE DE NODE CUSTOM - TYPE DE CONTENU -->
-{# Create classes array. The 'node' class is required for contextual edit links. 
+{# Create classes array. The 'node' class is required for contextual edit links.
 Permet d'ajouter des classes dynamiques ou non aux éléments du markup
 #}
 {% set classes = [
 'node',
 'node--type-' ~ node.bundle|clean_class,
 'node-id-' ~ node.id,
-'champ-' ~ node.field_NAME.fieldDefinition.name | replace({"_" : "-"}), 
+'champ-' ~ node.field_NAME.fieldDefinition.name | replace({"_" : "-"}),
 ] %}
 
 {# BEM inspired class syntax: https://en.bem.info/
@@ -20,126 +20,133 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
 ] %}
 #}
 
-<article{{ attributes.addClass(classes) }}>
+<article{{ attributes.addclass(classes) }}>
 
- {% include directory ~ '/templates/includes/inc_header_node.html.twig' %}   
+  {% include directory ~ '/templates/includes/inc_header_node.html.twig' %}
 
   <div{{ content_attributes.addClass('content') }}>
-      {# Affichage du contenu en excluant des champs #}
+    {# Affichage du contenu en excluant des champs #}
     {{ content|without('links') }}
-      
+
     {# Affichage du contenu du champ body uniquement #}
     {{ content.body }}
-    
-  <!-- Region Custom ajoutée à settings -->
-      {# Ajout d'une région custom #}
-      {% if node_col_1 is defined  %}
-  <div{{ node_col_1.addClass('region-standard1') }}>
-      {{ node_col_1 }}
-    </div>
-{% endif %}
 
-{#
+    <!-- Region Custom ajoutée à settings -->
+    {# Ajout d'une région custom #}
+    {% if node_col_1 is defined %}
+      <div{{ node_col_1.addClass('region-standard1') }}>
+        {{ node_col_1 }}
+      </div>
+    {% endif %}
+
+    {#
 Affichage de diverses valeurs issues des champs
 https://blog.usejournal.com/getting-drupal-8-field-values-in-twig-22b80cb609bd
 
 Affichage de l'étiquette d'un champ custom avec test
 Créer un template de champ pour pouvoir organiser la sortie HTML : field--field-name.html.twig
 #}
-{% if node.field_myfield is not empty  %}
-{{ node.field_myfield.fieldDefinition.label }}
-{# Affichage du contenu d'un champ custom #}
-{{ node.name_field.value|raw }} 
-{% endif %}
-
-{# Affichage de diverses valeurs issues des champs, avec le module https://www.drupal.org/project/twig_field_value #}
-{{ content.field_name|field_label }}
-
-{# Plutôt utiliser l'objet node que content car il n'est pas soumis au type de sortie d'affichage #}
-{{ node.field_name|field_label }}
-
-{# Affichage du contenu des balises titre ou alt d'une image #}
-{{ node.field_image.title }}
-{{ node.field_image.alt }}
-{{ node.field_link.uri }}
-{{ node.field_link.title }} 
-      
-  <h2> Affichage champ pour upload fichiers : méthode node </h2>
-
-  {{ node.actu_association_revue_presse.field_fichier_joint.value }}  
-  {{ node.field_fichier_joint.value }}
-  
-{{ content[‘#node’].nid.value }}
-
-
-{# Affichage conditionnel du contenu d'un champ image - technique possible pour test sur autre champ #}
-    {% set image_deco = content.field_image_deco_lycee|render|trim %}
-    {% if  image_deco is not empty %}
-        <span {{image_attribute.addClass(image_classes) }}>
-                {{ content.field_image_deco_lycee}}
-    </span>
+    {% if node.field_myfield is not empty %}
+      {{ node.field_myfield.fieldDefinition.label }}
+      {# Affichage du contenu d'un champ custom #}
+      {{ node.name_field.value|raw }}
     {% endif %}
 
-        {% if node.field_to_render is not empty %}
+    {# Affichage de diverses valeurs issues des champs, avec le module https://www.drupal.org/project/twig_field_value #}
+    {{ content.field_name|field_label }}
+
+    {# Plutôt utiliser l'objet node que content car il n'est pas soumis au type de sortie d'affichage #}
+    {{ node.field_name|field_label }}
+
+    {# Affichage du contenu des balises titre ou alt d'une image #}
+    {{ node.field_image.title }}
+    {{ node.field_image.alt }}
+    {{ node.field_link.uri }}
+    {{ node.field_link.title }}
+
+    <h2>
+      Affichage champ pour upload fichiers : méthode node
+    </h2>
+
+    {{ node.actu_association_revue_presse.field_fichier_joint.value }}
+    {{ node.field_fichier_joint.value }}
+
+    {{ content[‘#node’].nid.value }}
+
+    {# Affichage conditionnel du contenu d'un champ image - technique possible pour test sur autre champ #}
+    {% set image_deco = content.field_image_deco_lycee | render | trim %}
+    {% if image_deco is not empty %}
+      <span {{image_attribute.addClass(image_classes) }}>
+        {{ content.field_image_deco_lycee}}
+      </span>
+    {% endif %}
+
+    {% if node.field_to_render is not empty %}
       <aside {{ vuebloc_attribute.addClass(vuebloc_classes) }}>
         {{ content.field_to_render.0 }}
       </aside>
     {% endif %}
-    
+
     {% if content.field_to_render is not empty %}
-    <div id="nom_champ" class="actu-nom_champ">
-      {{ content.field_to_render }}
-    </div><!-- /.nom_champ -->
-  {% endif %}  
-  
-  
-  {# Lister les valeurs d'un champ multivaleur : fichiers, liens..
+      <div id="nom_champ" class="actu-nom_champ">
+        {{ content.field_to_render }}
+      </div>
+      <!-- /.nom_champ -->
+    {% endif %}
+
+    {# Lister les valeurs d'un champ multivaleur : fichiers, liens..
   Print the image field in the node template like any other field:
-  
+
   #}
-  
-{{ content.field_gallery_images }}
-{#And then use a field twig to loop through multiple field items: field--field-gallery-images.html.twig"#}
 
-<div class="row expanded">
-  {% for item in items %}
-    <div class="gallery-image-item">{{ item.content }}</div>
-  {% endfor %}
-</div>
-  
-      {# Ajout d'une région custom via un include avec test non vide#}
-      {% include '@THEME_NAME/templates/includes/regions_inc/inc_region_zone_1.html.twig' %}
-      
-      
-      {# Afficher un terme de taxonomie contenu dans le node - les filtres sont pour un usage comme classe#}
-      To get the field value from a field in a taxonomy term that is referenced in the node:
+    {{ content.field_gallery_images }}
+    {#And then use a field twig to loop through multiple field items: field--field-gallery-images.html.twig"#}
 
-      {{ content.field_pole_formation[0]['#title'] |clean_class | replace({"^" : ""}), }}
-      
-      
-{{ node.field_example.entity.field_desired_field.value }}
-If you want to render a formatted output, use either the ui to configure a custom view mode or use the module Twig Tweak:
+    <div class="row expanded">
+      {% for item in items %}
+        <div class="gallery-image-item">{{ item.content }}</div>
+      {% endfor %}
+    </div>
 
-{% set tid = node.field_example.target_id %}
-{% if tid %}
-  {{ drupal_field('field_desired_field', 'taxonomy_term', tid) }}
-{% endif %}
-      
-Autre méthode pour afficher un terme de taxo (cliquable)
- {{ content.field_NAME[0] }}
-  {% for key, value in content.field_NAME %}
-         {% if key > 0 %}
-             {{ content.field_NAME[key] }}
-          {% endif %}
-  {% endfor %}
-      
-      
-  </div><!-- /.content -->
+    {# Ajout d'une région custom via un include avec test non vide#}
+    {% include '@THEME_NAME/templates/includes/regions_inc/inc_region_zone_1.html.twig' %}
+
+    {# Afficher un terme de taxonomie contenu dans le node - les filtres sont pour un usage comme classe#}
+    To get the field value from a field in a taxonomy term that is referenced in the node:
+
+    {{ content.field_pole_formation[0]['#title'] |clean_class | replace({"^" : ""}), }}
+
+    {{ node.field_example.entity.field_desired_field.value }}
+    If you want to render a formatted output, use either the ui to configure a custom view mode or use the module Twig Tweak:
+
+    {% set tid = node.field_example.target_id %}
+    {% if tid %}
+      {{ drupal_field('field_desired_field', 'taxonomy_term', tid) }}
+    {% endif %}
+    Terme de taxonomie avec son lien
+    {{ content.field_NAME.0 }}
+    Terme de taxonomie sans son lien: le terme brut
+    {{ content.field_NAME.0['#title'] }}
+    l'URL relative (non cliquable)
+    {{ content.field_NAME.0['#url'] }}
+
+    Autre méthode pour afficher un terme de taxo (cliquable)
+    {{ content.field_NAME[0] }}
+    {% for key, value in content.field_NAME %}
+      {% if key > 0 %}
+        {{ content.field_NAME[key] }}
+      {% endif %}
+    {% endfor %}
+
+  </div>
+  <!-- /.content -->
 
   {% if content.links %}
     <div class="links">
       {{ content.links }}
-    </div><!-- /.links -->
+    </div>
+    <!-- /.links -->
   {% endif %}
 
-</article><!-- /.node -->
+</article>
+<!-- /.node -->

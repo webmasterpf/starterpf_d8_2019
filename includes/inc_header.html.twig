@@ -1,118 +1,103 @@
- <head>
-      
-    
-    <head-placeholder token="{{ placeholder_token }}">
+<head>
+
+  <head-placeholder token="{{ placeholder_token }}">
     <title>{{ head_title|safe_join(' | ') }}</title>
-    
-    
-        {#<!-- Meta RWD -->#}
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
- {#<!-- stats-SEO -->#}
-    <meta name="google-site-verification" content="msBEDS9QaIIEpzPS6_Wi-HOzKWr1Kw0dageOmF-4rbs" />
-    <meta name="y_key" content="11677ed5e2db4f15" />
-    <meta name="msvalidate.01" content="E2114447554473259DE0996EF11B87E0" />
+
+    {#<!-- Meta RWD -->#}
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    {#<!-- stats-SEO -->#}
+    <meta name="google-site-verification" content="msBEDS9QaIIEpzPS6_Wi-HOzKWr1Kw0dageOmF-4rbs"/>
+    <meta name="y_key" content="11677ed5e2db4f15"/>
+    <meta name="msvalidate.01" content="E2114447554473259DE0996EF11B87E0"/>
     {#  Code pour scan par https://detectify.com #}
-    <meta name="detectify-verification" content="8497102470e46552eeca2eb8a07b7910" />
-    
-    {# chargement des CSS #}      
+    <meta name="detectify-verification" content="8497102470e46552eeca2eb8a07b7910"/>
+
+    {# chargement des CSS #}
     <css-placeholder token="{{ placeholder_token }}">
-    {#  IMPORTANT : charger les librairies externes avant les scripts !! #}      
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"> </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-    <script src="https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
-    
-    <js-placeholder token="{{ placeholder_token }}">
-        
-        
-  </head>
-    {% set classes = [] %}
-  {% for role in user.roles %}
-    {% set classes = classes|merge(['role--' ~ role|clean_class]) %}
-  {% endfor %}
+      {#  IMPORTANT : charger les librairies externes avant les scripts !! #}
+      <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+      <script src="https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
 
-  {% set sidebar_first = page.sidebar_first|render %}
-  {% set sidebar_second = page.sidebar_second|render %}
-  <body{{ attributes.addClass(classes,
-    not is_front ? 'with-subnav',
-    sidebar_first ? 'sidebar-first',
-    sidebar_second ? 'sidebar-second',
-    (sidebar_first and not sidebar_second) or (sidebar_second and not sidebar_first) ? 'one-sidebar',
-    (sidebar_first and sidebar_second) ? 'two-sidebars',
-    (not sidebar_first and not sidebar_second) ? 'no-sidebar'
-  ) }}>
+      <js-placeholder token="{{ placeholder_token }}"></head>
+      {% set classes = [] %}
+      {% for role in user.roles %}
+        {% set classes = classes|merge(['role--' ~ role|clean_class]) %}
+      {% endfor %}
 
- 
- <!-- ______________________ PAGE TOP BANDEAU _______________________ -->
+      {% set sidebar_first = page.sidebar_first | render %}
+      {% set sidebar_second = page.sidebar_second | render %}
+      <body{{ attributes.addClass(classes, not is_front ? 'with-subnav', sidebar_first ? 'sidebar-first', sidebar_second ? 'sidebar-second', (sidebar_first and not sidebar_second) or (sidebar_second and not sidebar_first) ? 'one-sidebar', (sidebar_first
+      and sidebar_second) ? 'two-sidebars', (not sidebar_first and not sidebar_second) ? 'no-sidebar' ) }}>
 
-<!-- ______________________ CONTENEUR _______________________ -->
-     <section class="conteneur">
-  {# #}
-         {% include directory ~ '/includes/inc_bandeau_off_canvas_susy.html.twig' %}   
-     {# #}
-    <!-- ______________________ HEADER _______________________ -->
-    <header id="header">
+        <!-- ______________________ PAGE TOP BANDEAU _______________________ -->
 
+        <!-- ______________________ CONTENEUR _______________________ -->
+        <section class="conteneur">
+          {# #}
+          {% include directory ~ '/includes/inc_bandeau_off_canvas_susy.html.twig' %}
+          {# #}
+          <!-- ______________________ HEADER _______________________ -->
+          <header id="header">
 
-        <div class="headHaut">
+            <div class="headHaut">
 
-            <div class="logoHead">
-                {% if  page.logo is not empty %}
-                    <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" class="logo"><img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>"/></a>
+              <div class="logoHead">
+                {% if page.logo is not empty %}
+                  <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" class="logo"><img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>"/></a>
                 {% endif %}
-            </div>
-      
-{#
+              </div>
+
+              {#
 /**
 positionner le bloc fournissant le menu dans cette région, pour v2018,le bloc Menu Général suffit (avec classe mobilenav) + bloc avec JS (sans editeur)
 */
 #}
-                {%  if  page.menuDyn is not empty %}
-<nav class="menuOver">    
-          {{ page.menuDyn}}
-    
-<!--     <a href="javascript:void(0)" class="icon">
-<div class="hamburger">
-  <div class="menui top-menu"></div>
-  <div class="menui mid-menu"></div>
-  <div class="menui bottom-menu"></div>
-</div>
-</a>-->
-    
-</nav>
-           
-            <!-- /menuHead  -->        
-    {% endif %}
+              {% if page.menuDyn is not empty %}
+                <nav class="menuOver">
+                  {{ page.menuDyn}}
 
-        
+                  <!-- <a href="javascript:void(0)" class="icon"> <div class="hamburger"> <div class="menui top-menu"></div> <div class="menui mid-menu"></div> <div class="menui bottom-menu"></div> </div> </a>-->
 
-           
+                </nav>
 
-        </div><!-- /headHaut -->
-        <div class="headBas">
+                <!-- /menuHead -->
+              {% endif %}
 
-            {%  if  page.site_slogan is not empty %}
+            </div>
+            <!-- /headHaut -->
+            <div class="headBas">
+
+              {% if page.site_slogan is not empty %}
                 <div class="site-slogan">
-            {{ page.site_slogan}}
-                </div><!-- /site-slogan -->
-            {% endif %}
-                
-            {%  if  page.mission is not empty %}
+                  {{ page.site_slogan}}
+                </div>
+                <!-- /site-slogan -->
+              {% endif %}
+
+              {% if page.mission is not empty %}
                 <div class="objectif">
-                    {{ page.mission}}
-                </div><!-- /site-mission -->
-            {% endif %}
+                  {{ page.mission}}
+                </div>
+                <!-- /site-mission -->
+              {% endif %}
 
-
-            <div class="headSearch">
-                {%  if  page.search_box is not empty %}
-                {{ page.search_box}}
+              <div class="headSearch">
+                {% if page.search_box is not empty %}
+                  {{ page.search_box}}
                 {% endif %}
-            </div><!-- /recherche -->
-            
-            
+              </div>
+              <!-- /recherche -->
 
-        </div><!-- /headBas -->
-   
-       
-    </header> <!-- /header -->
+            </div>
+            <!-- /headBas -->
+            <div class="fil_ariane">
+              {% if page.ariane is not empty %}
+                {{page.ariane}}
+              {% endif %}
+            </div>
+            <!-- /fild_ariane -->
+
+          </header>
+          <!-- /header -->

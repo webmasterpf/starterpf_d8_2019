@@ -10,14 +10,14 @@ body .conteneur{
 
 .bx-wrapper .bx-controls-direction a{
     z-index: 888;//pour écraser valeur donnée par défaut de 9999
-    
+
 }
 .galerie-vdl {
     .bx-wrapper{
     margin: 0 auto;
     width: 95%;
     a{
-      
+
     }
     li{
         padding: 0;
@@ -46,7 +46,7 @@ body .conteneur{
             left: span(0.2);
             width: 80%;
             //couleur fond des captions
-            @include backgroundRGBA($orange-fonce, 0.85);
+            @include backgroundRGBA($vert, 0.85);
             margin: 0 auto;
             span{
                  color: white;
@@ -61,7 +61,7 @@ body .conteneur{
         li,img{
             margin: 0;
         }
-        
+
     }
 }
 

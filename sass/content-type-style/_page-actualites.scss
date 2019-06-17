@@ -69,7 +69,7 @@ body .conteneur {
                 padding: span(0.02);
             }
             div.form-item{
-                margin: 0 0 span(0.01) 0;   
+                margin: 0 0 span(0.01) 0;
                 @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
                     @include  txt-colonnes();
 
@@ -96,7 +96,7 @@ body .conteneur {
                     margin: span(0.1) 0;
                     @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
                           /* Définir le nombre de colonnes via flex*/
-                        flex: 1 0 17%; // 21% = 4 col , 17% = 5 col
+                        flex: 0 0 18%; // 21% = 4 col , 18% = 5 col
                         /*@include hack-Edge;*/
                         @include hack-IE;
                         @include  txt-colonnes();
@@ -117,7 +117,15 @@ body .conteneur {
                 }
             }
         }
-
+      footer{//Lien vers archives contenu dans le footer de la vue
+        width: span(5);
+        margin: 0 auto;
+        a{
+          display: block;
+          width: span(5);
+          margin: 0 auto;
+        }
+      }
     }
 }
 /*######-------- ||| STYLE ||| --------######*/
@@ -127,7 +135,7 @@ h1.titre-page-actualites{
         top: em(10px);
         left: em(10px);
     }
-}  
+}
 /*¤¤¤ STYLES COMMUNS ¤¤¤*/
 
 #zone-1.node--type-page-actualites,
@@ -231,6 +239,20 @@ ______________________________*/
                 visibility: hidden;
             }
         }
+        footer{//Lien vers archives contenu dans le footer de la vue
+          a{
+            color: $vert;
+            @include font-size(l);//utilisation de typey
+            text-decoration: none;
+            text-align: center;
+            box-shadow: $violet 0px em(-3px) 0px inset;
+            transition: box-shadow 0.3s ease-in-out 0s;
+            &:hover{
+                  box-shadow: $violet 0px em(-22px) 0px inset;
+                  color: $blanc-casse;
+            }
+          }
+        }
         //Style des éléments de la vue
         ul.actu-lycee{
             li{
@@ -250,7 +272,7 @@ ______________________________*/
                 &.tid-20{
                     background: $violet;
                 }
-         
+
                 a{
                     color: $blanc-casse;
                     text-decoration: none;
@@ -280,7 +302,7 @@ ______________________________*/
                         @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
                         transform: translate(-17% );
                          }
-                        
+
                     }
                     >a {//uniquement les "a" sur l'image
                         position:relative;//pour overlay image

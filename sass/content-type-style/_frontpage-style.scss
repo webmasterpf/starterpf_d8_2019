@@ -111,7 +111,7 @@ ul.rubriques-administratives{
             cursor: pointer;
         }
     }}
-    
+
 ul.rubriques-speciales{
         //pas besoin de fixer un display en mobile, vertical automatique - mobile first
         max-width: span(11);
@@ -128,7 +128,7 @@ ul.rubriques-speciales{
             margin-left: span(3.05 wide);//push - si 4 items alors 2; si 3 items alors 3.5
         }
         @include breakpoint($tablet){
-            margin: span(0.5) span(0.2);    
+            margin: span(0.5) span(0.2);
         }
         @include breakpoint(($mobilelandscape,$tabletlandscape)){
             display:inline-block;
@@ -166,7 +166,7 @@ ul.rubriques-speciales{
             margin-left: span(3.05 wide);//push - si 4 items alors 2; si 3 items alors 3.5
         }
         @include breakpoint($tablet){
-            margin: span(0.5) span(0.2);    
+            margin: span(0.5) span(0.2);
         }
         @include breakpoint(($mobilelandscape,$tabletlandscape)){
             display:inline-block;
@@ -236,7 +236,7 @@ body .conteneur {
                     max-width: 30%;
                 }
                 @include breakpoint(($tablet,$tabletlandscape)){
-                    max-width: 25%;    
+                    max-width: 25%;
 
                 }
 
@@ -345,8 +345,9 @@ body .conteneur {
         p{
             line-height: 0;
         }
-        div#block-videopresentationdulycee{ //video en page d'accueil'
-                                            text-align: center;
+        iframe{ //video en page d'accueil - centrage
+          display: block;
+          margin: 0 auto;
         }
         ul.rubriques-administratives{
             list-style: none;
@@ -368,7 +369,7 @@ body .conteneur {
                     width: 100%;
                     max-height: 85vw;
                     @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-                        max-height: 14.5vw;    
+                        max-height: 14.5vw;
                     }
                     &:hover{
                         filter: grayscale(100%);
@@ -434,11 +435,9 @@ body .conteneur {
                 margin:0 auto;
                 padding: span(0.02);
                 @include breakpoint(($desktop,$desktopwide,$tabletlandscape)){
-                    /*                    column-count: 6;
-                                        column-fill: balance;
-                                        white-space: normal;*/
                     display: flex;
                     flex-flow: row;
+                    flex-wrap: wrap;//pour répartir les items sur plusieurs lignes
                 }
                 @include breakpoint(($mobilelandscape,$tablet)){
                     column-count: 3;
@@ -447,14 +446,13 @@ body .conteneur {
                 }
                 li{
                     list-style: none;
-
                     margin: 0 0 span(0.2) span(0.2);
                     float: none;
-
                     @include txt-cesure;
                     @include txt-colonnes;
-
                     @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+                        flex: 1 0 25%;
+                        //permet de répartir les items sur plusieurs lignes en fixant une largeur maxi
 
                         @include hack-Edge;
                         @include hack-IE;
@@ -471,7 +469,7 @@ body .conteneur {
                         @include txt-ellipse;
                         @include txt-cesure(break-word);
                         @include breakpoint(($mobilelandscape,$tablet)){
-                            @include font-size(s);//utilisation de typey    
+                            @include font-size(s);//utilisation de typey
                         }
                         &:hover{
                             background: $vert;//Changer la couleur du BG hover ici
@@ -515,7 +513,7 @@ body .conteneur {
                         text-align:center;
                         @include breakpoint(($desktop,$desktopwide,
                         $tablet-hd,$tabletlandscape-hd)){
-                            min-height: 11vw;          
+                            min-height: 11vw;
                             min-width: 11vw;
                             max-width: 11vw;
                             max-height: 11vw;
@@ -547,17 +545,17 @@ body .conteneur {
                             background-size: cover;
 
                             min-width: inherit;
-                            min-height:  inherit; 
+                            min-height:  inherit;
                             transition-duration: 0.0s;//Permet de jouer sur un effet de slide
                             text-align: center;
                             @include txt-cesure(break-word);
                             /*  Forme arrondie pour les boutons - pb avec taille sur mobile
-                        
+
                         background-clip: padding-box;
                                                 shape-outside: polygon(0 0, 100% 0, 100% 100%, 30% 100%);
                                                 clip-path: circle(50% at 50% 50%);*/
                             /* Coins arrondis pour les boutons - passe mieux sur mobile*/
-                            @include arrondis(4em);  
+                            @include arrondis(4em);
                             background-color: $vert; //Couleur de fond des boutons
 
                             @include breakpoint(($desktop,$desktopwide)){
@@ -568,11 +566,11 @@ body .conteneur {
 
                             }
                             @include breakpoint(($mobilelandscape,$mobilelandscape-galaxyShd)){
-                                @include arrondis(2em);      
+                                @include arrondis(2em);
                                 @include font-size(xxs);//utilisation de typey
                             }
                             @include breakpoint(($tablet,$tabletlandscape,$tablet-hd,$tabletlandscape-hd)){
-                                @include arrondis(3em);  
+                                @include arrondis(3em);
                                 @include font-size(xs);//utilisation de typey
                             }
                             &:hover{
@@ -606,7 +604,7 @@ body .conteneur {
                                  @include backgroundImage(('SVG/bg_acces_contact_blanc_transp.svg'),$violet, 31% 58%, no-repeat);
                                  background-size: 400%;
                              }
-                    }  
+                    }
 
                 }
 
@@ -694,7 +692,7 @@ body .conteneur {
 
             }
 
-            img { 
+            img {
                 @include adaptable-img();
                 contain:content;
 
@@ -722,7 +720,7 @@ body .conteneur {
 
 
     @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){/*    //Dimensions pour les pc
-        //Taille du conteneur du groupe    
+        //Taille du conteneur du groupe
         .annonce_1{}
         .annonce_2{}
         .HPDiapo{}
@@ -738,4 +736,4 @@ body .conteneur {
         .acces_rubriques{}
         .logo_partenaires{}
     }
-}    
+}
