@@ -1,5 +1,4 @@
-
-{# Create classes array. The 'node' class is required for contextual edit links. 
+{# Create classes array. The 'node' class is required for contextual edit links.
 Permet d'ajouter des classes dynamiques ou non aux éléments du markup
 #}
 {% set classes = [
@@ -16,7 +15,7 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
 {% set vuebloc_attribute = create_attribute() %}
 
 {% set titre_classes = [
-'titre_overlay', 
+'titre_overlay',
 'titre_page',
 'titre-' ~ node.bundle|clean_class
 ]
@@ -62,10 +61,10 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
   node.bundle|clean_class ~ '__title'
 ] %}
 #}
-<!--______________NODE TPL POUR WEBFORM.TPL CUSTOM  ________________ -->
-<article{{ attributes.addClass(classes).setAttribute('id', 'node-'~node.id) }}>
+<!--______________NODE TPL POUR WEBFORM.TPL CUSTOM ________________ -->
+<article{{ attributes.addclass(classes).setattribute('id', 'node-'~node.id) }}>
 
-    {% if title_prefix or title_suffix or display_submitted or unpublished or page is empty and label %}
+  {% if title_prefix or title_suffix or display_submitted or unpublished or page is empty and label %}
     <header>
       {{ title_prefix }}
       {% if not page and label %}
@@ -78,7 +77,10 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
       {% if display_submitted %}
         <div class="submitted">
           {{ author_picture }}
-          {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
+          {% trans %}Submitted by
+          {{ author_name }}
+          on
+          {{ date }}{% endtrans %}
           {{ metadata }}
         </div>
       {% endif %}
@@ -88,47 +90,49 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
       {% endif %}
     </header>
   {% endif %}
-    
-    <!--______________ ILLUSTRATION et TITRE ________________ -->
-    <div {{ imagecontainer_attribute.addClass(imagecontainer_classes).setAttribute('id', 'zone-illustration') }}>
-          
-    {% set image_deco = content.field_image_deco_lycee|render|trim %}
-    {% if  image_deco or node.label is not empty %}
-         <div  {{image_attribute.setAttribute('id', 'illustration-pleinepage').addClass(image_classes) }}>
-                  <h1 {{ titre_attribute.addClass(titre_classes) }}>{{node.label}}</h1>
-                  {{ content.field_image_deco_lycee.0}}
-            </div>
-        {% endif %}
-    </div><!-- /zone-illustration -->
-    
+
+  <!--______________ ILLUSTRATION et TITRE ________________ -->
+  <div {{ imagecontainer_attribute.addClass(imagecontainer_classes).setAttribute('id', 'zone-illustration') }}>
+
+    {% set image_deco = content.field_illus_lycee | render | trim %}
+    {% if image_deco or node.label is not empty %}
+      <div {{image_attribute.setAttribute('id', 'illustration-pleinepage').addClass(image_classes) }}>
+        <h1 {{ titre_attribute.addClass(titre_classes) }}>{{node.label}}</h1>
+        {{ content.field_illus_lycee.0}}
+      </div>
+    {% endif %}
+  </div>
+  <!-- /zone-illustration -->
+
   <!--______________ZONE 1________________ -->
   <div {{ zone1_attribute.addClass(zone1_classes).setAttribute('id', 'zone-1') }}>
-  <div{{ content_attributes.addClass('content') }}>
-    
-    {{ content.body }}
-  </div><!-- /.content -->
-</div> <!-- /zone-1-->
+    <div{{ content_attributes.addclass('content') }}>
+
+      {{ content.body }}
+    </div>
+    <!-- /.content -->
+  </div>
+  <!-- /zone-1-->
 
   <!--______________ZONE 2________________ -->
   <div {{ zone2_attribute.addClass(zone2_classes).setAttribute('id', 'zone-2') }}>
-        
-  
-    {% if node.field_inserer_formulaire is not empty %}
+
+    {% if node.field_inserer_un_formulaire is not empty %}
       <aside {{ vuebloc_attribute.addClass(vuebloc_classes) }}>
-        {{ content.field_inserer_formulaire.0 }}
+        {{ content.field_inserer_un_formulaire.0 }}
       </aside>
     {% endif %}
-      
-      
-      {% include directory ~ '/includes/dedicates_inc/inc_plycee_doc_liens.html.twig' %}   
-  
-  
-  
-  {% if content.links %}
-    <div class="links">
-      {{ content.links }}
-    </div><!-- /.links -->
-  {% endif %}
-  </div><!-- /zone-2 -->
-  
-</article><!-- /.node -->
+
+    {% include directory ~ '/includes/dedicates_inc/inc_plycee_doc_liens.html.twig' %}
+
+    {% if content.links %}
+      <div class="links">
+        {{ content.links }}
+      </div>
+      <!-- /.links -->
+    {% endif %}
+  </div>
+  <!-- /zone-2 -->
+
+</article>
+<!-- /.node -->

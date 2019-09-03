@@ -4,7 +4,7 @@
 |--------------------------------------*/
 //Changer le nom du bloc en fonction du thème
 body.page-search-node{
-#block-celony-d8-2019-content{
+#block-gasquet-d8-2019-content{
   @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
    width: span(10 of $desktopcol);
   margin-left: span(1 wide);//push
@@ -17,7 +17,7 @@ body.page-search-node{
     li.pager__item {
       display: inline-block;
       a{
-        color: $vert;
+        color: $rose-fushia;
       }
     }
     li.pager__item--active{
@@ -32,7 +32,7 @@ body.page-search-node{
   }
   h2{
     color: $blanc-casse;
-    background: $vert;
+    background: $rose-fushia;
     @include font-size(l); //utilisation de typey
   }
   .search-results{
@@ -40,7 +40,7 @@ body.page-search-node{
   li{
     h3.title {
       a{
-        color: $vert;
+        color: $rose-fushia;
         @include font-size(l); //utilisation de typey
         &:hover{
           color: $violet;

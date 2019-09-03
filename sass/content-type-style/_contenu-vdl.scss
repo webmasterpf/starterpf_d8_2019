@@ -12,27 +12,27 @@
 /*######-------- ||| ORDRE FLEXBOX ||| --------######*/
 
 body .conteneur .conteneur-flex {
-  #zone-1.type-page-europe {
+  #zone-1.type-contenu-vdl {
     order: 2;
   }
 
-  #zone-2.type-page-europe {
+  #zone-2.type-contenu-vdl {
     order: 1;
   }
 
-  #zone-3.type-page-europe {
+  #zone-3.type-contenu-vdl {
     order: 3;
   }
   @include breakpoint ($desktop) {
-    #zone-1.type-page-europe {
+    #zone-1.type-contenu-vdl {
       order: 1;
     }
 
-    #zone-2.type-page-europe {
+    #zone-2.type-contenu-vdl {
       order: 2;
     }
 
-    #zone-3.type-page-europe {
+    #zone-3.type-contenu-vdl {
       order: 3;
     }
   }
@@ -41,11 +41,11 @@ body .conteneur .conteneur-flex {
 
 body .conteneur {
   @include breakpoint ($desktop) {
-    #zone-2.type-page-europe {}
+    #zone-2.type-contenu-vdl {}
   }
 }
 /*######-------- ||| LAYOUT SPECIFIQUE ||| --------######*/
-$typedecontenu: type-page-europe,type-page-sorties-actions, type-page-partenaires;
+$typedecontenu: type-contenu-vdl ;
 $zonesimg: zone-illustration;
 @each $zone in $zonesimg {
   @each $type in $typedecontenu {
@@ -72,8 +72,8 @@ $zonesimg: zone-illustration;
     }
   }
 }
-$typedecontenu: type-page-europe, type-page-sorties-actions, type-page-partenaires;
-$zones: zone-1, zone-2, zone-3;
+$typedecontenu: type-contenu-vdl, type-page-sorties-actions, type-page-partenaires ;
+$zones: zone-1, zone-2, zone-3 ;
 @each $zone in $zones {
   @each $type in $typedecontenu {
     ##{$zone}.#{$type} {
@@ -95,8 +95,8 @@ $zones: zone-1, zone-2, zone-3;
           max-width: span(4);
 
           .champ-field-relatif-formation,
-          .label-field-lien-utile-vdl,
-          .label-field-relatif-formation {
+          .label-field-fichier-joint-vdl,
+          .label-field-passerelle-form {
             //Besoin de simuler un br pour avoir un saut de ligne entre chaque éléments.HTML en liste plus efficace
             @include clearfixsusy3;
           }
@@ -128,7 +128,7 @@ $zones: zone-1, zone-2, zone-3;
           max-width: 60vw;
           margin: 0 auto;
           padding: span(0.02);
-          border: em(3px) solid $vert;
+          border: em(3px) solid $violet;
         }
         }
       }
@@ -155,7 +155,7 @@ $zones: zone-1, zone-2, zone-3;
 }
 /*######-------- ||| STYLE ||| --------######*/
 //Pour H1 voir _page-lycee.scss
-h1.titre-page-globale {
+h1.titre-contenu-vdl {
   @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
     top: em(10px);
     left: em(10px);
@@ -163,8 +163,8 @@ h1.titre-page-globale {
 }
 /*¤¤¤ STYLES COMMUNS ¤¤¤*/
 //Permet de créer facilement les styles communs à des IDs ou/et classes
-$typedecontenu: type-page-europe, type-page-sorties-actions, type-page-partenaires;
-$zones: zone-1, zone-2, zone-3;
+$typedecontenu: type-contenu-vdl ;
+$zones: zone-1, zone-2, zone-3 ;
 @each $zone in $zones {
   @each $type in $typedecontenu {
     ##{$zone}.#{$type} {
@@ -179,7 +179,7 @@ $zones: zone-1, zone-2, zone-3;
 
       u {
         font-weight: bold;
-        color: $vert;
+        color: $violet;
       }
 
       h2 {
@@ -189,7 +189,7 @@ $zones: zone-1, zone-2, zone-3;
 
       h3 {
         @include font-size(m); //utilisation de typey
-        color: $vert;
+        color: $violet;
       }
 
       a {
@@ -202,7 +202,7 @@ $zones: zone-1, zone-2, zone-3;
       }
 
       strong {
-        color: $vert;
+        color: $violet;
       }
     }
   }
@@ -210,7 +210,7 @@ $zones: zone-1, zone-2, zone-3;
 /*------------------------------------
         ¤¤¤ STYLES PROPRES ¤¤¤
 ______________________________*/
-$typedecontenu: type-page-europe, type-page-sorties-actions, type-page-partenaires;
+$typedecontenu: type-contenu-vdl, type-page-sorties-actions, type-page-partenaires;
 $zones: zone-1, zone-2, zone-3;
 @each $zone in $zones {
   @each $type in $typedecontenu {
@@ -224,9 +224,9 @@ $zones: zone-1, zone-2, zone-3;
           color: $violet;
           text-decoration: none;
           padding: span(0.01) span(0.03);
-          @include rollover-effect($vert); //Effet rollover CSS3
+          @include rollover-effect($rose-fushia); //Effet rollover CSS3 sur les liens
 
-          &:hover:not([href*="fiche"]) {
+          &:hover{ //:not([href*="fiche"])
             color: $gris-clair;
             background: $violet;
           }
@@ -252,8 +252,9 @@ $zones: zone-1, zone-2, zone-3;
             display: none; //initial
           }
 
-          &[href*="http"],
-          &[href*="actu"]:not([href$=".pdf"]):not([href*="fiche"]) {
+          &[href*="http"],&[href*="https"],
+          &[href*="actualites/"]:not([href$=".pdf"]):not([href*="fiche"]),
+          &[href*="vie-du-lycee/"]:not([href$=".pdf"]):not([href*="fiche"]) {
             //pour cibler les liens externes et internes, exclure les pdf et le lien interne
             &::before {
               @include backgroundImage(("PNG/liens@3x.png"),transparent,no-repeat, top left);
@@ -287,15 +288,15 @@ $zones: zone-1, zone-2, zone-3;
           }
         }
 
-        .label-field-relatif-formation {
+        .label-field-passerelle-form {
           font-weight: bold;
           color: $gris-clair;
-          background: $vert;
+          background: $rose-fushia;
           padding: span(0.02);
           margin: 0 0 span(0.2) span(0.2);
         }
 
-        .label-field-lien-utile-vdl {
+        .label-field-fichier-joint-vdl {
           font-weight: bold;
           color: $gris-clair;
           background: $violet;
@@ -306,7 +307,7 @@ $zones: zone-1, zone-2, zone-3;
     }
   }
 }
-$typedecontenu: type-page-europe, type-page-sorties-actions, type-page-partenaires;
+$typedecontenu: type-contenu-vdl, type-page-sorties-actions, type-page-partenaires;
 $zones: zone-1, zone-2, zone-3;
 @each $zone in $zones {
   @each $type in $typedecontenu {
@@ -323,7 +324,7 @@ $zones: zone-1, zone-2, zone-3;
     }
   }
 }
-$typedecontenu: type-page-europe,type-page-sorties-actions, type-page-partenaires;
+$typedecontenu: type-contenu-vdl,type-page-sorties-actions, type-page-partenaires;
 $zones: zone-1, zone-2, zone-3;
 @each $zone in $zones {
   @each $type in $typedecontenu {
@@ -334,7 +335,7 @@ $zones: zone-1, zone-2, zone-3;
 
         a {
           background: $gris-clair;
-          @include rollover-effect($vert); //Effet rollover CSS3
+          @include rollover-effect($violet); //Effet rollover CSS3
         }
 
         h2 {

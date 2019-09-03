@@ -10,27 +10,37 @@
 {% set champ3_attribute = create_attribute() %}
 
 {% set champ1_classes = [
-'champ-' ~ node.field_relatif_formation.fieldDefinition.name | replace({"_" : "-"}),
+'champ-' ~ node.field_passerelle_form.fieldDefinition.name | replace({"_" : "-"}),
 'titre-' ~ node.bundle|clean_class
 ]%}
 {% set champ1bis_classes = [
-'label-' ~ node.field_relatif_formation.fieldDefinition.name | replace({"_" : "-"}),
+'label-' ~ node.field_passerelle_form.fieldDefinition.name | replace({"_" : "-"}),
 ]%}
 {% set champ2_classes = [
-'label-' ~ node.field_fichier_joint_rp.fieldDefinition.name | replace({"_" : "-"}),
+'label-' ~ node.field_fichier_joint_actu.fieldDefinition.name | replace({"_" : "-"}),
 ]%}
 {% set champ3_classes = [
-'label-' ~ node.field_lien_internet_rp.fieldDefinition.name | replace({"_" : "-"}),
+'label-' ~ node.field_lien_rp.fieldDefinition.name | replace({"_" : "-"}),
 ]%}
 {# ---*** Le contenu de l'include ***--- #}
-{% if node.field_relatif_formation.value or node.field_fichier_joint_rp.value or node.field_lien_internet_rp.value or node.field_fichier_audio_rp.value is not empty %}
+{% if node.field_passerelle_form.value or node.field_fichier_joint_actu.value or node.field_lien_rp.value or node.field_fichier_audio_rp.value is not empty %}
   <div class="bloc_docs_utiles_actu">
 
-    {% if node.field_fichier_joint_rp.value or node.field_fichier_audio_rp.value is not empty %}
+    {% if node.field_passerelle_form.value is not empty %}
+      <ul>
+        <li {{ champ1bis_attribute.addClass(champ1bis_classes) }}>
+          {{ content.field_passerelle_form| field_label }}</li>
+        <li {{ champ1_attribute.addClass(champ1_classes).setAttribute('id', 'champ-1') }}>
+          {{content.field_passerelle_form.0}}</li>
+      </ul>
+
+    {% endif %}
+
+    {% if node.field_fichier_joint_actu.value or node.field_fichier_audio_rp.value is not empty %}
       {# Affichage des étiquettes des champs en tant que titres #}
       <ul>
         <li {{ champ2_attribute.addClass(champ2_classes) }}>
-          {{ content.field_fichier_joint_rp|field_label }}
+          {{ content.field_fichier_joint_actu|field_label }}
           {% if node.field_fichier_audio_rp is not empty %}
             //
             {{ content.field_fichier_audio_rp|field_label }}
@@ -40,10 +50,10 @@
 
       <ul>
         {# //Parcourir le tableau field_NAME de l'objet $node pour lister le contenu clé/valeur #}
-        {% for key, fichier in node.field_fichier_joint_rp.value %}
+        {% for key, fichier in node.field_fichier_joint_actu.value %}
           {# //Ne pas afficher les champs vides du tableau #}
-          {% if node.field_fichier_joint_rp.value is not empty %}
-            <li>{{ content.field_fichier_joint_rp[key] }}</li>
+          {% if node.field_fichier_joint_actu.value is not empty %}
+            <li>{{ content.field_fichier_joint_actu[key] }}</li>
           {% endif %}
         {% endfor %}
 
@@ -57,20 +67,20 @@
         {#
 -----****** LIENS INTERNET *******-------
 #}
-        {% if node.field_lien_internet_rp.value is not empty %}
+        {% if node.field_lien_rp.value is not empty %}
           {# Affichage des étiquettes des champs en tant que titres #}
           <ul>
             <li {{ champ3_attribute.addClass(champ3_classes) }}>
-              {{ content.field_lien_internet_rp|field_label }}
+              {{ content.field_lien_rp|field_label }}
 
             </li>
           </ul>
         {% endif %}
         {# //Parcourir le tableau field_NAME de l'objet $node pour lister le contenu clé/valeur #}
-        {% for key, lien in node.field_lien_internet_rp %}
+        {% for key, lien in node.field_lien_rp %}
           {# //Ne pas afficher les champs vides du tableau #}
-          {% if node.field_lien_internet_rp is not empty %}
-            <li>{{ content.field_lien_internet_rp[key] }}</li>
+          {% if node.field_lien_rp is not empty %}
+            <li>{{ content.field_lien_rp[key] }}</li>
           {% endif %}
         {% endfor %}
 

@@ -10,54 +10,54 @@
 {% set champ3_attribute = create_attribute() %}
 
 {% set champ1_classes = [
-'champ-' ~ node.field_relatif_formation.fieldDefinition.name | replace({"_" : "-"}),
+'champ-' ~ node.field_passerelle_form.fieldDefinition.name | replace({"_" : "-"}),
 'titre-' ~ node.bundle|clean_class
 ]%}
 {% set champ1bis_classes = [
-'label-' ~ node.field_relatif_formation.fieldDefinition.name | replace({"_" : "-"}),
+'label-' ~ node.field_passerelle_form.fieldDefinition.name | replace({"_" : "-"}),
 ]%}
 {% set champ2_classes = [
-'label-' ~ node.field_lien_utile_vdl.fieldDefinition.name | replace({"_" : "-"}),
+'label-' ~ node.field_fichier_joint_vdl.fieldDefinition.name | replace({"_" : "-"}),
 ]%}
 {# ---*** Le contenu de l'include ***--- #}
-{% if node.field_relatif_formation.value or node.field_fiche_action.value or node.field_lien_utile_vdl.value or node.field_lien_interne.value is not empty %}
+{% if node.field_passerelle_form.value or node.field_liens_vdl.value or node.field_fichier_joint_vdl.value is not empty %}
   <div class="bloc_docs_utiles_vdl">
 
-    {% if node.field_relatif_formation.value is not empty %}
+    {% if node.field_passerelle_form.value is not empty %}
       <ul>
         <li {{ champ1bis_attribute.addClass(champ1bis_classes) }}>
-          {{ content.field_relatif_formation|field_label }}</li>
+          {{ content.field_passerelle_form| field_label }}</li>
         <li {{ champ1_attribute.addClass(champ1_classes).setAttribute('id', 'champ-1') }}>
-          {{content.field_relatif_formation.0}}</li>
+          {{content.field_passerelle_form.0}}</li>
       </ul>
 
     {% endif %}
 
-    {% if node.field_fiche_action.value or node.field_lien_utile_vdl.value is not empty %}
+    {% if node.field_liens_vdl.value or node.field_fichier_joint_vdl.value is not empty %}
       <ul>
         <li {{ champ2_attribute.addClass(champ2_classes) }}>
-          {{ content.field_fiche_action|field_label }}
-          {% if node.field_lien_utile_vdl is not empty %}
+          {{ content.field_liens_vdl | field_label }}
+          {% if node.field_fichier_joint_vdl is not empty %}
             //
-            {{ content.field_lien_utile_vdl|field_label }}
+            {{ content.field_fichier_joint_vdl|field_label }}
           {% endif %}
         </li>
       </ul>
 
       <ul>
         {# //Parcourir le tableau field_NAME de l'objet $node pour lister le contenu clé/valeur #}
-        {% for key, fichier in node.field_fiche_action.value %}
+        {% for key, fichier in node.field_liens_vdl.value %}
           {# //Ne pas afficher les champs vides du tableau #}
-          {% if node.field_fiche_action.value is not empty %}
-            <li>{{ content.field_fiche_action[key] }}</li>
+          {% if node.field_liens_vdl.value is not empty %}
+            <li>{{ content.field_liens_vdl[key] }}</li>
           {% endif %}
         {% endfor %}
 
         {# //Parcourir le tableau field_NAME de l'objet $node pour lister le contenu clé/valeur #}
-        {% for key, lien in node.field_lien_utile_vdl %}
+        {% for key, lien in node.field_fichier_joint_vdl %}
           {# //Ne pas afficher les champs vides du tableau #}
-          {% if node.field_lien_utile_vdl is not empty %}
-            <li>{{ content.field_lien_utile_vdl[key] }}</li>
+          {% if node.field_fichier_joint_vdl is not empty %}
+            <li>{{ content.field_fichier_joint_vdl[key] }}</li>
           {% endif %}
         {% endfor %}
 

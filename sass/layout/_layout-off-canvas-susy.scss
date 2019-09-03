@@ -28,7 +28,7 @@ body .conteneur {
         margin-left: span(1 wide);//push;
     }
     .close{
-        background: $vert;//changer couleur selon le site !!!
+        background: $rose-fushia;//changer couleur selon le site !!!
     }
     img.close-btn{
         vertical-align: middle;
@@ -74,7 +74,7 @@ body .conteneur {
             bottom: 0;
             height: $off-canvas-height;//limite la hauteur du bloc
             @include arrondis;
-            background: $vert;//changer couleur selon le site !!!
+            background: $rose-fushia;//changer couleur selon le site !!!
         }
         img.close-btn{
                 margin: 0 0 0 1%;

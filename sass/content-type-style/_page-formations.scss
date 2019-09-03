@@ -38,6 +38,9 @@ body .conteneur{
         max-height: 90vw;
         overflow: hidden;
         position:relative;
+        //image par défaut en BG comme secours
+        @include backgroundImage(("defaut/visuel-defaut-Actu-2019.jpg"),transparent,no-repeat, top left);
+        background-size: cover;
         img{
             transform: translate(0%,0%);
             @include adaptable-img();
@@ -56,7 +59,7 @@ body .conteneur{
     >.content{
         column-count: 0;
         @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-            column-count: 2;
+            column-count: 0;
             column-fill: balance;
             white-space: normal;
             padding: span(0.1);
@@ -83,7 +86,7 @@ body .conteneur{
             padding: 0;
             @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
                 column-count: 4;//adapter selon taille des blocs / images
-                column-fill: auto;
+                column-fill: balance;//bug FF en colonne résolu
                 white-space: normal;
                 padding: span(0.1);
             }
@@ -106,7 +109,7 @@ body .conteneur{
                     span.illustration {
                         overflow: hidden;
                         img{
-                            transform: scale(1);
+                            transform: scale(1.35);
                         }
                     }
                     span.titre-fiche, span.complement{
@@ -150,7 +153,7 @@ ______________________________*/
         //Style du filtrage de la vue
        .bef-exposed-form{
             div.form-item{
-                background: $vert;
+                  background: $rose-fushia;
                 color: $blanc-casse;
                 text-align: center;
                 cursor: pointer;
@@ -158,19 +161,24 @@ ______________________________*/
                     cursor: pointer;
                     &:after{
 /*                        content: "PôLE";
-                        color:$vert;
+                        color:$rose-fushia;
                         @include font-size(l);//utilisation de typey
                         font-family: $FontRaleway;*/
                     }
                 }
-                &:hover:not(#edit-term-node-tid-depth-limited-All-wrapper){
+                //&:hover:not(#edit-term-node-tid-depth-limited-All-wrapper)
+                // Exclusion du hover pour le choix Tout - Fonctionnel
+                &:hover:not(:first-child)
+                {
+                  //Utilisation de l'unité vw plus universelle, évite usage de BP
+                  @include backgroundImage(('BG/BG_Filtres_Exposes.png'), transparent, center -14vw , no-repeat );
+                  background-size:60%;
+                  background-color: $violet;
 
-                    @include backgroundImage(('BG/BG_Filtres_Exposes.png'), transparent, center -8.5em , no-repeat );
-                    background-size:60%;
-                    background-color: $violet;
-                    label{
-                        @include opacity(0.45);
-                    }
+
+                  label{
+                      @include opacity(0.45);
+                  }
                 }
             }
         }
@@ -248,19 +256,23 @@ ______________________________*/
 
                    }
                 }
-                &.tid-1{
+                &.tid-11{ //Filiere professionnelle
                     background: $violet;
                 }
-                &.tid-2{
-                    background: $vert;
+                &.tid-12{ //Filiere techno
+                    background: $rose-fushia;
                 }
-                &.tid-9{
+                &.tid-10{ //Filiere BTS
                     background: $jaune;
                     *{
                         color: $gris-anthracite;//cas particulier du fond clair
                     }
 
                 }
+                &.tid-26{ //Filiere Prépas
+                    background: $bleu-turquoise;
+                }
+                // Inutilisés >>
                 &.tid-101{
                     background: $rouge;
                 }
@@ -274,9 +286,7 @@ ______________________________*/
                 &.tid-106{
                     background: $gris-clair-moyen;
                 }
-                &.tid-107{
-                    background: $bleu-turquoise;
-                }
+
                 img{
 
                 }

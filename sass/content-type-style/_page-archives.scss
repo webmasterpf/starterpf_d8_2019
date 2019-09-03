@@ -14,24 +14,24 @@
 
 /*######-------- ||| ORDRE FLEXBOX ||| --------######*/
 body .conteneur .conteneur-flex{
-    #zone-1.type-page-vdl-liste{order:2;}
-    #zone-2.type-page-vdl-liste{order:1;}
-    #zone-3.type-page-vdl-liste{order:3;}
+    #zone-1.type-page-archive{order:2;}
+    #zone-2.type-page-archive{order:1;}
+    #zone-3.type-page-archive{order:3;}
     @include breakpoint ($desktop){
-        #zone-1.type-page-vdl-liste{order:1;}
-        #zone-2.type-page-vdl-liste{order:2;}
-        #zone-3.type-page-vdl-liste{order:3;}
+        #zone-1.type-page-archive{order:1;}
+        #zone-2.type-page-archive{order:2;}
+        #zone-3.type-page-archive{order:3;}
     }
 }
 
 /*######-------- ||| BORDURES ||| --------######*/
 body .conteneur {
     @include breakpoint ($desktop){
-        #zone-2.type-page-vdl-liste{}
+        #zone-2.type-page-archive{}
     }
 }
 /*######-------- ||| LAYOUT SPECIFIQUE ||| --------######*/
-#zone-illustration.type-page-vdl-liste{
+#zone-illustration.type-page-archive{
     #illustration-pleinepage{
         min-height: 35vw;
         max-height: 90vw;
@@ -51,7 +51,7 @@ body .conteneur {
     }
 
 }
-#zone-1.type-page-vdl-liste{
+#zone-1.type-page-archive{
     >.content{
         column-count: 0;
         @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
@@ -114,9 +114,9 @@ h1.titre-page-globale{
 }
 /*¤¤¤ STYLES COMMUNS ¤¤¤*/
 
-#zone-1.type-page-vdl-liste,
-#zone-2.type-page-vdl-liste,
-#zone-3.type-page-vdl-liste{
+#zone-1.type-page-archive,
+#zone-2.type-page-archive,
+#zone-3.type-page-archive{
     p,ul,li{
         @include font-size(m);//utilisation de typey
         padding: em(5px);
@@ -150,14 +150,14 @@ h1.titre-page-globale{
 /*------------------------------------
         ¤¤¤ STYLES PROPRES ¤¤¤
 ______________________________*/
-#zone-1.type-page-vdl-liste{
+#zone-1.type-page-archive{
     aside.liste-archives{
         //Style des blocs pour page archive
         @include hack-Webkit();
         @include hack-Firefox(table);
         div.item-list{
             border:0;
-            background: $vert;
+            background: $rose-fushia;
             min-width:100%;//pour chrome et FF
         }
         h3{
@@ -193,10 +193,10 @@ ______________________________*/
     }
 }
 
-#zone-2.type-page-vdl-liste{
+#zone-2.type-page-archive{
 
 }
 
-#zone-3.type-page-vdl-liste{
+#zone-3.type-page-archive{
 
 }

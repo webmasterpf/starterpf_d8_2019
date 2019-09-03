@@ -48,7 +48,10 @@ article.middle-content {
     max-height: 90vw;
     overflow: hidden;
     position: relative;
-
+    //image par défaut en BG comme secours
+    @include backgroundImage(("defaut/visuel-defaut-Actu-2019.jpg"),transparent,no-repeat, top left);
+    background-size: cover;
+  
     img {
       transform: translate(0%,0%);
       @include adaptable-img();
@@ -171,9 +174,9 @@ ______________________________*/
       color: $violet;
       text-decoration: none;
       padding: span(0.01) span(0.03);
-      @include rollover-effect($vert); //Effet rollover CSS3
+      @include rollover-effect($rose-fushia); //Effet rollover CSS3
 
-      &:hover:not([href*="fiche"]) {
+      &:hover { //:not([href*="fiche"])
         color: $gris-clair;
         background: $violet;
       }
@@ -234,19 +237,19 @@ ______________________________*/
       }
     }
 
-    .label-field-relatif-formation {
+    .label-field-passerelle-form {
       font-weight: bold;
       color: $gris-clair;
-      background: $vert;
+      background: $violet;
       padding: span(0.02);
       margin: 0 0 span(0.2) span(0.2);
     }
 
-    .label-field-fichier-joint-rp,
-    .label-field-lien-internet-rp {
+    .label-field-fichier-joint-actu,
+    .label-field-lien-rp {
       font-weight: bold;
       color: $gris-clair;
-      background: $violet;
+      background: $rose-fushia;
       padding: span(0.02);
       margin: 0 0 0 span(0.2);
     }
@@ -272,7 +275,7 @@ ______________________________*/
 
     a {
       background: $gris-clair;
-      @include rollover-effect($vert); //Effet rollover CSS3
+      @include rollover-effect($rose-fushia); //Effet rollover CSS3
     }
 
     h2 {

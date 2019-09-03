@@ -7,7 +7,7 @@ Override du style de galerie vignettes BaguetteBox
 //@include breakpoint(($desktop,$tablet)){}
 //définir ici les types de contenus qui appliqueront ce style & layout - code via boucle sass
 // Vignettes carrées à la suite
-$typedecontenu: type-page-europe,type-page-sorties-actions,type-page-partenaires,type-contenu-actualites;
+$typedecontenu: type-contenu-vdl,type-contenu-actualites;
 $zones: zone-illustration;
 @each $type in $typedecontenu {
   .#{$type} {
@@ -18,7 +18,7 @@ $zones: zone-illustration;
       }
 
       span.item-galerie {
-        //Classe ajoutée dans la vue via le champ de réécriture > PARAMÈTRES D'AFFICHAGE
+        //Classe ajoutée dans la vue via le champ de réécriture Texte Global > PARAMÈTRES D'AFFICHAGE
         // > Personnaliser le code HTML de l'enveloppe du champ et de l'étiquette  > Créer une classe CSS
         /*Technique des colonnes plus efficace et passe sous Edge*/
         /*width: span(1 of 3);*/

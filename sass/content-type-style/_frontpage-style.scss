@@ -356,7 +356,7 @@ body .conteneur {
             }
             li{
                 margin: 0 0 em(5px) 0;
-                background: $vert;//Couleur de fond des acces Rub Admin
+                background: $rose-fushia;//Couleur de fond des acces Rub Admin
                 color: whitesmoke;
                 @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
 
@@ -472,7 +472,7 @@ body .conteneur {
                             @include font-size(s);//utilisation de typey
                         }
                         &:hover{
-                            background: $vert;//Changer la couleur du BG hover ici
+                            background: $rose-fushia;//Changer la couleur du BG hover ici
                             color: $gris-clair;
                         }
                     }
@@ -556,7 +556,7 @@ body .conteneur {
                                                 clip-path: circle(50% at 50% 50%);*/
                             /* Coins arrondis pour les boutons - passe mieux sur mobile*/
                             @include arrondis(4em);
-                            background-color: $vert; //Couleur de fond des boutons
+                            background-color: $rose-fushia; //Couleur de fond des boutons
 
                             @include breakpoint(($desktop,$desktopwide)){
                                 max-width: 11vw;
@@ -581,19 +581,19 @@ body .conteneur {
                             }
                         }
                     }
-                    &.nid-23{//contact
+                    &.nid-2{//contact
                              a:hover{
                                  @include backgroundImage(('SVG/bg_acces_contact_blanc_transp.svg'),$violet, -9% 58%, no-repeat);
                                  background-size: 400%;
                              }
                     }
-                    &.nid-21{//inscriptions
+                    &.nid-16{//inscriptions
                              a:hover{
                                  @include backgroundImage(('SVG/bg_acces_contact_blanc_transp.svg'),$violet, 71% 58%, no-repeat);
                                  background-size: 400%;
                              }
                     }
-                    &.nid-39{//actus
+                    &.nid-18{//actus
                              a:hover{
                                  @include backgroundImage(('SVG/bg_acces_contact_blanc_transp.svg'),$violet, 108% 58%, no-repeat);
                                  background-size: 400%;

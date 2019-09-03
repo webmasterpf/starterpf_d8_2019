@@ -8,6 +8,23 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
 'node-id-' ~ node.id,
 'champ-' ~ node.field_NAME.fieldDefinition.name | replace({"_" : "-"}),
 ] %}
+{# Classes conditionnelles selon l'URL pour utiliser le même templates avec des classes différentes
+Possible avec le NiD ou un mot de l'url réécrite.
+ #}
+{% set uri = path('entity.node.canonical', {'node': node.id}) %}
+{# % if 'les-actualites' in url|render|render % #}
+{% if '18' in node.id | render | render %}
+
+  {% set vuebloc_classes = [
+'classe-1',
+'type-' ~ node.bundle|clean_class
+]%}
+{% else %}
+  {% set vuebloc_classes = [
+'classe-2',
+  'type-' ~ node.bundle|clean_class
+  ]%}
+{% endif %}
 
 {# BEM inspired class syntax: https://en.bem.info/
    Enable this code if you would like node classes like "article article--layout-teaser", where article is the content type and teaser is the view mode.
@@ -58,7 +75,7 @@ Créer un template de champ pour pouvoir organiser la sortie HTML : field--field
     {# Plutôt utiliser l'objet node que content car il n'est pas soumis au type de sortie d'affichage #}
     {{ node.field_name|field_label }}
 
-    {# Affichage du contenu des balises titre ou alt d'une image #}
+    {# Affichage du contenu des balises titre ou alt d'un champ image #}
     {{ node.field_image.title }}
     {{ node.field_image.alt }}
     {{ node.field_link.uri }}
@@ -123,7 +140,7 @@ Créer un template de champ pour pouvoir organiser la sortie HTML : field--field
     {% if tid %}
       {{ drupal_field('field_desired_field', 'taxonomy_term', tid) }}
     {% endif %}
-    Terme de taxonomie avec son lien
+    Terme de taxonomie avec son lien - Champ texte simple
     {{ content.field_NAME.0 }}
     Terme de taxonomie sans son lien: le terme brut
     {{ content.field_NAME.0['#title'] }}

@@ -15,11 +15,11 @@
 
 /*######-------- ||| ORDRE FLEXBOX ||| --------######*/
 body .conteneur .conteneur-flex{
-    #zone-1.type-page-fiche-formation{order:1;}
-    #zone-2.type-page-fiche-formation{order:2;}
-    #zone-3.type-page-fiche-formation{order:3;}
-    #zone-4.type-page-fiche-formation{}
-    #zone-5.type-page-fiche-formation{}
+    #zone-1.type-fiche-formation{order:1;}
+    #zone-2.type-fiche-formation{order:2;}
+    #zone-3.type-fiche-formation{order:3;}
+    #zone-4.type-fiche-formation{}
+    #zone-5.type-fiche-formation{}
     @include breakpoint ($desktop){}
 }
 
@@ -31,7 +31,7 @@ body .conteneur{
 }
 
 /*######-------- ||| LAYOUT SPECIFIQUE ||| --------######*/
-#zone-diaporama.type-page-fiche-formation{
+#zone-diaporama.type-fiche-formation{
     // utiliser bxslider-cyrano.scss" pour régler le bx-viewport ou bx-caption
     min-height: 35vw;
     max-height: 90vw;
@@ -60,18 +60,20 @@ body .conteneur{
 }
 
 
-#zone-1.type-page-fiche-formation{
+#zone-1.type-fiche-formation{
     .complement-titre-fiche{
         @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-            width: span(4);
+            width: span(6);
             margin: span(0.02) auto;
         }
     }
     span.terme-pole{
         text-align: center;
         display: block;
+        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
         width: span(2);
         margin: 0 auto span(0.1) auto;
+      }
 
     }
     .content{
@@ -79,14 +81,14 @@ body .conteneur{
         @include breakpoint(($desktop,$desktopwide,$tabletlandscape)){
             column-count: 2;
             column-fill: balance;
-            column-rule: em(2px) dashed $vert;
+            column-rule: em(2px) dashed $rose-fushia;
             h3{
                 @include txt-colonnes;
             }
         }
     }
 }
-#zone-2.type-page-fiche-formation{
+#zone-2.type-fiche-formation{
     .bloc_docs_utiles_ficheform{
         margin: span(0.01) auto;
         padding: span(0.01);
@@ -94,10 +96,15 @@ body .conteneur{
             width: span(7);
 
         }
+        .label-field-lien-utile-ficheform
+        {
+          //Besoin de simuler un br pour avoir un saut de ligne entre chaque éléments.HTML en liste plus efficace
+          @include clearfixsusy3;
+        }
     }
 
 }
-#zone-3.type-page-fiche-formation{
+#zone-3.type-fiche-formation{
     .bloc_complement_actu_ficheform{
          margin: span(0.01) auto;
         padding: span(0.01);
@@ -140,17 +147,15 @@ body .conteneur{
 
 /*######-------- ||| STYLE ||| --------######*/
 //Pour H1 voir _page-lycee.scss
-h1.titre-page-fiche-formation{
-    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-    top: em(50px);
-    }
+h1.titre-fiche-formation{
+// réglage avec _page-lycee.scss
 }
 /*¤¤¤ STYLES COMMUNS ¤¤¤*/
-#zone-1.type-page-fiche-formation,
-#zone-2.type-page-fiche-formation,
-#zone-3.type-page-fiche-formation,
-#zone-4.type-page-fiche-formation,
-#zone-5.type-page-fiche-formation
+#zone-1.type-fiche-formation,
+#zone-2.type-fiche-formation,
+#zone-3.type-fiche-formation,
+#zone-4.type-fiche-formation,
+#zone-5.type-fiche-formation
 {
     p,ul,li{
         @include font-size(m);//utilisation de typey
@@ -160,7 +165,7 @@ h1.titre-page-fiche-formation{
     }
   u{
         font-weight: bold;
-        color: $vert;
+        color: $rose-fushia;
 
     }
     h2{
@@ -169,7 +174,7 @@ h1.titre-page-fiche-formation{
     }
     h3{
         @include font-size(m);//utilisation de typey
-        color: $vert;
+        color: $rose-fushia;
     }
     h4{
         @include font-size(m);//utilisation de typey
@@ -178,48 +183,55 @@ h1.titre-page-fiche-formation{
     a{
         text-decoration: none;
         color: $violet;
-        @include rollover-effect($vert);//Effet rollover CSS3
+        @include rollover-effect($rose-fushia);//Effet rollover CSS3
         &:hover{
             text-decoration: none;
         }
     }
     strong{
-        color: $vert;
+        color: $rose-fushia;
     }
 }
 
 /*------------------------------------
         ¤¤¤ STYLES PROPRES ¤¤¤
 ______________________________*/
-#zone-1.type-page-fiche-formation{
+#zone-1.type-fiche-formation{
     .complement-titre-fiche{
 
-
-        max-width: fit-content;
+        margin: 0 auto;
+        display: block;
         *{
-            background: $gris-anthracite;
+            background: linear-gradient(180deg, $violet 85%, $rose-fushia 50%);
+            //@include backgroundRGBA ($rose-fushia,0.5);
             color: $jaune;
             font-weight: bold;
             padding: span(0.02);
             margin: span(0.01) 0;
-            @include font-size(m);//utilisation de typey
+            @include font-size(s);//utilisation de typey
+            @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+              @include font-size(m);//utilisation de typey
+            }
         }
     }
     span.terme-pole{
-     background: $violet;
+     background: $rose-fushia;
     color: $blanc-casse;
-    @include ombrage-effet-incurve($HauteurHalo:0.5em);
+
+    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+      @include ombrage-effet-incurve($HauteurHalo:0.5em);
+    }
     a{
     color: $blanc-casse;
     }
-    }    
+    }
     .content{
          h3{
         transform: rotate(-1deg);
         max-width: fit-content;
 
         color: $blanc-casse;
-        background: $vert;
+        background: $rose-fushia;
         padding: em(3px);
         margin: em(5px) em(20px);
 
@@ -227,7 +239,7 @@ ______________________________*/
     }
     aside.ficheform-savoirplus{}
 }
-#zone-2.type-page-fiche-formation{
+#zone-2.type-fiche-formation{
         aside.ficheform-savoirplus,.bloc_docs_utiles_ficheform{
         @include backgroundImage(("BG/stripe_rose_violet_pastel.png"),transparent,repeat, top left);
         background-color: $gris-clair;
@@ -241,7 +253,7 @@ ______________________________*/
             padding: span(0.01) span(0.03);
             &:hover{
                                 color: $gris-anthracite;
-                                    background: $vert;
+                                    background: $rose-fushia;
             }
             &[href*=".pdf"]{
                 &::before{
@@ -277,7 +289,14 @@ ______________________________*/
 
             }
         }
-
+        //Style spécifique pour liste de docs utiles
+        .label-field-lien-utile-ficheform {
+          font-weight: bold;
+          color: $gris-clair;
+          background: $rose-fushia;
+          padding: span(0.02);
+          margin: 0 0 span(0.2) span(0.2);
+        }
         .views-field-title >span{
             color: $orange-fonce;
             background: $gris-anthracite;
@@ -302,7 +321,7 @@ ______________________________*/
         }
     }
 }
-#zone-3.type-page-fiche-formation{
+#zone-3.type-fiche-formation{
     h3{
         transform: rotate(-1deg);
         max-width: fit-content;
@@ -331,7 +350,7 @@ ______________________________*/
             padding: span(0.01) span(0.03);
             &:hover{
                 color: $gris-anthracite;
-                /*background: $vert;*/
+                /*background: $rose-fushia;*/
             }
         }
         ul{
@@ -347,5 +366,5 @@ ______________________________*/
 
 
 }
-#zone-4.type-page-fiche-formation{}
-#zone-5.type-page-fiche-formation{}
+#zone-4.type-fiche-formation{}
+#zone-5.type-fiche-formation{}

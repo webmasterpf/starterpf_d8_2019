@@ -14,7 +14,7 @@ body .conteneur #header {
     &:after{
         content: " ";
         display: block;
-        clear: both;}  
+        clear: both;}
     .headHaut {
 
         @include clearfixsusy3;//Dispo sur tous supports
@@ -28,7 +28,7 @@ body .conteneur #header {
                 margin: 0 auto;
                 width: 100%;
                 @include breakpoint(($mobile,$mobilelandscape)){           }
-                @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){    
+                @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
                     width: 100%;
                     margin: 0;
                     padding: 0;
@@ -42,14 +42,14 @@ body .conteneur #header {
         }
         nav.menuOver{
     margin: 0 span(0.3) 0 0;
-    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){           
+    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
         margin: 0;
     }
-}  
+}
     }
 }
 
-               
+
 
 
 .headBas {
@@ -60,7 +60,7 @@ body .conteneur #header {
             padding: em(5px) 0 0 0 //Ajoute un padding pour positionner boite
         }
     }
-    .headSearch{ 
+    .headSearch{
         margin: 0 30%;
         padding: 0;
         @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
@@ -70,7 +70,7 @@ body .conteneur #header {
         }
     }
 
-}                
+}
 
 
 
@@ -81,7 +81,7 @@ body .conteneur #header {
 /*---- HEADER BAS ----*/
 
 .headBas {
-    background: $vert;//Modifier la couleur du fond de la partie basse selon couleur du lycée
+    background: $rose-fushia;//Modifier la couleur du fond de la partie basse selon couleur du lycée
 }
 
 .headSearch {
@@ -103,7 +103,7 @@ body .conteneur #header {
 
 .site-name {
     clear: both;
-    background: $vert;
+    background: $rose-fushia;
     a {
         text-decoration: none;
         color: white;
@@ -121,7 +121,7 @@ body .conteneur #header {
     color: white;
     font-size: small;
     text-align: center;
-    background: $vert;
+    background: $rose-fushia;
     clear: both;
 
     @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){

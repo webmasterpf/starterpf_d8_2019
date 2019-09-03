@@ -10,12 +10,12 @@
 body .conteneur #footer{
     padding:0;
     color: $gris-clair-moyen;//Changer couleur selon besoin
-    @include backgroundImage(('BG/bg_footer@4x.png'), no-repeat, right bottom);//nouvelle mixin 2018
-    
+    @include backgroundImage(('BG/bg_footer@4x.png'),transparent, no-repeat, right bottom);//nouvelle mixin 2018
+
     @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
         width: span(10 of $desktopcol);
         margin-left: span(1 wide);//push
-         @include backgroundImage(('BG/bg_footer@4x.png'), no-repeat, right bottom);//nouvelle mixin 2018
+         @include backgroundImage(('BG/bg_footer@4x.png'),transparent, no-repeat, right bottom);//nouvelle mixin 2018
     }
     aside{
 
@@ -53,5 +53,5 @@ body .conteneur #footer{
 
 
 #bloc_stats{
-    color:red;        
+    color:red;
 }

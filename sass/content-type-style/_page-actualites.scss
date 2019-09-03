@@ -180,7 +180,7 @@ ______________________________*/
         //Style du filtrage de la vue
         .bef-exposed-form{
             div.form-item{
-                background: $vert;
+                background: $rose-fushia;
                 color: $blanc-casse;
                 text-align: center;
                 cursor: pointer;
@@ -193,9 +193,11 @@ ______________________________*/
                                                 font-family: $FontRaleway;*/
                     }
                 }
-                &:hover:not(#edit-term-node-tid-depth-limited-All-wrapper){
-
-                    @include backgroundImage(('BG/BG_Filtres_Exposes.png'), transparent, center -0.5em , no-repeat );
+                //&:hover:not(#edit-term-node-tid-depth-limited-All-wrapper),
+                // Exclusion du hover pour le choix Tout - Fonctionnel
+                &:hover:not(:first-child)
+                {
+                    @include backgroundImage(('BG/BG_Filtres_Exposes.png'), transparent, center 0vw , no-repeat );
                     background-size:60%;
                     background-color: $violet;
                     label{
@@ -263,13 +265,13 @@ ______________________________*/
 
                 }
 
-                &.tid-19{
-                    background: $vert;
+                &.tid-1{ //Annonce
+                    background: $rose-fushia;
                     *{
-                        color: $gris-anthracite;//cas particulier du fond clair
+                        //color: $gris-anthracite;//cas particulier du fond clair
                     }
                 }
-                &.tid-20{
+                &.tid-2{ //Revue de presse
                     background: $violet;
                 }
 
@@ -299,9 +301,9 @@ ______________________________*/
 
                 span.illus-actu {
                     img{
-                        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-                        transform: translate(-17% );
-                         }
+                      @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+                     transform: translate(0%) scale(1.4);//Position de l'image d'illustration
+                      }
 
                     }
                     >a {//uniquement les "a" sur l'image

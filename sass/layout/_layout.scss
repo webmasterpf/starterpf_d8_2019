@@ -6,32 +6,32 @@
  /*------------------------------------------------------*
   *--------    CSS BLOCS     	 ----*
   *------------------------------------------------------*/
- 
+
  //@include breakpoint ($mobile){}
   //@include breakpoint ($desktop){}
   //@include breakpoint ($tablet){}
-  
-// 
- 
+
+//
+
 /*-- LAYOUT PRINCIPAL --*/
 body {
-     @include backgroundImage(('BG/bg_site_pf_2018_v3.jpg'),transparent,top left,repeat-x);//nouvelle mixin 2018
+     @include backgroundImage(('BG/bg_site_pf_2018_v3.jpg'),transparent,repeat-x,top left);//nouvelle mixin 2018
     .conteneur{
 
-  
+
     background: transparent;
-    
-    
+
+
         #header{
              //voir _layout-header.scss
         }
         .content-global{
-           //pour breakpoint voir _layout-bp-desktop.scss           
+           //pour breakpoint voir _layout-bp-desktop.scss
         }
         .content-inner{
-           //pour breakpoint voir _layout-bp-desktop.scss           
+           //pour breakpoint voir _layout-bp-desktop.scss
             .content-header{
-                
+
             }
         }
         .content-top{
@@ -41,12 +41,12 @@ body {
         }
         .middle-content{
             //pour breakpoint voir _layout-bp-desktop.scss
-            
+
         }
         .node-inner{
             //pour breakpoint voir _layout-bp-desktop.scss
-            
-            
+
+
         }
         .content-bottom{
             //pour breakpoint voir _layout-bp-desktop.scss
@@ -54,12 +54,12 @@ body {
         .content-bottom-home{
             //pour breakpoint voir _layout-bp-desktop.scss
         }
-        
+
             #left-content{}
             #right-content{}
             #footer{
-             
-            
+
+
             @include background-size();
             //pour breakpoint voir _layout-bp-desktop.scss
         }
@@ -76,7 +76,7 @@ aside.content_top{
 .content-top-node{
     background-color: #999;
     margin: 0 auto;
-    padding: em(5px);  
+    padding: em(5px);
     @include breakpoint ($mobile){
         padding: 0.5em 0 0 0 ;
     }
@@ -88,7 +88,7 @@ aside.content_top{
     img,iframe,object,embed{
         @include adaptable-img;
         @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-            
+
         }
     }
     ul{list-style-position: inside;}

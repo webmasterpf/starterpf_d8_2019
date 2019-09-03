@@ -35,7 +35,7 @@ body .conteneur{
         top: em(0px);
         left: em(0px);
         }
-        
+
         div.hamburger{
             &::before{
                 //Ajout d'une indication sur présence du menu
@@ -53,7 +53,7 @@ body .conteneur{
                 @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
                     top:0.35em;
                 }
-                
+
             }
         }
     }
@@ -67,7 +67,7 @@ body .conteneur{
         position: absolute;
         width: 100%;
         height: 100%;
-        background: $vert;//Couleur de fond du menu ouvert
+        background: $rose-fushia;//Couleur de fond du menu ouvert
         opacity: 0.9;
         ul{
             list-style: none;
@@ -136,6 +136,6 @@ body .conteneur{
 
     .bottom-menu {
         top: em(21px);
-   
+
     }
 }

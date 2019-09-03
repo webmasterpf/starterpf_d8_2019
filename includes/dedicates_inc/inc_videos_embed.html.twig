@@ -1,0 +1,44 @@
+{#
+/* 03/2019 Liste les fichiers uploadés par
+  * filefield and linkfield  avec création d'une liste dynamique, exclusion des champs vides
+#}
+
+{# ---*** Les classes à appliquer aux éléments  ***--- #}
+{% set champ1_attribute = create_attribute() %}
+{% set champ1bis_attribute = create_attribute() %}
+{% set champ2_attribute = create_attribute() %}
+{% set champ3_attribute = create_attribute() %}
+
+{% set champ1_classes = [
+'champ-' ~ node.field_inclure_video.fieldDefinition.name | replace({"_" : "-"}),
+'titre-' ~ node.bundle|clean_class
+]%}
+{% set champ1bis_classes = [
+'label-' ~ node.field_inclure_video.fieldDefinition.name | replace({"_" : "-"}),
+]%}
+{% set champ2_classes = [
+'label-' ~ node.field_inclure_video.fieldDefinition.name | replace({"_" : "-"}),
+]%}
+{% set champ3_classes = [
+'label-' ~ node.field_lien_internet_rp.fieldDefinition.name | replace({"_" : "-"}),
+]%}
+{# ---*** Le contenu de l'include ***--- #}
+{% if node.field_inclure_video.value is not empty %}
+  <div class="videos">
+
+    <ul>
+      {# //Parcourir le tableau field_NAME de l'objet $node pour lister le contenu clé/valeur #}
+      {% for key, video in node.field_inclure_video %}
+        {# //Ne pas afficher les champs vides du tableau #}
+        {% if node.field_inclure_video.value is not empty %}
+          <li {{ champ1bis_attribute.addClass(champ1bis_classes) }}>
+            {{ content.field_inclure_video[key] }}
+          </li>
+        {% endif %}
+      {% endfor %}
+
+    </ul>
+
+    {# / endif pour bloc #}
+  </div>
+{% endif %}

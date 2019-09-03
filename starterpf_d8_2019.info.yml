@@ -28,7 +28,7 @@ libraries:
 #  - starterpf_d8_2019/js
   - starterpf_d8_2019/global-scripts
 regions:
- #Régions de base - devient {{ page.header }}  dans fichier .twig    
+ #Régions de base - devient {{ page.header }}  dans fichier .twig
  #synthaxe : nom_region: 'Nom Région'
  #Regions par défaut
   header: 'Header - Défaut'
@@ -42,14 +42,15 @@ regions:
   footer: 'Footer - Défaut'
   left: 'Zone Gauche - Défaut'
   right: 'Zone Droite - Défaut'
-  
-  
+
+
 
 #Regions Custom Redesign Susy3 - 2018 et suivant
   menuDyn: 'Menu Header - Menu dynamique JS'
   navStatic: 'Navigation statique - Bloc'
   site_slogan: 'Slogan du site - Bloc'
   search_box: 'Zone recherche - Bloc'
+  ariane: 'Zone fil d_ariane (breadcrumb) - Bloc'
   content_bottom: 'Content bottom - Custom'
   content_top: 'Content top - Custom'
   content_top_node: 'Content top node - Custom'
@@ -75,7 +76,7 @@ regions:
 
 
  #Region pour les node.tpl (ajouter dans fichier MON_THEME.theme)
-  
+
   region_Zone_1: 'Zone 1 - Bloc'
   region_Zone_2: 'Zone 2 - Bloc'
   region_Zone_3: 'Zone 3 - Bloc'

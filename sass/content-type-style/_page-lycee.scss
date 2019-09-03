@@ -58,7 +58,7 @@ article.middle-content {
   //Empêche les flottants de sortir du conteneur
   @include clearfixsusy3;
 }
-$typedecontenu: type-page-lycee,type-contenu-cdi;
+$typedecontenu: type-page-lycee,type-page-erreur;
 $zonesimg: zone-illustration;
 @each $zone in $zonesimg {
   @each $type in $typedecontenu {
@@ -68,6 +68,7 @@ $zonesimg: zone-illustration;
         max-height: 90vw;
         overflow: hidden;
         position: relative;
+        // Pour image défaut en BG, voir style différencié ci-après
 
         img {
           transform: translate(0%,0%);
@@ -85,8 +86,16 @@ $zonesimg: zone-illustration;
     }
   }
 }
-$typedecontenu: type-page-lycee,type-contenu-cdi;
-$zones: zone-1, zone-2, zone-3;
+#zone-illustration.type-page-erreur{
+  #illustration-pleinepage{
+    //image par défaut en BG comme secours
+    @include backgroundImage(("defaut/visuel-848-AssoPF-2019.jpg"),transparent,no-repeat, top left);
+    background-size: cover;
+  }
+}
+// Tableau initial des classes et IDs à créer.
+$typedecontenu: type-page-lycee,type-page-erreur ;
+$zones: zone-1, zone-2, zone-3 ;
 @each $zone in $zones {
   @each $type in $typedecontenu {
     ##{$zone}.#{$type} {}
@@ -105,27 +114,26 @@ body .conteneur {
   }
 }
 /*######-------- ||| STYLE ||| --------######*/
-h1.title-classes,
-h1.titre-lycee {
-  font-size: em(24px);
-  color: $violet;
-  line-height: 1.0em;
-}
+
 /*---- REGLAGE GLOBAL - supprimer autres réglages si existent - retirer le bloc dédié de l'affichage pour ne pas doublonner'*/
 //Commun pour tous les H1 titre du site -
 
 h1.titre_overlay {
   @include titre_overlay();
+  @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+  top: em(7px);
+  left:em(5px);
+  }
 }
 
 h1.titre_page {
   @include titre-page;
   color: $blanc-casse;
-  @include backgroundRGBA($vert, 0.9);
+  @include backgroundRGBA($rose-fushia, 0.9);
 }
 /*¤¤¤ STYLES COMMUNS ¤¤¤*/
 //Permet de créer facilement les styles communs à des IDs ou/et classes
-// !! Le tableau type de contenu est repris du layout spécifique, idem pour les zones
+// !! Le tableau type de contenu est repris du layout spécifique, idem pour les zones(L88-92)
 @each $zone in $zones {
   @each $type in $typedecontenu {
     ##{$zone}.#{$type} {
@@ -140,7 +148,7 @@ h1.titre_page {
 
       u {
         font-weight: bold;
-        color: $vert;
+        color: $rose-fushia;
       }
 
       h2 {
@@ -150,7 +158,7 @@ h1.titre_page {
 
       h3 {
         @include font-size(m); //utilisation de typey
-        color: $vert;
+        color: $rose-fushia;
       }
 
       a {
@@ -163,7 +171,7 @@ h1.titre_page {
       }
 
       strong {
-        color: $vert;
+        color: $rose-fushia;
       }
     }
   }
@@ -172,8 +180,9 @@ h1.titre_page {
         ¤¤¤ STYLES PROPRES ¤¤¤
 ______________________________*/
 
-#zone-1.type-contenu-cdi,
-#zone-1.type-page-lycee {
+@each $zone in $zones {
+  @each $type in $typedecontenu {
+    ##{$zone}.#{$type} {
   h2 {}
 
   h3 {}
@@ -198,10 +207,11 @@ ______________________________*/
   }
 
   div.content {
+    padding: span(0.2);
     .entrefilet {
       @include backgroundImage('bg-merci.gif');
       display: block;
-      color: $orange-fonce;
+      color: $rose-fushia;
       @include font-size(l); //utilisation de typey
       text-transform: capitalize;
       font-weight: bold;
@@ -233,49 +243,24 @@ ______________________________*/
       padding: 0;
     }
 
-    iframe,
-    object {
-      border: em(2px) solid $violet;
-      margin: span(0.2);
-      @include img-centered;
-      max-width: 95%;
-      @include breakpoint ($desktop) {
-        //permet affichage complet de l'iframe
-        position: relative;
-        top: 0;
-        left: 0;
-        max-width: 100%;
-        max-height: 100%;
-      }
-    }
   }
 
-  #video_lycee {
-    width: 95%;
-    margin: em(15px) auto;
-    @include breakpoint ($desktop) {
-      position: relative;
-      padding-bottom: 56.25%;
-      padding-top: em(35px);
-      height: 0;
-      overflow: initial;
+  .videos {
+    ul{
+      list-style: none;
     }
-
-    iframe,
-    object {
-      border: em(2px) solid $violet;
-      padding: em(1px);
-      @include img-centered;
-      max-width: 95%;
-      @include breakpoint ($desktop) {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-      }
+    iframe{
+      @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+      max-height: 85vh;
+      max-width: 60vw;
+      margin: 0 auto;
+      padding: span(0.02);
+      border: em(3px) solid $rose-fushia;
     }
-  }
+    }
+    }
+}
+}
 }
 /*######-------- ZONE 2 --------######*/
 #zone-2.type-contenu-cdi,
@@ -291,7 +276,7 @@ ______________________________*/
   }
 
   h2 {
-    color: $vert;
+    color: $rose-fushia;
     padding: em(5px);
   }
 
@@ -325,7 +310,7 @@ ______________________________*/
 
     &:hover {
       color: white;
-      background: $violet;
+      background: $rose-fushia;
     }
   }
 
@@ -377,15 +362,15 @@ ______________________________*/
         //padding: span(0.01);
       }
 
-      a {
+      a { //liens blocs docs utiles
         background: $gris-clair;
         color: $violet;
         text-decoration: none;
         padding: span(0.01) span(0.03);
 
         &:hover {
-          color: $gris-anthracite;
-          background: $vert;
+          color: $blanc-casse;
+          background: $rose-fushia;
         }
       }
 
@@ -395,7 +380,7 @@ ______________________________*/
           background-size: contain;
           content: "";
           position: relative;
-          vertical-align: sub;
+          rose-fushiaical-align: sub;
           padding: em(10px);
           margin: em(3px);
           transition: 0.5s all;
@@ -415,7 +400,7 @@ ______________________________*/
           background-size: contain;
           content: "";
           position: relative;
-          vertical-align: sub;
+          rose-fushiaical-align: sub;
           padding: em(10px);
           margin: em(3px);
           transition: 0.5s all;

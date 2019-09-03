@@ -35,27 +35,35 @@ body .conteneur{
 }
 
 /*######-------- ||| LAYOUT SPECIFIQUE ||| --------######*/
-#zone-illustration.type-webform{
-    min-height: 35vw;
-    max-height: 90vw;
-    overflow: hidden;
+$typedecontenu: type-webform;
+$zonesimg: zone-illustration;
+@each $zone in $zonesimg {
+  @each $type in $typedecontenu {
+    ##{$zone}.#{$type} {
+      #illustration-pleinepage {
+        min-height: 35vw;
+        max-height: 90vw;
+        overflow: hidden;
+        position: relative;
+        // Pour image défaut en BG, voir style différencié ci-après
 
-    @include backgroundImage('defaut_image_illustration_offre_ct.jpg');
-    @include background-size(cover);
-
-    img{
-        transform: translate(0%,0%);
-
-    }
-    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-        min-height: 25vw;
-        max-height: 30vw;
-        img{
-            transform: translate(0%,-15%);
+        img {
+          transform: translate(0%,0%);
+          @include adaptable-img();
         }
-    }
+        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+          min-height: 25vw;
+          max-height: 30vw;
 
+          img {
+            transform: translate(0%,-6%);
+          }
+        }
+      }
+    }
+  }
 }
+
 #zone-1.type-webform{
     .content{
         @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
@@ -68,7 +76,7 @@ body .conteneur{
         min-height: 110vw;
         min-width: 30vw;
         @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-            min-height: 30vw;    
+            min-height: 30vw;
         }
     }
 }
@@ -85,7 +93,7 @@ body .conteneur{
             @include backgroundImage(("motif_img_overlay.png"),transparent,repeat, top left);
             @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
                 width: 75%;
-                margin: span(0.1) auto; 
+                margin: span(0.1) auto;
                 padding: span(0.1);
 
             }
@@ -113,7 +121,7 @@ $zones: zone-1, zone-2;//1ere boucle
             }
             u{
                 font-weight: bold;
-                color: $vert;
+                color: $rose-fushia;
 
             }
             h2{
@@ -122,7 +130,7 @@ $zones: zone-1, zone-2;//1ere boucle
             }
             h3{
                 @include font-size(m);//utilisation de typey
-                color: $vert;
+                color: $rose-fushia;
             }
             a{
                 text-decoration: none;
@@ -132,7 +140,7 @@ $zones: zone-1, zone-2;//1ere boucle
                 }
             }
             strong{
-                color: $vert;
+                color: $rose-fushia;
             }
         }
     }
@@ -164,7 +172,7 @@ ______________________________*/
     aside.formulaire{
 
         input[type="text"],input[type="email"],textarea{
-            background: $vert;
+            background: $rose-fushia;
             color: $blanc-casse;
             padding: span(0.01);
         }
