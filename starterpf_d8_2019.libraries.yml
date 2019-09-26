@@ -7,7 +7,7 @@ global-styling:
     css:
         theme:
            css/application.css: {}
-        3rdparty:   
+        #3rdparty:   
             # Style pour Flexslider
            3rdparty/flexslider/flexslider.css: {}
             #Style pour Bxslider
@@ -18,7 +18,7 @@ global-styling:
            3rdparty/chocolat/chocolat.css: {}
             #Style pour Lightslider (galerie RWD)
            3rdparty/lightslider/css/lightslider.css: {}
-        js:  
+        #js:  
             #Style pour Responsive Slides (diaporama RWD)
            js/jquery_plugin/responsiveslides/responsiveslides.css: {}
             
