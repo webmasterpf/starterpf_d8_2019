@@ -26,11 +26,11 @@ li{
     }
 }
         a {
-            color: $vert;
+            color: $rose-fushia; //couleur du lien dans la page
             text-decoration: none;
               font-size: small;
             &:hover {
-                color: $gris-anthracite;
+                color: $gris-anthracite;//couleur du lien hover dans la page
                 text-decoration: underline;
             }
         }
