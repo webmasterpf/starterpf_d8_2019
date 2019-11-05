@@ -1,0 +1,16 @@
+
+SVG
+<ul>
+	<li><a alt="LDM" href="#" title="Labellisé Lycée des Métiers"><object class="logo" data="/sites/default/files/partenaires-logo/Logo_LDM.svg" type="image/svg+xml">Logo LDM<!-- fallback image in CSS --></object></a></li>
+	<li><a alt="Campus éco" href="#" title="Partenaire Campus Eco"><object class="logo" data="/sites/default/files/partenaires-logo/Campus_Eco.svg" type="image/svg+xml">Logo Campus Eco <!-- fallback image in CSS --></object></a></li>
+	<li><a alt="Label E3D" href="/node/527" title="Le label E3D"><object class="logo" data="/sites/default/files/partenaires-logo/Logo_E3D_niv3.svg" type="image/svg+xml">Logo E3D <!-- fallback image in CSS --></object></a></li>
+	<li><a alt="Provence Formation" href="/node/21" title="Membre de Provence Formation"><object class="logo" data="/sites/default/files/partenaires-logo/PF_7lyc-CFE-UFA.svg" type="image/svg+xml">Logo Provence formation<!-- fallback image in CSS --></object></a></li>
+</ul>
+
+PNG
+<ul>
+	<li><a alt="LDM" href="#" title="Labellisé Lycée des Métiers"><object class="logo" data="/sites/default/files/partenaires-logo/Logo_LDM.svg" type="image/svg+xml">Logo LDM<!-- fallback image in CSS --></object></a></li>
+	<li><a alt="Campus éco" href="#" title="Partenaire Campus Eco"><object class="logo" data="/sites/default/files/partenaires-logo/Campus_Eco.svg" type="image/svg+xml">Logo Campus Eco <!-- fallback image in CSS --></object></a></li>
+	<li><img alt="Label E3D" title="Le label E3D" data-entity-type="" data-entity-uuid="" height="137" src="/sites/default/files/partenaires-logo/Logo_E3D_niv2.png" width="137" /></li>
+	<li><a alt="Provence Formation" href="/node/21" title="Membre de Provence Formation"><object class="logo" data="/sites/default/files/partenaires-logo/PF_7lyc-CFE-UFA.svg" type="image/svg+xml">Logo Provence formation<!-- fallback image in CSS --></object></a></li>
+</ul>
