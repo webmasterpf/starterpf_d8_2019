@@ -55,7 +55,7 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
 ]%}
 {% set video_classes = [
 'videos',
-'label-' ~ node.field_inclure_video.fieldDefinition.name | replace({"_" : "-"}),
+'label-' ~ node.field_video_lycee.fieldDefinition.name | replace({"_" : "-"}),
 'type-' ~ node.bundle|clean_class
 ]%}
 {# BEM inspired class syntax: https://en.bem.info/
@@ -117,9 +117,9 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
 
       {{ content.body }}
 
-      {% if node.field_inclure_video is not empty %}
+      {% if node.field_video_lycee is not empty %}
         <aside {{ video_attribute.addClass(video_classes) }}>
-          {{ content.field_inclure_video.0 }}
+          {{ content.field_video_lycee.0 }}
         </aside>
       {% endif %}
 

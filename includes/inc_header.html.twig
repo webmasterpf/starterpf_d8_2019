@@ -43,11 +43,11 @@
 
             <div class="headHaut">
 
-              <div class="logoHead">
-                {% if page.logo is not empty %}
-                  <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" class="logo"><img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>"/></a>
-                {% endif %}
-              </div>
+              {# !!! IMPORTANT !!!
+               Le logo du site est affiché via le tpl block--system-branding-block.html.twig
+               Il s'affiche avec le slogan du site, voir plus bas.
+               Ajouter classes nécessaires dans le template du block.
+                #}
 
               {#
 /**

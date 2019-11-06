@@ -52,18 +52,18 @@ var assetsPath = {
   gems: [
 //    basePaths.gems + 'susy-2.2.2/sass',
     basePaths.gems + 'breakpoint-2.7.1/stylesheets'
-    
-    
+
+
   ],
    node_modules: [
-       //Ajoutés avec les gems pour simplifier     
-    basePaths.node_modules +  'node-normalize-scss',       
+       //Ajoutés avec les gems pour simplifier
+    basePaths.node_modules +  'node-normalize-scss',
     basePaths.node_modules +  'susy/sass',
     basePaths.node_modules +  'typey/stylesheets/_typey.scss'
   ],
   javascript: [
-    
-       
+
+
   ]
 };
 // Requis
@@ -83,7 +83,8 @@ var autoprefixer = require('autoprefixer');
 
 
 // Autoprefixer : Navigateurs à cibler pour le préfixage CSS
-var AUTOPREFIXER_BROWSERS = [
+// Liste fourni depuis 06/19 par .browserslistrc - Editer pour modifier.
+/*var AUTOPREFIXER = [
 
 '> 1%',
 'ie >= 8',
@@ -96,19 +97,20 @@ var AUTOPREFIXER_BROWSERS = [
 'ios >= 7',
 'android >= 4',
 'bb >= 10'
-];
+];*/
 
 //Tableau pour utiliser les plugins de PostCSS
 //https://webdesign.tutsplus.com/tutorials/postcss-quickstart-guide-gulp-setup--cms-24543
 var processors = [
   autoprefixer(  {
-                                browsers: AUTOPREFIXER_BROWSERS,
+                                //browsers: AUTOPREFIXER,
+                                // browserslist fourni la liste des navigateurs
                                 cascade: false,
                                 //activation du prefixage pour grid
-                                grid: true 
+                                grid: true
                             })
-                            
-//  cssnext,
+
+//  cssnext,n'existe plus - 06/19
 //  precss
 ];
 // A display error function, to format and make custom errors more uniform
@@ -128,13 +130,13 @@ var processors = [
 //}
 
 //Variables spécifiques au thèmes
-var urlSite = ['http://d8-celony.vmdev/'];
-var aliasDrush = ['@vmdevd8ce'];
+var urlSite = ['http://d8-gasquet.vmdev/'];
+var aliasDrush = ['@vmdevd8'];
 // #############################
 // Tâches à accomplir - Tasks
 // #############################
-// 
-// 
+//
+//
 gulp.task('sasscompil', function () {
     return gulp.src(basePaths.src)
 //    return gulp.src('./sass/**/*.scss')
@@ -142,7 +144,7 @@ gulp.task('sasscompil', function () {
         gutil.log(gutil.colors.red(error.message));
         this.emit('end');
     }))
-            .pipe(plugins.sourcemaps.init()) // Start Sourcemaps
+            .pipe(plugins.sourcemaps.init()) // Création du sourcemaps
             .pipe(plugins.sass({
                 noCache: true,
                 outputStyle: 'compressed',
@@ -155,7 +157,7 @@ gulp.task('sasscompil', function () {
                         folderPaths.styles.src
                         )
             }).on('error', plugins.sass.logError))
-           .pipe(postcss(processors))//Utilisation des plugins de PostCSS dont Autoprefixer
+           .pipe(postcss(processors))//Utilisation des plugins de PostCSS dont Autoprefixer (Voir plus haut)
             .pipe(plugins.sourcemaps.write('.', {sourceRoot: folderPaths.styles.src}))//Pour créer le fichier css.map à coté du css
             .pipe(gulp.dest(basePaths.dest))
             .pipe(plugins.size({title: 'Taille du fichier css'}))
@@ -173,10 +175,10 @@ gulp.task('drush', function() {
   return gulp.src(basePaths.drushscript, {
       read: false
     })
-    
+
     .pipe(plugins.shell([
       'drush @vmdevd6pf cron && drush @vmdevd6pf cc all'
-      
+
     ]))
     .pipe(plugins.notify({
       title: "Vidage de Cache",
@@ -191,7 +193,7 @@ gulp.task('browser-sync', function() {
 browserSync.init({
         //changer l'adresse du site pour lequel utiliser browserSync, solution par variable fonctionne pas
 //        proxy: '.urlSite.',
-        proxy: 'http://d8-celony.vmdev/',
+        proxy: 'http://d8-gasquet.vmdev/',
         open: false,
         logLevel: 'info',//pour avoir toutes les infos ,utiliser "debug", pour infos de base "info"
         logConnections: true

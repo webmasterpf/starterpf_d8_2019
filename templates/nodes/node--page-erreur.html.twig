@@ -101,11 +101,11 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
   <!--______________ ILLUSTRATION et TITRE ________________ -->
   <div {{ imagecontainer_attribute.addClass(imagecontainer_classes).setAttribute('id', 'zone-illustration') }}>
 
-    {% set image_deco = content.field_illus_lycee | render | trim %}
+    {% set image_deco = content.field_erreur_illus | render | trim %}
     {% if image_deco or node.label is not empty %}
       <div {{image_attribute.setAttribute('id', 'illustration-pleinepage').addClass(image_classes) }}>
         <h1 {{ titre_attribute.addClass(titre_classes) }}>{{node.label}}</h1>
-        {{ content.field_illus_lycee.0}}
+        {{ content.field_erreur_illus.0}}
       </div>
     {% endif %}
   </div>
