@@ -227,15 +227,3 @@ function starterpf_d8_2019_preprocess_file_link(&$variables) {
   $link = '<a href="'.$url.'" type="'.$file->filemime->value . '" length="' . $file->filesize->value . '" title="' . \Drupal\Component\Utility\Html::escape($file->filename->value) . '" target="_blank">' . \Drupal\Component\Utility\Html::escape($link_text) . '</a>';
   $variables['link']->setGeneratedLink($link);
 }
-/**
-*  Pour la page de résultats avec custom search module.
-* https://www.drupal.org/project/custom_search/issues/2915553
-*/
-function starterpf_d8_2019_theme_registry_alter(&$theme_registry) {
-  if (isset($theme_registry['item_list__search_results'])) {
-    $theme_registry['item_list__search_results']['template'] = 'custom-search-results';
-    $theme_registry['item_list__search_results']['path'] = drupal_get_path('theme', 'gasquet_d8_2019') . '/templates';
-    $theme_registry['item_list__search_results']['variables']['filter_position'] = FALSE;
-    $theme_registry['item_list__search_results']['variables']['filter'] = '';
-  }
-}
