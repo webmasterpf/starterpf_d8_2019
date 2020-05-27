@@ -5,7 +5,8 @@
 
     <div id="bloc_stats">
       {# chargement des typos #}
-      {% include directory ~ '/js/google_font.html.twig' %}
+      {# Chargement des typos Google via le fichier libraries.yml
+      % include directory ~ '/js/google_font.html.twig' % #}
       {#    % include directory ~ '/js/code_stats.html.twig' %} #}
 
     </div>
@@ -16,6 +17,5 @@
 
 </section>
 <!-- ______________________ /CONTENEUR _______________________ -->
-{#
-    {% include directory ~ '/includes/drupal_debug/inc_drupal_debug.html.twig' %}
-    #}
+
+{# % include directory ~ '/includes/drupal_debug/inc_drupal_debug.html.twig' % #}

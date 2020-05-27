@@ -13,14 +13,17 @@
     <meta name="detectify-verification" content="8497102470e46552eeca2eb8a07b7910"/>
 
     {# chargement des CSS #}
+    <!-- ___Chargement des CSS HEAD _____ -->
     <css-placeholder token="{{ placeholder_token }}">
-      {#  IMPORTANT : charger les librairies externes avant les scripts !! #}
-      <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-      <script src="https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
-
+      <!-- ___ // Fin Chargement des CSS HEAD _____ -->
+      {#  IMPORTANT : charger les librairies externes avant les scripts !!
+        Tous les JS se chargent en fin de page via html.html.twig et <js-bottom-placeholder>
+      #}
+      <!-- ___ Chargement des JS HEAD _____ -->
+      {% include directory ~ '/includes/inc_js_externe.html.twig' %}
       <js-placeholder token="{{ placeholder_token }}"></head>
+      <!-- ___ // Fin Chargement des JS HEAD _____ -->
+
       {% set classes = [] %}
       {% for role in user.roles %}
         {% set classes = classes|merge(['role--' ~ role|clean_class]) %}
