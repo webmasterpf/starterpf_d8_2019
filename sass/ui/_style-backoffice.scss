@@ -8,10 +8,12 @@
 
 /*######-------- ||| LAYOUT  PAGES BO ||| --------######*/
 body.not-front.logged-in, body.role--authenticated{
+  padding: 0;
     section.conteneur{
         @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-         width: span(10 of $desktopcol);
-        margin-left: span(1 wide);//push
+         width: span(11);
+        //margin-left: span(1 wide);//push
+        margin: 0 auto;
         @include clearfix;
           .middle-content  img{
         width: auto;
@@ -70,6 +72,7 @@ body.not-front.logged-in, body.role--authenticated{
 
 /*-- EDIT MODE --D8 --*/
 // Tabs. Remplacer l'ID par celle du thème utilisé si les classes sur UL ne fonctionnent pas.
+// Régler la variable $theme dans le fichier _variables.scss
 
 body.role--authenticated{
 ul.menu,nav.tabs,#block-#{$theme}-local-tasks{
