@@ -87,6 +87,20 @@ function starterpf_d8_2019_theme_suggestions_page_alter(&$suggestions, $variable
     $suggestions[] = 'page__'.$content_type;
   }
 }
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ * https://drupal.stackexchange.com/questions/227709/adding-theme-suggestions-programmatically-for-views-rows-fields
+ * Suggestion de Template pour les Vues/Views , indispo via UI dans D8.7
+ */
+function gasquet_d8_2019_theme_suggestions_views_view_alter(array &$suggestions, array $variables) {
+       // If you want you can add a template suggestion for all views
+       // based on their ID:
+       $suggestions[] = sprintf('views_view__%s', $variables['view']->id());
+
+       // Or you can check the ID, add suggestions, do whatever you want
+       // ...
+   }
+
 
 /** https://atendesigngroup.com/blog/making-region-content-available-node-templates-drupal-8
  */
@@ -226,4 +240,16 @@ function starterpf_d8_2019_preprocess_file_link(&$variables) {
   }
   $link = '<a href="'.$url.'" type="'.$file->filemime->value . '" length="' . $file->filesize->value . '" title="' . \Drupal\Component\Utility\Html::escape($file->filename->value) . '" target="_blank">' . \Drupal\Component\Utility\Html::escape($link_text) . '</a>';
   $variables['link']->setGeneratedLink($link);
+}
+/**
+*  Pour la page de résultats avec custom search module.
+* https://www.drupal.org/project/custom_search/issues/2915553
+*/
+function gasquet_d8_2019_theme_registry_alter(&$theme_registry) {
+  if (isset($theme_registry['item_list__search_results'])) {
+    $theme_registry['item_list__search_results']['template'] = 'custom-search-results';
+    $theme_registry['item_list__search_results']['path'] = drupal_get_path('theme', 'gasquet_d8_2019') . '/templates';
+    $theme_registry['item_list__search_results']['variables']['filter_position'] = FALSE;
+    $theme_registry['item_list__search_results']['variables']['filter'] = '';
+  }
 }

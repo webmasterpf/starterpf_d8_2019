@@ -7,7 +7,7 @@ global-styling:
     css:
         theme:
            css/application.css: {}
-        #3rdparty:   
+        #3rdparty:
             # Style pour Flexslider
            3rdparty/flexslider/flexslider.css: {}
             #Style pour Bxslider
@@ -18,48 +18,96 @@ global-styling:
            3rdparty/chocolat/chocolat.css: {}
             #Style pour Lightslider (galerie RWD)
            3rdparty/lightslider/css/lightslider.css: {}
-        #js:  
+        #js:
             #Style pour Responsive Slides (diaporama RWD)
            js/jquery_plugin/responsiveslides/responsiveslides.css: {}
-            
+           #CSS externes
+           #https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css: {}
+fonts:
+  version: 1.x
+  css:
+    theme:
+      #css/font-awesome/css/font-awesome.min.css: {}
+      https://fonts.googleapis.com/css?family=Arvo&subset=latin: {type: external}
+      https://fonts.googleapis.com/css?family=Arimo&subset=latin: {type: external}
+      https://fonts.googleapis.com/css?family=Sorts+Mill+Goudy:400,400italic: {type: external}
+      https://fonts.googleapis.com/css?family=Raleway:400,700,300: {type: external}
+# enquire
+at.enquire:
+  remote: https://raw.githubusercontent.com/WickyNilliams/enquire.js
+  version: "2.1.6"
+  license:
+    name: MIT
+    url: https://raw.githubusercontent.com/WickyNilliams/enquire.js/master/LICENSE
+    gpl-compatible: true
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/enquire.js/2.1.6/enquire.min.js: { type: external, minified: true }
+  dependencies:
+    - core/jquery
+    - core/matchmedia
+cdn.jquery:
+  #NON fonctionnel avec les librairies externes
+  remote: https://jquery.com
+  version: 2.1.1
+  license:
+    name: MIT
+    url: https://github.com/jquery/jquery/blob/master/LICENSE
+    gpl-compatible: true
+  js:
+    https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js: { type: external, minified: true }
+npm.enquire:
+  version: VERSION
+  js:
+    #Chargement des JS ajoutées via NPM ou externes
+    node_modules/enquire.js/dist/enquire.min.js: {}
 global-scripts:
     version: VERSION
     js:
-#        js/navmenu.js: {}   //issu de Basic
-#        js/modernizr.js: {} //issu de Basic
-#       chargement des plugins qui utilisent la version de jQuery par défaut du site - exD6
-        js/jquery_plugin/selectnav.min.js: {}
-        js/jquery_plugin/jquery.sticky-kit.js: {}
-#        chargement des scripts qui utilisent la version de jQuery par défaut du site - exD6
-        js/js_jquery_defaut.js: {}
+#     js/navmenu.js: {}   //issu de Basic
+#     js/modernizr.js: {} //issu de Basic
+      #Chargement des JS ajoutées via NPM ou externes
+      #node_modules/enquire.js/dist/enquire.min.js: {}
+      #Chargement des librairies externes - déplacée depuis le Header (non fonctionnel)
+      #https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js: {type: external, minified: true}
+      #https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js: {type: external, minified: true}
+
+#     chargement des plugins qui utilisent la version de jQuery par défaut du site - exD6
+      js/jquery_plugin/selectnav.min.js: {}
+      #js/jquery_plugin/jquery.sticky-kit.js: {}
+#      chargement des scripts qui utilisent la version de jQuery par défaut du site - exD6
+      #js/js_jquery_defaut.js: {}
 #     mise en place du noConflict pour utiliser plusieurs versions de jQuery   - exD6
-        js/jquery_init.js: {}
+      #js/jquery_init.js: {}
 #       chargement des plugins qui utilisent une version de jQuery plus récente - exD6
-        js/jquery_plugin/jquery.flexslider.js: {}
-        js/jquery_plugin/stacktable.min.js: {}
-        js/jquery_plugin/jquery.floatit.js: {}
-        js/jquery_plugin/stickUp.js: {}
-        js/jquery_plugin/jquery.masonry.min.js: {}
-        js/jquery_plugin/baguettebox/baguetteBox.min.js: {}
-        js/jquery_plugin/chocolat/jquery.chocolat.min.js: {}
-        js/jquery_plugin/responsiveslides/responsiveslides.min.js: {}
-        js/jquery_plugin/lazyload/jquery.lazyloadxt.extra.min.js: {}
-        js/jquery_plugin/stacktable.min.js: {}
-        js/jquery_plugin/vertical-align.min.js: {}  
-        
-        3rdparty/bxslider/js/jquery.bxslider.js: {}
-        3rdparty/lightslider/js/lightslider.js: {}
+      js/jquery_plugin/jquery.flexslider.js: {}
+      js/jquery_plugin/stacktable.min.js: {}
+      #js/jquery_plugin/jquery.floatit.js: {}
+      #js/jquery_plugin/stickUp.js: {}
+      #js/jquery_plugin/jquery.masonry.min.js: {}
+      js/jquery_plugin/baguettebox/baguetteBox.min.js: {}
+      js/jquery_plugin/chocolat/jquery.chocolat.min.js: {}
+      js/jquery_plugin/responsiveslides/responsiveslides.min.js: {}
+      js/jquery_plugin/lazyload/jquery.lazyloadxt.extra.min.js: {}
+      js/jquery_plugin/vertical-align.min.js: {}
+      #js/jquery_plugin/jquery.pin.js: {}
+      #js/jquery_plugin/jquery.smartsticky.min.js: {}
+      js/jquery_plugin/jquery.fixit.js: {}
+
+      3rdparty/bxslider/js/jquery.bxslider.js: {}
+      #3rdparty/lightslider/js/lightslider.js: {}
      #  *** Utilisation des plugins Jquery  plus récents - Toujours terminer avec ce JS***
-        js/js_jquery_new.js: {}
-    #    //  mise à disposition des 2 versions de jQuery - Voir si utile
-        js/jquery_exit.js: {}
+      #js/js_jquery_new.js: {}
+      js/js_jquery_unique.js: {}
+    #  //  mise à disposition des 2 versions de jQuery - Voir si utile
+      #js/jquery_exit.js: {}
     dependencies:
        - core/drupal
        - core/jquery
        - core/drupalSettings
        - core/jquery.once
        - core/modernizr
-       
+       - core/matchmedia
+
 # Uncomment the code above to load scripts.js file on all pages. This file also requires JQuery to be
   # loaded on all pages. Consider implimenting your scripts through theme libraries if you wish to
   # avoid this. https://www.drupal.org/developing/api/8/assets
@@ -80,4 +128,4 @@ global-scripts:
 #  version: VERSION
 #  header: true
 #  js:
-#    js/selectivizr-min.js: { browsers: { IE: 'lte IE 8', '!IE': false }, minified: true, preprocess: false }       
+#    js/selectivizr-min.js: { browsers: { IE: 'lte IE 8', '!IE': false }, minified: true, preprocess: false }
