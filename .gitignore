@@ -1,12 +1,22 @@
+## Fichiers ignorés
 /Import_Taxo_Termes.csv
 *.scssc
 *.sassc
 .sass-cache
-*.map
-node_modules
-.DS_Store
-symfony-2.8
-private
 .db
 .ftp*
 Thumbs.db
+*.json
+package.json
+package-lock.json
+*.sqlite
+*.suo
+*.psd
+3rdparty/*
+*/Thumbs.db
+*.cson
+## Dossiers ignorés
+symfony-2.8
+private
+node_modules
+config
