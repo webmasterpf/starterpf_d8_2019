@@ -10,8 +10,8 @@ Style - layout pour le bandeau des autres sites de l'ASSO
    // voir "_layout-off-canvas-susy.scss" pour taille du contenant
     ul{
             background: $blanc-casse;
-            
-            
+
+
             li{
                 //@include span (1 of 7);
                 list-style : none;
@@ -20,31 +20,70 @@ Style - layout pour le bandeau des autres sites de l'ASSO
                     //@include last;
                 }
                 a{
-                    text-decoration: none;font-size:small;
-                    &:hover{color: #FBFBFB;
-                            transition: background 2s ease,color 1000ms ease;-webkit-transition: background 2s ease,color 1000ms ease;}
+                    text-decoration: none;
+                    font-size:small;
+                    @include breakpoint(($tablet-hd,$tablet)){
+                      @include font-size(l);//utilisation de typey
+                    }
+                    @include breakpoint(($mobilelandscape,$tabletlandscape)){
+                      @include font-size(xl);//utilisation de typey
+                      }
+                    &:hover{
+                      color: #FBFBFB;
+                      transition: background 2s ease,color 1000ms ease;
+                    }
                 }
             }
         }
-    @include breakpoint ($desktop){
+    @include breakpoint($desktop){
         display: block;
         height: auto;
         ul{
             background: $blanc-casse;
             display: block;
             height: 2em;
-            
+
             li{
                 float: left;
                 list-style : none;
-                margin: 0 span(0.4);
+                margin: 0 span(0.1);
                 &:last-child{
                     /*@include last;*/
                 }
                 a{
-                    text-decoration: none;font-size:small;
-                    &:hover{color: #FBFBFB;
-                            transition: background 2s ease,color 1000ms ease;-webkit-transition: background 2s ease,color 1000ms ease;}
+                    text-decoration: none;
+                    @include font-size(s);//utilisation de typey
+                    &:hover{
+                      color: #FBFBFB;
+                      transition: background 2s ease,color 1000ms ease;
+                          }
+                }
+            }
+        }
+
+    }
+    @include breakpoint($desktopwide){
+        display: block;
+        height: auto;
+        ul{
+            background: $blanc-casse;
+            display: block;
+            height: 2em;
+
+            li{
+                float: left;
+                list-style : none;
+                margin: 0 span(0.2);
+                &:last-child{
+                    /*@include last;*/
+                }
+                a{
+                    text-decoration: none;
+                    @include font-size(m);//utilisation de typey
+                    &:hover{
+                      color: #FBFBFB;
+                      transition: background 2s ease,color 1000ms ease;
+                          }
                 }
             }
         }

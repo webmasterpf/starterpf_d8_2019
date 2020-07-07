@@ -3,9 +3,19 @@
 |--------------------------------------*/
 
 //Breakpoints
-// @include breakpoint ($mobile){}
-// @include breakpoint ($desktop){}
-// @include breakpoint ($tablet){}
+//@include breakpoint ($desktop){}  : $desktopwide  $mobile  $mobile-iphonehd   $mobile-iphoneX
+/*
+$mobile-galaxyShd
+$mobile-galaxyS6
+$tablet
+$tablet-hd
+
+// Breakpoint pour les format paysage
+$mobilelandscape
+$mobilelandscape-galaxyShd
+$tabletlandscape
+$tabletlandscape-hd:
+*/
 
 body .conteneur #footer{
     padding:0;
@@ -13,9 +23,9 @@ body .conteneur #footer{
     @include backgroundImage(('BG/bg_footer@4x.png'),transparent, no-repeat, right bottom);//nouvelle mixin 2018
 
     @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-        width: span(10 of $desktopcol);
+        width: span(10);
         margin-left: span(1 wide);//push
-         @include backgroundImage(('BG/bg_footer@4x.png'),transparent, no-repeat, right bottom);//nouvelle mixin 2018
+
     }
     aside{
 
@@ -35,20 +45,26 @@ body .conteneur #footer{
 
     @include breakpoint ($mobile){
 
-        @include background-size();
+        @include background-size(70% auto);
         p{
             padding: 0 0 em(15px) 0;
         }
     }
-    @include breakpoint ($desktop){
-        @include background-size();;
+    @include breakpoint(($desktop,$desktopwide)){
+        @include background-size(40% auto);
 
 
     }
-    @include breakpoint ($tablet){
-
+    @include breakpoint(($tabletlandscape)){
+      @include background-size(45% auto);
     }
+    //Pleine Largeur pour Tablette portrait
+    @include breakpoint(($tablet,$mobilelandscape)){
+      @include background-size(75% auto);
+    }
+    @include breakpoint(($tablet-hd,$tabletlandscape-hd)){}
 }
+
 /*Bas de page  FOOTER*/
 
 

@@ -3,12 +3,12 @@
 Layout pour les desktop.Breakpoint définit par variable dans _variables.scss
 */
 body .conteneur{
-    
+
     @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-    
-        padding-top: 0em;  
+
+        padding-top: 0em;
         //mixin container n'existe plus avec susy3, tout se fait avec span
-        
+
         //@debug susy3
         background: susy-svg-grid() no-repeat scroll;
         #header{
@@ -18,7 +18,7 @@ body .conteneur{
         }
         .content-global{
 
-                     
+
         }
         .content-inner{
             width: auto;
@@ -26,7 +26,7 @@ body .conteneur{
         }
         .content-top{
             min-height: 5em;//permet d'éviter que defilant se superpose
-            
+
                /*@include break;*/
                 &:before{
                 content: " ";
@@ -37,8 +37,8 @@ body .conteneur{
         .middle-content{
 
         }
-        .node-inner{  
-        }                       
+        .node-inner{
+        }
         .content-bottom{}
         .content-bottom-home{
 
@@ -54,7 +54,7 @@ body .conteneur{
         #right-content{}
         #footer{
 
-            @include background-size(40% auto);
+            
             &:before{
                 content: " ";
                 display: block;
@@ -75,7 +75,7 @@ body .conteneur{
 ---------------------------------*/
 aside#block-service_links-service_links{
     @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-     width: 6vw;   
+     width: 6vw;
     }
     }
 .service-links{
@@ -85,26 +85,26 @@ aside#block-service_links-service_links{
     @include arrondis (em(5px));
     @include clearfixsusy3;
     @include PIE;
-    
+
     @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-    
-    
-/*       
+
+
+/*
   right: 0;
   bottom: 90%;
   left: 50%;
-    
+
     text-align: center;
         transform: translate(790%, 100%);*/
     /* top: 10%; */
     width: 5vw;
     height: 10vw;
       position: relative;
-         left: 1340%; 
-    
+         left: 1340%;
+
     //@include squish(0.5,0.5); //Ajoute un margin avant et aprés l'element pour le centrer
-    
-    
+
+
 
     a{
         margin: 0 em(5px);
@@ -126,19 +126,19 @@ aside#block-service_links-service_links{
         @include clearfix;
         width: auto;
     }
-    
+
     ul{
           //@include push(0.5);Ajoute un margin avant l'element >> devient margin-left: susy-span(3 wide);
           /*margin-left: susy-span(2 wide);*/
         li{
-            
+
         }
     }
     .fb_iframe_widget{
-       
+
     }
     .twitter-share-button,.fb_iframe_widget,#___plusone_0,.IN-widget{
-        
+
     }
     }
 }

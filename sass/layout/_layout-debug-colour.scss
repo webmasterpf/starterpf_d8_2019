@@ -7,7 +7,7 @@ body .conteneur {
     //Approche mobile-first,réglage pour mobile
 
     #header{background-color: #F29400;}
-    .annonce_1{background-color: chocolate;}      
+    .annonce_1{background-color: chocolate;}
 
     .annonce_2{background-color:deeppink;}
     .HPDiapo{background-color: violet;}
@@ -16,8 +16,10 @@ body .conteneur {
 
     #footer{background-color: firebrick;
             aside{
-                background-color: teal;     
-            }     
+                //background-color: teal;
+                background-image: repeating-linear-gradient(-45deg,transparent 0 5px,
+                grey 0.1em 0.35em);
+            }
     }
     @include breakpoint($tablet) {//Dimensions pour les tablettes
 
@@ -32,10 +34,12 @@ body .conteneur {
 
                                   #footer{background-color: peachpuff;
                                           aside{
-                                              background:sandybrown;
-                                          }  
-                                  }        
-    }   
+                                              //background:sandybrown;
+                                              background-image: repeating-linear-gradient(-45deg,transparent 0 5px,
+                                              grey 6px 7px);
+                                          }
+                                  }
+    }
 
 
 
@@ -44,7 +48,7 @@ body .conteneur {
                                    #header{
                                        background: seashell;}
                                    .annonce_1{
-                                       background-color: palevioletred;     
+                                       background-color: palevioletred;
                                    }
                                    .annonce_2{background-color:yellow;}
                                    .HPDiapo{background-color: blanchedalmond;     }
@@ -58,7 +62,7 @@ body .conteneur {
 
                                                background: palevioletred;}
                                            .annonce_1{
-                                               background-color: yellow;     
+                                               background-color: yellow;
                                            }
                                            .annonce_2{background-color: sandybrown;}
                                            .HPDiapo{background-color: yellowgreen;}
@@ -86,6 +90,10 @@ body .conteneur{
         }
     }
     .zone_layout_max_centre{
+      @include breakpoint(($desktop,$desktopwide)){background: violet;}
+      @include breakpoint(($tabletlandscape)){background: #00CC99;}
+      @include breakpoint(($tablet,$mobilelandscape)){background: yellow;}
+      @include breakpoint(($tablet-hd,$tabletlandscape-hd)){background: peachpuff;}
 
         background: peachpuff;
         @include breakpoint ($mobile){
@@ -339,20 +347,17 @@ body .conteneur{
     .zone2_layout_5_7{}
 
     .zone1_layout_6_6,.zone1_layoutflex_6_6{
-        @include breakpoint ($tablet){
-            background: tomato;
-        }
-        @include breakpoint ($desktop){
-            background: thistle;
-        }
+      @include breakpoint(($desktop,$desktopwide)){background: blanchedalmond;}
+      @include breakpoint(($tabletlandscape)){background: seagreen;}
+      @include breakpoint(($tablet,$mobilelandscape)){background: tomato;}
+      @include breakpoint(($tablet-hd,$tabletlandscape-hd)){background:thistle;}
+
     }
     .zone2_layout_6_6,.zone2_layoutflex_6_6{
-        @include breakpoint ($tablet){
-            background: #00CC99;
-        }
-        @include breakpoint ($desktop){
-            background: #cccccc;
-        }
+      @include breakpoint(($desktop,$desktopwide)){background: thistle;}
+      @include breakpoint(($tabletlandscape)){background: tomato;}
+      @include breakpoint(($tablet,$mobilelandscape)){background: #00CC99;}
+      @include breakpoint(($tablet-hd,$tabletlandscape-hd)){background:blanchedalmond;}
     }
 
     .zone1_layout_7_5{
@@ -394,39 +399,35 @@ body .conteneur{
         }
     }
     .zone1_layout_8_4{
-        @include breakpoint ($tablet){
-            background: tomato;
-        }
-        @include breakpoint ($desktop){
-            background: thistle;
-        }
+      @include breakpoint(($desktop,$desktopwide)){background: tomato;}
+      @include breakpoint(($tabletlandscape)){background: #00CC99;
+        background-image: repeating-linear-gradient(-45deg,transparent 0 5px,
+        grey 6px 7px);}
+      @include breakpoint(($tablet,$mobilelandscape)){background: yellow;}
+      @include breakpoint(($tablet-hd,$tabletlandscape-hd)){background: thistle;}
+
     }
     .zone2_layout_8_4{
-        @include breakpoint ($tablet){
-            background: #00CC99;
-        }
-        @include breakpoint ($desktop){
-            background: #cccccc;
-        }
+      @include breakpoint(($desktop,$desktopwide)){background: thistle;}
+      @include breakpoint(($tabletlandscape)){background: tomato;}
+      @include breakpoint(($tablet,$mobilelandscape)){background: #00CC99;}
+      @include breakpoint(($tablet-hd,$tabletlandscape-hd)){background:blanchedalmond;}
     }
 
     .zone1_layout_9_3{
-        background: #764479;
-        @include breakpoint ($tablet){
-            background: #00CC99;
-        }
-        @include breakpoint ($desktop){
-            background: #cccccc;
-        }
+      @include breakpoint(($desktop,$desktopwide)){background: indianred;}
+      @include breakpoint(($tabletlandscape)){background:blanchedalmond;   }
+      @include breakpoint(($tablet,$mobilelandscape)){background: yellow;
+        background-image: repeating-linear-gradient(-45deg,transparent 0 5px,
+        grey 6px 7px);}
+      @include breakpoint(($tablet-hd,$tabletlandscape-hd)){background: khaki;}
     }
     .zone2_layout_9_3{
-        background: tan;
-        @include breakpoint ($tablet){
-            background: tomato;
-        }
-        @include breakpoint ($desktop){
-            background: thistle;
-        }
+      @include breakpoint(($desktop,$desktopwide)){background: thistle;}
+      @include breakpoint(($tabletlandscape)){background: tan;}
+      @include breakpoint(($tablet,$mobilelandscape)){background: yellow;}
+      @include breakpoint(($tablet-hd,$tabletlandscape-hd)){background:tomato;}
+
     }
 
     .zone1_layout_10_2{}

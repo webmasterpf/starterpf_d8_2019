@@ -29,33 +29,45 @@ body .conteneur {
     }
     .close{
         background: $rose-fushia;//changer couleur selon le site !!!
+        @include breakpoint(($mobilelandscape,$tablet,$tabletlandscape)){
+        //Hauteur de la zone contenant le bouton de fermeture de l'onglet
+        padding: span(0.27);
+        }
     }
     img.close-btn{
         vertical-align: middle;
         cursor: pointer;
         zoom: 1.5;
         margin: 0 0 0 80%;
+        background: $rose-fushia;//changer couleur selon le site !!!
+        @include breakpoint(($mobilelandscape,$tablet,$tabletlandscape)){
+          //Taille de la croix pour fermer le volet
+        margin: 5% 0 0 10%;
+        transform: scale(2.5);
+
+        }
     }
     .menu-toggle, .transformer.is-open > .menu-toggle{
         position: absolute;
         padding: 0 gutter();
         /*- Coins arrondis -*/
         border-radius: 0 0 em(8px) em(8px);
-        background: #555;
-        color: #fff;
+        background: $gris-anthracite;
+        color: $blanc-casse;//couleur texte bandeau gris
         text-decoration: none;
         padding: 0.3em;
         top: 0;//vertical 4em
         left: 10%; //vertical -4em- position onglet sur mobile
 
         /* quelques styles CSS3 270deg pour vertical gauche ; 0deg */
-/*        -ms-transform: rotate(0deg);
-        -moz-transform: rotate(0deg);
-        -webkit-transform: rotate(0deg);*/
         transform: rotate(0deg);
+        @include breakpoint(($mobilelandscape,$tablet,$tabletlandscape)){
+          //Position de l'onglet Gris sur Tablette
+          left: 40%;
+        }
     }
 
-    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+    @include breakpoint(($desktop,$desktopwide)){
         $off-canvas-height: 7.8em;
         $off-canvas-top: 10.3em;
 
@@ -74,7 +86,7 @@ body .conteneur {
             bottom: 0;
             height: $off-canvas-height;//limite la hauteur du bloc
             @include arrondis;
-            background: $rose-fushia;//changer couleur selon le site !!!
+            background: $rose-fushia; //changer couleur selon le site !!!
         }
         img.close-btn{
                 margin: 0 0 0 1%;
@@ -85,9 +97,6 @@ body .conteneur {
             left: 40%;
 
             /* CSS3 : pour IE, fixer rotation */
-            -ms-transform: rotate(0deg);
-            -moz-transform: rotate(0deg);
-            -webkit-transform: rotate(0deg);
             transform: rotate(0deg);
         }
         .menu-toggle{
@@ -97,6 +106,8 @@ body .conteneur {
             top: em(-37px);//position de l'onglet ouvert
         }
     }
+    //Layout pour tablette et mobile paysage : fichier _layout-bandeau.scss
+
 }
 //Gestion de l'affichage avec D8
 body.role--authenticated{

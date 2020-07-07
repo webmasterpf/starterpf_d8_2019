@@ -1,0 +1,45 @@
+/*
+Déplacement de div particulier.
+Quand la réorganisation via susy ne suffit pas
+*/
+
+/*//////////////////////\\\\\\\\\\\\\\\\\\\\\\
+********** DEPLACEMENT DE DIV SUR MOBILE *****
+\\\\\\\\\\\\\\\\\\\\\\\//////////////////////*/
+
+body .conteneur {
+  $blocRS-width: span(1);
+  $blocRS-height: span(1.5);
+  $blocRS-left: 95%;
+
+  #block-socialsimpleblock {
+    padding: 0;
+    margin: 0;
+    width: inherit;
+  }
+  //Bloc de partage RS avec social simple
+  aside.partage-rs {
+    max-width: $blocRS-width;
+    //max-height: $blocRS-height;
+    //position: absolute;
+    //width: $blocRS-width;
+    //left: $blocRS-left;
+    //top: 50em;//position de départ
+    //bottom: 0;
+    height: auto;//limite la hauteur du bloc
+    margin-left: span(1 wide);//push;
+
+    background: $violet;
+    ul.links {
+      max-width: $blocRS-width;
+      list-style: none;
+      li {
+        padding: 0;
+        margin: 0;
+      }
+      a{
+        width: em(40px);
+      }
+    }
+  }
+}
