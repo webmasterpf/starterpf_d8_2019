@@ -12,9 +12,15 @@ $zones: zone-illustration;
 @each $type in $typedecontenu {
   .#{$type} {
     aside.galerie .galerieBaguetteBox {
-      @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+      @include breakpoint(($desktop,$desktopwide)) {
         column-count: 3;
         column-fill: balance;
+        white-space: normal;
+      }
+      @include breakpoint(($mobilelandscape,$tablet,$tabletlandscape)) {
+        column-count: 2;
+        column-fill: balance;
+        white-space: normal;
       }
 
       span.item-galerie {
@@ -37,27 +43,4 @@ $zones: zone-illustration;
 }
 //définir ici les types de contenus qui appliqueront ce style & layout
 //Galerie Asymétrique
-
-.fiche-bts {
-  aside.galerie .galerieBaguetteBox .view-content {
-    > div {
-      /*               width: span(1 of 3);
-                margin: span(0.0001);
-                float: left;*/
-      @include breakpoint(($desktop,$tablet)) {
-        /*width: span(1 of 6);*/
-      }
-    }
-
-    img {
-      transform: scale(1);
-      @include cadre-ombre(0.3em,white,$gris-anthracite);
-    }
-
-    a.asymetrique-gd {
-      img {
-        transform: scale(1);
-      }
-    }
-  }
-}
+//Pas de vue fonctionnelle ,voir solution galerie JS existe ? Slick à tester

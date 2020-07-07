@@ -12,6 +12,57 @@ body .conteneur{
     z-index: 888;//pour écraser valeur donnée par défaut de 9999
 
 }
+$typedecontenu: HPDiapo;
+$ULclasse:bxslider-hp;
+  @each $type in $typedecontenu {
+    .#{$type} {
+      .bx-wrapper{
+        img{
+
+          @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+            @include adaptable-img();
+          }
+
+
+        }
+        .bx-viewport {
+          box-shadow: none;
+          border: none;
+          background: none;
+          max-height: inherit;
+          @include breakpoint(($desktop,$desktopwide)) {
+            max-height: 30em;
+          }
+        @include breakpoint(($mobilelandscape,$tablet,$tabletlandscape)) {
+          //Pas besoin de réglages spécifiques
+        }
+        @each $classe-ul in $ULclasse {
+          ul.#{$classe-ul} {
+            li,img{
+                margin: 0;
+            }
+
+          }
+        }
+      }
+        .bx-caption{
+          span{
+          color: white;
+          padding: em(5px);
+          font-family: $AristaFont;
+          line-height: 1em;
+          @include font-size(m); //utilisation de typey
+          @include breakpoint(($desktop,$desktopwide,$tablet,$tabletlandscape)) {
+           line-height: 1.3em;
+           @include font-size(l); //utilisation de typey
+          }
+        @include breakpoint(($mobilelandscape)) {}
+        }
+        }
+
+      }
+    }
+  }
 .galerie-vdl {
     .bx-wrapper{
     margin: 0 auto;
@@ -34,11 +85,9 @@ body .conteneur{
 .HPDiapo{
     .bx-wrapper{
         margin:0;
+        //border-color: $vert;//Couleur du cadre du diapo sur Accueil - Blanc par défaut - Décommenter si besoin
         .bx-viewport {
-        box-shadow: none;
-    border: none;
-        background: none;
-        max-height: 30em;
+        //Voir code haut de page
         }
         .bx-caption{
             position: fixed;
@@ -48,22 +97,14 @@ body .conteneur{
             //couleur fond des captions
             @include backgroundRGBA($rose-fushia, 0.85);
             margin: 0 auto;
-            span{
-                 color: white;
-                padding: em(5px);
-                font-family: $AristaFont;
-                line-height: 1.3em;
-                font-size: x-large;
+            span{//style du cartouche
+              //Voir code haut  de page
             }
         }
     }
-    ul.bxslider-hp{
-        li,img{
-            margin: 0;
-        }
+    //Voir code haut de page pour UL
 
-    }
-}
+}//Fin HPDiapo
 
 #illustration-pleinepage.illustration-page-fiche-formation{
     .bx-wrapper{
@@ -72,10 +113,17 @@ body .conteneur{
            .bx-viewport{
             background: 0;
             border: 0;
-            max-width: 100%;
-            box-shadow:none;
-            max-height: 30em;
-            min-height: 78vh !important;
+            box-shadow: none;
+            border: none;
+            background: none;
+
+            @include breakpoint(($desktop,$desktopwide)) {
+              max-height: 30em;
+              min-height: 78vh !important;
+            }
+          @include breakpoint(($mobilelandscape,$tablet,$tabletlandscape)) {
+            //Pas besoin de réglages spécifiques
+          }
             img{
                 margin: 0;
                 padding: 0;
