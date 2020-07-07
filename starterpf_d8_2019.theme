@@ -229,18 +229,8 @@ function starterpf_d8_2019_theme_suggestions_block_alter(array &$suggestions, ar
 */
 function starterpf_d8_2019_preprocess_file_link(&$variables) {
   // Add target _blank attribute to all file links.
-  $file = $variables['file'];
-  $url = file_create_url($file->uri->value);
-  // Use the description as the link text if available.
-  if (empty($variables['description'])) {
-    $link_text = $file->filename->value;
-  }
-  else {
-    $link_text = $variables['description']->__toString();
-  }
-  $link = '<a href="'.$url.'" type="'.$file->filemime->value . '" length="' . $file->filesize->value . '" title="' . \Drupal\Component\Utility\Html::escape($file->filename->value) . '" target="_blank">' . \Drupal\Component\Utility\Html::escape($link_text) . '</a>';
-  $variables['link']->setGeneratedLink($link);
-}
+//Code remplacé par le module https://www.drupal.org/project/issues/file_download_link
+}*/
 /**
 *  Pour la page de résultats avec custom search module.
 * https://www.drupal.org/project/custom_search/issues/2915553
