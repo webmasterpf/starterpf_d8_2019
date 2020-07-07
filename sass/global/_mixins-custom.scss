@@ -54,10 +54,22 @@ $imagedir: '../images/'; // definir ici le chemin vers le dossier image
 @mixin backgroundImage($filename,$couleur:transparent,$position:top left,$repeat: no-repeat) {
   background: $couleur url('#{$imagedir}#{$filename}') $position $repeat;
 }
-@mixin maskImage($filename,$position:0 0,$repeat: no-repeat, $taille: 50%) {
-  mask: url("#{$imagedir}#{$filename}") $repeat $position;
+@mixin maskImage($filename, $taille: 100%, $mode: alpha, $couleurFinale: transparent,$repeat: no-repeat,$position:0 0,$repeat: no-repeat) {
+  /*
+Utilise la mixin backgroundImage pour l'image de BG. Bien spécifier les valeurs même par défaut Sinon
+problème de distribution des valeurs. Utiliser un visuel PNG blanc comme base pour meilleure
+application des couleurs.
+Ne pas utiliser //background-size: contain; si problèmes
+Ne pas utiliser d'image pour le background, couleur suffit
+Support partiel par Edge à partir de v42
+  */
+  //background: url('#{$imagedir}#{$filename}') $position $repeat $couleurFinale;
+  background: $couleurFinale;
+  mask-image: url('#{$imagedir}#{$filename}');
+  mask-mode: $mode;
   mask-size: $taille;
-}
+  mask-repeat: $repeat;
+  }
 @mixin backgroundSVGandColor($filename,$color:red) {
   /* background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" fill="url('#{$imagedir}#{$filename}')" color="$color" ');
 
@@ -107,7 +119,7 @@ $imagedir: '../images/'; // definir ici le chemin vers le dossier image
                         left: 0;
                         right: 0;
                         bottom: 1054.4vw;//83%*/
-  @include breakpoint(($desktop,$desktopwide,$mobilelandscape)) {
+  @include breakpoint(($desktop,$desktopwide)) {
     display: inline-block;
     margin: 0 0 0 span(0.1);
     top: 0; //120% 17vw mieux comme ça avec titre en haut et non en bas de la photo
@@ -117,7 +129,7 @@ $imagedir: '../images/'; // definir ici le chemin vers le dossier image
     transform: translate(0%, 5%);
     max-height: 2.7vw;
   }
-  @include breakpoint(($tablet,$tabletlandscape,$tablet-hd,$tabletlandscape-hd)) {
+  @include breakpoint(($tablet,$tabletlandscape,$tablet-hd,$tabletlandscape-hd,$mobilelandscape)) {
     display: inline-block;
     margin: 0 0 0 span(0.1);
     top: 0; //120% 17vw mieux comme ça avec titre en haut et non en bas de la photo
@@ -670,7 +682,7 @@ https://www.creativejuiz.fr/blog/css-css3/controles-fin-des-cesures-css4-text
   }
 }
 @mixin hack-Edge() {
-  //ciblage de MS Edge
+  //ciblage de MS Edge <79 Chromium
   @supports (-ms-ime-align: auto) {
     display: inline-block;
     width: 100%;

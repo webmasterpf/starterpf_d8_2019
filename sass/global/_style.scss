@@ -8,7 +8,7 @@
 /**-- style du fil d'ariane - D8: ajouter la classe dans le bloc dédié --**/
 
 .ariane, .breadcrumb {
-    display: none;
+    display: none; //Non affiché sur mobile et Tablette
     @include breakpoint ($desktop){
         display: block;
         padding: 0 0 0 0.3em;
@@ -26,11 +26,11 @@ li{
     }
 }
         a {
-            color: $rose-fushia; //couleur du lien dans la page
+            color: $vert;
             text-decoration: none;
               font-size: small;
             &:hover {
-                color: $gris-anthracite;//couleur du lien hover dans la page
+                color: $gris-anthracite;
                 text-decoration: underline;
             }
         }

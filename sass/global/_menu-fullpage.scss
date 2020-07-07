@@ -23,17 +23,22 @@ body .conteneur{
         display: block;
         float: right;
         margin: 0 0 10% 0;
-        top: 0;
-        left: -10%;
+        top: em(35px);
+        left: 0%;
         bottom: 0;
         text-decoration: none;
-        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-            padding: em(9px);
+        //Position du logo du menu
+        @include breakpoint(($desktop,$desktopwide)){
+        padding: em(9px);
         height: em(32px);
         width: em(32px);
         margin: 1%;
         top: em(0px);
         left: em(0px);
+        }
+        @include breakpoint(($mobilelandscape,$tablet,$tabletlandscape)){
+        top: em(30px);
+        left: em(-70px);
         }
 
         div.hamburger{
@@ -45,13 +50,17 @@ body .conteneur{
                 font-family: $FontRaleway;
                     left: -4em;
                     top:0.9em;
-    position: relative;
-    text-decoration: none;
-    min-width: 4em;
-    display: block;
-     transition:0.5s all;
+                    position: relative;
+                    text-decoration: none;
+                    min-width: 4em;
+                    display: block;
+                    transition:0.5s all;
+                    //Position de l'indication du menu
                 @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
                     top:0.35em;
+                }
+                @include breakpoint(($mobilelandscape,$tablet,$tabletlandscape)){
+                    top:em(15px);
                 }
 
             }
@@ -71,10 +80,14 @@ body .conteneur{
         opacity: 0.9;
         ul{
             list-style: none;
-            width: span(7 of $desktopcol);
-            margin: 0 auto;
+            width: span(10);
+            margin: 25% auto;
         /*margin-left: span(2  wide);//push*/
         font-family: $FontRaleway;
+        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+            width: span(7);
+            margin: 0 auto;
+        }
         }
         li {
             list-style-type: none;
@@ -82,14 +95,14 @@ body .conteneur{
             padding: span(0.1);
             a {
                 display: block;
-                font-size: smaller;
+                @include font-size(m);//utilisation de typey
                 color: $blanc-casse;
                 text-decoration: none;
                 font-weight: lighter;
                 width: 100%;
                     text-transform: uppercase;
                 @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-                    font-size: xx-large;
+                    @include font-size(xl);//utilisation de typey
                 }
                 &:hover{
                     color: $gris-anthracite;
@@ -104,7 +117,7 @@ body .conteneur{
         }
     }
 
-
+    //****** ACCES MENU ET ANIMATION CROIX *****//
     .top-animate {
         background: #fff !important;
         top: 13px !important;
@@ -121,10 +134,10 @@ body .conteneur{
         transform: rotate(-225deg);
     }
     .top-menu,.mid-menu,.bottom-menu{
-             width: em(25px);
+        width: em(25px);
         height: em(2px);
         border-radius: em(10px);
-        background-color: $violet;//Couleur de l'accès menu
+        background-color: $violet;//Couleur de l'accès menu 3 barres
     }
     .top-menu {
         top: em(5px);
