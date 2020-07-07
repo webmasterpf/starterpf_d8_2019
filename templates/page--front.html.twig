@@ -1,73 +1,76 @@
-{% set main_menu = page.primary_menu|render %}
-{% set secondary_menu = page.secondary_menu|render %}
-<div{{ attributes.addClass(
-  'layout-container',
-  main_menu or secondary_menu ? 'with-navigation',
-  secondary_menu ? 'with-subnav'
-) }}>
-<!-- ______________________ LAYOUT HOMEPAGE LARGE _______________________ -->
+{% set main_menu = page.primary_menu | render %}
+{% set secondary_menu = page.secondary_menu | render %}
+<div{{ attributes.addClass( 'layout-container', main_menu or secondary_menu ? 'with-navigation', secondary_menu ? 'with-subnav' ) }}>
+  <!-- ______________________ LAYOUT HOMEPAGE LARGE _______________________ -->
 
   <!-- ______________________ HEADER _______________________ -->
-{#  Inclusion du markup du Header pour plus de lisibilité 
+  {#  Inclusion du markup du Header pour plus de lisibilité
 Voir fichier @html.html.twig
 #}
 
-<!-- ______________________ ANNONCE _______________________ -->
+  <!-- ______________________ ANNONCE _______________________ -->
 
-{% if  page.AnnonceAlaUne is not empty %}
+  {% if page.AnnonceAlaUne is not empty %}
     <div class="annonce_1 annonce_alaUne">
-        {{page.AnnonceAlaUne}}
-    </div> <!-- /#content-top -->
-{% endif %}
+      {{page.AnnonceAlaUne}}
+    </div>
+    <!-- /#content-top -->
+  {% endif %}
 
-<!-- ______________________ ANNONCE DEUIL _______________________ -->
+  <!-- ______________________ ANNONCE DEUIL _______________________ -->
 
-{% if  page.AnnonceDeuil is not empty %}
+  {% if page.AnnonceDeuil is not empty %}
     <div class="annonce_2">
-        {{page.AnnonceDeuil}}
-    </div> <!-- /#content-top -->
-{% endif %}
-<!-- ______________________ ZONE DIAPO PLEINE LARGEUR _______________________ -->
+      {{page.AnnonceDeuil}}
+    </div>
+    <!-- /#content-top -->
+  {% endif %}
+  <!-- ______________________ ZONE DIAPO PLEINE LARGEUR _______________________ -->
 
-{% if  page.DiapoHPFull is not empty %}
+  {% if page.DiapoHPFull is not empty %}
     <div class="HPDiapo">{{page.DiapoHPFull}}</div>
-{% endif %}
+  {% endif %}
 
-
-
-<!-- ______________________ ACCES RUBRIQUES  _______________________ -->
-{% if  page.RubriquesHP1 is not empty %}
+  <!-- ______________________ ACCES RUBRIQUES _______________________ -->
+  {% if page.RubriquesHP1 is not empty %}
     <div class="acces_rubriques">{{page.RubriquesHP1}}</div>
-{% endif %}
+  {% endif %}
 
-<!-- ______________________ ACCES RUBRIQUES 2  _______________________ -->
-{% if  page.RubriquesHP2 is not empty %}
+  <!-- ______________________ ACCES RUBRIQUES 2 _______________________ -->
+  {% if page.RubriquesHP2 is not empty %}
     <div class="acces_rubriques">{{page.RubriquesHP2}}</div>
-{% endif %}
+  {% endif %}
 
-<!-- ______________________ ACCES RUBRIQUES 3  _______________________ -->
-{#
-{% if  page.RubriquesHP3 is not empty %}
-    <div class="acces_rubriques">{{page.RubriquesHP3}}</div>
-{% endif %}                 
+  {#
+Voir fichier @html.html.twig pour inclusion de la zone Accès contact
 #}
-<!-- ______________________ ACCES LYCEES / VIDEO LYCEE _______________________ -->
-{% if  page.AccesLycees is not empty %}
-    <div class="acces_rubriques">{{page.AccesLycees}}</div>
-{% endif %}   
-<!-- ______________________ ACCES LOGOS PARTENAIRES _______________________ -->
+  <!-- ______________________ ACCES RUBRIQUES 3 _______________________ -->
+  {# Ne pas afficher le bloc Contact en bas de page sur HP si besoin de le placer ailleurs
+variable is_front ajoutée dans le fichier .theme via preprocess.html
+05/2020: placement différent des autres pages - commenter si pas besoin de placement particulier pour HP
+#}
 {#
-{% if  page.LogoPart is not empty %}
-    <div class="logo_partenaires">{{page.LogoPart}}</div>
-{% endif %}   
+  {% if page.RubriquesHP3 is not empty and is_front %}
+    <div class="acces_rubriques">{{page.RubriquesHP3}}</div>
+  {% endif %}
+  <!-- _____ /ACCES RUBRIQUES 3 ____ -->
+#}
+  <!-- ______________________ ACCES LYCEES / VIDEO LYCEE _______________________ -->
+  {% if page.AccesLycees is not empty %}
+    <div class="acces_rubriques">{{page.AccesLycees}}</div>
+  {% endif %}
+
+  <!-- ______________________ ACCES LOGOS PARTENAIRES _______________________ -->
+  {#
+Voir fichier @html.html.twig pour inclusion de la zone logos PARTENAIRES
 #}
   <!-- ______________________ FOOTER _______________________ -->
-{# Inclusion du markup du Footer pour plus de lisibilité 
+  {# Inclusion du markup du Footer pour plus de lisibilité
 Voir fichier @html.html.twig
 #}
-
-
+  {# Chargement de librairies JS pour ce template #}
+  {#{ attach_library('gasquet_d8_2019/at.enquire') }#}
   
-  
 
-</div><!-- /.layout-container -->
+</div>
+<!-- /.layout-container -->

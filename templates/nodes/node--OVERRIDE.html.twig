@@ -39,6 +39,9 @@ Possible avec le NiD ou un mot de l'url réécrite.
 
 <article{{ attributes.addclass(classes) }}>
 
+  {# Attacher une librairie JS pour un type de contenu spécifique via son template #}
+  {{ attach_library('nom_theme/angular.angularjs') }}
+
   {% include directory ~ '/templates/includes/inc_header_node.html.twig' %}
 
   <div{{ content_attributes.addClass('content') }}>
@@ -126,7 +129,7 @@ Créer un template de champ pour pouvoir organiser la sortie HTML : field--field
     </div>
 
     {# Ajout d'une région custom via un include avec test non vide#}
-    {% include '@THEME_NAME/templates/includes/regions_inc/inc_region_zone_1.html.twig' %}
+    {% include directory ~ '/includes/regions_inc/inc_region_zone_1.html.twig' %}
 
     {# Afficher un terme de taxonomie contenu dans le node - les filtres sont pour un usage comme classe#}
     To get the field value from a field in a taxonomy term that is referenced in the node:

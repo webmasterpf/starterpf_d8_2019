@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Default theme implementation for the starterpf_d8_2019 structure of a single Drupal page.
+ * Default theme implementation for the lerocher_d8_2019 structure of a single Drupal page.
  *
  * Variables:
  * - logged_in: A flag indicating if user is logged in.
@@ -32,20 +32,21 @@
 #}
 <!DOCTYPE html>
 {% if ie_enabled_versions.ie8 %}
-  {{- attach_library('starterpf_d8_2019/ie8') }}
+  {{- attach_library('gasquet_d8_2019/ie8') }}
 {% endif %}
 {% if ie_enabled_versions.ie9 or ie_enabled_versions.ie8 %}
-  <!--[if lt IE 7]>     <html{{ html_attributes.addClass('no-js', 'lt-ie9', 'lt-ie8', 'lt-ie7') }}><![endif]-->
-  <!--[if IE 7]>        <html{{ html_attributes.removeClass('lt-ie7') }}><![endif]-->
-  <!--[if IE 8]>        <html{{ html_attributes.removeClass('lt-ie8') }}><![endif]-->
-  <!--[if gt IE 8]><!--><html{{ html_attributes.removeClass('lt-ie9') }}><!--<![endif]-->
-{% else -%}
-  <html{{ html_attributes }}>
-{% endif %}
+  <!--[if lt IE 7]> <html{{ html_attributes.addClass('no-js', 'lt-ie9', 'lt-ie8', 'lt-ie7') }}><![endif]-->
+  <!--[if IE 7]> <html{{ html_attributes.removeClass('lt-ie7') }}><![endif]-->
+  <!--[if IE 8]> <html{{ html_attributes.removeClass('lt-ie8') }}><![endif]-->
+  <!--[if gt IE 8]><!-->
+  <html{{ html_attributes.removeclass('lt-ie9') }}>
+    <!--<![endif]-->
+  {% else -%}
+    <html{{ html_attributes }}>
+    {% endif %}
 
-  {#<head> voir @inc_header.html.twig#}
-{% include directory ~ '/includes/inc_header.html.twig' %}   
-   
+    {#<head> voir @inc_header.html.twig#}
+    {% include directory ~ '/includes/inc_header.html.twig' %}
 
     <div id="skip">
       <a href="#main-menu" class="visually-hidden focusable skip-link">
@@ -55,32 +56,39 @@
     {{ page_top }}
     {{ page }}
     {{ page_bottom }}
-    
-    <!-- ______________________ ACCES RUBRIQUES 3  _______________________ -->
-{% if  page.RubriquesHP3 is not empty %}
-    <div class="acces_rubriques">{{page.RubriquesHP3}}</div>
-{% endif %}                 
-<!-- _____ /ACCES RUBRIQUES 3  ____ -->
 
-<!-- ______________________ ACCES LOGOS PARTENAIRES _______________________ -->
-{% if  page.LogoPart is not empty %}
-    <div class="logo_partenaires">{{page.LogoPart}}</div>
-{% endif %}  
-<!-- ___ /ACCES LOGOS PARTENAIRES ____ -->
+    <!-- ______________________ ACCES RUBRIQUES 3 _______________________ -->
+    {# Ne pas afficher le bloc Contact en bas de page sur HP si besoin de le placer ailleurs
+    variable is_front ajoutée dans le fichier .theme via preprocess.html
+    05/2020: déplacement région sur HP, voir page--front.html.twig
+    Choisir option selon mise en page choisi en commentant / décommentant
+    #}
+    {# {% if page.RubriquesHP3 is not empty and not is_front %} #}
+    {% if page.RubriquesHP3 is not empty %}
+      <div class="acces_rubriques">{{page.RubriquesHP3}}</div>
+    {% endif %}
+    <!-- _____ /ACCES RUBRIQUES 3 ____ -->
 
-{#
-Déplacement du bloc de chargement des JS du core Drupal et modules dans le fichier du footer, juste avant la fermeture du body
+    <!-- ______________________ ACCES LOGOS PARTENAIRES _______________________ -->
+    {% if page.LogoPart is not empty %}
+      <div class="logo_partenaires">{{page.LogoPart}}</div>
+    {% endif %}
+    <!-- ___ /ACCES LOGOS PARTENAIRES ____ -->
+
+    {#
+Déplacement du bloc de chargement des JS du core Drupal et modules
+dans le fichier libraries.yml du thème,chargement via placeholder
 #}
     {% if browser_sync.enabled %}
       <script id="__bs_script__">
-      document.write("<script async src='http://{{ browser_sync.host }}:{{ browser_sync.port }}/browser-sync/browser-sync-client.js'><\/script>".replace("HOST", location.hostname));
+        document.write("<script async src='http://{{ browser_sync.host }}:{{ browser_sync.port }}/browser-sync/browser-sync-client.js'><\/script>".replace("HOST", location.hostname));
       </script>
     {% endif %}
-    
-    {% include directory ~ '/includes/inc_footer.html.twig' %}   
-    
-     {# IMPORTANT !! Toujours placer le chargment des JS du core et modules juste avant la fermeture du body !!!#}
-       <js-bottom-placeholder token="{{ placeholder_token }}">
 
-  </body>
-</html>
+    {% include directory ~ '/includes/inc_footer.html.twig' %}
+
+    {# % include directory ~ '/includes/drupal_debug/inc_drupal_debug.html.twig' %#}
+
+    {# IMPORTANT !! Toujours placer le chargment des JS du core et modules juste avant la fermeture du body !!!#}
+    <js-bottom-placeholder token="{{ placeholder_token }}"></body>
+  </html>
