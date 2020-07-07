@@ -51,15 +51,51 @@ $zonesimg: zone-illustration;
           transform: translate(0%,0%);
           @include adaptable-img();
         }
-        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+        @include breakpoint(($desktop,$desktopwide)) {
           min-height: 25vw;
           max-height: 30vw;
 
-          img {
-            transform: translate(0%,-6%);
+          img:not([src*="defaut"]) {
+            transform: translate(0%,-9%);
+          }
+          img[src*="defaut"]{//Position du visuel par défaut
+            transform: translate(0%,-10%);
           }
         }
-      }
+        @include breakpoint(($tablet)) {
+          min-height: 25vw;
+          max-height: 30vw;
+
+          img:not([src*="defaut"]) {
+            transform: translate(0%,-25%);
+          }
+          img[src*="defaut"]{//Position du visuel par défaut
+            transform: translate(0%,-24%);
+          }
+        }
+        @include breakpoint(($tabletlandscape)) {
+          min-height: 25vw;
+          max-height: 30vw;
+
+          img:not([src*="defaut"]) {
+            transform: translate(0%,-20%);
+          }
+          img[src*="defaut"]{//Position du visuel par défaut
+            transform: translate(0%,-18%);
+          }
+        }
+        @include breakpoint(($mobilelandscape)) {
+          min-height: 25vw;
+          max-height: 35vw;
+
+          img:not([src*="defaut"]) {
+            transform: translate(0%,-23%);
+          }
+          img[src*="defaut"]{//Position du visuel par défaut
+            transform: translate(0%,-20%);
+          }
+        }
+      }// Fin illustration-pleinepage
     }
   }
 }
@@ -73,10 +109,17 @@ $zonesimg: zone-illustration;
     iframe[src*="maps"],
     iframe[src*="umap"]
     {
-        min-height: 110vw;
-        min-width: 30vw;
-        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-            min-height: 30vw;
+        min-height: 60vh;
+        min-width: 90vw;
+        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet)){
+            min-height: 60vh;
+            min-width: 30vw;
+        }
+        @include breakpoint(($tabletlandscape)){
+            min-height: 75vh;
+        }
+        @include breakpoint(($tablet)){
+            min-height: 55vh;
         }
     }
 }
@@ -158,13 +201,17 @@ ______________________________*/
         @include img-centered;
         max-width: 65%;
         @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+
             position: relative;
             top:0;
             left: 0;
-            width: 100vw;//Pas de % pour les iframes px ou vh vw
-            height: 100vh;
+
             max-width: 95%;
             padding: span(0.02);
+              iframe :not(iframe[src*="maps"]):not(iframe[src*="umap"]){
+                width: 100vw;//Pas de % pour les iframes px ou vh vw - plan exclu
+                height: 100vh;
+              }
         }
     }
 }

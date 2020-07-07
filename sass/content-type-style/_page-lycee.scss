@@ -78,24 +78,76 @@ $zonesimg: zone-illustration;
           min-height: 25vw;
           max-height: 30vw;
 
-          img {
-            transform: translate(0%,-6%);
+          img:not([src*="defaut"]) {
+            transform: translate(0%,-9%);
           }
+          img[src*="defaut"]{//Position du visuel par défaut
+            transform: translate(0%,-10%);
+          }
+        }
+        @include breakpoint(($tablet)) {
+          min-height: 25vw;
+          max-height: 30vw;
+
+          img:not([src*="defaut"]) {
+            transform: translate(0%,-25%);
+          }
+          img[src*="defaut"]{//Position du visuel par défaut
+            transform: translate(0%,-24%);
+          }
+        }
+        @include breakpoint(($tabletlandscape)) {
+          min-height: 25vw;
+          max-height: 30vw;
+
+          img:not([src*="defaut"]) {
+            transform: translate(0%,-20%);
+          }
+          img[src*="defaut"]{//Position du visuel par défaut
+            transform: translate(0%,-18%);
+          }
+        }
+        @include breakpoint(($mobilelandscape)) {
+          min-height: 25vw;
+          max-height: 35vw;
+
+          img:not([src*="defaut"]) {
+            transform: translate(0%,-30%);
+          }
+          img[src*="defaut"]{//Position du visuel par défaut
+            transform: translate(0%,-20%);
+          }
+        }
+      }//Fin illustration-pleinepage
+    }
+  }
+}// Fin zone-illustration
+
+//Position du visuel différente selon NiD
+#node-XX{
+  #zone-illustration.type-page-lycee{
+      // utiliser bxslider-cyrano.scss" pour régler le bx-viewport ou bx-caption
+      #illustration-pleinepage{
+        @include breakpoint(($desktop,$desktopwide)){
+            img{
+                transform: translate(0%, -53%);
+            }
         }
       }
     }
-  }
 }
 #zone-illustration.type-page-erreur{
   #illustration-pleinepage{
     //image par défaut en BG comme secours
-    @include backgroundImage(("defaut/visuel-848-AssoPF-2019.jpg"),transparent,no-repeat, top left);
+    @include backgroundImage(("defaut/visuel-defaut-AssoPF-2019.jpg"),transparent,no-repeat, top left);
     background-size: cover;
   }
 }
-// Tableau initial des classes et IDs à créer.
-$typedecontenu: type-page-lycee,type-page-erreur ;
-$zones: zone-1, zone-2, zone-3 ;
+
+
+// Tableau initial des classes (TdC) et IDs (Zones) à créer.
+$typedecontenu: type-page-lycee, type-annonce-accueil, type-contenu-info-admin, type-page-erreur ;
+$zones: zone-1, zone-2, zone-3, zone-4 ;
 @each $zone in $zones {
   @each $type in $typedecontenu {
     ##{$zone}.#{$type} {}
@@ -115,7 +167,8 @@ body .conteneur {
 }
 /*######-------- ||| STYLE ||| --------######*/
 
-/*---- REGLAGE GLOBAL - supprimer autres réglages si existent - retirer le bloc dédié de l'affichage pour ne pas doublonner'*/
+/*---- REGLAGE GLOBAL - supprimer autres réglages si existent -
+Désactiver le bloc "Titre de page " pour éviter doublon*/
 //Commun pour tous les H1 titre du site -
 
 h1.titre_overlay {
@@ -160,7 +213,14 @@ h1.titre_page {
         @include font-size(m); //utilisation de typey
         color: $rose-fushia;
       }
-
+      h4{
+        @include font-size(s); //utilisation de typey
+        color: $vert;
+      }
+      h5{
+        @include font-size(xs); //utilisation de typey
+        color: $violet;
+      }
       a {
         text-decoration: none;
         color: $violet;
@@ -169,7 +229,9 @@ h1.titre_page {
           text-decoration: underline;
         }
       }
-
+      em {//texte italique
+        color: $vert;
+      }
       strong {
         color: $rose-fushia;
       }

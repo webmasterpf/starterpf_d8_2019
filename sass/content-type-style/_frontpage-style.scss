@@ -6,9 +6,19 @@
 |       FRONTPAGE INSTITUTIONNEL       |
 |--------------------------------------*/
 
-//@include breakpoint ($mobile){}
-//@include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){}
-//@include breakpoint ($tablet){}
+//@include breakpoint ($desktop){}  : $desktopwide  $mobile  $mobile-iphonehd   $mobile-iphoneX
+/*
+$mobile-galaxyShd
+$mobile-galaxyS6
+$tablet
+$tablet-hd
+
+// Breakpoint pour les format paysage
+$mobilelandscape
+$mobilelandscape-galaxyShd
+$tabletlandscape
+$tabletlandscape-hd:
+*/
 //@include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){}
 
 /*######-------- ||| LAYOUT SPECIFIQUE ||| --------######*/
@@ -61,7 +71,7 @@ aside.DiapoHPFull{
             }
             li{
                 list-style: none;
-                margin: span(1) 0;
+                margin: span(1) auto;
                 text-align:center;
                 max-width: 85%;
                 @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
@@ -166,7 +176,11 @@ ul.rubriques-speciales{
             margin-left: span(3.05 wide);//push - si 4 items alors 2; si 3 items alors 3.5
         }
         @include breakpoint($tablet){
-            margin: span(0.5) span(0.2);
+          display:inline-block;
+          column-count: 3;//Selon nombre éléments à afficher
+          column-fill: balance;
+          white-space: normal;
+          margin-left: span(2 wide);//centrage des boutons sur tablette portrait
         }
         @include breakpoint(($mobilelandscape,$tabletlandscape)){
             display:inline-block;
@@ -177,7 +191,7 @@ ul.rubriques-speciales{
             margin: 0 10vw;
             max-width: 95%;
         }
-        @include breakpoint(($tablet,$mobile-galaxyShd,$mobile-iphonehd)){
+        @include breakpoint(($mobile-galaxyShd,$mobile-iphonehd)){
             display:inline-block;
             column-count: 1;
             column-fill: balance;
@@ -187,7 +201,18 @@ ul.rubriques-speciales{
             width: 75%;
         }
     }
-
+    aside.pageFacebook{
+      //Likebox FB classe via BlockClass
+      @include breakpoint(($desktop,$desktopwide,
+      $tablet-hd,$tabletlandscape-hd
+      )){
+      max-width: span(11);
+      margin: span(0.5)  span(4);
+    }
+    @include breakpoint($tablet){}
+    @include breakpoint(($mobilelandscape,$tabletlandscape)){}
+    }
+//Bloc de partage RS avec social simple. Voir scss dédié _layout-partage-rs
 /*######-------- ||| STYLE ||| --------######*/
 
 //Code imbriqué à 100%
@@ -343,7 +368,7 @@ body .conteneur {
     }
     .acces_rubriques{
         p{
-            line-height: 0;
+            //line-height: 0;
         }
         iframe{ //video en page d'accueil - centrage
           display: block;
@@ -411,10 +436,11 @@ body .conteneur {
                 span.titre-admin{
                     display: block;
                     text-align:center;
+                    font-weight: bold;
                     a{
                         color: whitesmoke;
                         text-decoration: none;
-                        font-weight: bold;
+
                     }
                 }
                 span.accroche-admin{
@@ -575,7 +601,7 @@ body .conteneur {
                             }
                             &:hover{
 
-                                /*        @include backgroundImage("SVG/bg_acces_contact.svg", -29em top);*/
+                                /*@include backgroundImage("SVG/bg_acces_contact.svg", -29em top);*/
                                 /*background: $violet;//Couleur de fond des boutons au rollover - Surpasse couleur donnée dans mixin backgroundImage, empêche image*/
                                 text-indent: em(-9000px);
                             }

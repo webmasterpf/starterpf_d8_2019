@@ -16,9 +16,7 @@ body .conteneur .conteneur-flex{
     #zone-2.type-page-actualites{order:1;}
     #zone-3.type-page-actualites{order:3;}
     @include breakpoint ($desktop){
-        #zone-1.type-page-actualites{order:1;}
-        #zone-2.type-page-actualites{order:2;}
-        #zone-3.type-page-actualites{order:3;}
+
     }
 }
 
@@ -40,11 +38,18 @@ body .conteneur {
             transform: translate(0%,0%);
             @include adaptable-img();
         }
-        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+        @include breakpoint(($desktop,$desktopwide)){
             min-height: 25vw;
             max-height: 30vw;
             img{
                 transform: translate(0%,-6%);
+            }
+        }
+        @include breakpoint(($mobilelandscape,$tablet,$tabletlandscape)){
+            min-height: 25vw;
+            max-height: 37vw;
+            img{
+                transform: translate(0%,-13%);
             }
         }
     }
@@ -65,42 +70,80 @@ $zones: zone-1 ; //, zone-2, zone-3
               padding: span(0.1);
           }
       }
-      aside.liste-vdl{
+      aside.liste-vdl,aside.liste-actu-presse{
 
           .bef-exposed-form{
-              @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-                  column-count: 4;
+              @include breakpoint(($desktop,$desktopwide)){
+                  display:inline-block;
+                  column-count: 6;
                   column-fill: balance;
                   white-space: normal;
                   padding: span(0.02);
               }
+              @include breakpoint(($mobilelandscape,$tablet,$tabletlandscape)){
+                //Diminue taille items sur Tablette selon réglage de display
+                //display:inherit;
+                column-count: 1;// Tablette S3: Edge & FF OK
+                column-fill: balance;
+                white-space: normal;
+                padding: span(0.02);
+              }
               div.form-item{
-                  margin: 0 0 span(0.01) 0;
-                  @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-                      @include  txt-colonnes();
-
-                      padding: span(0.35);
-                  }
+                margin: 0 0 span(0.01) 0;
+                @include breakpoint(($desktop,$desktopwide)){
+                  @include hack-Edge;
+                  @include hack-IE;
+                  @include txt-colonnes();
+                  padding: span(1);
+                }
+                @include breakpoint(($mobilelandscape,$tablet,$tabletlandscape)){
+                  @include hack-Edge;
+                  @include hack-IE;
+                  @include txt-colonnes();
+                  //Tri horizontal plutot que vertical des éléments. Besoin d'une largeur
+                  // Régler column-count: sur 1 au niveau de l'UL
+                  display: inline-block;
+                  width: span(5.5);
+                  padding: span(0.35);
+                  //Garder le margin par défaut
+                }
               }
           }
           .item-list{
               @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-                  /*width: span(12);*/
+            // Ne pas utiliser cette classe. Trop générique
+
               }
-              ul.liste-vdl-lycee{
-                  @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+          ul.liste-vdl-lycee{
+                  @include breakpoint(($desktop,$desktopwide)){
   /*                                        column-count: 5;
                                           column-fill: auto;
                                           white-space: normal;*/
-                      //Flex pour avoir classement horizontal chronologique
+                      //Flex pour avoir classement horizontal chronologique plutot que vertical
                       display: flex;
                       flex-wrap:wrap;
                       padding: 0 0 0 span(0.1);
                   }
+                  @include breakpoint(($tablet-hd,$tablet)){
+                    //Layout différent pour tablette, 2 colonnes
+                    column-count: 1;//adapter selon taille des blocs / images
+                    column-fill: balance;//bug FF en colonne résolu
+                    white-space: normal;
+                    padding: span(0.1);
+
+                  }
+                  @include breakpoint(($mobilelandscape,$tabletlandscape)){
+                    display: flex;
+                    flex-wrap:wrap;
+                    padding: 0;
+                  }
                   li{
                       padding: 0;
                       margin: span(0.1) 0;
-                      @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+                      :not(img):not(a):not(.complement){
+                          padding: span(0.05);
+                        }
+                      @include breakpoint(($desktop,$desktopwide)){
 
                           /*@include hack-Edge;*/
                           @include hack-IE;
@@ -111,22 +154,168 @@ $zones: zone-1 ; //, zone-2, zone-3
                           margin: 0 span(0.1) span(0.1) 0;
                           display: inline-block;
                           width: span(1.8);
-
                           :not(img):not(a):not(.complement){
                               padding: span(0.1);
+                            }
 
+                      }
+                      @include breakpoint(($mobilelandscape,$tabletlandscape)){
+                        /* Définir le nombre de colonnes via flex*/
+                        /* Trois valeurs : flex-grow | flex-shrink | flex-basis */
+                        flex: 0 0 30%; // 21% = 4 col , 18% = 5 col - nb item selon taille image
+                        @include hack-IE;
+                        @include  txt-colonnes();
+                        margin: 0 span(0.1) span(0.1) 0;
+                        display: inline-block;
+                        //width: span(0.5); //inutile sur tablette S3
+
+                        :not(img):not(a):not(.complement){
+                            padding: span(0.1);
                           }
+                      }
+                      @include breakpoint(($tablet-hd,$tablet)){
+                        //Utilisation de colonnes plutot que Flex
+                      @include hack-Edge;
+                      @include hack-IE;
+                      @include txt-colonnes();
 
+                      //Tri horizontal plutot que vertical des éléments. Besoin d'une largeur
+                      // Régler column-count: sur 1 au niveau de l'UL - Validé Edge et FF TabS3
+                      display: inline-block;
+                      width: span(5.5);
+                      margin: span(0.01);
                       }
                       a{
                           display: block;
                           overflow: hidden;// Pour empêcher image de sortir
                       }
                   }
-              }
-          }
+              } // Fin UL liste-vdl-lycee
+              ul.acces-contenu-lycee {
+                padding: 0;
+                @include breakpoint(($desktop,$desktopwide)){
+                    column-count: 2;//adapter selon taille des blocs / images
+                    column-fill: balance;//bug FF en colonne résolu
+                    white-space: normal;
+                    padding: span(0.1);
+                }
+                @include breakpoint(($tablet-hd,$tablet,$mobilelandscape,$tabletlandscape)){
+                  //Layout différent pour tablette, 2 colonnes
+                  column-count: 2;//adapter selon taille des blocs / images
+                  column-fill: balance;//bug FF en colonne résolu
+                  column-gap: em(10px);//taille de la gouttière (gutter)
+                  white-space: normal;
+                  padding: span(0.1);
+                }
 
-      }
+                li {
+                  padding: 0;
+                  margin: span(0.1) 0;
+                  overflow: hidden;
+                  @include breakpoint(($desktop,$desktopwide)){
+                  @include hack-Edge;
+                  @include hack-IE;
+                  @include txt-colonnes();
+
+                }
+                @include breakpoint(($mobilelandscape,$tablet,$tabletlandscape)) {
+                  @include hack-Edge;
+                  @include hack-IE;
+                  @include txt-colonnes();
+                  //Pour avoir 2 colonnes sans que items dépassent - TabS3 Portrait
+                  margin: 0 span(0.1) 0;
+                  max-width: 45vw;
+                  display: inline-block;
+                }
+                span.illus-lycee {
+                        overflow: hidden;
+                        padding: 0;
+                        img {
+                          transform: scale(1);
+                        }
+                        @include breakpoint(($desktop,$desktopwide)){
+                          max-width: 70%;
+                          float: left;
+                          content: "";
+
+                          img {
+                            transform: scale(1.1);
+                          }
+                        }
+                        @include breakpoint(($mobilelandscape,$tablet,$tabletlandscape)) {
+                          img {
+                            transform: scale(1.05);
+                          }
+                        }
+                      }
+
+                      span.complement,
+                      span.titre-lycee {
+                        padding: span(0.1);
+                        display: block;
+
+
+                        @include breakpoint(($mobilelandscape,$tablet,$tabletlandscape)) {
+                          //max-width: 40vw;
+                        }
+                        @include breakpoint($desktop) {
+                          max-width: 7vw;
+                          float: left;
+                        }
+                        @include breakpoint($desktopwide) {
+                          max-width: 11vw;
+                          padding: 0 0 0 span(0.01);
+                          float: left;
+                        }
+                      }
+
+                  a {
+                    display: inherit;
+                  }
+                }
+              } // Fin acces-contenu-lycee
+          } // Fin item-list
+          nav.pager{
+            //Utiliser PAgination complète en réécrivant les étiquettes dans ÉTIQUETTES DE LIEN DE PAGINATION
+            //de l'affichage de la vue concernée
+              @include clearfixsusy3;
+                //column-span: all;//la pagination utilise toute la largeur
+
+              ul.pager__items{
+                display: flex;
+                @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+                  width: span(4);
+                  margin: 0 auto;
+                  padding: span(0.1);
+                }
+                li{
+                  @include font-size(s); //utilisation de typey
+                    @include horizontal-list-item();
+                    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+                      @include font-size(l); //utilisation de typey
+                    }
+                    @include breakpoint(($mobilelandscape,$tablet,$tabletlandscape)){
+                      @include font-size(m); //utilisation de typey
+                    }
+                }
+              }// Fin ul.pager__items
+          }// Fin nav.pager
+          //Layout pour Calendrier
+          div.calendrier-vdl{
+
+            @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tabletlandscape)){
+              width: span(11);
+              margin-left: span(0.5 wide);//Push
+            }
+          .fc-left{//Boutons de navigation
+            @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){}
+          }
+          .fc-right{//Boutons de type d'affichage
+            @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){}
+          }
+          }//Fin .calendrier-vdl
+      } //Fin Aside liste-vdl
+
     }
   }
 }
@@ -151,16 +340,22 @@ h1.titre-page-globale{
     }
     u{
         font-weight: bold;
-        color: $vert;
+        color: $rose-fushia;
 
     }
     h2{
+      @include font-size(m);//utilisation de typey
+      @include breakpoint(($desktop,$desktopwide,$tablet,$tabletlandscape)){
         @include font-size(l);//utilisation de typey
+      }
+
         color: $violet;
     }
     h3{
+      @include font-size(s);//utilisation de typey
+      @include breakpoint(($desktop,$desktopwide,$tablet,$tabletlandscape)){
         @include font-size(m);//utilisation de typey
-        color: $vert;
+        color: $rose-fushia;
     }
     a{
         text-decoration: none;
@@ -170,9 +365,10 @@ h1.titre-page-globale{
         }
     }
     strong{
-        color: $vert;
+        color: $rose-fushia;
     }
 }
+}// Fin styles communs
 
 
 /*------------------------------------
@@ -180,7 +376,7 @@ h1.titre-page-globale{
 ______________________________*/
 #zone-1.type-page-actualites{
 
-    aside.liste-vdl{
+    aside.liste-vdl,aside.liste-actu-presse{
         //Style du filtrage de la vue
         .bef-exposed-form{
             div.form-item{
@@ -203,7 +399,7 @@ ______________________________*/
 
                 {
 
-                    @include backgroundImage(('BG/BG_Filtres_Exposes.png'), transparent, center -4vw , no-repeat );
+                    @include backgroundImage(('BG/BG_Filtres_Exposes.png'), transparent, center -1.8vw , no-repeat );
                     background-size:60%;
                     background-color: $violet;
                     label{
@@ -290,7 +486,7 @@ ______________________________*/
                     background: $orange;
                 }
                 &.tid-27{//Développement durable
-                    background: $vert;
+                    background: $rose-fushia;
                     *{
                         color: $gris-anthracite;//cas particulier du fond clair
                     }
@@ -339,10 +535,56 @@ ______________________________*/
 
 
             }
+        }// Fin UL.liste-vdl-lycee
+        //Liste d'accès à la rubrique lycée
+        ul.acces-contenu-lycee {
+          //Style général des éléments
+              li {
+                list-style: none;
+                background: $rose-fushia;
+                @include txt-cesure();
 
-        }
-    }
-}
+                a {
+                  color: $blanc-casse;
+                  text-decoration: none;
+                  font-weight: bold;
+                  @include font-size(l); //utilisation de typey
+                }
+          span.titre-lycee {
+            color: $blanc-casse;
+            @include txt-cesure();
+
+          }
+
+          span.illus-lycee {
+            position: relative;
+
+                a {
+                  &:before {
+                    @include image-overlay('motif_img_overlay.png', 0 0, repeat);
+                  }
+                }
+              }
+            }
+
+        }//Fin UL acces-contenu-lycee
+        nav.pager{
+            ul.pager__items{
+              li{
+                //Couleurs du pager
+                &.is-active{
+                  background: $vert;
+                  display: block;
+                }
+              }
+            }
+            }//Fin nav.pager
+          }// aside.liste-vdl,aside.liste-actu-presse
+    
+    
+            }// Fin Aside liste-vdl
+
+
 #zone-2.type-page-actualites{
 
 }

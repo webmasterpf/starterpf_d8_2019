@@ -57,17 +57,31 @@ article.middle-content {
       }
       // Position différente de l'image selon le nid.
       &.illustration-nid-133{
-        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+        @include breakpoint(($desktop,$desktopwide)) {
           img {
             transform: translate(0%,-37%);
           }
         }
+        @include breakpoint(($mobilelandscape,$tablet,$tabletlandscape)){
+            min-height: 25vw;
+            max-height: 40vw;
+            img{
+                transform: translate(0%,-35%);
+            }
+        }
       }
-      &.illustration-nid-526{ //PAge rubrique lycée
-        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+      &.illustration-nid-526{ //Page rubrique lycée
+        @include breakpoint(($desktop,$desktopwide)) {
           img {
             transform: translate(0%,-31%);
           }
+        }
+        @include breakpoint(($mobilelandscape,$tablet,$tabletlandscape)){
+            min-height: 25vw;
+            max-height: 40vw;
+            img{
+                transform: translate(0%,-20%);
+            }
         }
       }
     }
@@ -94,52 +108,8 @@ article.middle-content {
     }
 
   }
+//Pour Accès Contenu Lycée voir _page-vdl-liste.scss
 
-  ul.acces-contenu-lycee {
-    column-count: 0;
-    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
-      column-count: 2;
-      column-fill: balance;
-      white-space: normal;
-      padding: span(0.1);
-    }
-
-    li {
-      @include txt-colonnes();
-      @include hack-Edge;
-      @include hack-IE;
-
-      span.illus-lycee {
-        overflow: hidden;
-
-        img {
-          transform: scale(1);
-        }
-      }
-
-      span.complement,
-      span.titre-lycee {
-        padding: span(0.1);
-      }
-
-      span {
-        @include breakpoint(($mobilelandscape,$tablet,$tabletlandscape)) {
-          max-width: span(1);
-        }
-        @include breakpoint($desktop) {
-          max-width: 7vw;
-        }
-        @include breakpoint($desktopwide) {
-          max-width: 11vw;
-          padding: 0 0 0 span(0.01);
-        }
-      }
-
-      a {
-        display: inherit;
-      }
-    }
-  }
 }
 
 #zone-2.type-page-globale {}
@@ -171,7 +141,7 @@ $zones: zone-1; //1ere boucle , zone-2, zone-3
 
       u {
         font-weight: bold;
-        color: $vert;
+        color: $rose-fushia;
       }
 
       h2 {
@@ -181,7 +151,7 @@ $zones: zone-1; //1ere boucle , zone-2, zone-3
 
       h3 {
         @include font-size(m); //utilisation de typey
-        color: $vert;
+        color: $rose-fushia;
       }
 
       a {
@@ -194,7 +164,7 @@ $zones: zone-1; //1ere boucle , zone-2, zone-3
       }
 
       strong {
-        color: $vert;
+        color: $rose-fushia;
       }
     }
   }
@@ -203,43 +173,7 @@ $zones: zone-1; //1ere boucle , zone-2, zone-3
         ¤¤¤ STYLES PROPRES ¤¤¤
 ______________________________*/
 #zone-1.type-page-globale {
-  ul.acces-contenu-lycee {
-    //Style général des éléments
-    li {
-      list-style: none;
-      background: $vert;
-      @include txt-cesure();
-
-      a {
-        color: $blanc-casse;
-        text-decoration: none;
-        font-weight: bold;
-        @include font-size(l); //utilisation de typey
-      }
-span.titre-lycee {
-  color: $blanc-casse;
-  @include txt-cesure();
-  display: inline-block;
-  float: left;
-}
-
-span.illus-lycee {
-  position: relative;
-  @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
-    max-width: 70%;
-    float: left;
-    content: "";
-    padding: 0;
-  }
-
-        a {
-          &:before {
-            @include image-overlay('motif_img_overlay.png', 0 0, repeat);
-          }
-        }
-      }
-    }
-  }
+//Pour Accès Contenu Lycée voir _page-vdl-liste.scss
 }
 
 #zone-2.type-page-globale {}

@@ -13,182 +13,303 @@
 //@include breakpoint(($desktop,$tablet)){}
 //@include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){}
 
+
 /*######-------- ||| ORDRE FLEXBOX ||| --------######*/
-body .conteneur .conteneur-flex{
-    #zone-1.type-fiche-formation{order:1;}
-    #zone-2.type-fiche-formation{order:2;}
-    #zone-3.type-fiche-formation{order:3;}
-    #zone-4.type-fiche-formation{}
-    #zone-5.type-fiche-formation{}
-    @include breakpoint ($desktop){}
+body .conteneur .conteneur-flex {
+    #zone-1.type-fiche-formation {
+        order: 1;
+    }
+
+    #zone-2.type-fiche-formation {
+        order: 2;
+    }
+
+    #zone-3.type-fiche-formation {
+        order: 3;
+    }
+
+    #zone-4.type-fiche-formation {}
+
+    #zone-5.type-fiche-formation {}
+
+    @include breakpoint ($desktop) {}
 }
 
 /*######-------- ||| BORDURES ||| --------######*/
 body .conteneur .conteneur-flex,
-body .conteneur{
-    @include breakpoint(($desktop,$tablet)){
-    }
+body .conteneur {
+    @include breakpoint(($desktop, $tablet)) {}
 }
 
 /*######-------- ||| LAYOUT SPECIFIQUE ||| --------######*/
-#zone-diaporama.type-fiche-formation{
+#zone-diaporama.type-fiche-formation {
+
     // utiliser bxslider-cyrano.scss" pour régler le bx-viewport ou bx-caption
-    min-height: 35vw;
-    max-height: 90vw;
-    overflow: hidden;
+    #illustration-pleinepage {
+        min-height: 35vw;
+        max-height: 90vw;
+        overflow: hidden;
+        position: relative;
+        //image par défaut en BG comme secours
+        @include backgroundImage(("defaut/defaut-Lycee-LR-2019.jpg"), transparent, no-repeat, top left);
+        background-size: cover;
 
-    img{
-        transform: translate(0%,0%);
-        @include adaptable-img();
-    }
-    @include breakpoint(($mobile-iphonehd,$mobile-galaxyS6)){
-        background:  $rose-fushia;
-    }
-    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-        min-height: 20vw;
-        max-height: 30vw;//Pour pouvoir augmenter ensuite la hauteur des images via bx-wrapper dans _bxslider-cyrano.scss
-        img{
-            //Avec Diapo il faut séparer le contenu du conteneur à cause de la position absolute. Position générique.
-            transform: translate(0%,-5%);
-        }
-           .view-Diapo-multichoix{
-            transform: translate(0%,-12%);
+        img {
+            transform: translate(0%, 0%);
+            @include adaptable-img();
         }
 
+        @include breakpoint(($desktop, $desktopwide)) {
+            min-height: 25vw;
+            max-height: 30vw;
+
+            img {
+                transform: translate(0%, -6%);
+            }
+        }
+
+        @include breakpoint(($mobilelandscape, $tablet, $tabletlandscape)) {
+            min-height: 25vw;
+            max-height: 40vw;
+
+            img {
+                transform: translate(0%, -20%);
+            }
+        }
     }
 
 }
 
+//Position du visuel différente selon NiD
+#node-18 {
+    #zone-diaporama.type-fiche-formation {
 
-#zone-1.type-fiche-formation{
-    .complement-titre-fiche{
-        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+        // utiliser bxslider-cyrano.scss" pour régler le bx-viewport ou bx-caption
+        #illustration-pleinepage {
+            @include breakpoint(($desktop, $desktopwide)) {
+                img {
+                    transform: translate(0%, -18%);
+                }
+            }
+        }
+    }
+}
+
+#node-73 {
+    #zone-diaporama.type-fiche-formation {
+
+        // utiliser bxslider-cyrano.scss" pour régler le bx-viewport ou bx-caption
+        #illustration-pleinepage {
+            @include breakpoint(($desktop, $desktopwide)) {
+                img {
+                    transform: translate(0%, -27%);
+                }
+            }
+        }
+    }
+}
+
+#node-15 {
+    #zone-diaporama.type-fiche-formation {
+
+        // utiliser bxslider-cyrano.scss" pour régler le bx-viewport ou bx-caption
+        #illustration-pleinepage {
+            @include breakpoint(($desktop, $desktopwide)) {
+                img {
+                    transform: translate(0%, -46%);
+                }
+            }
+        }
+    }
+
+}
+
+#zone-1.type-fiche-formation {
+    .complement-titre-fiche {
+        @include breakpoint(($desktop, $desktopwide, $mobilelandscape, $tablet, $tabletlandscape)) {
             width: span(6);
             margin: span(0.02) auto;
         }
     }
-    span.terme-pole{
+
+    span.terme-pole {
         text-align: center;
         display: block;
-        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-        width: span(2);
-        margin: 0 auto span(0.1) auto;
-      }
 
+        @include breakpoint(($desktop, $desktopwide)) {
+            width: span(2);
+            margin: 0 auto span(0.1);
+        }
+
+        @include breakpoint(($mobilelandscape, $tablet, $tabletlandscape)) {
+            width: span(5);
+            margin: 0 auto span(0.1);
+        }
     }
-    .content{
+
+    .content {
         column-count: inherit;
-        @include breakpoint(($desktop,$desktopwide,$tabletlandscape)){
+
+        @include breakpoint(($desktop, $desktopwide, $tabletlandscape)) {
             column-count: 2;
             column-fill: balance;
             column-rule: em(2px) dashed $rose-fushia;
-            h3{
+
+            h3 {
                 @include txt-colonnes;
             }
         }
     }
 }
-#zone-2.type-fiche-formation{
-    .bloc_docs_utiles_ficheform{
+
+#zone-2.type-fiche-formation {
+    .bloc_docs_utiles_ficheform {
         margin: span(0.01) auto;
         padding: span(0.01);
-        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+
+        @include breakpoint(($desktop, $desktopwide, $mobilelandscape, $tablet, $tabletlandscape)) {
             width: span(7);
 
         }
-        .label-field-lien-utile-ficheform
-        {
-          //Besoin de simuler un br pour avoir un saut de ligne entre chaque éléments.HTML en liste plus efficace
-          @include clearfixsusy3;
+
+        .label-field-lien-utile-ficheform {
+            //Besoin de simuler un br pour avoir un saut de ligne entre chaque éléments.HTML en liste plus efficace
+            @include clearfixsusy3;
         }
     }
 
 }
-#zone-3.type-fiche-formation{
-    .bloc_complement_actu_ficheform{
-         margin: span(0.01) auto;
+
+#zone-3.type-fiche-formation {
+    .bloc_complement_actu_ficheform {
+        margin: span(0.01) auto;
         padding: span(0.01);
-        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+
+        @include breakpoint(($desktop, $desktopwide, $mobilelandscape, $tablet, $tabletlandscape)) {
             width: span(7);
         }
 
     }
 
-    article.paragraphe-section-europe{
+    article.paragraphe-section-europe {
         column-count: inherit;
         margin: span(0.2) 0;
-        @include breakpoint(($desktop,$desktopwide,$tabletlandscape)){
+
+        @include breakpoint(($desktop, $desktopwide, $tabletlandscape)) {
             column-count: 2;
             column-fill: balance;
             white-space: nowrap;
-            h3{
+
+            h3 {
                 @include txt-colonnes;
             }
         }
     }
-    aside.ficheform-savoirplus,aside.lycees-possibles{
+
+    aside.ficheform-savoirplus,
+    aside.lycees-possibles {
         margin: span(0.01) auto;
         padding: span(0.01);
-            @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+
+        @include breakpoint(($desktop, $desktopwide, $mobilelandscape, $tablet, $tabletlandscape)) {
             width: span(5);
 
         }
     }
-    aside.lycees-possibles{
-        ul{
-            @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-                 column-count: 2;
-            column-fill: balance;
+
+    aside.lycees-possibles {
+        ul {
+            @include breakpoint(($desktop, $desktopwide, $mobilelandscape, $tablet, $tabletlandscape)) {
+                column-count: 2;
+                column-fill: balance;
             }
         }
 
+        li {
+            span {
+                a {
+                    &::before {
+                        @include breakpoint(($desktop, $desktopwide)) {
+                            height: 3.45vh; //Ajuster la hauteur selon taille du picto
+                        }
+
+                        @include breakpoint(($tabletlandscape)) {
+                            height: 3.1vh; //Ajuster la hauteur selon taille du picto
+                        }
+
+                        @include breakpoint(($tablet)) {
+                            height: 2.3vh; //Ajuster la hauteur selon taille du picto
+                        }
+
+                        @include breakpoint(($mobilelandscape)) {
+                            height: 3.7vh; //Ajuster la hauteur selon taille du picto
+                        }
+                    }
+                }
+            }
+        }
+
+        .label-field-lien-ficheform {
+            //Besoin de simuler un br pour avoir un saut de ligne entre chaque éléments.HTML en liste plus efficace
+            @include clearfixsusy3;
+        }
     }
 }
 
 /*######-------- ||| STYLE ||| --------######*/
 //Pour H1 voir _page-lycee.scss
-h1.titre-fiche-formation{
-// réglage avec _page-lycee.scss
+h1.titre-fiche-formation {
+    // réglage avec _page-lycee.scss
 }
+
 /*¤¤¤ STYLES COMMUNS ¤¤¤*/
 #zone-1.type-fiche-formation,
 #zone-2.type-fiche-formation,
 #zone-3.type-fiche-formation,
 #zone-4.type-fiche-formation,
-#zone-5.type-fiche-formation
-{
-    p,ul,li{
-        @include font-size(m);//utilisation de typey
+#zone-5.type-fiche-formation {
+
+    p,
+    ul,
+    li {
+        @include font-size(m); //utilisation de typey
         padding: em(5px);
         line-height: 1.5em;
         list-style-position: inside;
     }
-  u{
+
+    u {
         font-weight: bold;
         color: $rose-fushia;
 
     }
-    h2{
-        @include font-size(l);//utilisation de typey
+
+    h2 {
+        @include font-size(l); //utilisation de typey
         color: $violet;
     }
-    h3{
-        @include font-size(m);//utilisation de typey
+
+    h3 {
+        @include font-size(m); //utilisation de typey
         color: $rose-fushia;
     }
-    h4{
-        @include font-size(m);//utilisation de typey
+
+    h4 {
+        @include font-size(m); //utilisation de typey
         color: $violet;
     }
-    a{
+
+    a {
         text-decoration: none;
         color: $violet;
-        @include rollover-effect($rose-fushia);//Effet rollover CSS3
-        &:hover{
+        @include rollover-effect($rose-fushia); //Effet rollover CSS3
+
+        &:hover {
             text-decoration: none;
         }
     }
-    strong{
+
+    strong {
         color: $rose-fushia;
     }
 }
@@ -196,108 +317,128 @@ h1.titre-fiche-formation{
 /*------------------------------------
         ¤¤¤ STYLES PROPRES ¤¤¤
 ______________________________*/
-#zone-1.type-fiche-formation{
-    .complement-titre-fiche{
+#zone-1.type-fiche-formation {
+    .complement-titre-fiche {
 
         margin: 0 auto;
         display: block;
-        *{
+
+        * {
             background: linear-gradient(180deg, $violet 85%, $rose-fushia 50%);
             //@include backgroundRGBA ($rose-fushia,0.5);
             color: $jaune;
             font-weight: bold;
             padding: span(0.02);
             margin: span(0.01) 0;
-            @include font-size(s);//utilisation de typey
-            @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-              @include font-size(m);//utilisation de typey
+            @include font-size(s); //utilisation de typey
+
+            @include breakpoint(($desktop, $desktopwide, $mobilelandscape, $tablet, $tabletlandscape)) {
+                @include font-size(m); //utilisation de typey
             }
         }
     }
-    span.terme-pole{
-     background: $rose-fushia;
-    color: $blanc-casse;
 
-    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-      @include ombrage-effet-incurve($HauteurHalo:0.5em);
-    }
-    a{
-    color: $blanc-casse;
-    }
-    }
-    .content{
-         h3{
-        transform: rotate(-1deg);
-        max-width: fit-content;
-
-        color: $blanc-casse;
+    span.terme-pole {
         background: $rose-fushia;
-        padding: em(3px);
-        margin: em(5px) em(20px);
+        color: $blanc-casse;
 
+        @include breakpoint(($desktop, $desktopwide, $mobilelandscape, $tablet, $tabletlandscape)) {
+            @include ombrage-effet-incurve($HauteurHalo:0.5em);
+        }
+
+        a {
+            color: $blanc-casse;
+        }
     }
+
+    .content {
+        h3 {
+            transform: rotate(-1deg);
+            max-width: fit-content;
+
+            color: $blanc-casse;
+            background: $rose-fushia;
+            padding: em(3px);
+            margin: em(5px) em(20px);
+
+        }
     }
-    aside.ficheform-savoirplus{}
+
+    aside.ficheform-savoirplus {}
 }
-#zone-2.type-fiche-formation{
-        aside.ficheform-savoirplus,.bloc_docs_utiles_ficheform{
-        @include backgroundImage(("BG/stripe_rose_violet_pastel.png"),transparent,repeat, top left);
+
+//#zone-1.type-fiche-formation
+
+#zone-2.type-fiche-formation {
+
+    aside.ficheform-savoirplus,
+    .bloc_docs_utiles_ficheform {
+        @include backgroundImage(("BG/stripe_rose_violet_pastel.png"), transparent, repeat, top left);
         background-color: $gris-clair;
         @include arrondis(1em);
 
-        a{
+        a {
             background: $gris-clair;
             color: $violet;
 
-            text-decoration:none;
+            text-decoration: none;
             padding: span(0.01) span(0.03);
-            &:hover{
-                                color: $gris-anthracite;
-                                    background: $rose-fushia;
+
+            &:hover {
+                color: $gris-anthracite;
+                background: $rose-fushia;
             }
-            &[href*=".pdf"]{
-                &::before{
-                    @include backgroundImage("PNG/Fichiers@3x.png");
+
+            &[href*=".pdf"] {
+                &::before {
+                    @include maskImage(("PNG/Fichier-blanc@3x.png"), 100%, alpha, $vert);
+                    //@include backgroundImage("PNG/Fichiers@3x.png");
                     background-size: contain;
                     content: "";
                     position: relative;
                     vertical-align: sub;
                     padding: em(10px);
-                    margin:em(3px);
-                    transition:0.5s all;
+                    margin: em(3px);
+                    transition: 0.5s all;
                     display: inline-block;
                     transform: scale(1);
                 }
             }
-            img.filefield-icon{
 
-                display: none;//initial
+            img.filefield-icon {
+
+                display: none; //initial
             }
-            &[href*="/"]:not([href*=".pdf"]) { //pour cibler les liens externes et internes, exclure les pdf
-                                               &::before{
-                                                   @include backgroundImage("PNG/liens@3x.png");
-                                                   background-size: contain;
-                                                   content: "";
-                                                    position: relative;
-                                                   vertical-align: sub;
-                                                   padding: em(10px);
-                                                   margin:em(3px);
-                                                   transition:0.5s all;
-                                                   display: inline-block;
-                                                   transform: scale(1);
-                                               }
+
+            &[href*="/"]:not([href*=".pdf"]) {
+
+                //pour cibler les liens externes et internes, exclure les pdf
+                &::before {
+                    @include backgroundImage("PNG/liens@3x.png");
+                    background-size: contain;
+                    content: "";
+                    position: relative;
+                    vertical-align: sub;
+                    padding: em(10px);
+                    margin: em(3px);
+                    transition: 0.5s all;
+                    display: inline-block;
+                    transform: scale(1);
+                }
 
             }
         }
+
         //Style spécifique pour liste de docs utiles
         .label-field-lien-utile-ficheform {
-          font-weight: bold;
-          color: $gris-clair;
-          background: $rose-fushia;
-          padding: span(0.02);
-          margin: 0 0 span(0.2) span(0.2);
+            font-weight: bold;
+            color: $gris-clair;
+            background: $rose-fushia;
+            padding: span(0.02);
+            margin: 0 0 span(0.2) span(0.2);
         }
-        .views-field-title >span{
+
+        .views-field-title>span {
             color: $orange-fonce;
             background: $gris-anthracite;
             text-align: center;
@@ -305,66 +446,122 @@ ______________________________*/
             transform: rotate(-1deg);
             max-width: fit-content;
             display: block;
-            @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+
+            @include breakpoint(($desktop, $desktopwide, $mobilelandscape, $tablet, $tabletlandscape)) {
                 margin: 0 0 0 span(5.5);
                 padding: span(0.001);
             }
         }
-        ul{
 
+        ul {
 
-            li{
-                list-style: none;
-                list-style-position: inside;
-                @include font-size(s);//utilisation de typey
+            text-decoration: none;
+            padding: span(0.01) span(0.03);
+
+            &:hover {
+                //color: $gris-clair;
+                background: transparent;
+            }
+
+            li {
+                list-style-type: none;
+            }
+
+            &[href*=".pdf"] {
+                &::before {
+                    @include maskImage(("PNG/Fichier-blanc@3x.png"), 100%, alpha, $vert);
+                    //@include backgroundImage("PNG/Fichiers@3x.png");
+                    background-size: contain;
+                    content: "";
+                    position: relative;
+                    vertical-align: sub;
+                    padding: em(10px);
+                    margin: em(3px);
+                    transition: 0.5s all;
+                    display: inline-block;
+                    transform: scale(1);
+
+                }
+            }
+
+            img.filefield-icon {
+
+                display: none; //initial
+            }
+
+            &[href*="/"]:not([href*=".pdf"]) {
+
+                //pour cibler les liens externes et internes, exclure les pdf
+                &::before {
+                    //@include backgroundImage("PNG/liens@3x.png");
+                    @include maskImage(("PNG/liens-blanc@3x.png"), 100%, alpha, $vert);
+                    background-size: contain;
+                    content: "";
+                    position: relative;
+                    vertical-align: sub;
+                    padding: em(10px);
+                    margin: em(3px);
+                    transition: 0.5s all;
+                    display: inline-block;
+                    transform: scale(1);
+                }
             }
         }
     }
 }
-#zone-3.type-fiche-formation{
-    h3{
+
+//#zone-2.type-fiche-formation
+#zone-3.type-fiche-formation {
+    h3 {
         transform: rotate(-1deg);
         max-width: fit-content;
-
         color: $jaune;
         background: $gris-anthracite;
         padding: em(3px);
         margin: em(5px) em(20px);
-
     }
-    ul{
+
+    ul {
         padding: 0;
-        margin:0;
-        li{
+        margin: 0;
+
+        li {
             list-style: square;
         }
     }
-    .bloc_complement_actu_ficheform{
-        @include backgroundImage(("BG/stripe_vert_vert_pastel.png"),transparent,repeat, top left);
+
+    .bloc_complement_actu_ficheform {
+        @include backgroundImage(("BG/stripe_vert_vert_pastel.png"), transparent, repeat, top left);
         //@include backgroundImage(("BG/stripe_violet.png"),transparent,repeat, top left);
         @include arrondis(1em);
-        a{
+
+        a {
             background: $gris-clair;
             color: $violet;
-            text-decoration:none;
+            text-decoration: none;
             padding: span(0.01) span(0.03);
-            &:hover{
+
+            &:hover {
                 color: $gris-anthracite;
                 /*background: $rose-fushia;*/
             }
         }
-        ul{
 
-            li{
-                //suppression des puces
-                list-style-type: none;
-                @include font-size(s);//utilisation de typey
+        ul {
+
+            li {
+                list-style: none;
+                list-style-position: inside;
+                @include font-size(s); //utilisation de typey
             }
         }
     }
 
 
-
 }
-#zone-4.type-fiche-formation{}
-#zone-5.type-fiche-formation{}
+
+//.zone-3.type-fiche-formation
+
+#zone-4.type-fiche-formation {}
+
+#zone-5.type-fiche-formation {}

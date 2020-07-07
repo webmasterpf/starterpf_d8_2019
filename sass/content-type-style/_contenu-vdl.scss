@@ -64,11 +64,47 @@ $zonesimg: zone-illustration;
           min-height: 25vw;
           max-height: 30vw;
 
-          img {
-            transform: translate(0%,-35%);
+          img:not([src*="defaut"]) {
+            transform: translate(0%,-9%);
+          }
+          img[src*="defaut"]{//Position du visuel par défaut
+            transform: translate(0%,-10%);
           }
         }
-      }
+        @include breakpoint(($tablet)) {
+          min-height: 25vw;
+          max-height: 30vw;
+
+          img:not([src*="defaut"]) {
+            transform: translate(0%,-25%);
+          }
+          img[src*="defaut"]{//Position du visuel par défaut
+            transform: translate(0%,-24%);
+          }
+        }
+        @include breakpoint(($tabletlandscape)) {
+          min-height: 25vw;
+          max-height: 30vw;
+
+          img:not([src*="defaut"]) {
+            transform: translate(0%,-20%);
+          }
+          img[src*="defaut"]{//Position du visuel par défaut
+            transform: translate(0%,-18%);
+          }
+        }
+        @include breakpoint(($mobilelandscape)) {
+          min-height: 25vw;
+          max-height: 35vw;
+
+          img:not([src*="defaut"]) {
+            transform: translate(0%,-30%);
+          }
+          img[src*="defaut"]{//Position du visuel par défaut
+            transform: translate(0%,-20%);
+          }
+        }
+      }//Fin illustration-pleinepage
     }
   }
 }
@@ -88,18 +124,26 @@ $zones: zone-1, zone-2, zone-3 ;
       }
 
       .bloc_docs_utiles_vdl {
-        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+        @include breakpoint(($desktop,$desktopwide)) {
           float: right;
           margin: span(0.1);
           padding: span(0.02);
+          min-width: span(2);
           max-width: span(4);
-
-          .champ-field-relatif-formation,
-          .label-field-fichier-joint-vdl,
-          .label-field-passerelle-form {
-            //Besoin de simuler un br pour avoir un saut de ligne entre chaque éléments.HTML en liste plus efficace
-            @include clearfixsusy3;
-          }
+        }
+        @include breakpoint(($mobilelandscape,$tablet,$tabletlandscape)) {
+          float: right;
+          margin: span(0.1);
+          padding: span(0.02);
+          min-width: span(3);
+          max-width: span(5);
+        }
+        .champ-field-relatif-formation,
+        .label-field-fichier-joint-vdl,
+        .label-field-fichier-joint,
+        .label-field-passerelle-form {
+          //Besoin de simuler un br pour avoir un saut de ligne entre chaque éléments.HTML en liste plus efficace
+          @include clearfixsusy3;
         }
       }
     }
@@ -118,14 +162,22 @@ $zones: zone-1, zone-2, zone-3 ;
           padding: span(0.02);
         }
       }
+      //Réglage des vignette se fait dans _baguettebox-vignette-zoom.scss
       .videos{
         ul{
           list-style: none;
         }
         iframe{
-          @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+          @include breakpoint(($desktop,$desktopwide)) {
           max-height: 90vh;
           max-width: 60vw;
+          margin: 0 auto;
+          padding: span(0.02);
+          border: em(3px) solid $violet;
+        }
+        @include breakpoint(($mobilelandscape,$tablet,$tabletlandscape)) {
+          max-height: 90vh;
+          max-width: 90vw;
           margin: 0 auto;
           padding: span(0.02);
           border: em(3px) solid $violet;
@@ -218,6 +270,13 @@ $zones: zone-1, zone-2, zone-3;
       .bloc_docs_utiles_vdl {
         @include backgroundImage(("BG/stripe_rose_violet_pastel.png"),transparent,repeat, top left);
         @include arrondis(1em);
+        ul {
+          li {
+            //suppression des puces
+            list-style-type: none;
+            padding: span(0.1) 0;
+            @include font-size(s); //utilisation de typey
+          }
 
         a {
           background: $gris-clair;
@@ -225,6 +284,11 @@ $zones: zone-1, zone-2, zone-3;
           text-decoration: none;
           padding: span(0.01) span(0.03);
           @include rollover-effect($rose-fushia); //Effet rollover CSS3 sur les liens
+          @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+          //Pour ne pas tronquer le picto fichier - décommenter si nécessaire
+          //min-height: em(65px);
+          border: inherit;//Pour éviter BP vide
+        }
 
           &:hover{ //:not([href*="fiche"])
             color: $gris-clair;
@@ -235,16 +299,22 @@ $zones: zone-1, zone-2, zone-3;
         a {
           &[href*=".pdf"] {
             &::before {
-              @include backgroundImage("PNG/Fichiers@3x.png");
+              //@include backgroundImage("PNG/Fichiers@3x.png");
+              @include maskImage(("PNG/Fichier-blanc@3x.png"),100%,alpha,$gris-clair-moyen);
               background-size: contain;
               content: "";
               position: relative;
-              vertical-align: sub;
-              padding: em(10px);
-              margin: em(3px);
+              vertical-align: middle;
+              padding: em(13px);
+              margin: em(3px) em(10px) em(3px) 0;
               transition: 0.5s all;
               display: inline-block;
               transform: scale(1);
+              min-height: em(30px);
+              @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+              // Pour ne pas tronquer le picto
+              min-height: em(33px);
+            }
             }
           }
 
@@ -257,13 +327,14 @@ $zones: zone-1, zone-2, zone-3;
           &[href*="vie-du-lycee/"]:not([href$=".pdf"]):not([href*="fiche"]) {
             //pour cibler les liens externes et internes, exclure les pdf et le lien interne
             &::before {
-              @include backgroundImage(("PNG/liens@3x.png"),transparent,no-repeat, top left);
+              //@include backgroundImage(("PNG/liens@3x.png"),transparent,no-repeat, top left);
+              @include maskImage(("PNG/liens-blanc@3x.png"),100%,alpha,$violet);
               background-size: contain;
               content: "";
               position: relative;
               vertical-align: sub;
               padding: em(10px);
-              margin: em(3px);
+              margin: em(3px) em(10px) em(3px) 0;
               transition: 0.5s all;
               display: inline-block;
               transform: scale(1);
@@ -330,12 +401,16 @@ $zones: zone-1, zone-2, zone-3;
   @each $type in $typedecontenu {
     ##{$zone}.#{$type} {
       #region-zone-3 {
-        @include backgroundImage(("BG/stripe_vert_vert_pastel.png"),transparent,repeat, top left);
+        @include backgroundImage(("BG/stripe_rose_violet_pastel.png"),transparent,repeat, top left);
         @include arrondis(1em);
 
         a {
           background: $gris-clair;
+          color: $rose-fushia;
           @include rollover-effect($violet); //Effet rollover CSS3
+          &:hover{
+            color: $gris-clair;
+          }
         }
 
         h2 {
@@ -352,4 +427,5 @@ $zones: zone-1, zone-2, zone-3;
       }
     }
   }
+}
 }
