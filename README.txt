@@ -1,6 +1,6 @@
-// $Id: README.txt,v 1.1 02∕04∕2011
+//** $Id: README.txt,v 1.1 02∕04∕2011
 
-ABOUT THEME
+ABOUT THEME testhookgitpostupdate
 -----------
 
 Thème RWD pour les sites de l'Association développés sous Drupal 8.
@@ -13,8 +13,14 @@ https://www.supinfo.com/articles/single/946-npm-package-manager-nodejs
 
 Installation de Gulp
 :/var/www/drupal-8/themes/custom/dossier_projet$ sudo npm init (création du fichier  package.json + dossier node_modules)
-:/var/www/drupal-8/themes/custom/dossier_projet$ npm install gulp --save-dev
+Si pas sudo pb d'installation de modules par la suite comme gulp-load-plugins ou browserSync
+:/var/www/drupal-8/themes/custom/dossier_projet$ npm install gulp@^3.0.0 --save-dev
 Utilise Gulp 3 car sinon synthaxe change avec Gulp 4 et cause une erreur.
+Vérifier version avant avec gulp -v doit renvoyer CLI version 3.9.1 Mais il faut la même en Local.
+
+
+Si besoin de MAJ de NPM:
+sudo npm update puis npm i npm
 
 Plugin pour Gulp (permet de charger tous les plugins)
 :/var/www/drupal-8/themes/custom/dossier_projet$ npm install gulp-load-plugins --save-dev
@@ -30,13 +36,22 @@ npm uninstall <nom du package>
 
 !! Remplacer gulp-autoprefixer par autoprefixer pour avoir la dernière version du package.Utiliser avec PostCSS
 https://github.com/postcss/autoprefixer
-npm install --save-dev autoprefixer gulp-postcss
+npm install --save-dev autoprefixer gulp-postcss browserslist
 
 https://github.com/at-import/breakpoint
+
+Pour utiliser les Breakpoints CSS avec javascript : enquire.js
+npm install enquire.js  permet d'installer + enquire.js@2.1.6
+05/2020: inutile,plutôt utiliser l'url distante via le fichier .libraries
 
 BROWSER SYNC
 -----------------
 :/var/www/drupal-8/sites/all/themes/dossier_projet$ npm install browser-sync --save-dev
+
+GIT
+-----------------
+Pour compilation locale utiliser Git pour synchroniser LAMP et machien locale.
+Automatisation via un hook dans le dossier du dépôt local sur le LAMP - Ajuster les réglages pour post-update
 
 
 REGLAGES A FAIRE
@@ -51,6 +66,8 @@ Changer le favicon
 Changer le screenshot
 Changer le logo
 
+!!! Changer le nom du thème dans les fichiers sass-lint ; info, libraries et theme
+
 dans fichiers tpl
 remplacer le nom du theme dans les appels d'includes
 <pre>
@@ -63,6 +80,7 @@ include ($theme_path.'/chemin/vers/fichier.php');
 -- INUTILE --
 
 Pour le thème en production, inutile d'envoyer sur le serveur les dossiers sass, node-module
+Dossiers js/build et js/source sont inutiles (issus de Basic)
 
 Dans images
 -----------
@@ -134,3 +152,8 @@ les déclarer dans le fichier THEMENAME.info.yml
 
 Réglages d'une vue pour exclure node courant:
 https://www.drupal.org/node/131547
+
+DEBUGAGE MATERIELS ANDROID
+--------------------------
+Installer driver adb sur machine locale (si non linux)
+Puis lancer commande: adb devices // adb kill-server
