@@ -7,21 +7,26 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
 
 ] %}
 {% set titre_attribute = create_attribute() %}
+{% set taxo_attribute = create_attribute() %}
 {% set image_attribute = create_attribute() %}
 {% set imagecontainer_attribute = create_attribute() %}
 {% set zone1_attribute = create_attribute() %}
 {% set zone2_attribute = create_attribute() %}
 {% set zone3_attribute = create_attribute() %}
-{% set aggregator_attribute = create_attribute() %}
-{% set video_attribute = create_attribute() %}
+{% set zone4_attribute = create_attribute() %}
+{% set vuebloc_attribute = create_attribute() %}
+{% set vueblocgalerie_attribute = create_attribute() %}
 {% set insererform_attribute = create_attribute() %}
 
 {% set titre_classes = [
 'titre_overlay',
 'titre_page',
 'titre-' ~ node.bundle|clean_class
-]
-%}
+]%}
+{% set taxo_classes = [
+'terme-pole',
+'term-' ~ node.field_pole_formation.fieldDefinition.name | replace({"_" : "-"}),
+]%}
 {% set image_classes = [
 'illustration-'~ node.bundle|clean_class,
 'image--type-' ~ node.bundle|clean_class
@@ -32,31 +37,37 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
 'type-' ~ node.bundle|clean_class
 ]
 %}
-{% set zone1_classes = [
+{% set imagecontainer_ids = [
+'zone-illustration',
 
-'zone1_layout_9_3',
+]%}
+{# 'zone1_layout_9_3',#}
+{% set zone1_classes = [
+'zone_layout_max_centre',
+
 'type-' ~ node.bundle|clean_class
 ]
 %}
 {% set zone2_classes = [
-
-'zone2_layout_9_3',
+'zone_layout_max_centre',
 'type-' ~ node.bundle|clean_class
 ]
 %}
+{#'zone2_layout_9_3',#}
 {% set zone3_classes = [
-'zone_layout_max_centre',
-'zone3_layout_9_3',
+'zone1_layout_8_4',
 'type-' ~ node.bundle|clean_class
 ]%}
-{% set aggregator_classes = [
-'aggregator-rss',
-'label-' ~ node.field_flux_rss.fieldDefinition.name | replace({"_" : "-"}),
+{% set zone4_classes = [
+'zone2_layout_8_4',
 'type-' ~ node.bundle|clean_class
 ]%}
-{% set video_classes = [
-'videos',
-'label-' ~ node.field_video_lycee.fieldDefinition.name | replace({"_" : "-"}),
+{% set vueblocgalerie_classes = [
+'galerie',
+'type-' ~ node.bundle|clean_class
+]%}
+{% set vuebloc_classes = [
+'liste-incluse',
 'type-' ~ node.bundle|clean_class
 ]%}
 {% set insererform_classes = [
@@ -73,7 +84,7 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
   node.bundle|clean_class ~ '__title'
 ] %}
 #}
-<!--______________NODE TPL POUR PAGE.TPL CUSTOM ________________ -->
+<!--______________NODE TPL POUR PAGE ESPACE.TPL CUSTOM ________________ -->
 <article{{ attributes.addclass(classes).setattribute('id', 'node-'~node.id) }}>
 
   {% if title_prefix or title_suffix or display_submitted or unpublished or page is empty and label %}
@@ -104,7 +115,7 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
   {% endif %}
 
   <!--______________ ILLUSTRATION et TITRE ________________ -->
-  <div {{ imagecontainer_attribute.addClass(imagecontainer_classes).setAttribute('id', 'zone-illustration') }}>
+  <div {{ imagecontainer_attribute.addClass(imagecontainer_classes).setAttribute('id', imagecontainer_ids) }}>
 
     {% set image_deco = content.field_illus_lycee | render | trim %}
     {% if image_deco or node.label is not empty %}
@@ -118,47 +129,21 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
 
   <!--______________ZONE 1________________ -->
   <div {{ zone1_attribute.addClass(zone1_classes).setAttribute('id', 'zone-1') }}>
+
     <div{{ content_attributes.addclass('content') }}>
 
       {{ content.body }}
 
-      {% if node.field_video_lycee is not empty %}
-        <aside {{ video_attribute.addClass(video_classes) }}>
-          {{ content.field_video_lycee.0 }}
-        </aside>
-      {% endif %}
-
-      {% if node.field_inserer_un_formulaire is not empty %}
-        <aside {{ insererform_attribute.addClass(insererform_classes) }}>
-          {{ content.field_inserer_un_formulaire.0 }}
-        </aside>
-      {% endif %}
-
     </div>
     <!-- /.content -->
 
-    {% if node.field_flux_rss is not empty %}
-      <aside {{ aggregator_attribute.addClass(aggregator_classes) }}>
-        {{ content.field_flux_rss.0 }}
+    {% if node.field_inserer_liste_viewfield is not empty %}
+      <aside {{ vuebloc_attribute.addClass(vuebloc_classes) }}>
+        {{ content.field_inserer_liste_viewfield.0 }}
       </aside>
     {% endif %}
-
   </div>
   <!-- /zone-1-->
-
-  <!--______________ZONE 2________________ -->
-  <div {{ zone2_attribute.addClass(zone2_classes).setAttribute('id', 'zone-2') }}>
-
-    {% include directory ~ '/includes/dedicates_inc/inc_plycee_doc_liens.html.twig' %}
-    {% include directory ~ '/includes/regions_inc/inc_region_zone_2.html.twig' %}
-    {% if content.links %}
-      <div class="links">
-        {{ content.links }}
-      </div>
-      <!-- /.links -->
-    {% endif %}
-  </div>
-  <!-- /zone-2 -->
 
 </article>
 <!-- /.node -->

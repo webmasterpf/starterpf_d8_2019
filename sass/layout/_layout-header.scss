@@ -37,11 +37,11 @@ body .conteneur #header {
                   transform: scale(0.75);
                 }
                 @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-                    width: 100%;
-                    margin: 0;
+                    display: block;//commenter si logo pas collé à gauche
+                    max-height: 9em;//si logo trop gros
                     padding: 0;
-                    //display: block;//commenter si logo pas collé à gauche
-                    max-height: 15em;//si logo trop gros
+                    margin: 0;
+                    max-width: 30%;//pour déplacer le logo à gauche
                     object-fit: contain;
                     transform: scale(0.75);
                 }

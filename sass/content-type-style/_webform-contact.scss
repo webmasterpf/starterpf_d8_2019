@@ -129,7 +129,7 @@ $zonesimg: zone-illustration;
         @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
             padding: span(0.2);
         }
-        table,tbody,tr,td,form,input[type="text"],input[type="email"]{
+        table,tbody,tr,td,form,input[type="text"],input[type="email"],select,textarea{
             width: 95%;
             margin: 0 auto;
             @include arrondis(1.5em);
@@ -144,7 +144,7 @@ $zonesimg: zone-illustration;
         textarea{
             @include arrondis(1em);
         }
-    }
+    }// aside.formulaire
 
 }
 /*######-------- ||| STYLE ||| --------######*/
@@ -219,11 +219,11 @@ ______________________________*/
     aside.formulaire{
 
         input[type="text"],input[type="email"],textarea{
-            background: $rose-fushia;
+            background: $bleu-turquoise; // Couleur fond des champs
             color: $blanc-casse;
             padding: span(0.01);
         }
-    }
+    }// aside.formulaire
 }
 #zone-3.type-webform{}
 #zone-4.type-webform{}

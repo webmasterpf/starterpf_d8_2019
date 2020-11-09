@@ -14,6 +14,7 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
 {% set zone2_attribute = create_attribute() %}
 {% set zone3_attribute = create_attribute() %}
 {% set vuebloc_attribute = create_attribute() %}
+{% set vueblocgalerie_attribute = create_attribute() %}
 
 {% set titre_classes = [
 'titre_overlay',
@@ -52,6 +53,10 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
 'type-' ~ node.bundle|clean_class
 ]%}
 {% set vuebloc_classes = [
+'liste-incluse',
+'type-' ~ node.bundle|clean_class
+]%}
+{% set vueblocgalerie_classes = [
 'galerie',
 'type-' ~ node.bundle|clean_class
 ]%}
@@ -66,7 +71,7 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
 ] %}
 #}
 
-<!--______________NODE TPL POUR PAGE SORTIE ACTIONS.TPL CUSTOM ________________ -->
+<!--______________NODE TPL POUR CONTENU VDL.TPL CUSTOM ________________ -->
 <article{{ attributes.addclass(classes).setattribute('id', 'node-'~node.id) }}>
 
   {% if title_prefix or title_suffix or display_submitted or unpublished or page is empty and label %}
@@ -130,9 +135,9 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
   <!--______________ZONE 2________________ -->
   <div {{ zone2_attribute.addClass(zone2_classes).setAttribute('id', 'zone-2') }}>
 
-    {% if node.field_inserer_liste_viewfield is not empty %}
-      <aside {{ vuebloc_attribute.addClass(vuebloc_classes) }}>
-        {{ content.field_inserer_liste_viewfield.0 }}
+    {% if node.field_type_galerie_image is not empty %}
+      <aside {{ vueblocgalerie_attribute.addClass(vueblocgalerie_classes) }}>
+        {{ content.field_type_galerie_image.0 }}
       </aside>
     {% endif %}
 

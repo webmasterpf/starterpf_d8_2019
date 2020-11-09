@@ -1,0 +1,34 @@
+{# empty Twig template #}
+{#
+/* 02/2019 Liste les fichiers uploadés par
+          * filefield and linkfield  avec création d'une liste dynamique, exclusion des champs vides
+#}
+
+{# ---*** Les classes à appliquer aux éléments  ***--- #}
+{% set champ1_attribute = create_attribute() %}
+
+{% set champ1_classes = [
+'champ-' ~ node.field_admin_files.fieldDefinition.name | replace({"_" : "-"}),
+'titre-' ~ node.bundle|clean_class
+]%}
+
+{# ---*** Le contenu de l'include ***--- #}
+{% if node.field_admin_files.value or node.field_lien_page_lycee.value is not empty %}
+  <div class="bloc_docs_utiles_admin">
+    {# Affichage des étiquettes des champs en tant que titres #}
+    <span {{ champ1_attribute.addClass(champ1_classes)}}>
+      {{ content.field_admin_files|field_label }}
+    </span>
+    <ul>
+      {# //Parcourir le tableau field_NAME de l'objet $node pour lister le contenu clé/valeur #}
+      {% for key, fichier in node.field_admin_files.value %}
+        {# //Ne pas afficher les champs vides du tableau #}
+        {% if node.field_admin_files.value is not empty %}
+          <li>{{ content.field_admin_files[key] }}</li>
+        {% endif %}
+      {% endfor %}
+
+    </ul>
+    {# Fin liste des Fichiers #}
+  </div>
+{% endif %}

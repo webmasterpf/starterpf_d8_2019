@@ -441,6 +441,29 @@ https://www.creativejuiz.fr/blog/css-css3/controles-fin-des-cesures-css4-text
     }
   }
 }
+@mixin rollover-underline( $couleur : $gris-anthracite) {
+  //https://codepen.io/origine/pen/KVzpYm
+  position: relative;
+  &:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 3px;
+        transform: scaleX(0);
+        background-color: $couleur;
+
+        transition: transform 0.3s;
+    }
+
+    &:hover {
+        &:after {
+            transform: scaleX(1);
+        }
+    }
+}
 @mixin anim-coulisseX($duree:1s,$iterations:10,$starttranslateX:0,$midtranslateX:1vw,$finaltranslateX:0) {
   animation-name: coulisse;
   animation-duration: $duree;

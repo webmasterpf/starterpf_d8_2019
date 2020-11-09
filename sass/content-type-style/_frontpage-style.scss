@@ -56,7 +56,8 @@ aside.DiapoHPFull{
         img{
             zoom: 0.8;
             transform: scale (0.8);
-            transform: translate(0,-30%);
+            //transform: translate(0,-30%);
+            transform: translate(0,0);
         }
     }
 }
@@ -354,6 +355,7 @@ body .conteneur {
             a{
                 //                padding: 0 0 0 span(0.1);
                 display: block;
+                z-index: 60; //Résoudre pb lien sur images
             }
             .bx-caption{
                 a{
@@ -521,6 +523,9 @@ body .conteneur {
                     list-style: none;
                     width: 95%;
                     margin: 0 0 span(0.2) span(0.2);
+                    // Pas de param display:flex pour mobile sinon bug affichage
+                    display: block;
+
 
                     @include breakpoint(($desktop,$desktopwide,$mobilelandscape,
                     $tablet,$tabletlandscape,$tablet-hd,$tabletlandscape-hd)){
@@ -530,9 +535,11 @@ body .conteneur {
                         @include hack-IE;
                         margin: 0;
                         padding: 0 span(0.9);
+                        display: flex;//Résoud bug FF
                     }
                     @include breakpoint(($tablet,$tabletlandscape,$tablet-hd,$tabletlandscape-hd)){
                         padding: span(0.9);
+                        display: flex;//Résoud bug FF
                     }
                     span.titre-admin{
                         display: block;

@@ -315,10 +315,10 @@ $zones: zone-1 ; //, zone-2, zone-3
           }
           }//Fin .calendrier-vdl
       } //Fin Aside liste-vdl
-
-    }
-  }
-}
+      
+    } // Fin ##{$zone}.#{$type}
+  }// Fin @each $type in $typedecontenu
+} // Fin @each $zone in $zones
 /*######-------- ||| STYLE ||| --------######*/
 //Pour H1 voir _page-lycee.scss
 h1.titre-page-globale{
@@ -519,8 +519,9 @@ ______________________________*/
                 span.illus-vdl{
                     img {
                          @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-                        transform: translate(0%) scale(1.4);//Position de l'image d'illustration
-                        max-height: 50vh;//limite hauteur image pour mise en page
+                        //transform: translate(0%) scale(1.4);//Position de l'image d'illustration
+                        //max-height: 50vh;//limite hauteur image pour mise en page
+                        @include adaptable-img();
                          }
                     }
                     a {//uniquement les "a" sur l'image

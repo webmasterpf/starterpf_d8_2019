@@ -20,7 +20,7 @@
 'label-' ~ node.field_lien_utile_vdl.fieldDefinition.name | replace({"_" : "-"}),
 ]%}
 {# ---*** Le contenu de l'include ***--- #}
-{% if node.field_relatif_formation.value or node.field_fiche_action.value or node.field_lien_utile_vdl.value or node.field_lien_interne.value is not empty %}
+{% if node.field_relatif_formation.value or node.field_fichier_joint_vdl.value or node.field_lien_utile_vdl.value or node.field_lien_interne.value is not empty %}
   <div class="bloc_docs_utiles_vdl">
 
     {% if node.field_relatif_formation.value is not empty %}
@@ -33,10 +33,10 @@
 
     {% endif %}
 
-    {% if node.field_fiche_action.value or node.field_lien_utile_vdl.value is not empty %}
+    {% if node.field_fichier_joint_vdl.value or node.field_lien_utile_vdl.value is not empty %}
       <ul>
         <li {{ champ2_attribute.addClass(champ2_classes) }}>
-          {{ content.field_fiche_action|field_label }}
+          {{ content.field_fichier_joint_vdl|field_label }}
           {% if node.field_lien_utile_vdl is not empty %}
             //
             {{ content.field_lien_utile_vdl|field_label }}
@@ -46,10 +46,10 @@
 
       <ul>
         {# //Parcourir le tableau field_NAME de l'objet $node pour lister le contenu clé/valeur #}
-        {% for key, fichier in node.field_fiche_action.value %}
+        {% for key, fichier in node.field_fichier_joint_vdl.value %}
           {# //Ne pas afficher les champs vides du tableau #}
-          {% if node.field_fiche_action.value is not empty %}
-            <li>{{ content.field_fiche_action[key] }}</li>
+          {% if node.field_fichier_joint_vdl.value is not empty %}
+            <li>{{ content.field_fichier_joint_vdl[key] }}</li>
           {% endif %}
         {% endfor %}
 

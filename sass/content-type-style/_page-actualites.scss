@@ -12,25 +12,26 @@
 
 /*######-------- ||| ORDRE FLEXBOX ||| --------######*/
 body .conteneur .conteneur-flex{
-    #zone-1.node--type-page-actualites{order:2;}
-    #zone-2.node--type-page-actualites{order:1;}
-    #zone-3.node--type-page-actualites{order:3;}
+    #zone-1.node--type-page-actualites-globales{order:2;}
+    #zone-2.node--type-page-actualites-globales{order:1;}
+    #zone-3.node--type-page-actualites-globales{order:3;}
     @include breakpoint ($desktop){
-        #zone-1.node--type-page-actualites{order:1;}
-        #zone-2.node--type-page-actualites{order:2;}
-        #zone-3.node--type-page-actualites{order:3;}
+        #zone-1.node--type-page-actualites-globales{order:1;}
+        #zone-2.node--type-page-actualites-globales{order:2;}
+        #zone-3.node--type-page-actualites-globales{order:3;}
     }
 }
 
 /*######-------- ||| BORDURES ||| --------######*/
 body .conteneur {
     @include breakpoint ($desktop){
-        #zone-2.node--type-page-actualites{}
+        #zone-2.node--type-page-actualites-globales{}
     }
 
 }
 /*######-------- ||| LAYOUT SPECIFIQUE ||| --------######*/
-#zone-illustration.type-page-actualites{
+#zone-illustration.type-page-actualites-globales{
+  //Pour marge au dessus illustration voir _layout-nodes
     #illustration-pleinepage{
         min-height: 35vw;
         max-height: 90vw;
@@ -49,8 +50,8 @@ body .conteneur {
         }
     }
 
-}
-#zone-1.type-page-actualites{
+}// Fin zone-illustration
+#zone-1.type-page-actualites-globales{
     >.content{
         column-count: 0;
         @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
@@ -60,7 +61,7 @@ body .conteneur {
             padding: span(0.1);
         }
     }
-    aside.liste-actu-presse{
+    aside.liste-actualite{
         .bef-exposed-form{
             @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
                 display:inline-block;
@@ -82,7 +83,7 @@ body .conteneur {
             @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
                 width: span(12);
             }
-            ul.actu-lycee{
+            ul.liste-actus, ul.actu-lycee{
                 @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
                     /*                    column-count: 6;
                                         column-fill: auto;
@@ -106,8 +107,12 @@ body .conteneur {
                         width: span(1.8);
 
                         :not(img):not(a):not(.complement){
-                            padding: span(0.1);
+                            //padding: span(0.1);
+                            //Ne fonctionen pas sous chrome ajout à chaque éléments.
 
+                        }
+                        span.titre-actu, span.extrait-actu{
+                          padding: span(0.1);
                         }
 
                     }
@@ -135,9 +140,34 @@ body .conteneur {
           width: span(5);
           margin: 0 auto;
         }
-      }
-    }
-}
+      }// Fin footer
+      nav.pager{
+        //Utiliser PAgination complète en réécrivant les étiquettes dans ÉTIQUETTES DE LIEN DE PAGINATION
+        //de l'affichage de la vue concernée
+          @include clearfixsusy3;
+            //column-span: all;//la pagination utilise toute la largeur
+
+          ul.pager__items{
+            display: flex;
+            @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+              width: span(4);
+              margin: 0 auto;
+              padding: span(0.1);
+            }
+            li{ //Taille des textes du pager
+              @include font-size(s); //utilisation de typey
+                @include horizontal-list-item();
+                @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+                  @include font-size(l); //utilisation de typey
+                }
+                @include breakpoint(($mobilelandscape,$tablet,$tabletlandscape)){
+                  @include font-size(m); //utilisation de typey
+                }
+            }
+          }// Fin ul.pager__items
+      }// Fin nav.pager
+    }// Fin aside
+}//Fin #zone-1
 /*######-------- ||| STYLE ||| --------######*/
 //Pour H1 voir _page-lycee.scss
 h1.titre-page-actualites{
@@ -148,9 +178,9 @@ h1.titre-page-actualites{
 }
 /*¤¤¤ STYLES COMMUNS ¤¤¤*/
 
-#zone-1.node--type-page-actualites,
-#zone-2.node--type-page-actualites,
-#zone-3.node--type-page-actualites{
+#zone-1.type-page-actualites-globales,
+#zone-2.type-page-actualites-globales,
+#zone-3.type-page-actualites-globales{
     p,ul,li{
         @include font-size(m);//utilisation de typey
         padding: em(5px);
@@ -166,7 +196,7 @@ h1.titre-page-actualites{
     }
     h3{
         @include font-size(m);//utilisation de typey
-        color: $orange-fonce;
+        color: $vert;
     }
     a{
         text-decoration: none;
@@ -184,13 +214,13 @@ h1.titre-page-actualites{
 /*------------------------------------
         ¤¤¤ STYLES PROPRES ¤¤¤
 ______________________________*/
-#zone-1.type-page-actualites{
+#zone-1.type-page-actualites-globales{
 
-    aside.liste-actu-presse{
+      aside.liste-actualite{
         //Style du filtrage de la vue
         .bef-exposed-form{
             div.form-item{
-                background: $rose-fushia;
+                background: $gris-clair-typo;
                 color: $blanc-casse;
                 text-align: center;
                 cursor: pointer;
@@ -209,7 +239,8 @@ ______________________________*/
                 {
                     @include backgroundImage(('BG/BG_Filtres_Exposes.png'), transparent, center 0vw , no-repeat );
                     background-size:60%;
-                    background-color: $violet;
+                    background-color: $bleu-turquoise;
+                    color: $gris-clair;
                     label{
                         @include opacity(0.45);
                     }
@@ -253,20 +284,20 @@ ______________________________*/
         }
         footer{//Lien vers archives contenu dans le footer de la vue
           a{
-            color: $vert;
+            color: $gris-clair-typo;
             @include font-size(l);//utilisation de typey
             text-decoration: none;
             text-align: center;
-            box-shadow: $violet 0px em(-3px) 0px inset;
+            box-shadow: $bleu-turquoise 0px em(-3px) 0px inset;
             transition: box-shadow 0.3s ease-in-out 0s;
             &:hover{
-                  box-shadow: $violet 0px em(-22px) 0px inset;
+                  box-shadow: $bleu-turquoise 0px em(-22px) 0px inset;
                   color: $blanc-casse;
             }
           }
         }
         //Style des éléments de la vue
-        ul.actu-lycee{
+        ul.liste-actus, ul.actu-lycee{
             li{
                 list-style: none;
                 color: $blanc-casse;
@@ -275,14 +306,14 @@ ______________________________*/
 
                 }
 
-                &.tid-1{ //Annonce
-                    background: $rose-fushia;
+                &.tid-10{ //Annonce ponctuelle
+                    background: $gris-clair-typo;
                     *{
                         //color: $gris-anthracite;//cas particulier du fond clair
                     }
                 }
-                &.tid-2{ //Revue de presse
-                    background: $violet;
+                &.tid-9{ //Revue de presse
+                    background: $bleu-turquoise;
                 }
 
                 a{
@@ -312,7 +343,9 @@ ______________________________*/
                 span.illus-actu {
                     img{
                       @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-                     transform: translate(0%) scale(1.4);//Position de l'image d'illustration
+                        @include adaptable-img();
+                        //taillle de l'image sur la liste, évite marge due au format.Inutile si utilise mixin adaptable-img
+                     //transform: translate(0%) scale(1.4);//Position de l'image d'illustration
                       }
 
                     }
@@ -326,20 +359,32 @@ ______________________________*/
                 }
 
 
+            }// Fin li
+
+        }// Fin ul.liste-actus
+        nav.pager{
+            ul.pager__items{
+              li{
+                //Couleurs du pager
+                &.is-active, &.pager__item--active{
+                  background: $gris-clair-typo;
+                  display: block;
+                }
+              }
             }
+            }//Fin nav.pager
 
-        }
-    }
+    }// Fin aside
+}// Fin zone-1
+#zone-2.type-page-actualites-globales{
+
 }
-#zone-2.type-page-actualites{
-
-}
 
 
 
 
 
 
-#zone-3.type-page-actualites{
+#zone-3.type-page-actualites-globales{
 
 }

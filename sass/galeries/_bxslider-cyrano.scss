@@ -29,10 +29,11 @@ $ULclasse:bxslider-hp;
           box-shadow: none;
           border: none;
           background: none;
-          max-height: inherit;
-          @include breakpoint(($desktop,$desktopwide)) {
-            max-height: 30em;
-          }
+          max-height: 60vw;
+        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+         min-height: 25vw;
+         max-height: 30vw;//Dépend de la valeur max donnée à la #zone-diaporama
+         }
         @include breakpoint(($mobilelandscape,$tablet,$tabletlandscape)) {
           //Pas besoin de réglages spécifiques
         }
@@ -94,8 +95,9 @@ $ULclasse:bxslider-hp;
             bottom: 0;
             left: span(0.2);
             width: 80%;
-            //couleur fond des captions
-            @include backgroundRGBA($rose-fushia, 0.85);
+            //couleur fond des captions sur image diapo
+            // - utilise balise titre des images au niveau du BO
+            @include backgroundRGBA($gris-clair-moyen, 0.85);
             margin: 0 auto;
             span{//style du cartouche
               //Voir code haut  de page

@@ -150,7 +150,28 @@ $typedecontenu: type-page-lycee, type-annonce-accueil, type-contenu-info-admin, 
 $zones: zone-1, zone-2, zone-3, zone-4 ;
 @each $zone in $zones {
   @each $type in $typedecontenu {
-    ##{$zone}.#{$type} {}
+    ##{$zone}.#{$type} {
+      aside.formulaire{
+          @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+              padding: span(0.2);
+          }
+          table,tbody,tr,td,form,input[type="text"],input[type="email"]{
+              width: 95%;
+              margin: 0 auto;
+              @include arrondis(1.5em);
+              @include backgroundImage(("motif_img_overlay.png"),transparent,repeat, top left);
+              @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+                  width: 75%;
+                  margin: span(0.1) auto;
+                  padding: span(0.1);
+
+              }
+          }
+          textarea{
+              @include arrondis(1em);
+          }
+      }// aside.formulaire
+    }
   }
 }
 /*######-------- ||| BORDURES ||| --------######*/
@@ -182,7 +203,7 @@ h1.titre_overlay {
 h1.titre_page {
   @include titre-page;
   color: $blanc-casse;
-  @include backgroundRGBA($rose-fushia, 0.9);
+  @include backgroundRGBA($gris-clair-typo, 0.9);
 }
 /*¤¤¤ STYLES COMMUNS ¤¤¤*/
 //Permet de créer facilement les styles communs à des IDs ou/et classes
@@ -206,7 +227,7 @@ h1.titre_page {
 
       h2 {
         @include font-size(l); //utilisation de typey
-        color: $violet;
+        color: $bleu-turquoise;
       }
 
       h3 {
@@ -215,25 +236,25 @@ h1.titre_page {
       }
       h4{
         @include font-size(s); //utilisation de typey
-        color: $vert;
+        color: $orange;
       }
       h5{
         @include font-size(xs); //utilisation de typey
-        color: $violet;
+        color: $bleu-turquoise;
       }
       a {
         text-decoration: none;
-        color: $violet;
+        color: $bleu-turquoise;
 
         &:hover {
           text-decoration: underline;
         }
       }
       em {//texte italique
-        color: $vert;
+        color: $orange;
       }
       strong {
-        color: $rose-fushia;
+        color: $bleu-turquoise;
       }
     }
   }
@@ -264,7 +285,7 @@ ______________________________*/
     @include adaptable-img;
     width: auto;
     float: none;
-    border: em(2px) solid $violet;
+    border: em(2px) solid $bleu-turquoise;
     padding: em(2px);
   }
 
@@ -320,10 +341,18 @@ ______________________________*/
       border: em(3px) solid $rose-fushia;
     }
     }
-    }
-}
-}
-}
+  }// Fin videos
+  aside.formulaire{
+
+      input[type="text"],input[type="email"],textarea{
+          background: $bleu-turquoise; // Couleur fond des champs
+          color: $blanc-casse;
+          padding: span(0.01);
+      }
+  }// Fin aside.formulaire
+} // Fin ##{$zone}.#{$type}
+}// Fin @each $type in $typedecontenu
+} // Fin @each $zone in $zones
 /*######-------- ZONE 2 --------######*/
 #zone-2.type-contenu-cdi,
 #zone-2.type-page-lycee {
@@ -343,13 +372,13 @@ ______________________________*/
   }
 
   h3 {
-    color: $violet;
+    color: $bleu-turquoise;
     padding: em(5px);
   }
 
   h4 {
     padding: em(5px);
-    color: $violet;
+    color: $orange;
   }
 
   li,
@@ -366,7 +395,7 @@ ______________________________*/
   img {}
 
   a {
-    color: $violet;
+    color: $bleu-turquoise;
     text-decoration: none;
     padding: em(2px);
 
@@ -426,7 +455,7 @@ ______________________________*/
 
       a { //liens blocs docs utiles
         background: $gris-clair;
-        color: $violet;
+        color: $bleu-turquoise;
         text-decoration: none;
         padding: span(0.01) span(0.03);
 
@@ -474,7 +503,7 @@ ______________________________*/
     .label-field-lien-cdi{
       font-weight: bold;
       color: $gris-clair;
-      background: $violet;
+      background: $bleu-turquoise;
       padding: span(0.02);
       margin: 0 0 0 span(0.2);
     }
@@ -519,7 +548,7 @@ ______________________________*/
     h3 {
       font-family: $AristaFont;
       text-align: center;
-      color: $violet;
+      color: $bleu-turquoise;
       padding: 5px 0;
       font-size: medium;
       margin: 0 0 5px;

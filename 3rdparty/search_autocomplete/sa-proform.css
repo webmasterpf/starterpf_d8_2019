@@ -1,0 +1,127 @@
+/*
+ * SEARCH AUTOCOMPLETE
+ * Helper file to build your own theme.
+ */
+/**
+ * THEME CUSTOM
+ *
+ * 1- duplicate this file
+ * 2- rename this "your theme".css
+   2b- Ajuster les couleurs et tailles
+   $vert : #ADC91F;
+   $violet: #911381;
+   $orange : #F29400;
+   $orange-fonce: #e94f2d;
+   $bleu-turquoise: #01ABCF;
+   $rouge : #E3001C;
+   $rose-fushia : #E30078;
+   $jaune : #FAEB0C;
+   $gris-clair: #ECECED;
+   $gris-clair-moyen : #9898a6;
+   $gris-anthracite : #606070;
+   $gris-clair-typo:#808080;
+   $noir: #000000;
+   $blanc-casse: #FBFBFB;
+   3- Copier dans le dossier du module : modules/contrib/search_autocomplete/css/themes
+   4- Choisir le thème dans admin/config/search/search_autocomplete/manage/search_block
+
+Aprés MAJ du module, copier le fichier avec:
+cp -r  ~/www/caucadis/sited8/themes/custom/caucadis_d8_2020/3rdparty/search_autocomplete/sa-proform.css ~/www/caucadis/sited8/modules/contrib/search_autocomplete/css/themes/
+
+Vérifier avec ls -la ~/www/caucadis/sited8/modules/contrib/search_autocomplete/css/themes/
+ */
+.js input.form-autocomplete {
+  border: 1px solid #ccc;
+}
+
+/*
+ * Targeting this style example :
+ */
+/* Suggestion menu style */
+ul[data-sa-theme="sa-proform"] {
+  box-shadow: rgba(0, 0, 0, 0.498039) 0px 0px 15px;
+  background: white;
+  border-bottom: 1px solid #bfbfbf;
+  text-align: left;
+  font-family: 'Lucida Grande', Helvetica, Arial, Verdana, sans-serif;
+  min-width: 5vw;
+  max-width: 22vw;
+}
+
+/* Suggestion menu elements */
+ul[data-sa-theme="sa-proform"]>*,
+ul[data-sa-theme="sa-proform"]>*.ui-state-focus,
+ul[data-sa-theme="sa-proform"]>*:hover {
+  border-color: #bfbfbf;
+  border-width: 1px 0px 0 0px;
+  border-style: solid;
+  margin: 0px;
+  padding: 5px 7px;
+}
+
+/* Suggestion group header */
+ul[data-sa-theme="sa-proform"]>div.ui-autocomplete-field-group {
+  opacity: 1;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  background-color: #CCCCCC;
+  padding: 1px 5px;
+  margin: 0px;
+}
+
+/* Suggestion menu items */
+ul[data-sa-theme="sa-proform"]>li.ui-menu-item {
+  background: white;
+}
+
+/* Suggestion menu items hovering */
+ul[data-sa-theme="sa-proform"]>li.ui-menu-item.ui-state-focus,
+ul[data-sa-theme="sa-proform"]>li.ui-menu-item:hover {
+  background: #9898a6;
+  border-top-color: transparent;
+}
+
+/* Searched term whithin a suggestion item */
+ul[data-sa-theme="sa-proform"] .ui-autocomplete-field-term {
+  font-weight: bold;
+  border-bottom: 1px dotted;
+}
+
+/* Suggestion item fields */
+ul[data-sa-theme="sa-proform"] .ui-autocomplete-fields>*:first-child {
+  font-weight: bold;
+  color: black;
+}
+
+ul[data-sa-theme="sa-proform"] .ui-autocomplete-fields>* {
+  font-size: 0.85em;
+  line-height: 1.3em;
+  color: #6f6f6f;
+}
+
+ul[data-sa-theme="sa-proform"] .ui-autocomplete-field-created {
+  display: none;
+  visibility: hidden;
+}
+
+/* Suggestion focused fields */
+ul[data-sa-theme="sa-proform"]>li.ui-menu-item.ui-state-focus .ui-autocomplete-fields>*,
+ul[data-sa-theme="sa-proform"]>li.ui-menu-item:hover .ui-autocomplete-fields>* {
+  /*color: white;*/
+  color: #ADC91F;
+}
+
+/* Suggestion "no result" and "more resul" customizations */
+ul[data-sa-theme="sa-proform"]>div.ui-autocomplete-field-group.no_results+li.ui-menu-item,
+ul[data-sa-theme="sa-proform"]>div.ui-autocomplete-field-group.more_results+li.ui-menu-item {
+  padding: 0px;
+}
+
+ul[data-sa-theme="sa-proform"]>div.ui-autocomplete-field-group.no_results+li.ui-menu-item .ui-autocomplete-fields>*:first-child,
+ul[data-sa-theme="sa-proform"]>div.ui-autocomplete-field-group.more_results+li.ui-menu-item .ui-autocomplete-fields>*:first-child {
+  font-weight: normal;
+  text-align: center;
+  font-style: italic;
+}

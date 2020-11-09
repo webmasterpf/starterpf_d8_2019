@@ -58,7 +58,8 @@ var assetsPath = {
     node_modules: [
         //Ajoutés avec les gems pour simplifier
         basePaths.node_modules + 'node-normalize-scss',
-        basePaths.node_modules + 'susy/sass',
+        basePaths.node_modules + 'scss-resets/resets/_normalize.scss',
+        //basePaths.node_modules + 'susy/sass',
         basePaths.node_modules + 'typey/stylesheets/_typey.scss'
     ],
     javascript: [
@@ -79,6 +80,7 @@ var plugins = require('gulp-load-plugins')();
 var gutil = require('gulp-util');
 var gcache = require('gulp-cache');
 var git = require('gulp-git');
+var sassIncl = require('sass-include-paths');
 
 //Plugins de PostCSS
 var autoprefixer = require('autoprefixer');
@@ -86,7 +88,12 @@ var autoprefixer = require('autoprefixer');
 //Composants NodeJS
 var cp = require('child_process');
 
-
+// Inclusion des chemins vers SCSS de modules NPMs avec IncludePaths
+// LE tableau est créé par la commande sassc $(sassIncludePaths --sassc --node_modules) [...]
+var inclureScss = [] // additional include paths
+.concat(sassIncl.nodeModulesSync())
+.concat(sassIncl.rubyGemsSync())
+.concat(sassIncl.rubyGemsBundleSync());
 
 // Autoprefixer : Navigateurs à cibler pour le préfixage CSS
 // Liste fourni depuis 06/19 par .browserslistrc - Editer pour modifier.
@@ -156,11 +163,7 @@ gulp.task('sasscompil', function () {
             errLogToConsole: true,
             sourceComments: 'normal',
             debugInfo: true,
-            includePaths: [].concat(
-                assetsPath.gems,
-                assetsPath.node_modules,
-                folderPaths.styles.src
-            )
+            includePaths: inclureScss,
         }).on('error', plugins.sass.logError))
         .pipe(postcss(processors))//Utilisation des plugins de PostCSS dont Autoprefixer (Voir plus haut)
         .pipe(plugins.sourcemaps.write('.', { sourceRoot: folderPaths.styles.src }))//Pour créer le fichier css.map à coté du css
@@ -204,8 +207,8 @@ gulp.task('drush-cp', function(done) {
   ;
 });
 
-// Run git pull from multiple branches
-gulp.task('pull', function () {
+// Run git pull from multiple branches - 2020-08
+gulp.task('majgitpull', function () {
     git.pull('origin', ['master', 'developpement', 'retroportage'], function (err) {
         if (err) throw err;
     });
@@ -241,7 +244,8 @@ gulp.task('clearCache', function (done) {
 gulp.task('default', ['browser-sync'], function () {
     //gulp.task('default', function(){
     gulp.watch(basePaths.src, ['sasscompil']);
-    //gulp.watch(basePaths.project, ['clearCache']);
+    gulp.watch(folderPaths.styles.dest, ['drush-cp']);
+
     //gulp.watch(folderPaths.templates.d8nodestpl,['clearCache'],bs_reload);
     gulp.watch(folderPaths.images.src, bs_reload);
     gulp.watch(folderPaths.images.dest, bs_reload);

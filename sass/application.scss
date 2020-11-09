@@ -23,7 +23,21 @@ breakpoint-2.7.1-
 ---------------------*/
 
 //Reset des propriétés : via node-normalize-scss (npm))
-@import "../node_modules/node-normalize-scss/normalize";
+//Compilation locale poste W10
+//@import "../node_modules/node-normalize-scss/normalize";
+
+//Si compilation sur LAMP alors utiliser ce chemin:
+
+//@import "../node_modules/normalize.css/normalize";
+
+//Pour  node-normalize-scss@8.1.2 alors le chemin pour LAMP est le suivant:
+// Utiliser scss-resets pour avoir normalize. Ajouter chemin dans tache sasscompil
+//@import 'normalize';
+
+
+
+//Pour node-normalize-scss@8.0.1, utiliser ce chemin pour LAMP:
+//@import "normalize";
 
 // Import de Compass (framework abandonné en 2016)
 //voir mixins_custom pour les remplacements des mixins Compass
@@ -39,6 +53,10 @@ breakpoint-2.7.1-
 
 
 //@import "sassy-buttons";
+//Compilation LAMP
+//@import "breakpoint";
+
+//Compilation locale poste W10
 @import "../node_modules/breakpoint-sass/stylesheets/breakpoint";
 
 //Remplacement de Vertical Rhythm par Typey (Composant de node-sass) Gestion de la typographie
@@ -52,7 +70,10 @@ breakpoint-2.7.1-
 @import "./global/_mixins-custom.scss";
 @import "./global/_typos.scss";
 @import "./global/_style.scss";
+
+// Import des partiels pour la navigation
 @import "./global/_menu-fullpage.scss";
+@import "./global/_megamenu.scss";
 @import "./global/_stacktable.scss";
 /*@import "./global/_sub-nav.scss";*/
 
@@ -104,7 +125,7 @@ breakpoint-2.7.1-
 /*@import "./content-type-style/_contenu-bourses.scss";*/
 /*@import "./content-type-style/_page-bts.scss";*/
 /*@import "./content-type-style/_contenu-entreprise.scss";*/
-/*@import "./content-type-style/_page-espace.scss";*/
+@import "./content-type-style/_page-espace.scss";
 @import "./content-type-style/_page-globale.scss";
 @import "./content-type-style/_page-formations.scss";
 /*@import "./content-type-style/_contenu-international.scss";*/

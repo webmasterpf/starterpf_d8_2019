@@ -1,0 +1,154 @@
+/*
+Implémentation d'un megamenu basé sur le module D8:
+https://www.flocondetoile.fr/blog/creer-un-mega-menu-avec-drupal-8
+Version bureau
+Version mobile via off-canvas
+*/
+
+//@include breakpoint ($mobile){}
+  //@include breakpoint ($desktop){}
+  //@include breakpoint ($tablet){}
+  //@include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){}
+body .conteneur{
+  nav#block-menugeneraldusite.megamenu-pf{
+    ul.menu--simple-mega-menu{
+      @include horizontal-list-container;
+      @include horizontal-list;
+      //Affichage sous-rubrique initialement caché par @mixin
+      overflow: visible;
+      li{
+        @include horizontal-list-item;
+        a {
+            // vertical alignment
+            margin: 0.25em;
+            border: 0;
+            font-family: $FontRaleway;
+            color: $gris-anthracite;//couleur des liens
+            text-decoration: none;
+            display: block;
+            @include font-size(m);//taille avec typey
+            /*font-size: x-large;//taille classique*/
+            font-weight: bold;//si typo trop fine
+            &:hover {
+                color: $bleu-turquoise;//couleur du hover
+            }
+            img{
+                @include adaptable-img;
+                margin: 0;
+            }
+
+        }// Fin a
+      }// Fin li
+    } // Fin ul conteneur 1er niveau
+    ul.mega-menu-item{
+      //Afficher les éléments de sous-rubrique sur plusieurs colonnes
+      flex-basis: span(4);//Overrider valeur de base 300px
+      column-count: 2;
+      column-fill: balance;
+      white-space: normal;
+      padding: span(0.1);
+      display: grid;//Items empilés
+      li.menu-item{
+        a{
+          color: $gris-clair;//couleur des liens
+          min-width: span(3);
+          display: block;
+          &:hover {
+              color: $gris-anthracite;//couleur du hover
+          }
+        }
+      }// Fin li.menu-item
+    }// Fin ul 2e niveau
+    .megamenu_2020__liens-megamenu{
+      min-width: span(4);//Largeur maxi du menu autres sites PF
+    }
+  } // Fin nav
+}//Fin body.conteneur
+
+/* -------------------------------------
+    STYLE DES ELEMENTS DU MENU
+-------------------------------------*/
+nav#block-menugeneraldusite.megamenu-pf{
+  //Deco menu principal
+  border-bottom: em(3px) solid $gris-clair-moyen;
+  ul.menu--simple-mega-menu{
+    li.menu-item--expanded{
+      border-left: em(2px) solid $bleu-turquoise;
+    }
+    li.focused{
+      @include backgroundRGBA($rose-fushia,0.3);
+    }
+  }
+  ul.mega-menu-item{
+    //Couleur de fond du sous menu - joue sur contrastes
+    @include backgroundRGBA($gris-clair-typo, 0.7);
+    @include arrondis();
+  }
+  div.mega-menu-wrapper{
+    div.mega-menu-background{
+      //Ajouter un fond au menu de sous-rubrique niv2
+      @include backgroundImageTransparentRGBA(('motif_img_overlay.png'),$gris-clair-moyen, 0.7,transparent,0 0, repeat);
+      border-bottom: em(3px) solid $bleu-turquoise;
+    }
+  }
+
+  .megamenu_2020__liens-megamenu{
+    border: $gris-clair-moyen em(1px) dashed;//couleur de la bordure
+    margin: span(0.1);
+  }
+}
+
+/*-------------------------------------
+    STYLE LIENS VERS LYCEES
+-------------------------------------*/
+//Ajouter les classes via le réglage du megamenu
+// /admin/content/simple_mega_menu/xx/edit
+nav#block-menugeneraldusite.megamenu-pf{
+.megamenu_2020__liens-megamenu{
+    a{
+      &:hover{
+        color: $gris-clair-moyen;
+      }
+    }
+    a.site_er{
+      //Utilise mixin effet souligné du lien sur hover
+    @include rollover-underline($rouge);
+    }
+
+
+    a.site_cg{
+      //Utilise mixin effet souligné du lien sur hover
+    @include rollover-underline($orange);
+    }
+
+    a.site_bl{
+      //Utilise mixin effet souligné du lien sur hover
+    @include rollover-underline($bleu-turquoise);
+    }
+
+    a.site_mg{
+      //Utilise mixin effet souligné du lien sur hover
+    @include rollover-underline($rose-fushia);
+    }
+
+    a.site_lr{
+      //Utilise mixin effet souligné du lien sur hover
+    @include rollover-underline($violet);
+    }
+
+    a.site_ca{
+      //Utilise mixin effet souligné du lien sur hover
+    @include rollover-underline($gris-clair-moyen);
+    }
+
+    a.site_ce{
+      //Utilise mixin effet souligné du lien sur hover
+    @include rollover-underline($vert);
+    }
+    a.site_pf{
+      //Utilise mixin effet souligné du lien sur hover
+    @include rollover-underline($orange-fonce);
+    }
+
+} // Fin .megamenu_2020__liens-megamenu
+} // Fin nav#block-menugeneraldusite

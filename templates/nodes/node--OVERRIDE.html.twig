@@ -12,21 +12,21 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
 Possible avec le NiD ou un mot de l'url réécrite.
  #}
 {% set uri = path('entity.node.canonical', {'node': node.id}) %}
-{# % if 'les-actualites' in url|render|render % #}
-{% if '18' in node.id | render | render %}
+{% if 'les-actualites' in url | render | render %}
+  {% if '18' in node.id | render | render %}
 
-  {% set vuebloc_classes = [
+    {% set vuebloc_classes = [
 'classe-1',
 'type-' ~ node.bundle|clean_class
 ]%}
-{% else %}
-  {% set vuebloc_classes = [
+  {% else %}
+    {% set vuebloc_classes = [
 'classe-2',
   'type-' ~ node.bundle|clean_class
   ]%}
-{% endif %}
+  {% endif %}
 
-{# BEM inspired class syntax: https://en.bem.info/
+  {# BEM inspired class syntax: https://en.bem.info/
    Enable this code if you would like node classes like "article article--layout-teaser", where article is the content type and teaser is the view mode.
 {% set classes = classes|merge([
   node.bundle|clean_class,
@@ -37,136 +37,142 @@ Possible avec le NiD ou un mot de l'url réécrite.
 ] %}
 #}
 
-<article{{ attributes.addclass(classes) }}>
+  <article{{ attributes.addclass(classes) }}>
 
-  {# Attacher une librairie JS pour un type de contenu spécifique via son template #}
-  {{ attach_library('nom_theme/angular.angularjs') }}
+    {# Attacher une librairie JS pour un type de contenu spécifique via son template #}
+    {{ attach_library('nom_theme/angular.angularjs') }}
 
-  {% include directory ~ '/templates/includes/inc_header_node.html.twig' %}
+    {% include directory ~ '/templates/includes/inc_header_node.html.twig' %}
 
-  <div{{ content_attributes.addClass('content') }}>
-    {# Affichage du contenu en excluant des champs #}
-    {{ content|without('links') }}
+    {# Change classe selon Nid - Ici nid de la page archives
+    Moins efficace que de mettre la condition dans la définition des classes.
+    #}
+    {% if node.field_inserer_liste_viewfield is not empty and node.id == 77 %}
+      <aside {{ vuebloc_attribute.addClass(vueBlocArchives_classes) }}>
 
-    {# Affichage du contenu du champ body uniquement #}
-    {{ content.body }}
+        <div{{ content_attributes.addclass('content') }}>
+          {# Affichage du contenu en excluant des champs #}
+          {{ content|without('links') }}
 
-    <!-- Region Custom ajoutée à settings -->
-    {# Ajout d'une région custom #}
-    {% if node_col_1 is defined %}
-      <div{{ node_col_1.addClass('region-standard1') }}>
-        {{ node_col_1 }}
-      </div>
-    {% endif %}
+          {# Affichage du contenu du champ body uniquement #}
+          {{ content.body }}
 
-    {#
+          <!-- Region Custom ajoutée à settings -->
+          {# Ajout d'une région custom #}
+          {% if node_col_1 is defined %}
+            <div{{ node_col_1.addClass('region-standard1') }}>
+              {{ node_col_1 }}
+            </div>
+          {% endif %}
+
+          {#
 Affichage de diverses valeurs issues des champs
 https://blog.usejournal.com/getting-drupal-8-field-values-in-twig-22b80cb609bd
 
 Affichage de l'étiquette d'un champ custom avec test
 Créer un template de champ pour pouvoir organiser la sortie HTML : field--field-name.html.twig
 #}
-    {% if node.field_myfield is not empty %}
-      {{ node.field_myfield.fieldDefinition.label }}
-      {# Affichage du contenu d'un champ custom #}
-      {{ node.name_field.value|raw }}
-    {% endif %}
+          {% if node.field_myfield is not empty %}
+            {{ node.field_myfield.fieldDefinition.label }}
+            {# Affichage du contenu d'un champ custom #}
+            {{ node.name_field.value|raw }}
+          {% endif %}
 
-    {# Affichage de diverses valeurs issues des champs, avec le module https://www.drupal.org/project/twig_field_value #}
-    {{ content.field_name|field_label }}
+          {# Affichage de diverses valeurs issues des champs, avec le module https://www.drupal.org/project/twig_field_value #}
+          {{ content.field_name|field_label }}
 
-    {# Plutôt utiliser l'objet node que content car il n'est pas soumis au type de sortie d'affichage #}
-    {{ node.field_name|field_label }}
+          {# Plutôt utiliser l'objet node que content car il n'est pas soumis au type de sortie d'affichage #}
+          {{ node.field_name|field_label }}
 
-    {# Affichage du contenu des balises titre ou alt d'un champ image #}
-    {{ node.field_image.title }}
-    {{ node.field_image.alt }}
-    {{ node.field_link.uri }}
-    {{ node.field_link.title }}
+          {# Affichage du contenu des balises titre ou alt d'un champ image #}
+          {{ node.field_image.title }}
+          {{ node.field_image.alt }}
+          {{ node.field_link.uri }}
+          {{ node.field_link.title }}
 
-    <h2>
-      Affichage champ pour upload fichiers : méthode node
-    </h2>
+          <h2>
+            Affichage champ pour upload fichiers : méthode node
+          </h2>
 
-    {{ node.actu_association_revue_presse.field_fichier_joint.value }}
-    {{ node.field_fichier_joint.value }}
+          {{ node.actu_association_revue_presse.field_fichier_joint.value }}
+          {{ node.field_fichier_joint.value }}
 
-    {{ content[‘#node’].nid.value }}
+          {{ content[‘#node’].nid.value }}
 
-    {# Affichage conditionnel du contenu d'un champ image - technique possible pour test sur autre champ #}
-    {% set image_deco = content.field_image_deco_lycee | render | trim %}
-    {% if image_deco is not empty %}
-      <span {{image_attribute.addClass(image_classes) }}>
-        {{ content.field_image_deco_lycee}}
-      </span>
-    {% endif %}
+          {# Affichage conditionnel du contenu d'un champ image - technique possible pour test sur autre champ #}
+          {% set image_deco = content.field_image_deco_lycee | render | trim %}
+          {% if image_deco is not empty %}
+            <span {{image_attribute.addClass(image_classes) }}>
+              {{ content.field_image_deco_lycee}}
+            </span>
+          {% endif %}
 
-    {% if node.field_to_render is not empty %}
-      <aside {{ vuebloc_attribute.addClass(vuebloc_classes) }}>
-        {{ content.field_to_render.0 }}
-      </aside>
-    {% endif %}
+          {% if node.field_to_render is not empty %}
+            <aside {{ vuebloc_attribute.addClass(vuebloc_classes) }}>
+              {{ content.field_to_render.0 }}
+            </aside>
+          {% endif %}
 
-    {% if content.field_to_render is not empty %}
-      <div id="nom_champ" class="actu-nom_champ">
-        {{ content.field_to_render }}
-      </div>
-      <!-- /.nom_champ -->
-    {% endif %}
+          {% if content.field_to_render is not empty %}
+            <div id="nom_champ" class="actu-nom_champ">
+              {{ content.field_to_render }}
+            </div>
+            <!-- /.nom_champ -->
+          {% endif %}
 
-    {# Lister les valeurs d'un champ multivaleur : fichiers, liens..
+          {# Lister les valeurs d'un champ multivaleur : fichiers, liens..
   Print the image field in the node template like any other field:
 
   #}
 
-    {{ content.field_gallery_images }}
-    {#And then use a field twig to loop through multiple field items: field--field-gallery-images.html.twig"#}
+          {{ content.field_gallery_images }}
+          {#And then use a field twig to loop through multiple field items: field--field-gallery-images.html.twig"#}
 
-    <div class="row expanded">
-      {% for item in items %}
-        <div class="gallery-image-item">{{ item.content }}</div>
-      {% endfor %}
-    </div>
+          <div class="row expanded">
+            {% for item in items %}
+              <div class="gallery-image-item">{{ item.content }}</div>
+            {% endfor %}
+          </div>
 
-    {# Ajout d'une région custom via un include avec test non vide#}
-    {% include directory ~ '/includes/regions_inc/inc_region_zone_1.html.twig' %}
+          {# Ajout d'une région custom via un include avec test non vide#}
+          {% include directory ~ '/includes/regions_inc/inc_region_zone_1.html.twig' %}
 
-    {# Afficher un terme de taxonomie contenu dans le node - les filtres sont pour un usage comme classe#}
-    To get the field value from a field in a taxonomy term that is referenced in the node:
+          {# Afficher un terme de taxonomie contenu dans le node - les filtres sont pour un usage comme classe#}
+          To get the field value from a field in a taxonomy term that is referenced in the node:
 
-    {{ content.field_pole_formation[0]['#title'] |clean_class | replace({"^" : ""}), }}
+          {{ content.field_pole_formation[0]['#title'] |clean_class | replace({"^" : ""}), }}
 
-    {{ node.field_example.entity.field_desired_field.value }}
-    If you want to render a formatted output, use either the ui to configure a custom view mode or use the module Twig Tweak:
+          {{ node.field_example.entity.field_desired_field.value }}
+          If you want to render a formatted output, use either the ui to configure a custom view mode or use the module Twig Tweak:
 
-    {% set tid = node.field_example.target_id %}
-    {% if tid %}
-      {{ drupal_field('field_desired_field', 'taxonomy_term', tid) }}
-    {% endif %}
-    Terme de taxonomie avec son lien - Champ texte simple
-    {{ content.field_NAME.0 }}
-    Terme de taxonomie sans son lien: le terme brut
-    {{ content.field_NAME.0['#title'] }}
-    l'URL relative (non cliquable)
-    {{ content.field_NAME.0['#url'] }}
+          {% set tid = node.field_example.target_id %}
+          {% if tid %}
+            {{ drupal_field('field_desired_field', 'taxonomy_term', tid) }}
+          {% endif %}
+          Terme de taxonomie avec son lien - Champ texte simple
+          {{ content.field_NAME.0 }}
+          Terme de taxonomie sans son lien: le terme brut
+          {{ content.field_NAME.0['#title'] }}
+          l'URL relative (non cliquable)
+          {{ content.field_NAME.0['#url'] }}
 
-    Autre méthode pour afficher un terme de taxo (cliquable)
-    {{ content.field_NAME[0] }}
-    {% for key, value in content.field_NAME %}
-      {% if key > 0 %}
-        {{ content.field_NAME[key] }}
-      {% endif %}
-    {% endfor %}
+          Autre méthode pour afficher un terme de taxo (cliquable)
+          {{ content.field_NAME[0] }}
+          {% for key, value in content.field_NAME %}
+            {% if key > 0 %}
+              {{ content.field_NAME[key] }}
+            {% endif %}
+          {% endfor %}
 
-  </div>
-  <!-- /.content -->
+        </div>
+        <!-- /.content -->
 
-  {% if content.links %}
-    <div class="links">
-      {{ content.links }}
-    </div>
-    <!-- /.links -->
-  {% endif %}
+        {% if content.links %}
+          <div class="links">
+            {{ content.links }}
+          </div>
+          <!-- /.links -->
+        {% endif %}
 
-</article>
-<!-- /.node -->
+      </article>
+      <!-- /.node -->

@@ -1,6 +1,6 @@
 //** $Id: README.txt,v 1.1 02∕04∕2011
 
-ABOUT THEME testhookgitpostupdate
+ABOUT THEME
 -----------
 
 Thème RWD pour les sites de l'Association développés sous Drupal 8.
@@ -26,6 +26,7 @@ Plugin pour Gulp (permet de charger tous les plugins)
 :/var/www/drupal-8/themes/custom/dossier_projet$ npm install gulp-load-plugins --save-dev
 
 Plugin pour Sass:
+gulp-git gulp-cache scss-resets sass-include-paths
 npm install --save-dev  event-stream gulp-util node-sass-import-once gulp-sass gulp-size gulp-shell gulp-notify notify-send gulp-sourcemaps typey susy node-normalize-scss gulp-plumber gulp-postcss autoprefixer breakpoint
 
 Vérifier versions des npm:
@@ -44,15 +45,23 @@ Pour utiliser les Breakpoints CSS avec javascript : enquire.js
 npm install enquire.js  permet d'installer + enquire.js@2.1.6
 05/2020: inutile,plutôt utiliser l'url distante via le fichier .libraries
 
+Importer des SCSS de modules NPM comme normalize, utiliser la commande suivante aprés avoir installé sass-include-paths
+ce qui va générer une liste des inclusions possibles pour le projet.
+sassc $(sassIncludePaths --sassc --node_modules) [...]
+
+Pour breakpoint, possible d'utiliser breakpoint-sass si pb de chemin.
+npm install --save-dev breakpoint-sass
+
 BROWSER SYNC
 -----------------
 :/var/www/drupal-8/sites/all/themes/dossier_projet$ npm install browser-sync --save-dev
 
 GIT
 -----------------
-Pour compilation locale utiliser Git pour synchroniser LAMP et machien locale.
+Pour compilation locale utiliser Git pour synchroniser LAMP et machine locale.
 Automatisation via un hook dans le dossier du dépôt local sur le LAMP - Ajuster les réglages pour post-update
 
+Vérifier bonne installation des modules en listant les tâches avec gulp --tasks et vérifier la version avec gulp -v
 
 REGLAGES A FAIRE
 ----------------
@@ -93,6 +102,20 @@ dans le terminal (sur serveur Linux) :
 user@vm-server1:~$ cd /PATH/TO/THEMENAMEFOLDER/
 user@vm-server1:/var/www/drupal-8/PATH/TO/THEMENAMEFOLDER$ gulp
 
+En local via Visual Code ou Atom + plugin
+Si nodeJS installé et fonctionnel (+ modules), possible d'utiliser node-sass avec commande dans le dossier thème:
+npx node-sass sass -o css --output-style expanded --source-map true
+
+Vérifier si node-sass est installé avec:
+npm list | grep sass
+├─┬ gulp-sass@4.1.0
+│ ├─┬ node-sass@4.14.1
+OU
+npx node-sass -v
+node-sass       4.14.1  (Wrapper)       [JavaScript]
+libsass         3.5.5   (Sass Compiler) [C/C++]
+
+Si bash: node-sass: command not found alors:
 
 Usage de Susy 3
 ------------------------

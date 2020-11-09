@@ -1,7 +1,8 @@
 <head>
 
   <head-placeholder token="{{ placeholder_token }}">
-    <title>{{ head_title|safe_join(' | ') }}</title>
+    <title>{{ head_title|safe_join(' | ') }}
+    </title>
 
     {#<!-- Meta RWD -->#}
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -86,20 +87,25 @@ positionner le bloc fournissant le menu dans cette région, pour v2018,le bloc M
                 <!-- /site-mission -->
               {% endif %}
 
-              <div class="headSearch">
-                {% if page.search_box is not empty %}
+              {% if page.search_box is not empty %}
+                <div class="headSearch">
                   {{ page.search_box}}
-                {% endif %}
-              </div>
+                </div>
+              {% endif %}
               <!-- /recherche -->
 
             </div>
             <!-- /headBas -->
-            <div class="fil_ariane">
-              {% if page.ariane is not empty %}
+            {% if page.navStatic is not empty %}
+              {{ page.navStatic}}
+            {% endif %}
+            <!-- /navStatic -->
+
+            {% if page.ariane is not empty %}
+              <div class="fil_ariane">
                 {{page.ariane}}
-              {% endif %}
-            </div>
+              </div>
+            {% endif %}
             <!-- /fild_ariane -->
 
           </header>

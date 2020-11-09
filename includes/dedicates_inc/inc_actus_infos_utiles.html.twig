@@ -17,13 +17,13 @@
 'label-' ~ node.field_passerelle_form.fieldDefinition.name | replace({"_" : "-"}),
 ]%}
 {% set champ2_classes = [
-'label-' ~ node.field_fichier_joint_actu.fieldDefinition.name | replace({"_" : "-"}),
+'label-' ~ node.field_fichier_joint_rp.fieldDefinition.name | replace({"_" : "-"}),
 ]%}
 {% set champ3_classes = [
 'label-' ~ node.field_lien_rp.fieldDefinition.name | replace({"_" : "-"}),
 ]%}
 {# ---*** Le contenu de l'include ***--- #}
-{% if node.field_passerelle_form.value or node.field_fichier_joint_actu.value or node.field_lien_rp.value or node.field_fichier_audio_rp.value is not empty %}
+{% if node.field_passerelle_form.value or node.field_fichier_joint_rp.value or node.field_lien_rp.value or node.field_fichier_audio_rp.value is not empty %}
   <div class="bloc_docs_utiles_actu">
 
     {% if node.field_passerelle_form.value is not empty %}
@@ -36,11 +36,11 @@
 
     {% endif %}
 
-    {% if node.field_fichier_joint_actu.value or node.field_fichier_audio_rp.value is not empty %}
+    {% if node.field_fichier_joint_rp.value or node.field_fichier_audio_rp.value or field_admin_files.value is not empty %}
       {# Affichage des étiquettes des champs en tant que titres #}
       <ul>
         <li {{ champ2_attribute.addClass(champ2_classes) }}>
-          {{ content.field_fichier_joint_actu|field_label }}
+          {{ content.field_fichier_joint_rp|field_label }}
           {% if node.field_fichier_audio_rp is not empty %}
             //
             {{ content.field_fichier_audio_rp|field_label }}
@@ -50,10 +50,10 @@
 
       <ul>
         {# //Parcourir le tableau field_NAME de l'objet $node pour lister le contenu clé/valeur #}
-        {% for key, fichier in node.field_fichier_joint_actu.value %}
+        {% for key, fichier in node.field_fichier_joint_rp.value %}
           {# //Ne pas afficher les champs vides du tableau #}
-          {% if node.field_fichier_joint_actu.value is not empty %}
-            <li>{{ content.field_fichier_joint_actu[key] }}</li>
+          {% if node.field_fichier_joint_rp.value is not empty %}
+            <li>{{ content.field_fichier_joint_rp[key] }}</li>
           {% endif %}
         {% endfor %}
 
@@ -64,6 +64,15 @@
             <li>{{ content.field_fichier_audio_rp[key] }}</li>
           {% endif %}
         {% endfor %}
+
+        {# Parcourir le tableau field_NAME de l'objet $node pour lister le contenu clé/valeur #}
+        {% for key, fichier_admin in node.field_admin_files %}
+          {# Ne pas afficher les champs vides du tableau #}
+          {% if node.field_admin_files is not empty %}
+            <li>{{ content.field_admin_files[key] }}</li>
+          {% endif %}
+        {% endfor %}
+
       </ul>
     {% endif %}
     {# Fin Liste fichiers joints - fichier audio #}

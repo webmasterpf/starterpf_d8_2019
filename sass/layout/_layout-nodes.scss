@@ -63,7 +63,7 @@ body .conteneur{
         @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
             //width: span(12 of $desktopcol);
             display: inherit;
-        margin: 0;
+        margin: span(0.1) 0 0 0;
             /*@include clearfixsusy3;*/
 
         }
@@ -163,10 +163,8 @@ body .conteneur{
 /*        display: list-item;
         margin: span(2) 0 0;*/
         @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-/*            width: span(12 of $desktopcol);
-            display: inherit;
-        margin: 0;*/
-            /*@include clearfixsusy3;*/
+        display: inherit;
+        margin: span(0.1) 0 0 0;
 
         }
     }

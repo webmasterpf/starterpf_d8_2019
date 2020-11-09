@@ -10,7 +10,6 @@
 //@include breakpoint ($tablet){}
 // @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){}
 /*######-------- ||| ORDRE FLEXBOX ||| --------######*/
-
 body .conteneur .conteneur-flex {
   #zone-1.type-contenu-vdl {
     order: 2;
@@ -38,14 +37,13 @@ body .conteneur .conteneur-flex {
   }
 }
 /*######-------- ||| BORDURES ||| --------######*/
-
 body .conteneur {
   @include breakpoint ($desktop) {
     #zone-2.type-contenu-vdl {}
   }
 }
 /*######-------- ||| LAYOUT SPECIFIQUE ||| --------######*/
-$typedecontenu: type-contenu-vdl ;
+$typedecontenu: type-contenu-vdl, type-contenu-sortie-action, type-contenu-projet, type-contenu-mini-stage, type-contenu-innovation, type-contenu-intervenants, type-contenu-entreprise ;
 $zonesimg: zone-illustration;
 @each $zone in $zonesimg {
   @each $type in $typedecontenu {
@@ -67,7 +65,9 @@ $zonesimg: zone-illustration;
           img:not([src*="defaut"]) {
             transform: translate(0%,-9%);
           }
-          img[src*="defaut"]{//Position du visuel par défaut
+
+          img[src*="defaut"] {
+            //Position du visuel par défaut
             transform: translate(0%,-10%);
           }
         }
@@ -78,7 +78,9 @@ $zonesimg: zone-illustration;
           img:not([src*="defaut"]) {
             transform: translate(0%,-25%);
           }
-          img[src*="defaut"]{//Position du visuel par défaut
+
+          img[src*="defaut"] {
+            //Position du visuel par défaut
             transform: translate(0%,-24%);
           }
         }
@@ -89,7 +91,9 @@ $zonesimg: zone-illustration;
           img:not([src*="defaut"]) {
             transform: translate(0%,-20%);
           }
-          img[src*="defaut"]{//Position du visuel par défaut
+
+          img[src*="defaut"] {
+            //Position du visuel par défaut
             transform: translate(0%,-18%);
           }
         }
@@ -100,15 +104,18 @@ $zonesimg: zone-illustration;
           img:not([src*="defaut"]) {
             transform: translate(0%,-30%);
           }
-          img[src*="defaut"]{//Position du visuel par défaut
+
+          img[src*="defaut"] {
+            //Position du visuel par défaut
             transform: translate(0%,-20%);
           }
         }
-      }//Fin illustration-pleinepage
+      }
+      //Fin illustration-pleinepage
     }
   }
 }
-$typedecontenu: type-contenu-vdl, type-page-sorties-actions, type-page-partenaires ;
+$typedecontenu: type-contenu-vdl, type-contenu-sortie-action, type-contenu-projet, type-contenu-mini-stage, type-contenu-innovation, type-contenu-intervenants, type-contenu-entreprise ;
 $zones: zone-1, zone-2, zone-3 ;
 @each $zone in $zones {
   @each $type in $typedecontenu {
@@ -138,17 +145,19 @@ $zones: zone-1, zone-2, zone-3 ;
           min-width: span(3);
           max-width: span(5);
         }
+
         .champ-field-relatif-formation,
-        .label-field-fichier-joint-vdl,
         .label-field-fichier-joint,
+        .label-field-fichier-joint-vdl,
+        .label-field-lien-utile-vdl,
         .label-field-passerelle-form {
           //Besoin de simuler un br pour avoir un saut de ligne entre chaque éléments.HTML en liste plus efficace
           @include clearfixsusy3;
         }
       }
-    }
-  }
-}
+    }     // Fin ##{$zone}.#{$type}
+  }   // Fin @each $type in $typedecontenu
+} // Fin @each $zone in $zones
 @each $zone in $zones {
   @each $type in $typedecontenu {
     ##{$zone}.#{$type} {
@@ -163,30 +172,31 @@ $zones: zone-1, zone-2, zone-3 ;
         }
       }
       //Réglage des vignette se fait dans _baguettebox-vignette-zoom.scss
-      .videos{
-        ul{
+      .videos {
+        ul {
           list-style: none;
         }
-        iframe{
+
+        iframe {
           @include breakpoint(($desktop,$desktopwide)) {
-          max-height: 90vh;
-          max-width: 60vw;
-          margin: 0 auto;
-          padding: span(0.02);
-          border: em(3px) solid $violet;
-        }
-        @include breakpoint(($mobilelandscape,$tablet,$tabletlandscape)) {
-          max-height: 90vh;
-          max-width: 90vw;
-          margin: 0 auto;
-          padding: span(0.02);
-          border: em(3px) solid $violet;
-        }
+            max-height: 90vh;
+            max-width: 60vw;
+            margin: 0 auto;
+            padding: span(0.02);
+            border: em(3px) solid $violet;
+          }
+          @include breakpoint(($mobilelandscape,$tablet,$tabletlandscape)) {
+            max-height: 90vh;
+            max-width: 90vw;
+            margin: 0 auto;
+            padding: span(0.02);
+            border: em(3px) solid $violet;
+          }
         }
       }
-    }
-  }
-}
+    }     // Fin ##{$zone}.#{$type}
+  }   // Fin @each $type in $typedecontenu
+} // Fin @each $zone in $zones
 @each $zone in $zones {
   @each $type in $typedecontenu {
     ##{$zone}.#{$type} {
@@ -207,6 +217,7 @@ $zones: zone-1, zone-2, zone-3 ;
 }
 /*######-------- ||| STYLE ||| --------######*/
 //Pour H1 voir _page-lycee.scss
+
 h1.titre-contenu-vdl {
   @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
     top: em(10px);
@@ -214,8 +225,8 @@ h1.titre-contenu-vdl {
   }
 }
 /*¤¤¤ STYLES COMMUNS ¤¤¤*/
-//Permet de créer facilement les styles communs à des IDs ou/et classes
-$typedecontenu: type-contenu-vdl ;
+//Permet de créer facilement les styles communs pour des IDs ou/et des classes
+$typedecontenu: type-contenu-vdl, type-contenu-sortie-action, type-contenu-projet, type-contenu-mini-stage, type-contenu-innovation, type-contenu-intervenants, type-contenu-entreprise ;
 $zones: zone-1, zone-2, zone-3 ;
 @each $zone in $zones {
   @each $type in $typedecontenu {
@@ -231,45 +242,53 @@ $zones: zone-1, zone-2, zone-3 ;
 
       u {
         font-weight: bold;
-        color: $violet;
+        color: $rose-fushia;
       }
 
       h2 {
         @include font-size(l); //utilisation de typey
-        color: $violet;
+        color: $bleu-turquoise;
       }
 
       h3 {
         @include font-size(m); //utilisation de typey
-        color: $violet;
+        color: $rose-fushia;
+      }
+
+      h4 {
+        @include font-size(m); //utilisation de typey
+        color: $bleu-turquoise;
       }
 
       a {
         text-decoration: none;
-        color: $violet;
+        color: $gris-clair-typo;
+        @include rollover-effect($bleu-turquoise); //Effet rollover CSS3
 
         &:hover {
           text-decoration: none;
+          color: $gris-clair; //Couleur du hover, commenter si inutile
         }
       }
 
       strong {
-        color: $violet;
+        color: $rose-fushia;
       }
-    }
-  }
-}
+    }     // Fin ##{$zone}.#{$type}
+  }   // Fin @each $type in $typedecontenu
+} // Fin @each $zone in $zones
 /*------------------------------------
         ¤¤¤ STYLES PROPRES ¤¤¤
 ______________________________*/
-$typedecontenu: type-contenu-vdl, type-page-sorties-actions, type-page-partenaires;
-$zones: zone-1, zone-2, zone-3;
+$typedecontenu: type-contenu-vdl, type-contenu-sortie-action, type-contenu-projet, type-contenu-mini-stage, type-contenu-innovation, type-contenu-intervenants, type-contenu-entreprise ;
+$zones: zone-1, zone-2, zone-3 ;
 @each $zone in $zones {
   @each $type in $typedecontenu {
     ##{$zone}.#{$type} {
       .bloc_docs_utiles_vdl {
-        @include backgroundImage(("BG/stripe_rose_violet_pastel.png"),transparent,repeat, top left);
+        @include backgroundImage(("BG/stripe_gris_bleu_pastel.png"),transparent,repeat, top left);
         @include arrondis(1em);
+
         ul {
           li {
             //suppression des puces
@@ -278,108 +297,115 @@ $zones: zone-1, zone-2, zone-3;
             @include font-size(s); //utilisation de typey
           }
 
-        a {
-          background: $gris-clair;
-          color: $violet;
-          text-decoration: none;
-          padding: span(0.01) span(0.03);
-          @include rollover-effect($rose-fushia); //Effet rollover CSS3 sur les liens
-          @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
-          //Pour ne pas tronquer le picto fichier - décommenter si nécessaire
-          //min-height: em(65px);
-          border: inherit;//Pour éviter BP vide
-        }
-
-          &:hover{ //:not([href*="fiche"])
-            color: $gris-clair;
-            background: $violet;
-          }
-        }
-
-        a {
-          &[href*=".pdf"] {
-            &::before {
-              //@include backgroundImage("PNG/Fichiers@3x.png");
-              @include maskImage(("PNG/Fichier-blanc@3x.png"),100%,alpha,$gris-clair-moyen);
-              background-size: contain;
-              content: "";
-              position: relative;
-              vertical-align: middle;
-              padding: em(13px);
-              margin: em(3px) em(10px) em(3px) 0;
-              transition: 0.5s all;
-              display: inline-block;
-              transform: scale(1);
-              min-height: em(30px);
-              @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
-              // Pour ne pas tronquer le picto
-              min-height: em(33px);
+          a {
+            background: $gris-clair;
+            color: $violet;
+            text-decoration: none;
+            padding: span(0.01) span(0.03);
+            @include rollover-effect($bleu-turquoise); //Effet rollover CSS3 sur les liens
+            @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+              //Pour ne pas tronquer le picto fichier - décommenter si nécessaire
+              //min-height: em(65px);
+              border: inherit; //Pour éviter BP vide
             }
+
+            &:hover {
+              //:not([href*="fiche"])
+              color: $gris-clair;
+              background: $bleu-turquoise;
             }
           }
-
-          img.filefield-icon {
-            display: none; //initial
-          }
-
-          &[href*="http"],&[href*="https"],
-          &[href*="actualites/"]:not([href$=".pdf"]):not([href*="fiche"]),
-          &[href*="vie-du-lycee/"]:not([href$=".pdf"]):not([href*="fiche"]) {
-            //pour cibler les liens externes et internes, exclure les pdf et le lien interne
-            &::before {
-              //@include backgroundImage(("PNG/liens@3x.png"),transparent,no-repeat, top left);
-              @include maskImage(("PNG/liens-blanc@3x.png"),100%,alpha,$violet);
-              background-size: contain;
-              content: "";
-              position: relative;
-              vertical-align: sub;
-              padding: em(10px);
-              margin: em(3px) em(10px) em(3px) 0;
-              transition: 0.5s all;
-              display: inline-block;
-              transform: scale(1);
-            }
-          }
-        }
-
-        ul {
-          li {
-            //suppression des puces
-            list-style-type: none;
-            @include font-size(s); //utilisation de typey
-          }
-        }
-        //Style spécifique
-        .champ-field-relatif-formation {
-          max-width: 90%;
 
           a {
-            @include font-size(m); //utilisation de typey
-            font-style: italic;
+            &[href*=".pdf"] {
+              &::before {
+                //@include backgroundImage("PNG/Fichiers@3x.png");
+                @include maskImage(("PNG/Fichier-blanc@3x.png"),100%,alpha,$gris-clair-moyen);
+                background-size: contain;
+                content: "";
+                position: relative;
+                vertical-align: middle;
+                padding: em(13px);
+                margin: em(3px) em(10px) em(3px) 0;
+                transition: 0.5s all;
+                display: inline-block;
+                transform: scale(1);
+                min-height: em(30px);
+                @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+                  // Pour ne pas tronquer le picto
+                  min-height: em(33px);
+                }
+              }
+            }
+
+            img.filefield-icon {
+              display: none; //initial
+            }
+
+            &[href*="http"],
+            &[href*="https"],
+            &[href*="actualites/"]:not([href$=".pdf"]):not([href*="fiche"]),
+            &[href*="vie-du-lycee/"]:not([href$=".pdf"]):not([href*="fiche"]) {
+              //pour cibler les liens externes et internes, exclure les pdf et le lien interne
+              &::before {
+                @include maskImage(("PNG/liens-blanc@3x.png"),100%,alpha,$gris-clair-moyen);
+                background-size: contain;
+                content: "";
+                position: relative;
+                vertical-align: middle;
+                padding: em(13px);
+                margin: em(3px) em(10px) em(3px) 0;
+                transition: 0.5s all;
+                display: inline-block;
+                transform: scale(1);
+                min-height: em(30px);
+                @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+                  // Pour ne pas tronquer le picto
+                  min-height: em(33px);
+                }
+              }
+            }
+          }
+
+          ul {
+            li {
+              //suppression des puces
+              list-style-type: none;
+              @include font-size(s); //utilisation de typey
+            }
+          }
+          //Style spécifique
+          .champ-field-relatif-formation {
+            max-width: 90%;
+
+            a {
+              @include font-size(m); //utilisation de typey
+              font-style: italic;
+            }
+          }
+
+          .label-field-passerelle-form {
+            font-weight: bold;
+            color: $gris-clair;
+            background: $bleu-turquoise;
+            padding: span(0.02);
+            margin: 0 0 span(0.2) span(0.2);
+          }
+
+          .label-field-fichier-joint-vdl, .label-field-lien-utile-vdl {
+            font-weight: bold;
+            color: $gris-clair;
+            background: $bleu-turquoise;
+            padding: span(0.02);
+            margin: 0 0 0 span(0.2);
           }
         }
-
-        .label-field-passerelle-form {
-          font-weight: bold;
-          color: $gris-clair;
-          background: $rose-fushia;
-          padding: span(0.02);
-          margin: 0 0 span(0.2) span(0.2);
-        }
-
-        .label-field-fichier-joint-vdl {
-          font-weight: bold;
-          color: $gris-clair;
-          background: $violet;
-          padding: span(0.02);
-          margin: 0 0 0 span(0.2);
-        }
       }
-    }
-  }
-}
-$typedecontenu: type-contenu-vdl, type-page-sorties-actions, type-page-partenaires;
-$zones: zone-1, zone-2, zone-3;
+    }     // Fin ##{$zone}.#{$type}
+  }   // Fin @each $type in $typedecontenu
+} // Fin @each $zone in $zones
+$typedecontenu: type-contenu-vdl, type-contenu-sortie-action, type-contenu-projet, type-contenu-mini-stage, type-contenu-innovation, type-contenu-intervenants, type-contenu-entreprise ;
+$zones: zone-1, zone-2, zone-3 ;
 @each $zone in $zones {
   @each $type in $typedecontenu {
     ##{$zone}.#{$type} {
@@ -392,26 +418,17 @@ $zones: zone-1, zone-2, zone-3;
           }
         }
       }
-    }
-  }
-}
-$typedecontenu: type-contenu-vdl,type-page-sorties-actions, type-page-partenaires;
-$zones: zone-1, zone-2, zone-3;
+    } // Fin ##{$zone}.#{$type}
+  } // Fin @each $type in $typedecontenu
+} // Fin @each $zone in $zones
+$typedecontenu: type-contenu-vdl, type-contenu-sortie-action, type-contenu-projet, type-contenu-mini-stage, type-contenu-innovation, type-contenu-intervenants, type-contenu-entreprise ;
+$zones: zone-1, zone-2, zone-3 ;
 @each $zone in $zones {
   @each $type in $typedecontenu {
     ##{$zone}.#{$type} {
       #region-zone-3 {
-        @include backgroundImage(("BG/stripe_rose_violet_pastel.png"),transparent,repeat, top left);
+        @include backgroundImage(("BG/stripe_rosepale_violet_pastel.png"),transparent,repeat, top left);
         @include arrondis(1em);
-
-        a {
-          background: $gris-clair;
-          color: $rose-fushia;
-          @include rollover-effect($violet); //Effet rollover CSS3
-          &:hover{
-            color: $gris-clair;
-          }
-        }
 
         h2 {
           @include backgroundRGBA($gris-clair,0.7);
@@ -419,13 +436,19 @@ $zones: zone-1, zone-2, zone-3;
           text-align: center;
         }
 
-        ul {
-          li {
-            list-style: none;
+        aside.autres-actus {
+          a {
+            background: $gris-clair;
+            @include rollover-effect($bleu-turquoise); //Effet rollover CSS3
           }
-        }
-      }
-    }
-  }
-}
-}
+
+          ul {
+            li {
+              list-style: none;
+            }
+          }
+        }         // Fin aside.autres-actus
+      }       // Fin region-zone-3
+    }     // Fin ##{$zone}.#{$type}
+  }   // Fin @each $type in $typedecontenu
+} // Fin @each $zone in $zones

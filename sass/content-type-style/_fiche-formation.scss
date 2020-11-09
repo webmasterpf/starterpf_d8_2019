@@ -350,7 +350,17 @@ ______________________________*/
             color: $blanc-casse;
         }
     }
-
+    span.modalite-alternance{
+      background: $jaune;
+      color: $gris-anthracite;
+      font-weight: bold;
+      padding: span(0.02);
+      @include ombrage-bas();
+      margin: 0 auto;
+      max-width: span(3.5);
+      display: block;
+      text-align: center;
+    }
     .content {
         h3 {
             transform: rotate(-1deg);
@@ -414,7 +424,7 @@ ______________________________*/
 
                 //pour cibler les liens externes et internes, exclure les pdf
                 &::before {
-                    @include backgroundImage("PNG/liens@3x.png");
+                    @include maskImage(("PNG/liens-blanc@3x.png"), 100%, alpha, $gris-clair-typo);
                     background-size: contain;
                     content: "";
                     position: relative;

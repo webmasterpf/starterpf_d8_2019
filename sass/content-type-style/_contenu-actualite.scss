@@ -41,8 +41,12 @@ article.middle-content {
   //Empêche les flottants de sortir du conteneur
   @include clearfixsusy3;
 }
-
-#zone-illustration.type-contenu-actualites {
+//Permet de créer facilement les styles communs à des IDs ou/et classes
+$typedecontenu: type-contenu-actualites, type-contenu-admin ; //2e boucle
+$zones: zone-illustration ;//1ere boucle
+@each $zone in $zones {
+  @each $type in $typedecontenu {
+    ##{$zone}.#{$type} {
   #illustration-pleinepage {
     min-height: 35vw;
     max-height: 90vw;
@@ -51,7 +55,7 @@ article.middle-content {
     //image par défaut en BG comme secours
     @include backgroundImage(("defaut/visuel-defaut-Actu-2019.jpg"),transparent,no-repeat, top left);
     background-size: cover;
-  
+
     img {
       transform: translate(0%,0%);
       @include adaptable-img();
@@ -61,14 +65,16 @@ article.middle-content {
       max-height: 30vw;
 
       img {
-        transform: translate(0%,-35%);
+        transform: translate(0%,-25%);
       }
     }
   }
-}
+} // Fin ##{$zone}.#{$type}
+} // @each $zone in $zones
+} // @each $type in $typedecontenu
 
-#zone-1.type-contenu-actualites {
-  .bloc_docs_utiles_actu {
+#zone-1.type-contenu-actualites, #zone-1.type-contenu-admin {
+  .bloc_docs_utiles_actu, .bloc_docs_utiles_admin {
     @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
       float: right;
       margin: span(0.1);
@@ -91,7 +97,7 @@ article.middle-content {
   }
 }
 
-#zone-3.type-contenu-actualites {
+#zone-3.type-contenu-actualites, #zone-3.type-contenu-admin {
   #region-zone-3 {
     @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
       max-width: span(8);
@@ -116,8 +122,8 @@ h1.titre-page-globale {
 //https://benfrain.com/working-with-lists-and-each-loops-in-sass-with-the-index-and-nth-function/
 //https://clubmate.fi/lists-in-sass-syntax-and-use-cases-with-examples/
 //Permet de créer facilement les styles communs à des IDs ou/et classes
-$typedecontenu: type-contenu-actualites, CLASS_NAME_CONTENU2, CLASS_NAME_CONTENU3; //2e boucle
-$zones: zone-1, zone-2, zone-3; //1ere boucle
+$typedecontenu: type-contenu-actualites, type-contenu-admin, CLASS_NAME_CONTENU3 ; //2e boucle
+$zones: zone-1, zone-2, zone-3 ; //1ere boucle
 @each $zone in $zones {
   @each $type in $typedecontenu {
     ##{$zone}.#{$type} {
@@ -131,42 +137,50 @@ $zones: zone-1, zone-2, zone-3; //1ere boucle
       }
 
       u {
-        font-weight: bold;
-        color: $vert;
+          font-weight: bold;
+          color: $rose-fushia;
+
       }
 
       h2 {
-        @include font-size(l); //utilisation de typey
-        color: $violet;
+          @include font-size(l); //utilisation de typey
+          color: $bleu-turquoise;
       }
 
       h3 {
-        @include font-size(m); //utilisation de typey
-        color: $vert;
+          @include font-size(m); //utilisation de typey
+          color: $orange;
+      }
+
+      h4 {
+          @include font-size(m); //utilisation de typey
+          color: $bleu-turquoise;
       }
 
       a {
-        text-decoration: none;
-        color: $violet;
+          text-decoration: none;
+          color: $gris-clair-typo;
+          @include rollover-effect($bleu-turquoise); //Effet rollover CSS3
 
-        &:hover {
-          text-decoration: underline;
-        }
+          &:hover {
+              text-decoration: none;
+              color: $gris-clair;//Couleur du hover, commenter si inutile
+          }
       }
 
       strong {
-        color: $vert;
+          color: $rose-fushia;
       }
-    }
+    } // Fin ##{$zone}.#{$type}
   }
 }
 /*------------------------------------
         ¤¤¤ STYLES PROPRES ¤¤¤
 ______________________________*/
 
-#zone-1.type-contenu-actualites {
-  .bloc_docs_utiles_actu {
-    @include backgroundImage(("BG/stripe_rose_violet_pastel.png"),transparent,repeat, top left);
+#zone-1.type-contenu-actualites, #zone-1.type-contenu-admin {
+  .bloc_docs_utiles_actu, .bloc_docs_utiles_admin {
+    @include backgroundImage(("BG/stripe_gris_bleu_pastel.png"),transparent,repeat, top left);
     @include arrondis(1em);
 
     a {
@@ -174,9 +188,15 @@ ______________________________*/
       color: $violet;
       text-decoration: none;
       padding: span(0.01) span(0.03);
-      @include rollover-effect($rose-fushia); //Effet rollover CSS3
+      @include rollover-effect($rose-fushia); //Effet rollover CSS3 sur les liens
+      @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+        //Pour ne pas tronquer le picto fichier - décommenter si nécessaire
+        //min-height: em(65px);
+        border: inherit; //Pour éviter BP vide
+      }
 
-      &:hover { //:not([href*="fiche"])
+      &:hover {
+        //:not([href*="fiche"])
         color: $gris-clair;
         background: $violet;
       }
@@ -184,17 +204,21 @@ ______________________________*/
 
     a {
       &[href*=".pdf"] {
-        &::before {
-          @include backgroundImage("PNG/Fichiers@3x.png");
+        &::before {  @include maskImage(("PNG/Fichier-blanc@3x.png"),100%,alpha,$gris-clair-moyen);
           background-size: contain;
           content: "";
           position: relative;
-          vertical-align: sub;
-          padding: em(10px);
-          margin: em(3px);
+          vertical-align: middle;
+          padding: em(13px);
+          margin: em(3px) em(10px) em(3px) 0;
           transition: 0.5s all;
           display: inline-block;
           transform: scale(1);
+          min-height: em(30px);
+          @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+            // Pour ne pas tronquer le picto
+            min-height: em(33px);
+          }
         }
       }
 
@@ -206,16 +230,21 @@ ______________________________*/
       &[href*="actu"]:not([href$=".pdf"]):not([href*="fiche"]) {
         //pour cibler les liens externes et internes, exclure les pdf et le lien interne
         &::before {
-          @include backgroundImage(("PNG/liens@3x.png"),transparent,no-repeat, top left);
+          @include maskImage(("PNG/liens-blanc@3x.png"),100%,alpha,$gris-clair-moyen);
           background-size: contain;
           content: "";
           position: relative;
-          vertical-align: sub;
-          padding: em(10px);
-          margin: em(3px);
+          vertical-align: middle;
+          padding: em(13px);
+          margin: em(3px) em(10px) em(3px) 0;
           transition: 0.5s all;
           display: inline-block;
           transform: scale(1);
+          min-height: em(30px);
+          @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+            // Pour ne pas tronquer le picto
+            min-height: em(33px);
+          }
         }
       }
     }
@@ -228,7 +257,7 @@ ______________________________*/
       }
     }
     //Style spécifique
-    .champ-field-relatif-formation {
+    .champ-field-relatif-formation, .champ-field-admin-files {
       max-width: 90%;
 
       a {
@@ -245,11 +274,12 @@ ______________________________*/
       margin: 0 0 span(0.2) span(0.2);
     }
 
-    .label-field-fichier-joint-actu,
+    .champ-field-admin-files,
+    .label-field-fichier-joint-rp,
     .label-field-lien-rp {
       font-weight: bold;
       color: $gris-clair;
-      background: $rose-fushia;
+      background: $bleu-turquoise;
       padding: span(0.02);
       margin: 0 0 0 span(0.2);
     }
@@ -268,30 +298,29 @@ ______________________________*/
   }
 }
 
-#zone-3.type-contenu-actualites {
+#zone-3.type-contenu-actualites, #zone-3.type-contenu-admin {
   #region-zone-3 {
-    @include backgroundImage(("BG/stripe_vert_vert_pastel.png"),transparent,repeat, top left);
+    @include backgroundImage(("BG/stripe_rosepale_violet_pastel.png"),transparent,repeat, top left);
     @include arrondis(1em);
-
-    a {
-      background: $gris-clair;
-      @include rollover-effect($rose-fushia); //Effet rollover CSS3
-    }
 
     h2 {
       @include backgroundRGBA($gris-clair,0.7);
       //background: repeating-linear-gradient(to bottom ,$gris-clair 10px, transparent 17px);
       text-align: center;
     }
-
+    aside.autres-actus{
+    a {
+      background: $gris-clair;
+      @include rollover-effect($bleu-turquoise); //Effet rollover CSS3
+    }
     ul {
       li {
         list-style: none;
       }
     }
-  }
+  }// Fin aside.autres-actus
 }
-
+}
 #zone-4.type-contenu-actualites {}
 
 #zone-5.type-contenu-actualites {}
