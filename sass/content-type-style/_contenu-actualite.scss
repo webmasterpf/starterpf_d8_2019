@@ -73,16 +73,30 @@ $zones: zone-illustration ;//1ere boucle
 } // @each $zone in $zones
 } // @each $type in $typedecontenu
 
-#zone-1.type-contenu-actualites, #zone-1.type-contenu-admin {
+$typedecontenu: type-annonce-accueil, type-contenu-admin, type-page-presse ; //2e boucle
+$zones: zone-1 ; //1ere boucle - , zone-2, zone-3
+@each $zone in $zones {
+  @each $type in $typedecontenu {
+    ##{$zone}.#{$type} {
   .bloc_docs_utiles_actu, .bloc_docs_utiles_admin {
-    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+    @include breakpoint(($desktop,$desktopwide)) {
       float: right;
       margin: span(0.1);
       padding: span(0.02);
+      min-width: span(2);
       max-width: span(4);
     }
-  }
-}
+    @include breakpoint(($mobilelandscape,$tablet,$tabletlandscape)) {
+      float: right;
+      margin: span(0.1);
+      padding: span(0.02);
+      min-width: span(3);
+      max-width: span(5);
+    }
+} // Fin bloc_docs_utiles_actu
+} // Fin ##{$zone}.#{$type}
+} // @each $zone in $zones
+} // @each $type in $typedecontenu
 
 #zone-2.type-contenu-actualites {
   .galerie {
@@ -172,13 +186,17 @@ $zones: zone-1, zone-2, zone-3 ; //1ere boucle
           color: $rose-fushia;
       }
     } // Fin ##{$zone}.#{$type}
-  }
-}
+    } // @each $zone in $zones
+    } // @each $type in $typedecontenu
 /*------------------------------------
         ¤¤¤ STYLES PROPRES ¤¤¤
 ______________________________*/
 
-#zone-1.type-contenu-actualites, #zone-1.type-contenu-admin {
+$typedecontenu: type-annonce-accueil, type-contenu-admin, type-page-presse ; //2e boucle
+$zones: zone-1 ; //1ere boucle - , zone-2, zone-3
+@each $zone in $zones {
+  @each $type in $typedecontenu {
+    ##{$zone}.#{$type} {
   .bloc_docs_utiles_actu, .bloc_docs_utiles_admin {
     @include backgroundImage(("BG/stripe_gris_bleu_pastel.png"),transparent,repeat, top left);
     @include arrondis(1em);
@@ -284,7 +302,9 @@ ______________________________*/
       margin: 0 0 0 span(0.2);
     }
   }
-}
+} // Fin ##{$zone}.#{$type}
+} // @each $zone in $zones
+} // @each $type in $typedecontenu
 
 #zone-2.type-contenu-actualites {
   .galerie {

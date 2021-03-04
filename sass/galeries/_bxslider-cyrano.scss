@@ -85,7 +85,7 @@ $ULclasse:bxslider-hp;
 
 .HPDiapo{
     .bx-wrapper{
-        margin:0;
+        margin:em(60px) 0 em(30px); // Marge pour utiliser superfish sur mobile et HP
         //border-color: $vert;//Couleur du cadre du diapo sur Accueil - Blanc par défaut - Décommenter si besoin
         .bx-viewport {
         //Voir code haut de page
@@ -97,7 +97,7 @@ $ULclasse:bxslider-hp;
             width: 80%;
             //couleur fond des captions sur image diapo
             // - utilise balise titre des images au niveau du BO
-            @include backgroundRGBA($gris-clair-moyen, 0.85);
+            @include backgroundRGBA($bleu-turquoise, 0.85);
             margin: 0 auto;
             span{//style du cartouche
               //Voir code haut  de page

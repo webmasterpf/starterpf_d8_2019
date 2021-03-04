@@ -12,9 +12,9 @@
 
 /*######-------- ||| ORDRE FLEXBOX ||| --------######*/
 body .conteneur .conteneur-flex{
-    #zone-1.type-page-actualites{order:2;}
-    #zone-2.type-page-actualites{order:1;}
-    #zone-3.type-page-actualites{order:3;}
+    #zone-1.type-page-vie-lycee{order:2;}
+    #zone-2.type-page-vie-lycee{order:1;}
+    #zone-3.type-page-vie-lycee{order:3;}
     @include breakpoint ($desktop){
 
     }
@@ -23,40 +23,44 @@ body .conteneur .conteneur-flex{
 /*######-------- ||| BORDURES ||| --------######*/
 body .conteneur {
     @include breakpoint ($desktop){
-        #zone-2.type-page-actualites{}
+        #zone-2.type-page-vie-lycee{}
     }
 
 }
 /*######-------- ||| LAYOUT SPECIFIQUE ||| --------######*/
-#zone-illustration.type-page-actualites{
-    #illustration-pleinepage{
-        min-height: 35vw;
-        max-height: 90vw;
-        overflow: hidden;
-        position:relative;
-        img{
-            transform: translate(0%,0%);
-            @include adaptable-img();
-        }
-        @include breakpoint(($desktop,$desktopwide)){
-            min-height: 25vw;
-            max-height: 30vw;
-            img{
-                transform: translate(0%,-6%);
-            }
-        }
-        @include breakpoint(($mobilelandscape,$tablet,$tabletlandscape)){
-            min-height: 25vw;
-            max-height: 37vw;
-            img{
-                transform: translate(0%,-13%);
-            }
-        }
-    }
+//Permet de créer facilement les styles communs à des IDs ou/et classes
+$typedecontenu: type-page-vie-lycee, type-page-affiche-mois ; //2e boucle
+$zones: zone-illustration ;//1ere boucle
+@each $zone in $zones {
+  @each $type in $typedecontenu {
+    ##{$zone}.#{$type} {
+  #illustration-pleinepage {
+    min-height: 35vw;
+    max-height: 90vw;
+    overflow: hidden;
+    position: relative;
+    //image par défaut en BG comme secours
+    @include backgroundImage(("defaut/visuel-defaut-Actu-2019.jpg"),transparent,no-repeat, top left);
+    background-size: cover;
 
-}
+    img {
+      transform: translate(0%,0%);
+      @include adaptable-img();
+    }
+    @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+      min-height: 25vw;
+      max-height: 30vw;
+
+      img {
+        transform: translate(0%,-25%);
+      }
+    }
+  }
+} // Fin ##{$zone}.#{$type}
+} // @each $zone in $zones
+} // @each $type in $typedecontenu
 // Tableau initial des classes et IDs à créer.
-$typedecontenu: type-page-actualites ;
+$typedecontenu: type-page-vie-lycee, type-page-archives;
 $zones: zone-1 ; //, zone-2, zone-3
 @each $zone in $zones {
   @each $type in $typedecontenu {
@@ -70,17 +74,19 @@ $zones: zone-1 ; //, zone-2, zone-3
               padding: span(0.1);
           }
       }
-      aside.liste-vdl,aside.liste-actu-presse{
+      aside.liste-vdl,aside.liste-actus, aside.liste-archives{
 
-          .bef-exposed-form{
+          //.bef-exposed-form
+          .form--inline{
               @include breakpoint(($desktop,$desktopwide)){
-                  display:inline-block;
-                  column-count: 6;
+                display: flex;
+                flex-wrap:wrap;
+                  column-count: 6; //Inutile si utilise Flex
                   column-fill: balance;
                   white-space: normal;
                   padding: span(0.02);
               }
-              @include breakpoint(($mobilelandscape,$tablet,$tabletlandscape)){
+              @include breakpoint(($tablet,$tabletlandscape)){
                 //Diminue taille items sur Tablette selon réglage de display
                 //display:inherit;
                 column-count: 1;// Tablette S3: Edge & FF OK
@@ -88,25 +94,47 @@ $zones: zone-1 ; //, zone-2, zone-3
                 white-space: normal;
                 padding: span(0.02);
               }
+              @include breakpoint(($mobilelandscape)){
+                //Diminue taille items sur Tablette selon réglage de display
+                //display:inherit;
+                column-count: 2;// Mobile Paysage
+                column-fill: balance;
+                white-space: normal;
+                padding: span(0.02);
+              }
               div.form-item{
-                margin: 0 0 span(0.01) 0;
-                @include breakpoint(($desktop,$desktopwide)){
-                  @include hack-Edge;
-                  @include hack-IE;
-                  @include txt-colonnes();
-                  padding: span(1);
-                }
-                @include breakpoint(($mobilelandscape,$tablet,$tabletlandscape)){
-                  @include hack-Edge;
-                  @include hack-IE;
-                  @include txt-colonnes();
-                  //Tri horizontal plutot que vertical des éléments. Besoin d'une largeur
-                  // Régler column-count: sur 1 au niveau de l'UL
-                  display: inline-block;
-                  width: span(5.5);
-                  padding: span(0.35);
-                  //Garder le margin par défaut
-                }
+                  margin: 0 span(0.01) span(0.01) 0;
+                  min-height: 7vh;
+                  padding: span(0.15);
+                  @include breakpoint(($desktop,$desktopwide)){
+                    @include hack-Edge;
+                    @include hack-IE;
+                    @include txt-colonnes();
+                    padding: span(0.1);
+                    flex: 0 0 17%; // Alignement horizontal sur FF
+                  }
+                  @include breakpoint(($tablet,$tabletlandscape)){
+                    @include hack-Edge;
+                    @include hack-IE;
+                    @include txt-colonnes();
+                    //Tri horizontal plutot que vertical des éléments. Besoin d'une largeur
+                    // Régler column-count: sur 1 au niveau de l'UL
+                    display: inline-block;
+                    width: span(5.5);
+                    padding: span(0.35);
+                    //Garder le margin par défaut
+                  }
+                  @include breakpoint(($mobilelandscape)){
+                    @include hack-Edge;
+                    @include hack-IE;
+                    @include txt-colonnes();
+                    //Tri horizontal plutot que vertical des éléments. Besoin d'une largeur
+                    // Régler column-count: sur 1 au niveau de l'UL
+                    display: block;
+                    min-height: 19vh;
+                    padding: span(0.15);
+                    //Garder le margin par défaut
+                  }
               }
           }
           .item-list{
@@ -114,7 +142,7 @@ $zones: zone-1 ; //, zone-2, zone-3
             // Ne pas utiliser cette classe. Trop générique
 
               }
-          ul.liste-vdl-lycee{
+          ul.liste-vdl-lycee, ul.liste-actus{
                   @include breakpoint(($desktop,$desktopwide)){
   /*                                        column-count: 5;
                                           column-fill: auto;
@@ -315,7 +343,7 @@ $zones: zone-1 ; //, zone-2, zone-3
           }
           }//Fin .calendrier-vdl
       } //Fin Aside liste-vdl
-      
+
     } // Fin ##{$zone}.#{$type}
   }// Fin @each $type in $typedecontenu
 } // Fin @each $zone in $zones
@@ -329,9 +357,9 @@ h1.titre-page-globale{
 }
 /*¤¤¤ STYLES COMMUNS ¤¤¤*/
 
-#zone-1.type-page-actualites,
-#zone-2.type-page-actualites,
-#zone-3.type-page-actualites{
+#zone-1.type-page-vie-lycee,
+#zone-2.type-page-vie-lycee,
+#zone-3.type-page-vie-lycee{
   p,ul,li{
         @include font-size(m);//utilisation de typey
         padding: em(5px);
@@ -355,7 +383,7 @@ h1.titre-page-globale{
       @include font-size(s);//utilisation de typey
       @include breakpoint(($desktop,$desktopwide,$tablet,$tabletlandscape)){
         @include font-size(m);//utilisation de typey
-        color: $rose-fushia;
+        color: $bleu-turquoise;
     }
     a{
         text-decoration: none;
@@ -365,7 +393,7 @@ h1.titre-page-globale{
         }
     }
     strong{
-        color: $rose-fushia;
+        color: $bleu-turquoise;
     }
 }
 }// Fin styles communs
@@ -374,13 +402,13 @@ h1.titre-page-globale{
 /*------------------------------------
         ¤¤¤ STYLES PROPRES ¤¤¤
 ______________________________*/
-#zone-1.type-page-actualites{
+#zone-1.type-page-vie-lycee{
 
     aside.liste-vdl,aside.liste-actu-presse{
         //Style du filtrage de la vue
         .bef-exposed-form{
             div.form-item{
-                background: $rose-fushia;
+                background: $bleu-turquoise;
                 color: $blanc-casse;
                 text-align: center;
                 cursor: pointer;
@@ -399,7 +427,7 @@ ______________________________*/
 
                 {
 
-                    @include backgroundImage(('BG/BG_Filtres_Exposes.png'), transparent, center -1.8vw , no-repeat );
+                    @include backgroundImage(('BG/BG_Filtres_Exposes.png'), transparent, center -2.7vw , no-repeat );
                     background-size:60%;
                     background-color: $violet;
                     label{
@@ -454,38 +482,36 @@ ______________________________*/
 
                 }
 
-                &.tid-13{//Europe
+                &.tid-3{//Sorties
                     background: $bleu-turquoise;
 
                 }
-                &.tid-15{//Intervenant
-
-                    background: $jaune;
-                    *{
-                        color: $gris-anthracite;//cas particulier du fond clair
-                    }
-                }
-                &.tid-14{//Innovations
-
+                &.tid-4{//Action
                     background: $violet;
                 }
-                &.tid-16{//Mini-stages
-
-                    background: $rose-fushia;
+                &.tid-5{//Projets
+                  background: $rose-fushia;
                 }
-                &.tid-17{//Projets
+                &.tid-6{//Intervenants
+                  background: $jaune;
+                  *{
+                      color: $gris-anthracite;//cas particulier du fond clair
+                  }
+
+                }
+                &.tid-7{//Innovations
 
                     background: $orange;
                 }
-                &.tid-17{//Sorties
+                &.tid-19{//Europe
 
                     background: $rouge;
                 }
-                &.tid-25{//Entreprises
+                &.tid-21{//Entreprises
 
-                    background: $orange;
+                    background: $vert;
                 }
-                &.tid-27{//Développement durable
+                &.tid-20{//Restaurant
                     background: $rose-fushia;
                     *{
                         color: $gris-anthracite;//cas particulier du fond clair
@@ -518,6 +544,7 @@ ______________________________*/
 
                 span.illus-vdl{
                     img {
+                      @include adaptable-img();
                          @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
                         //transform: translate(0%) scale(1.4);//Position de l'image d'illustration
                         //max-height: 50vh;//limite hauteur image pour mise en page
@@ -570,25 +597,46 @@ ______________________________*/
 
         }//Fin UL acces-contenu-lycee
         nav.pager{
+          //Utiliser PAgination complète en réécrivant les étiquettes dans ÉTIQUETTES DE LIEN DE PAGINATION
+          //de l'affichage de la vue concernée
+            @include clearfixsusy3;
+              //column-span: all;//la pagination utilise toute la largeur
+
             ul.pager__items{
-              li{
-                //Couleurs du pager
-                &.is-active{
-                  background: $vert;
-                  display: block;
-                }
+              display: flex;
+              @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+                width: span(4);
+                margin: 0 auto;
+                padding: span(0.1);
               }
-            }
-            }//Fin nav.pager
+              li{ //Taille des textes du pager
+                @include font-size(s); //utilisation de typey
+                  @include horizontal-list-item();
+
+                  @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+                    @include font-size(m); //utilisation de typey
+                  }
+                  @include breakpoint(($mobilelandscape,$tablet,$tabletlandscape)){
+                    @include font-size(s); //utilisation de typey
+                  }
+
+                  &.is-active, &.pager__item--active{
+                    background: $bleu-turquoise;
+                    display: block;
+                  }
+              a{
+                  color: $violet;
+              }
+              }
+            }// Fin ul.pager__items
+        }// Fin nav.pager
           }// aside.liste-vdl,aside.liste-actu-presse
-    
-    
             }// Fin Aside liste-vdl
 
 
-#zone-2.type-page-actualites{
+#zone-2.type-page-vie-lycee{
 
 }
-#zone-3.type-page-actualites{
+#zone-3.type-page-vie-lycee{
 
 }

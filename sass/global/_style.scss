@@ -9,10 +9,10 @@
 
 .ariane, .breadcrumb {
     display: none; //Non affiché sur mobile et Tablette
-    @include breakpoint ($desktop){
+    @include breakpoint(($desktop,$desktopwide,$tabletlandscape)){
         display: block;
-        padding: 0 0 0 0.3em;
-        color: $vert;
+        padding: em(6px) 0 0 0.3em;
+        color: $violet;
         text-decoration: none;
         @include font-size(s);//taille avec typey
 //        background: chocolate;//supprimer en PROD
@@ -20,24 +20,25 @@ li{
     list-style: none;
     float: left;
     margin: 0 em(5px);
+    @include font-size(s); //utilisation de typey
     ::after{
       content: ">>";
       margin: 0 0 0 em(5px);
     }
 }
         a {
-            color: $vert;
+            color: $violet;
             text-decoration: none;
-              font-size: small;
+              @include font-size(s); //utilisation de typey
             &:hover {
-                color: $gris-anthracite;
+                color: $bleu-turquoise;
                 text-decoration: underline;
             }
         }
         span.menu-item-container{
             color: $gris-anthracite;
             text-decoration: none;
-              font-size: small;
+              @include font-size(s); //utilisation de typey
               display: initial;
               text-transform: capitalize;
               font-weight: normal;

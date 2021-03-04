@@ -4,7 +4,7 @@
 |--------------------------------------*/
 //Changer le nom du bloc en fonction du thème
 body.page-search-node{
-#block-gasquet-d8-2019-content{
+#block-briselames-d8-2020-content{
   @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
    width: span(10 of $desktopcol);
   margin-left: span(1 wide);//push
@@ -17,12 +17,12 @@ body.page-search-node{
     li.pager__item {
       display: inline-block;
       a{
-        color: $rose-fushia;
+        color: $bleu-turquoise; //à adapter au site
       }
     }
     li.pager__item--active{
       a{
-        color: $violet;
+        color: $violet;// Rollover - à adapter au site
       }
       }
 
@@ -32,7 +32,7 @@ body.page-search-node{
   }
   h2{
     color: $blanc-casse;
-    background: $rose-fushia;
+    background: $bleu-turquoise;//Couleur du cartouche à adapter au site
     @include font-size(l); //utilisation de typey
   }
   .search-results{
@@ -40,7 +40,7 @@ body.page-search-node{
   li{
     h3.title {
       a{
-        color: $rose-fushia;
+        color: $bleu-turquoise; //Couleur des titres de résultats - à adapter au site
         @include font-size(l); //utilisation de typey
         &:hover{
           color: $violet;

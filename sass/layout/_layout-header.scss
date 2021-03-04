@@ -21,7 +21,7 @@ body .conteneur #header {
         display: block;
         clear: both;
       }
-    .headHaut {
+    .headHaut, .headBas {
 
         @include clearfixsusy3;//Dispo sur tous supports
         .logoHead, .site-logo {
@@ -111,7 +111,7 @@ body .conteneur #header {
 /*---- HEADER BAS ----*/
 
 .headBas {
-    background: $rose-fushia;//Modifier la couleur du fond de la partie basse selon couleur du lycée
+    background: $bleu-turquoise;//Modifier la couleur du fond de la partie basse selon couleur du lycée
 }
 
 .headSearch {
@@ -133,7 +133,7 @@ body .conteneur #header {
 
 .site-name {
     clear: both;
-    background: $rose-fushia;
+    background: $bleu-turquoise;
    padding: span(0.01) 0 0 span(0.1);
     a {
         text-decoration: none;
@@ -152,7 +152,7 @@ body .conteneur #header {
     color: white;
     font-size: small;
     text-align: center;
-    background: $rose-fushia;
+    background: $bleu-turquoise;
     clear: both;
 
     @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){

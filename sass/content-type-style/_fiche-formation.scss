@@ -317,7 +317,12 @@ h1.titre-fiche-formation {
 /*------------------------------------
         ¤¤¤ STYLES PROPRES ¤¤¤
 ______________________________*/
-#zone-1.type-fiche-formation {
+#zone-1.type-fiche-formations {
+  .poursuite-etudes{
+    ul{
+      list-style: none;
+    }
+  }
     .complement-titre-fiche {
 
         margin: 0 auto;
@@ -412,6 +417,11 @@ ______________________________*/
                     transition: 0.5s all;
                     display: inline-block;
                     transform: scale(1);
+                    min-height: em(30px);
+                @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+                  // Pour ne pas tronquer le picto
+                  min-height: em(33px);
+                }
                 }
             }
 

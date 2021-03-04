@@ -247,7 +247,7 @@ ______________________________*/
         //Style du filtrage de la vue
        .bef-exposed-form{
             div.form-item{
-                background: $rose-fushia;
+                background: $bleu-turquoise;
                 color: $blanc-casse;
                 text-align: center;
                 cursor: pointer;
@@ -334,7 +334,7 @@ ______________________________*/
                     font-weight:initial; /*we revert back the inherited style*/
                     @include font-size(s);//utilisation de typey
                     @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-                    @include font-size(l);//utilisation de typey
+                    @include font-size(m);//utilisation de typey
 
                     }
                 }
@@ -359,27 +359,27 @@ ______________________________*/
 
                    }
                 }
-                &.tid-11{ //Filiere professionnelle
+                &.tid-15{ //Pole Métiers du Commerce et de la Vente
                     background: $violet;
                 }
-                &.tid-12{ //Filiere techno
+                &.tid-16{ //Pole Métiers de la Gestion Administrative
                     background: $rose-fushia;
                 }
-                &.tid-10{ //Filiere BTS
+                &.tid-17{ //Formation POST-BAC
                     background: $jaune;
                     *{
                         color: $gris-anthracite;//cas particulier du fond clair
                     }
 
                 }
-                &.tid-26{ //Filiere Prépas
+                &.tid-14{ //Pole Métiers de la Restauration
                     background: $bleu-turquoise;
                 }
                 // Inutilisés >>
                 &.tid-101{
                     background: $rouge;
                 }
-                &.tid-102{
+                &.tid-18{ // Pole Dispositif pour la Réussite Scolaire
                     background: $orange-fonce;
 
                 }

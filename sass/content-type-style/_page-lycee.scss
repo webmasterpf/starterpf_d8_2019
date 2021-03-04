@@ -151,25 +151,65 @@ $zones: zone-1, zone-2, zone-3, zone-4 ;
 @each $zone in $zones {
   @each $type in $typedecontenu {
     ##{$zone}.#{$type} {
-      aside.formulaire{
-          @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-              padding: span(0.2);
-          }
-          table,tbody,tr,td,form,input[type="text"],input[type="email"]{
-              width: 95%;
-              margin: 0 auto;
-              @include arrondis(1.5em);
-              @include backgroundImage(("motif_img_overlay.png"),transparent,repeat, top left);
-              @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-                  width: 75%;
-                  margin: span(0.1) auto;
-                  padding: span(0.1);
+      //Layout pour le formulaire
+    aside.formulaire{
+        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+            padding: span(0.2);
+        }
+        table,tbody,tr,td,form,input[type="text"],input[type="email"],select, textarea{
+            width: 95%;
+            margin: 0 auto;
+            @include arrondis(1.5em);
+            @include backgroundImage(("motif_img_overlay.png"),transparent,repeat, top left);
+            @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+                width: 75%;
+                margin: span(0.1) auto;
+                padding: span(0.1);
 
               }
           }
+        input[type="tel"]:not([type="image"]){
+          width: 95%;
+          margin: 0 auto;
+          @include arrondis(1.5em);
+
+          @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+              width: 75%;
+              margin: span(0.1) auto;
+              padding: em(5px) 0 em(5px) em(50px); //Corrige mauvais affichage sur bureau
+
+            }
+        }
           textarea{
               @include arrondis(1em);
           }
+          div.webform-element-description{
+            //Texte d'aide pour les champs
+            @include font-size(s); //utilisation de typey
+          }
+          //Selecteur de temps: date/heure
+          td.webform-multiple-table--handle{
+            width: 10%;
+          }
+          div[class^='edit-creneau-horaire'][class$='time'],
+          div[id^='edit-creneau-horaire'][id$='time'],
+          input[id^='edit-creneau-horaire'][id*='time'],
+          input[id^='edit-creneau-horaire'][id*='date'],
+          input[id^='edit-creneau-horaire'][id$='date'].form-text,
+          input[id^='edit-creneau-horaire'][id$='date']{
+//https://www.antimath.info/css/css-target-elements-by-partial-class-or-id-name/
+//Cible les IDs démarrant et se terminant par le texte indiqué (^ ou $), ou qui contient le texte (*)
+            width: 50%;
+          }
+          .select2-selection__choice{
+            width: 88%;
+            @include font-size(s); //utilisation de typey
+@include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
+  width: auto;
+  @include font-size(m); //utilisation de typey
+}
+          }
+
       }// aside.formulaire
     }
   }
@@ -203,7 +243,7 @@ h1.titre_overlay {
 h1.titre_page {
   @include titre-page;
   color: $blanc-casse;
-  @include backgroundRGBA($gris-clair-typo, 0.9);
+  @include backgroundRGBA($bleu-turquoise, 0.9);
 }
 /*¤¤¤ STYLES COMMUNS ¤¤¤*/
 //Permet de créer facilement les styles communs à des IDs ou/et classes
@@ -222,7 +262,7 @@ h1.titre_page {
 
       u {
         font-weight: bold;
-        color: $rose-fushia;
+        color: $violet;
       }
 
       h2 {
@@ -232,7 +272,7 @@ h1.titre_page {
 
       h3 {
         @include font-size(m); //utilisation de typey
-        color: $rose-fushia;
+        color: $violet;
       }
       h4{
         @include font-size(s); //utilisation de typey
@@ -294,7 +334,7 @@ ______________________________*/
     .entrefilet {
       @include backgroundImage('bg-merci.gif');
       display: block;
-      color: $rose-fushia;
+      color: $violet;
       @include font-size(l); //utilisation de typey
       text-transform: capitalize;
       font-weight: bold;
@@ -327,7 +367,13 @@ ______________________________*/
     }
 
   }
-
+  aside.resa-jpo{
+    max-width: 95%;
+    margin: 0 auto;
+  }
+  .logo-resto{
+    float: right;
+  }
   .videos {
     ul{
       list-style: none;
@@ -338,21 +384,41 @@ ______________________________*/
       max-width: 60vw;
       margin: 0 auto;
       padding: span(0.02);
-      border: em(3px) solid $rose-fushia;
+      border: em(3px) solid $bleu-turquoise;
     }
-    }
-  }// Fin videos
-  aside.formulaire{
-
-      input[type="text"],input[type="email"],textarea{
+}
+} // Fin content
+aside.formulaire{
+  //Style pour formulaire
+     textarea,input[type="text"],input[type="email"],input[type="tel"]{
           background: $bleu-turquoise; // Couleur fond des champs
           color: $blanc-casse;
-          padding: span(0.01);
+
+
       }
+      input:not([type='tel']):not([type='image']) {
+      // Pas de padding:  pour le champ telephone ni pictos horaire
+    padding: span(0.01);
+  }
   }// Fin aside.formulaire
 } // Fin ##{$zone}.#{$type}
 }// Fin @each $type in $typedecontenu
 } // Fin @each $zone in $zones
+#zone-1.type-page-lycee{
+  div.cartouche{
+    //Cartouche pour texte avec style différent ex: page JPO
+    background: $gris-clair;
+    border-style: dashed none;
+    border-color: $violet;
+    border-width: em(2px);
+    em {//texte italique
+      color: $gris-anthracite;
+    }
+    strong {
+      color: $bleu-turquoise;
+    }
+  }
+}
 /*######-------- ZONE 2 --------######*/
 #zone-2.type-contenu-cdi,
 #zone-2.type-page-lycee {
@@ -367,7 +433,7 @@ ______________________________*/
   }
 
   h2 {
-    color: $rose-fushia;
+    color: $violet;
     padding: em(5px);
   }
 
@@ -401,7 +467,7 @@ ______________________________*/
 
     &:hover {
       color: white;
-      background: $rose-fushia;
+      background: $violet;
     }
   }
 
@@ -433,7 +499,7 @@ ______________________________*/
 
   .bloc_docs_utiles_cdi,
   .bloc_docs_utiles_plycee {
-    max-width: span(6);
+    max-width: span(11);
     padding: span(0.02);
     margin: span(0.2);
     @include backgroundImage(("BG/stripe_rosepale_violet_pastel.png"),transparent,repeat, top left);
@@ -461,22 +527,28 @@ ______________________________*/
 
         &:hover {
           color: $blanc-casse;
-          background: $rose-fushia;
+          background: $violet;
         }
       }
 
       a[href*=".pdf"] {
         &::before {
-          @include backgroundImage("PNG/Fichiers@3x.png");
+          //@include backgroundImage("PNG/Fichiers@3x.png");
+          @include maskImage(("PNG/Fichier-blanc@3x.png"),100%,alpha,$gris-clair-moyen);
           background-size: contain;
           content: "";
           position: relative;
-          rose-fushiaical-align: sub;
-          padding: em(10px);
-          margin: em(3px);
+          vertical-align: middle;
+          padding: em(13px);
+          margin: em(3px) em(10px) em(3px) 0;
           transition: 0.5s all;
           display: inline-block;
           transform: scale(1);
+          min-height: em(30px);
+          @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+            // Pour ne pas tronquer le picto
+            min-height: em(33px);
+          }
         }
       }
 
@@ -487,16 +559,21 @@ ______________________________*/
       a[href*="/"]:not([href*=".pdf"]) {
         //pour cibler les liens externes et internes, exclure les pdf
         &::before {
-          @include backgroundImage("PNG/liens@3x.png");
+          @include maskImage(("PNG/liens-blanc@3x.png"),100%,alpha,$gris-clair-moyen);
           background-size: contain;
           content: "";
           position: relative;
-          rose-fushiaical-align: sub;
-          padding: em(10px);
-          margin: em(3px);
+          vertical-align: middle;
+          padding: em(13px);
+          margin: em(3px) em(10px) em(3px) 0;
           transition: 0.5s all;
           display: inline-block;
           transform: scale(1);
+          min-height: em(30px);
+          @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+            // Pour ne pas tronquer le picto
+            min-height: em(33px);
+          }
         }
       }
     }
@@ -586,7 +663,7 @@ ______________________________*/
         font-size: small;
 
         &:hover {
-          background: $rose-fushia;
+          background: $violet;
           @include arrondis(em(10px));
           @include PIE;
           position: relative;

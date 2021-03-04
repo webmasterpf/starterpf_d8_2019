@@ -1,0 +1,376 @@
+/*
+ * Sample SCSS for adding Superfish CSS to themes.
+ *
+ * Instructions:
+ *
+ * 1. Change the #YOUR-BLOCK-ID (below) to the ID of your Superfish block.
+ *
+ * 2. Add the SCSS to your theme.
+ *
+ * 3. Note that by removing the .sf-style-none, the style will be applied to
+ *    the menu regardless of the "Style" selected in the Superfish
+ *    block configuration.
+ *  Selectionner un style dans admin/structure/block/manage/menugeneraldusite_2
+>> .sf-style-none
+
+ */
+
+/* -------------------------------------
+    LAYOUT DU MENU
+-------------------------------------*/
+body .conteneur {
+  #block-menugeneraldusite-2.superfish-pf {
+    ul.sf-style-none{
+      max-width: 100%;
+      margin: span(0.01) 0 0 0;
+    }
+    @include breakpoint(($desktop,$desktopwide,$tabletlandscape)) {
+      ul.sf-style-none{
+        width: span(12);
+        margin: span(0.01) 0 0 0;
+      }
+
+    }
+  }  // Fin de /.superfish-pf
+}// Fin de /.conteneur
+
+/* -------------------------------------
+    STYLE DES ELEMENTS DU MENU
+-------------------------------------*/
+
+// You can add these variables to your _base.scss
+$superfish-1-color: $gris-clair; //Couleur texte de lien
+$superfish-1-background-color-level-first: $bleu-turquoise;
+$superfish-1-background-color-level-second: $rose-fushia;
+$superfish-1-background-color-level-third: $gris-clair-moyen;
+$superfish-1-background-color-level-fourth: $violet; //Couleur hover 1er niv et fond 2e niveau
+
+#block-menugeneraldusite.superfish-pf, #block-menugeneraldusite-2.superfish-pf {
+  ul.sf-style-none{
+    background: $superfish-1-background-color-level-first;
+  }
+  .sf-style-none {
+    float: left;
+    margin: 0;
+    padding: 0;
+    &.sf-navbar {
+      width: 100%;
+      background: $superfish-1-background-color-level-first;
+    }
+    ul {
+      padding-left: 0;
+      &.sf-multicolumn li {
+        &.sf-multicolumn-wrapper {
+          background: $superfish-1-background-color-level-fourth;
+          li {
+            background: transparent;
+          }
+        }
+      }
+    }
+    a { //Style des liens du menu
+      color: $superfish-1-color;
+      padding: 0.75em 1em;
+      text-decoration: none;
+      &.sf-depth-1{ //Niveau 1 sf-depth-1
+        &:hover{
+          background: $superfish-1-background-color-level-fourth;
+        }
+        &.is-active{
+          //Couleur Rubrique active Niveau 1
+          background: $superfish-1-background-color-level-fourth;
+          outline: 0;
+        }
+      } //Fin Niveau 1 sf-depth-1
+      &.sf-with-ul {
+        padding-right: 2.25em;
+      }
+      &:focus {
+        background: $superfish-1-background-color-level-fourth;
+        outline: 0;
+      }
+      &.sf-depth-2{ //Niveau 2 sf-depth-2
+      &:hover {
+        background: $superfish-1-background-color-level-first;
+        outline: 0;
+        &.is-active{
+          //Couleur Rubrique active Niveau 1
+          background: $superfish-1-background-color-level-first;
+          outline: 0;
+        }
+      }
+    }// Fin Niveau 2 sf-depth-2
+      &:active {
+        background: $superfish-1-background-color-level-fourth;
+        outline: 0;
+      }
+    }
+    // Style pour liens vers sites lycées
+    a.site_er{
+      //Utilise mixin effet souligné du lien sur hover
+    @include rollover-underline($rouge);
+    }
+
+
+    a.site_cg{
+      //Utilise mixin effet souligné du lien sur hover
+    @include rollover-underline($orange);
+    }
+
+    a.site_bl{
+      //Utilise mixin effet souligné du lien sur hover
+    @include rollover-underline($bleu-turquoise);
+    }
+
+    a.site_mg{
+      //Utilise mixin effet souligné du lien sur hover
+    @include rollover-underline($rose-fushia);
+    }
+
+    a.site_lr{
+      //Utilise mixin effet souligné du lien sur hover
+    @include rollover-underline($violet);
+    }
+
+    a.site_ca{
+      //Utilise mixin effet souligné du lien sur hover
+    @include rollover-underline($gris-clair-moyen);
+    }
+
+    a.site_ce{
+      //Utilise mixin effet souligné du lien sur hover
+    @include rollover-underline($vert);
+    }
+    a.site_pf{
+      //Utilise mixin effet souligné du lien sur hover
+    @include rollover-underline($orange-fonce);
+    }
+    span {
+      &.nolink {
+        color: $superfish-1-color;
+        padding: 0.75em 1em;
+        &.sf-with-ul {
+          padding-right: 2.25em;
+        }
+        &:hover {
+          background: $superfish-1-background-color-level-fourth;
+          outline: 0;
+        }
+      }
+      &.sf-description {
+        color: $superfish-1-color;
+        display: block;
+        font-size: 0.833em;
+        line-height: 1.5;
+        margin: 5px 0 0 5px;
+        padding: 0;
+      }
+    }
+    &.rtl {
+      span {
+        &.sf-description {
+          margin: 5px 5px 0 0;
+        }
+        &.nolink.sf-with-ul {
+          padding-left: 2.25em;
+          padding-right: 1em;
+        }
+      }
+      a.sf-with-ul {
+        padding-left: 2.25em;
+        padding-right: 1em;
+      }
+    }
+    li {
+      background: $superfish-1-background-color-level-first;
+      li {
+        background: $superfish-1-background-color-level-second;
+        li {
+          background: $superfish-1-background-color-level-third;
+        }
+      }
+      &:hover {
+        background: $superfish-1-background-color-level-fourth;
+        outline: 0;
+        > ul {
+          top: 40px;
+        }
+      }
+      &.sfHover {
+        background: $superfish-1-background-color-level-fourth;
+        outline: 0;
+        > ul {
+          top: 40px;
+        }
+      }
+    }
+    .sf-sub-indicator {
+      background-image: url('../images/dropdown-arrows.png');
+    }
+  }
+  //****** STYLE et LAYOUT pour mobile *******//
+
+  div.sf-accordion-toggle {
+    a#superfish-menu-general-toggle{
+      //Poisiton du bouton navigation
+      margin: 0;
+      padding: em(10px);
+      position: relative;
+      top: em(30px);
+      left: em(30px);
+      background: transparent;
+      color: $superfish-1-background-color-level-first;
+      border: em(2px) solid $superfish-1-background-color-level-first;
+      span{
+        //Remplacer le titre du bloc par un picto
+      background: transparent;
+      }
+    }
+    &.sf-style-none a {
+      background: $superfish-1-background-color-level-first;
+      color: $superfish-1-color;
+      padding: 1em;
+      &.sf-expanded {
+        background: $superfish-1-background-color-level-fourth;
+        font-weight: bold;
+      }
+    }
+  } // Fin sf-accordion-toggle
+
+  //Position du menu ouvert par rapport au bouton navigation
+  ul#superfish-menu-general-accordion{
+    margin: span(3) 0 0 0;
+  }
+  .sf-menu.sf-style-none {
+
+    &.rtl {
+      &.sf-accordion li {
+        li {
+          a {
+            padding-left: auto;
+            padding-right: 2em;
+          }
+          li {
+            a {
+              padding-left: auto;
+              padding-right: 3em;
+            }
+            li {
+              a {
+                padding-left: auto;
+                padding-right: 4em;
+              }
+              li {
+                a {
+                  padding-left: auto;
+                  padding-right: 5em;
+                }
+                span.nolink {
+                  padding-left: auto;
+                  padding-right: 5em;
+                }
+              }
+              span.nolink {
+                padding-left: auto;
+                padding-right: 4em;
+              }
+            }
+            span.nolink {
+              padding-left: auto;
+              padding-right: 3em;
+            }
+          }
+          span.nolink {
+            padding-left: auto;
+            padding-right: 2em;
+          }
+        }
+      }
+      ul.sf-multicolumn {
+        li.sf-multicolumn-wrapper {
+          ol li {
+            &.sf-multicolumn-column {
+              float: right;
+            }
+          }
+        }
+      }
+    }
+    &.sf-accordion li {
+      &.sf-expanded {
+        background: $superfish-1-background-color-level-fourth;
+        > {
+          a {
+            font-weight: bold;
+          }
+          span.nolink {
+            font-weight: bold;
+          }
+        }
+      }
+      li {
+        a {
+          padding-left: 2em;
+        }
+        li {
+          a {
+            padding-left: 3em;
+          }
+          li {
+            a {
+              padding-left: 4em;
+            }
+            li {
+              a {
+                padding-left: 5em;
+              }
+              span.nolink {
+                padding-left: 5em;
+              }
+            }
+            span.nolink {
+              padding-left: 4em;
+            }
+          }
+          span.nolink {
+            padding-left: 3em;
+          }
+        }
+        span.nolink {
+          padding-left: 2em;
+        }
+      }
+      a.sf-accordion-button {
+        font-weight: bold;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 499;
+      }
+    }
+    ul.sf-multicolumn {
+      li.sf-multicolumn-wrapper {
+        ol {
+          margin: 0;
+          padding: 0;
+          li {
+            margin: 0;
+            padding: 0;
+            &.sf-multicolumn-column {
+              display: inline;
+              float: left;
+            }
+          }
+        }
+        a.menuparent {
+          font-weight: bold;
+        }
+        span.nolink {
+          &.menuparent {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}

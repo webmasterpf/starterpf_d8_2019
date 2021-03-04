@@ -15,6 +15,8 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
 {% set aggregator_attribute = create_attribute() %}
 {% set video_attribute = create_attribute() %}
 {% set insererform_attribute = create_attribute() %}
+{% set vueblocgalerie_attribute = create_attribute() %}
+{% set logo_attribute = create_attribute() %}
 
 {% set titre_classes = [
 'titre_overlay',
@@ -63,6 +65,14 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
 'formulaire',
 'type-' ~ node.bundle|clean_class
 ]%}
+{% set vueblocgalerie_classes = [
+'galerie',
+'type-' ~ node.bundle|clean_class
+]%}
+{% set logo_classes = [
+'logo-resto',
+'type-' ~ node.bundle|clean_class
+]%}
 {# BEM inspired class syntax: https://en.bem.info/
    Enable this code if you would like node classes like "article article--layout-teaser", where article is the content type and teaser is the view mode.
 {% set classes = classes|merge([
@@ -106,11 +116,11 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
   <!--______________ ILLUSTRATION et TITRE ________________ -->
   <div {{ imagecontainer_attribute.addClass(imagecontainer_classes).setAttribute('id', 'zone-illustration') }}>
 
-    {% set image_deco = content.field_illus_lycee | render | trim %}
+    {% set image_deco = content.field_illustration | render | trim %}
     {% if image_deco or node.label is not empty %}
       <div {{image_attribute.setAttribute('id', 'illustration-pleinepage').addClass(image_classes) }}>
         <h1 {{ titre_attribute.addClass(titre_classes) }}>{{node.label}}</h1>
-        {{ content.field_illus_lycee.0}}
+        {{ content.field_illustration.0}}
       </div>
     {% endif %}
   </div>
@@ -119,6 +129,12 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
   <!--______________ZONE 1________________ -->
   <div {{ zone1_attribute.addClass(zone1_classes).setAttribute('id', 'zone-1') }}>
     <div{{ content_attributes.addclass('content') }}>
+
+      {% if node.field_logo_resto_img is not empty %}
+        <div {{ logo_attribute.addClass(logo_classes) }}>
+          {{ content.field_logo_resto_img.0 }}
+        </div>
+      {% endif %}
 
       {{ content.body }}
 
@@ -131,6 +147,12 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
       {% if node.field_inserer_un_formulaire is not empty %}
         <aside {{ insererform_attribute.addClass(insererform_classes) }}>
           {{ content.field_inserer_un_formulaire.0 }}
+        </aside>
+      {% endif %}
+
+      {% if node.field_type_galerie_image is not empty %}
+        <aside {{ vueblocgalerie_attribute.addClass(vueblocgalerie_classes) }}>
+          {{ content.field_type_galerie_image.0 }}
         </aside>
       {% endif %}
 

@@ -56,8 +56,8 @@ body .conteneur {
 // Fin .conteneur
 /*######-------- ||| STYLE ||| --------######*/
 //Boucle pour englober tous les TdC concernés
-$typedecontenu: type-contenu-vdl, type-contenu-sortie-action, type-contenu-projet, type-contenu-mini-stage, type-contenu-innovation, type-contenu-intervenants, type-contenu-entreprise, type-contenu-actualites,
-type-contenu-admin ,type-fiche-formation, type-page-lycee;
+$typedecontenu: type-contenu-vdl, type-page-sortie-actions, type-page-projets, type-page-intervenants, type-page-innovations,
+type-fiche-formations, type-page-lycee, type-annonce-accueil, type-page-presse;
 $zones: zone-1, zone-2, zone-3;
 @each $zone in $zones {
   @each $type in $typedecontenu {
@@ -70,7 +70,7 @@ $zones: zone-1, zone-2, zone-3;
 
           li {
             a {
-              @include rollover-effect($gris-anthracite); //Effet rollover CSS3
+              @include rollover-effect($bleu-turquoise); //Effet rollover CSS3
               padding: 0; // Annule effet hover autres liens de la page
             }
           }
