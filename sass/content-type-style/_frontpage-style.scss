@@ -219,27 +219,35 @@ ul.rubriques-speciales{
 //Code imbriqué à 100%
 body .conteneur {
 
-    .annonce_1{
-
-    }
+    //.annonce_1{  }
     .annonce_alaUne{
         h3{//ajout picto en place du titre h3
            display: none;
-           @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
-               display: initial;
-               @include backgroundImage (('PNG/breaking-news@4x.png'));
-               @include backgroundImage (('PNG/notification@4x.png'));
-               background-size: contain;
-               text-indent: -9000px;
-               float: left;
-               height: em(80px);
-               width: em(80px);
-               margin-left: span(0.1);
-           }
+
         }
         ul.actu-brulante{
             list-style: none;
-
+            &::before {
+              //@include backgroundImage("PNG/Fichiers@3x.png");
+              @include maskImage(("PNG/notification-blanc@4x.png"),100%,alpha,$bleu-turquoise);
+              background-size: contain;
+              content: "";
+              position: absolute;
+              vertical-align: middle;
+              padding: em(33px);
+              margin: em(10px) em(0px) em(0px) 0;
+              transition: 0.5s all;
+              display: inline-block;
+              transform: scale(1);
+              min-height: em(30px);
+              //Pas affiché sur mobile
+              display: none;
+              @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+              // Pour ne pas tronquer le picto
+              display: initial;
+              min-height: em(80px);
+            }
+            }
             li{
                 list-style: none;
                 color: $gris-anthracite;
@@ -265,12 +273,12 @@ body .conteneur {
                     max-width: 25%;
 
                 }
-
+              //Pour style des liens voir plus bas
             }
             .breaking-news-element{
-
+              //Classe ajoutée dans la vue
                 border: em(3px) transparent solid;
-                background: $orange-fonce;
+                background: $bleu-turquoise;
                 transition-property: background !important;
                 transition: all .3s ease;
                 font-family: $FontRaleway;
@@ -286,7 +294,7 @@ body .conteneur {
                 &:hover{
                     transition: all .3s ease;
                     transform: translateZ(0)!important;
-                    border: em(3px) $orange-fonce solid;
+                    border: em(3px) $bleu-turquoise solid;
                     background: transparent;
                     color: $gris-anthracite;
                     &::before{
@@ -383,7 +391,7 @@ body .conteneur {
             }
             li{
                 margin: 0 0 em(5px) 0;
-                background: $rose-fushia;//Couleur de fond des acces Rub Admin
+                background: $bleu-turquoise;//Couleur de fond des acces Rub Admin
                 color: whitesmoke;
                 @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
 
@@ -589,7 +597,7 @@ body .conteneur {
                                                 clip-path: circle(50% at 50% 50%);*/
                             /* Coins arrondis pour les boutons - passe mieux sur mobile*/
                             @include arrondis(4em);
-                            background-color: $rose-fushia; //Couleur de fond des boutons
+                            background-color: $bleu-turquoise; //Couleur de fond des boutons
 
                             @include breakpoint(($desktop,$desktopwide)){
                                 max-width: 11vw;
@@ -695,7 +703,7 @@ body .conteneur {
                 }
                 li.views-row-8{
                     order:8;
-                    background: $rose-fushia;
+                    background: $bleu-turquoise;
                 }
                 li.views-row-9{
                     order:5;

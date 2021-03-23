@@ -190,7 +190,7 @@ https://www.creativejuiz.fr/blog/css-css3/controles-fin-des-cesures-css4-text
 /*-------- IMAGES ADAPTABLES -----------*/
 @mixin adaptable-img {
   max-width: 100%;
-  height: auto; //proportions
+  //height: auto; //proportions
   max-height: 100%;
   object-fit: cover; //permet que l'image occupe tout l'espace mais il faut définir une taille
   width: 100%;

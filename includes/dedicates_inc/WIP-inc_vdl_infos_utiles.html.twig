@@ -1,0 +1,118 @@
+{#
+/* 03/2019 Liste les fichiers uploadés par
+  * filefield and linkfield  avec création d'une liste dynamique, exclusion des champs vides
+#}
+
+{# ---*** Les classes à appliquer aux éléments  ***--- #}
+{% set champ1_attribute = create_attribute() %}
+{% set champ1bis_attribute = create_attribute() %}
+{% set champ2_attribute = create_attribute() %}
+{% set champ3_attribute = create_attribute() %}
+
+{% set champ1_classes = [
+'champ-' ~ node.field_relatif_formation.fieldDefinition.name | replace({"_" : "-"}),
+'titre-' ~ node.bundle|clean_class
+]%}
+{% set champ1bis_classes = [
+'label-' ~ node.field_relatif_formation.fieldDefinition.name | replace({"_" : "-"}),
+]%}
+{% set champ2_classes = [
+'label-' ~ node.field_liens_vdl.fieldDefinition.name | replace({"_" : "-"}),
+]%}
+{# ---*** Le contenu de l'include ***--- #}
+{# indiquer dans un tableau les noms de champs divers comme valeur de variable#}
+{% set fichier_joint_var = [node.field_fichier_joint_innovation.value, field_fichier_joint_intervenant, field_fichier_joint_presse, field_fichier_joint] %}
+{% set fiche_action_var = [node.field_fiche_action_innovation.value,field_fiche_action_intervenant, field_fiche_action_projet, field_fiche_action_sortie]%}
+{% if node.field_relatif_formation.value or fichier_joint_var or node.field_liens_vdl.value or node.field_lien_interne.value is not empty %}
+  <div class="bloc_docs_utiles_vdl">
+
+    {% if node.field_relatif_formation.value is not empty %}
+      <ul>
+        <li {{ champ1bis_attribute.addClass(champ1bis_classes) }}>
+          {{ content.field_relatif_formation|field_label }}</li>
+        <li {{ champ1_attribute.addClass(champ1_classes).setAttribute('id', 'champ-1') }}>
+          {{content.field_relatif_formation.0}}</li>
+      </ul>
+
+    {% endif %}
+
+    {% if fichier_joint_var or node.field_liens_vdl.value is not empty %}
+      <ul>
+        <li {{ champ2_attribute.addClass(champ2_classes) }}>
+          {{ fichier_joint_var|field_label }}
+          {% if node.field_liens_vdl is not empty %}
+            //
+            {{ content.field_liens_vdl|field_label }}
+          {% endif %}
+        </li>
+      </ul>
+
+      <ul>
+        {# //Parcourir le tableau field_NAME de l'objet $node pour lister le contenu clé/valeur
+          - Cas de champs divers, construire un tableau temporaire avec les valeurs liées au champs divers en fonction
+        #}
+        {% set tempFicheAction = {} %}
+        {% set tempFichierJoint = {} %}
+        {# TABLEAU TEMPORAIRE POUR FICHIER JOINT #}
+        {% for item in fichier_joint_var %}
+          Tableau fichier_joint_var :
+          {{ dump(fichier_joint_var)}}
+          key :
+          {{ item.description }}, fichier :
+          {{ item.target_id }}
+          <br/ >
+            {% set tempFichierJoint = tempFichierJoint | merge({(key): 'value'}) %}
+            Tableau tempFichierJoint :
+            {{ dump(tempFichierJoint)}}
+            {# Parcourir le tableau temporaire pour récupérer les valeurs à afficher #}
+            {% for tempKey, tempFichier in tempFichierJoint %}
+              {# //Ne pas afficher les champs vides du tableau #}
+              {% if tempFichierJoint is not empty %}
+
+                <li>{{ tempFichierJoint[tempKey] }}</li>
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
+          {# TABLEAU TEMPORAIRE POUR FICHE ACTION #}
+          {% for item in fiche_action_var %}
+            Tableau fiche_action_var :
+            {{ dump(fiche_action_var)}}
+            key :
+            {{ item.description }}, fiche :
+            {{ item.target_id }}
+            <br/ >
+              {% set tempFicheAction = tempFicheAction | merge({
+                ('_' ~ item.description): (item.fiche)
+              }) %}
+              Tableau tempFicheAction :
+              {{ dump(tempFicheAction)}}
+              {# Parcourir le tableau temporaire pour les fiches actions#}
+              {% for tempKey, tempFiche in tempFicheAction %}
+                {# //Ne pas afficher les champs vides du tableau #}
+                {% if tempFicheAction is not empty %}
+
+                  <li>{{ tempFicheAction[tempKey] }}</li>
+                {% endif %}
+              {% endfor %}
+            {% endfor %}
+            {# //Parcourir le tableau field_NAME de l'objet $node pour lister le contenu clé/valeur #}
+            {% for key, lien in node.field_liens_vdl %}
+              {# //Ne pas afficher les champs vides du tableau #}
+              {% if node.field_liens_vdl is not empty %}
+                <li>{{ content.field_liens_vdl[key] }}</li>
+              {% endif %}
+            {% endfor %}
+
+            {# Parcourir le tableau field_NAME de l'objet $node pour lister le contenu clé/valeur #}
+            {% for key, lien in node.field_lien_interne %}
+              {# Ne pas afficher les champs vides du tableau #}
+              {% if node.field_lien_interne is not empty %}
+                <li>{{ content.field_lien_interne[key] }}</li>
+              {% endif %}
+            {% endfor %}
+
+          </ul>
+        {% endif %}
+        {# / endif pour bloc doc utiles #}
+      </div>
+    {% endif %}

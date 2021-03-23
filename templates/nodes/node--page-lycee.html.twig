@@ -144,6 +144,8 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
         </aside>
       {% endif %}
 
+      {% include directory ~ '/includes/dedicates_inc/inc_videos_embed.html.twig' %}
+
       {% if node.field_inserer_un_formulaire is not empty %}
         <aside {{ insererform_attribute.addClass(insererform_classes) }}>
           {{ content.field_inserer_un_formulaire.0 }}
