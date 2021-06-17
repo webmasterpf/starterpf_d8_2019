@@ -56,7 +56,7 @@ Possible avec le NiD ou un mot de l'url réécrite.
  #}
 {% set uri = path('entity.node.canonical', {'node': node.id}) %}
 {# % if 'les-actualites' in url|render|render % #}
-{% if '18' in node.id | render | render %}
+{% if '12' in node.id | render | render %}
 
   {% set vuebloc_classes = [
 'liste-actu-presse',
@@ -112,11 +112,11 @@ Possible avec le NiD ou un mot de l'url réécrite.
   <!--______________ ILLUSTRATION et TITRE ________________ -->
   <div {{ imagecontainer_attribute.addClass(imagecontainer_classes).setAttribute('id', 'zone-illustration') }}>
 
-    {% set image_deco = content.field_illus_lycee | render | trim %}
+    {% set image_deco = content.field_image_deco_lycee | render | trim %}
     {% if image_deco or node.label is not empty %}
       <div {{image_attribute.setAttribute('id', 'illustration-pleinepage').addClass(image_classes) }}>
         <h1 {{ titre_attribute.addClass(titre_classes) }}>{{node.label}}</h1>
-        {{ content.field_illus_lycee.0}}
+        {{ content.field_image_deco_lycee.0}}
       </div>
     {% endif %}
   </div>

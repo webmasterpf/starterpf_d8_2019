@@ -243,7 +243,7 @@ h1.titre_overlay {
 h1.titre_page {
   @include titre-page;
   color: $blanc-casse;
-  @include backgroundRGBA($bleu-turquoise, 0.9);
+  @include backgroundRGBA($orange, 0.9);
 }
 /*¤¤¤ STYLES COMMUNS ¤¤¤*/
 //Permet de créer facilement les styles communs à des IDs ou/et classes
@@ -267,7 +267,7 @@ h1.titre_page {
 
       h2 {
         @include font-size(l); //utilisation de typey
-        color: $bleu-turquoise;
+        color: $orange;
       }
 
       h3 {
@@ -276,7 +276,7 @@ h1.titre_page {
       }
       h4{
         @include font-size(s); //utilisation de typey
-        color: $orange;
+        color: $rose-fushia;
       }
       h5{
         @include font-size(xs); //utilisation de typey
@@ -284,7 +284,7 @@ h1.titre_page {
       }
       a {
         text-decoration: none;
-        color: $bleu-turquoise;
+        color: $orange;
 
         &:hover {
           text-decoration: underline;
@@ -294,7 +294,7 @@ h1.titre_page {
         color: $orange;
       }
       strong {
-        color: $bleu-turquoise;
+        color: $violet;
       }
     }
   }
@@ -325,7 +325,7 @@ ______________________________*/
     @include adaptable-img;
     width: auto;
     float: none;
-    border: em(2px) solid $bleu-turquoise;
+    border: em(2px) solid $orange;
     padding: em(2px);
   }
 
@@ -384,14 +384,14 @@ ______________________________*/
       max-width: 60vw;
       margin: 0 auto;
       padding: span(0.02);
-      border: em(3px) solid $bleu-turquoise;
+      border: em(3px) solid $orange;
     }
 }
 } // Fin content
 aside.formulaire{
   //Style pour formulaire
      textarea,input[type="text"],input[type="email"],input[type="tel"]{
-          background: $bleu-turquoise; // Couleur fond des champs
+          background: $orange; // Couleur fond des champs
           color: $blanc-casse;
 
 
@@ -415,7 +415,7 @@ aside.formulaire{
       color: $gris-anthracite;
     }
     strong {
-      color: $bleu-turquoise;
+      color: $orange;
     }
   }
 }
@@ -521,7 +521,7 @@ aside.formulaire{
 
       a { //liens blocs docs utiles
         background: $gris-clair;
-        color: $bleu-turquoise;
+        color: $orange;
         text-decoration: none;
         padding: span(0.01) span(0.03);
 
@@ -580,7 +580,7 @@ aside.formulaire{
     .label-field-lien-cdi{
       font-weight: bold;
       color: $gris-clair;
-      background: $bleu-turquoise;
+      background: $orange;
       padding: span(0.02);
       margin: 0 0 0 span(0.2);
     }
@@ -625,7 +625,7 @@ aside.formulaire{
     h3 {
       font-family: $AristaFont;
       text-align: center;
-      color: $bleu-turquoise;
+      color: $orange;
       padding: 5px 0;
       font-size: medium;
       margin: 0 0 5px;

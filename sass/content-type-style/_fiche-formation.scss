@@ -146,6 +146,18 @@ body .conteneur {
             margin: 0 auto span(0.1);
         }
     }
+    span.philosophie-formation{
+      display: block;
+      @include breakpoint(($desktop, $desktopwide)) {
+          width: span(9);
+          margin: 0 auto span(0.1);
+      }
+
+      @include breakpoint(($mobilelandscape, $tablet, $tabletlandscape)) {
+          width: span(11);
+          margin: 0 auto span(0.1);
+      }
+    }
 
     .content {
         column-count: inherit;
@@ -153,7 +165,7 @@ body .conteneur {
         @include breakpoint(($desktop, $desktopwide, $tabletlandscape)) {
             column-count: 2;
             column-fill: balance;
-            column-rule: em(2px) dashed $rose-fushia;
+            column-rule: em(2px) dashed $orange;
 
             h3 {
                 @include txt-colonnes;
@@ -280,7 +292,7 @@ h1.titre-fiche-formation {
 
     u {
         font-weight: bold;
-        color: $rose-fushia;
+        color: $orange;
 
     }
 
@@ -291,7 +303,7 @@ h1.titre-fiche-formation {
 
     h3 {
         @include font-size(m); //utilisation de typey
-        color: $rose-fushia;
+        color: $orange;
     }
 
     h4 {
@@ -302,7 +314,7 @@ h1.titre-fiche-formation {
     a {
         text-decoration: none;
         color: $violet;
-        @include rollover-effect($rose-fushia); //Effet rollover CSS3
+        @include rollover-effect($orange); //Effet rollover CSS3
 
         &:hover {
             text-decoration: none;
@@ -310,14 +322,14 @@ h1.titre-fiche-formation {
     }
 
     strong {
-        color: $rose-fushia;
+        color: $orange;
     }
 }
 
 /*------------------------------------
         ¤¤¤ STYLES PROPRES ¤¤¤
 ______________________________*/
-#zone-1.type-fiche-formations {
+#zone-1.type-fiche-formation {
   .poursuite-etudes{
     ul{
       list-style: none;
@@ -329,8 +341,8 @@ ______________________________*/
         display: block;
 
         * {
-            background: linear-gradient(180deg, $violet 85%, $rose-fushia 50%);
-            //@include backgroundRGBA ($rose-fushia,0.5);
+            background: linear-gradient(180deg, $violet 85%, $orange 50%);
+            //@include backgroundRGBA ($orange,0.5);
             color: $jaune;
             font-weight: bold;
             padding: span(0.02);
@@ -344,11 +356,13 @@ ______________________________*/
     }
 
     span.terme-pole {
-        background: $rose-fushia;
-        color: $blanc-casse;
+        background: $orange;
+        color: $gris-anthracite;
 
         @include breakpoint(($desktop, $desktopwide, $mobilelandscape, $tablet, $tabletlandscape)) {
             @include ombrage-effet-incurve($HauteurHalo:0.5em);
+            background: $orange;
+            color: $gris-anthracite;
         }
 
         a {
@@ -366,29 +380,34 @@ ______________________________*/
       display: block;
       text-align: center;
     }
+    span.philosophie-formation{
+      font-style: italic;
+      font-weight: bold;
+      font-family: $FontArvo;
+      color: $vert;
+      @include font-size(m); //utilisation de typey
+    }
     .content {
         h3 {
             transform: rotate(-1deg);
             max-width: fit-content;
 
             color: $blanc-casse;
-            background: $rose-fushia;
+            background: $orange;
             padding: em(3px);
             margin: em(5px) em(20px);
 
         }
     }
 
-    aside.ficheform-savoirplus {}
-}
-
-//#zone-1.type-fiche-formation
+  //  aside.ficheform-savoirplus {}
+} //#zone-1.type-fiche-formation
 
 #zone-2.type-fiche-formation {
 
     aside.ficheform-savoirplus,
     .bloc_docs_utiles_ficheform {
-        @include backgroundImage(("BG/stripe_rose_violet_pastel.png"), transparent, repeat, top left);
+        @include backgroundImage(("BG/stripe_rosepale_violet_pastel.png"), transparent, repeat, top left);
         background-color: $gris-clair;
         @include arrondis(1em);
 
@@ -401,12 +420,12 @@ ______________________________*/
 
             &:hover {
                 color: $gris-anthracite;
-                background: $rose-fushia;
+                background: $orange;
             }
 
             &[href*=".pdf"] {
                 &::before {
-                    @include maskImage(("PNG/Fichier-blanc@3x.png"), 100%, alpha, $vert);
+                    @include maskImage(("PNG/Fichier-blanc@3x.png"), 100%, alpha, $violet);
                     //@include backgroundImage("PNG/Fichiers@3x.png");
                     background-size: contain;
                     content: "";
@@ -434,7 +453,7 @@ ______________________________*/
 
                 //pour cibler les liens externes et internes, exclure les pdf
                 &::before {
-                    @include maskImage(("PNG/liens-blanc@3x.png"), 100%, alpha, $gris-clair-typo);
+                    @include maskImage(("PNG/liens-blanc@3x.png"), 100%, alpha, $violet);
                     background-size: contain;
                     content: "";
                     position: relative;
@@ -453,7 +472,7 @@ ______________________________*/
         .label-field-lien-utile-ficheform {
             font-weight: bold;
             color: $gris-clair;
-            background: $rose-fushia;
+            background: $orange;
             padding: span(0.02);
             margin: 0 0 span(0.2) span(0.2);
         }
@@ -545,7 +564,8 @@ ______________________________*/
         padding: 0;
         margin: 0;
 
-        li {
+        li:not([class^="videos"]) {
+          //Fonctionne aussi sans le :not()
             list-style: square;
         }
     }
@@ -563,7 +583,7 @@ ______________________________*/
 
             &:hover {
                 color: $gris-anthracite;
-                /*background: $rose-fushia;*/
+                /*background: $orange;*/
             }
         }
 
@@ -576,12 +596,33 @@ ______________________________*/
             }
         }
     }
+    .videos {
+      ul {
+        li{
+          list-style: none;
+        }
 
+      }
 
-}
+      iframe {
+        @include breakpoint(($desktop,$desktopwide)) {
+          max-height: 90vh;
+          max-width: 60vw;
+          margin: 0 auto;
+          padding: span(0.02);
+          border: em(3px) solid $violet;
+        }
+        @include breakpoint(($mobilelandscape,$tablet,$tabletlandscape)) {
+          max-height: 90vh;
+          max-width: 90vw;
+          margin: 0 auto;
+          padding: span(0.02);
+          border: em(3px) solid $violet;
+        }
+      }
+    }
+}//.zone-3.type-fiche-formation
 
-//.zone-3.type-fiche-formation
+//#zone-4.type-fiche-formation {}
 
-#zone-4.type-fiche-formation {}
-
-#zone-5.type-fiche-formation {}
+//#zone-5.type-fiche-formation {}

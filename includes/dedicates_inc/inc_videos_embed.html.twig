@@ -10,23 +10,34 @@
 {% set champ3_attribute = create_attribute() %}
 
 {% set champ1_classes = [
-'champ-' ~ node.field_video_vdl.fieldDefinition.name | replace({"_" : "-"}),
+'champ-' ~ node.field_video_externe.fieldDefinition.name | replace({"_" : "-"}),
 'titre-' ~ node.bundle|clean_class
 ]%}
 {% set champ1bis_classes = [
 'label-' ~ node.field_video_vdl.fieldDefinition.name | replace({"_" : "-"}),
 ]%}
 {% set champ2_classes = [
-'label-' ~ node.field_video_vdl.fieldDefinition.name | replace({"_" : "-"}),
+'label-' ~ node.field_video_externe.fieldDefinition.name | replace({"_" : "-"}),
 ]%}
 {% set champ3_classes = [
 'label-' ~ node.field_lien_internet_rp.fieldDefinition.name | replace({"_" : "-"}),
 ]%}
 {# ---*** Le contenu de l'include ***--- #}
-{% if node.field_video_vdl.value is not empty %}
+{% if node.field_video_vdl.value or node.field_video_externe is not empty %}
   <div class="videos">
 
     <ul>
+
+      {# //Parcourir le tableau field_NAME de l'objet $node pour lister le contenu clé/valeur #}
+      {% for key, video in node.field_video_externe %}
+        {# //Ne pas afficher les champs vides du tableau #}
+        {% if node.field_video_externe.value is not empty %}
+          <li {{ champ2_attribute.addClass(champ2_classes) }}>
+            {{ content.field_video_externe[key] }}
+          </li>
+        {% endif %}
+      {% endfor %}
+
       {# //Parcourir le tableau field_NAME de l'objet $node pour lister le contenu clé/valeur #}
       {% for key, video in node.field_video_vdl %}
         {# //Ne pas afficher les champs vides du tableau #}

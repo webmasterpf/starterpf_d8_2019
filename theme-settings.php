@@ -15,26 +15,26 @@ $theme_name = \Drupal::theme()->getActiveTheme()->getName();
  *
  * Form override for theme settings.
  */
-function starterpf_d8_2019_form_system_theme_settings_alter(array &$form, FormStateInterface $form_state) {
+function grawitz_d8_2021_form_system_theme_settings_alter(array &$form, FormStateInterface $form_state) {
   $form['options_settings'] = [
     '#type' => 'fieldset',
     '#title' => t('Theme Specific Settings'),
   ];
 
   // BrowserSync support.
-  $form['options_settings']['starterpf_d8_2019_browser_sync'] = [
+  $form['options_settings']['grawitz_d8_2021_browser_sync'] = [
     '#type' => 'fieldset',
     '#title' => t('BrowserSync Settings'),
   ];
-  $form['options_settings']['starterpf_d8_2019_browser_sync']['browser_sync']['#tree'] = TRUE;
-  $form['options_settings']['starterpf_d8_2019_browser_sync']['browser_sync']['enabled'] = [
+  $form['options_settings']['grawitz_d8_2021_browser_sync']['browser_sync']['#tree'] = TRUE;
+  $form['options_settings']['grawitz_d8_2021_browser_sync']['browser_sync']['enabled'] = [
     '#type' => 'checkbox',
     '#title' => t('Enable BrowserSync support for theme'),
     '#default_value' => theme_get_setting('browser_sync.enabled'),
     '#description' => t("Checking this box will automatically add the BrowserSync JS to your theme for development."),
   ];
 
-  $form['options_settings']['starterpf_d8_2019_browser_sync']['browser_sync']['host'] = [
+  $form['options_settings']['grawitz_d8_2021_browser_sync']['browser_sync']['host'] = [
     '#type' => 'textfield',
     '#title' => t('BrowserSync host'),
     '#default_value' => theme_get_setting('browser_sync.host'),
@@ -44,7 +44,7 @@ function starterpf_d8_2019_form_system_theme_settings_alter(array &$form, FormSt
     ],
   ];
 
-  $form['options_settings']['starterpf_d8_2019_browser_sync']['browser_sync']['port'] = [
+  $form['options_settings']['grawitz_d8_2021_browser_sync']['browser_sync']['port'] = [
     '#type' => 'number',
     '#title' => t('Enable BrowserSync support for theme'),
     '#default_value' => theme_get_setting('browser_sync.port'),
@@ -55,24 +55,24 @@ function starterpf_d8_2019_form_system_theme_settings_alter(array &$form, FormSt
   ];
 
   // IE specific settings.
-  $form['options_settings']['starterpf_d8_2019_ie'] = [
+  $form['options_settings']['grawitz_d8_2021_ie'] = [
     '#type' => 'fieldset',
     '#title' => t('Internet Explorer Stylesheets'),
   ];
-  $form['options_settings']['starterpf_d8_2019_ie']['ie_enabled'] = [
+  $form['options_settings']['grawitz_d8_2021_ie']['ie_enabled'] = [
     '#type' => 'checkbox',
     '#title' => t('Enable Internet Explorer stylesheets in theme'),
     '#default_value' => theme_get_setting('ie_enabled'),
     '#description' => t('If you check this box you can choose which IE stylesheets in theme get rendered on display.'),
   ];
-  $form['options_settings']['starterpf_d8_2019_ie']['ie_enabled_css'] = [
+  $form['options_settings']['grawitz_d8_2021_ie']['ie_enabled_css'] = [
     '#type' => 'fieldset',
     '#title' => t('Which IE versions you want to enable ".lt-ie" CSS classes'),
     '#states' => [
       'visible' => [':input[name="ie_enabled"]' => ['checked' => TRUE]],
     ],
   ];
-  $form['options_settings']['starterpf_d8_2019_ie']['ie_enabled_css']['ie_enabled_versions'] = [
+  $form['options_settings']['grawitz_d8_2021_ie']['ie_enabled_css']['ie_enabled_versions'] = [
     '#type' => 'checkboxes',
     '#options' => [
       'ie8' => t('Internet Explorer 8'),

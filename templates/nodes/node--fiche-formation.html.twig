@@ -8,7 +8,9 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
 ] %}
 {% set titre_attribute = create_attribute() %}
 {% set taxo_attribute = create_attribute() %}
+{% set taxo2_attribute = create_attribute() %}
 {% set complement_attribute = create_attribute() %}
+{% set chptexte_attribute = create_attribute() %}
 {% set image_attribute = create_attribute() %}
 {% set imagecontainer_attribute = create_attribute() %}
 {% set zone1_attribute = create_attribute() %}
@@ -21,11 +23,19 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
 ]%}
 {% set taxo_classes = [
 'terme-pole',
-'terme-' ~ content.field_filiere_de_formation[0]['#title']|clean_class | replace({"^" : ""}),
+'terme-' ~ content.field_pole_formation[0]['#title']|clean_class | replace({"^" : ""}),
+]%}
+{% set taxo2_classes = [
+'modalite-alternance',
+'terme-' ~ node.field_modalites_d_alternance[0]['#title'] | clean_class | replace({"^" : ""}),
+]%}
+{% set chptexte_classes = [
+'philosophie-formation',
+'champ-' ~ content.field_philo_ficheform[0]['#title']|clean_class | replace({"^" : ""}),
 ]%}
 {% set complement_classes = [
 'complement-titre-fiche',
-'champ-' ~ content.field_complement_ficheform[0]['#title']|clean_class | replace({"^" : ""}),
+'champ-' ~ content.field_complement_titre_fiche[0]['#title']|clean_class | replace({"^" : ""}),
 ]%}
 {% set image_classes = [
 'illustration-'~ node.bundle|clean_class,
@@ -114,18 +124,37 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
     #}
     <span {{ taxo_attribute.addClass(taxo_classes) }}>
 
-      {{ content.field_filiere_de_formation.0['#title'] }}
+      {{ content.field_pole_formation.0['#title'] }}
     </span>
 
     <div{{ content_attributes.addclass('content') }}>
+      {#  if content.field_complement_titre_fiche | render is not empty %}
+        <span  complement_attribute.addClass(complement_classes) }}>
+           content.field_complement_titre_fiche.0 }}
+        </span>
+       endif %}
+      #}
+      {# Affichage conditionnel du texte si philosophie #}
+      {% if content.field_philo_ficheform | render is not empty %}
+        <span {{ chptexte_attribute.addClass(chptexte_classes) }}>
+          {{ content.field_philo_ficheform.0 }}
+        </span>
+      {% endif %}
 
-      <span {{ complement_attribute.addClass(complement_classes) }}>
-        {{ content.field_complement_ficheform.0 }}
-      </span>
       {{ content.body }}
-      {{ content.field_contenu_suite_ficheform.0}}
+
+      {# Affichage conditionnel du terme si alternance #}
+      {% if content.field_modalites_d_alternance | render is not empty %}
+        <span {{ taxo2_attribute.addClass(taxo2_classes) }}>
+          Possible
+          {{ content.field_modalites_d_alternance.0 }}
+        </span>
+      {% endif %}
+
+      {{ content.field_ficheform_2.0}}
     </div>
     <!-- /.content -->
+    {% include directory ~ '/includes/regions_inc/inc_region_zone_1.html.twig' %}
   </div>
   <!-- /zone-1-->
 
@@ -133,6 +162,7 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
   <div {{ zone2_attribute.addClass(zone2_classes).setAttribute('id', 'zone-2') }}>
 
     {% include directory ~ '/includes/dedicates_inc/inc_ficheform_infos_utiles.html.twig' %}
+    {% include directory ~ '/includes/regions_inc/inc_region_zone_2.html.twig' %}
 
   </div>
   <!-- /zone-2 -->
@@ -140,6 +170,8 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
   <!--______________ ZONE 3 ________________ -->
   <div {{ zone3_attribute.addClass(zone3_classes).setAttribute('id', 'zone-3') }}>
     {# % include directory ~ '/includes/dedicates_inc/inc_ficheform_complement_actu.html.twig' % #}
+    {% include directory ~ '/includes/dedicates_inc/inc_videos_embed.html.twig' %}
+    {% include directory ~ '/includes/regions_inc/inc_region_zone_3.html.twig' %}
 
     {% if content.links %}
       <div class="links">

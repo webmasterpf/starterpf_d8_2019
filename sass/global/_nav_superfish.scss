@@ -19,7 +19,8 @@
     LAYOUT DU MENU
 -------------------------------------*/
 body .conteneur {
-  #block-menugeneraldusite-2.superfish-pf {
+  #block-menugeneraldusite-2.superfish-pf,
+  #block-menugeneraldusite.superfish-pf {
     ul.sf-style-none{
       max-width: 100%;
       margin: span(0.01) 0 0 0;
@@ -40,7 +41,7 @@ body .conteneur {
 
 // You can add these variables to your _base.scss
 $superfish-1-color: $gris-clair; //Couleur texte de lien
-$superfish-1-background-color-level-first: $bleu-turquoise;
+$superfish-1-background-color-level-first: $orange;
 $superfish-1-background-color-level-second: $rose-fushia;
 $superfish-1-background-color-level-third: $gris-clair-moyen;
 $superfish-1-background-color-level-fourth: $violet; //Couleur hover 1er niv et fond 2e niveau
@@ -94,7 +95,7 @@ $superfish-1-background-color-level-fourth: $violet; //Couleur hover 1er niv et 
         background: $superfish-1-background-color-level-first;
         outline: 0;
         &.is-active{
-          //Couleur Rubrique active Niveau 1
+          //Couleur Rubrique active Niveau 2
           background: $superfish-1-background-color-level-first;
           outline: 0;
         }

@@ -97,7 +97,7 @@ $ULclasse:bxslider-hp;
             width: 80%;
             //couleur fond des captions sur image diapo
             // - utilise balise titre des images au niveau du BO
-            @include backgroundRGBA($bleu-turquoise, 0.85);
+            @include backgroundRGBA($orange, 0.85);
             margin: 0 auto;
             span{//style du cartouche
               //Voir code haut  de page

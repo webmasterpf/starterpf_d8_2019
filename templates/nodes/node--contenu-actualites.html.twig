@@ -133,9 +133,9 @@ Permet d'ajouter des classes dynamiques ou non aux éléments du markup
   <!--______________ZONE 2________________ -->
   <div {{ zone2_attribute.addClass(zone2_classes).setAttribute('id', 'zone-2') }}>
 
-    {% if node.field_type_galerie_image is not empty %}
+    {% if node.field_inserer_liste_viewfield is not empty %}
       <aside {{ vueblocgalerie_attribute.addClass(vueblocgalerie_classes) }}>
-        {{ content.field_type_galerie_image.0 }}
+        {{ content.field_inserer_liste_viewfield.0 }}
       </aside>
     {% endif %}
 

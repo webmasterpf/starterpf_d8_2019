@@ -2,8 +2,8 @@
 // créer des fichiers _node-TYPE.scss et les importer dans application.scss
 /*-------------------------------------|
 |     CONTENU CUSTOM NODE.TPL |
-|       PAGE ARCHIVES  LISTE -      |
-|           Type  page_vdl_liste      |
+|       CONTENU VDL         |
+|        éléments          |
 |--------------------------------------*/
 //@include breakpoint ($mobile){}
 //@include breakpoint ($desktop){}
@@ -242,37 +242,39 @@ $zones: zone-1, zone-2, zone-3 ;
 
       u {
         font-weight: bold;
-        color: $rose-fushia;
+        color: $violet;
       }
 
       h2 {
         @include font-size(l); //utilisation de typey
-        color: $bleu-turquoise;
+        color: $orange;
       }
 
       h3 {
         @include font-size(m); //utilisation de typey
-        color: $rose-fushia;
+        color: $violet;
       }
 
       h4 {
         @include font-size(m); //utilisation de typey
-        color: $bleu-turquoise;
+        color: $vert;
       }
 
       a {
         text-decoration: none;
         color: $gris-clair-typo;
-        @include rollover-effect($bleu-turquoise); //Effet rollover CSS3
+        @include rollover-effect($orange); //Effet rollover CSS3
 
         &:hover {
           text-decoration: none;
           color: $gris-clair; //Couleur du hover, commenter si inutile
         }
       }
-
+      em {//texte italique
+        color: $orange;
+      }
       strong {
-        color: $rose-fushia;
+        color: $violet;
       }
     }     // Fin ##{$zone}.#{$type}
   }   // Fin @each $type in $typedecontenu
@@ -286,7 +288,7 @@ $zones: zone-1, zone-2, zone-3 ;
   @each $type in $typedecontenu {
     ##{$zone}.#{$type} {
       .bloc_docs_utiles_vdl {
-        @include backgroundImage(("BG/stripe_gris_bleu_pastel.png"),transparent,repeat, top left);
+        @include backgroundImage(("BG/stripe_orange_violet_fin.png"),transparent,repeat, top left);
         @include arrondis(1em);
 
         ul {
@@ -302,7 +304,7 @@ $zones: zone-1, zone-2, zone-3 ;
             color: $violet;
             text-decoration: none;
             padding: span(0.01) span(0.03);
-            @include rollover-effect($bleu-turquoise); //Effet rollover CSS3 sur les liens
+            @include rollover-effect($orange); //Effet rollover CSS3 sur les liens
             @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
               //Pour ne pas tronquer le picto fichier - décommenter si nécessaire
               //min-height: em(65px);
@@ -312,7 +314,7 @@ $zones: zone-1, zone-2, zone-3 ;
             &:hover {
               //:not([href*="fiche"])
               color: $gris-clair;
-              background: $bleu-turquoise;
+              background: $orange;
             }
           }
 
@@ -387,7 +389,7 @@ $zones: zone-1, zone-2, zone-3 ;
           .label-field-passerelle-form {
             font-weight: bold;
             color: $gris-clair;
-            background: $bleu-turquoise;
+            background: $orange;
             padding: span(0.02);
             margin: 0 0 span(0.2) span(0.2);
           }
@@ -395,7 +397,7 @@ $zones: zone-1, zone-2, zone-3 ;
           .label-field-fichier-joint-vdl, .label-field-lien-utile-vdl {
             font-weight: bold;
             color: $gris-clair;
-            background: $bleu-turquoise;
+            background: $orange;
             padding: span(0.02);
             margin: 0 0 0 span(0.2);
           }
@@ -436,10 +438,10 @@ $zones: zone-1, zone-2, zone-3 ;
           text-align: center;
         }
 
-        aside.autres-actus {
+        aside.autres-vdl {
           a {
             background: $gris-clair;
-            @include rollover-effect($bleu-turquoise); //Effet rollover CSS3
+            @include rollover-effect($orange); //Effet rollover CSS3
           }
 
           ul {

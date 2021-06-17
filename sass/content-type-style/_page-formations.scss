@@ -74,7 +74,7 @@ body .conteneur{
       .bef-exposed-form{
           @include breakpoint(($desktop,$desktopwide)){
               display:inline-block;
-              column-count: 6;
+              column-count: 4; //Adapter au nb de filtres
               column-fill: balance;
               white-space: normal;
               padding: span(0.02);
@@ -247,7 +247,7 @@ ______________________________*/
         //Style du filtrage de la vue
        .bef-exposed-form{
             div.form-item{
-                background: $bleu-turquoise;
+                background: $orange; //Couleur de fond des filtres
                 color: $blanc-casse;
                 text-align: center;
                 cursor: pointer;
@@ -265,7 +265,7 @@ ______________________________*/
                 &:hover:not(:first-child)
                 {
                   //Utilisation de l'unité vw plus universelle, évite usage de BP
-                  @include backgroundImage(('BG/BG_Filtres_Exposes.png'), transparent, center -7.5vw , no-repeat );
+                  @include backgroundImage(('BG/BG_Filtres_Exposes.png'), transparent, center -11.5vw , no-repeat );
                   background-size:60%;
                   background-color: $violet;
 
@@ -359,13 +359,13 @@ ______________________________*/
 
                    }
                 }
-                &.tid-15{ //Pole Métiers du Commerce et de la Vente
+                &.tid-35{ // Formations Complémentaires et année d'orientation
                     background: $violet;
                 }
-                &.tid-16{ //Pole Métiers de la Gestion Administrative
-                    background: $rose-fushia;
+                &.tid-36{ //Métiers de la restauration et du service à la personne
+                    background: $orange;
                 }
-                &.tid-17{ //Formation POST-BAC
+                &.tid-37{ // Métiers des services administratifs et du commerce
                     background: $jaune;
                     *{
                         color: $gris-anthracite;//cas particulier du fond clair

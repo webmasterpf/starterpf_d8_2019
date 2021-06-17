@@ -65,7 +65,7 @@ $zones: zone-illustration ;//1ere boucle
       max-height: 30vw;
 
       img {
-        transform: translate(0%,-25%);
+        transform: translate(0%,-10%);
       }
     }
   }
@@ -151,39 +151,40 @@ $zones: zone-1, zone-2, zone-3 ; //1ere boucle
       }
 
       u {
-          font-weight: bold;
-          color: $rose-fushia;
-
+        font-weight: bold;
+        color: $violet;
       }
 
       h2 {
-          @include font-size(l); //utilisation de typey
-          color: $bleu-turquoise;
+        @include font-size(l); //utilisation de typey
+        color: $orange;
       }
 
       h3 {
-          @include font-size(m); //utilisation de typey
-          color: $orange;
+        @include font-size(m); //utilisation de typey
+        color: $violet;
       }
 
       h4 {
-          @include font-size(m); //utilisation de typey
-          color: $bleu-turquoise;
+        @include font-size(m); //utilisation de typey
+        color: $vert;
       }
 
       a {
+        text-decoration: none;
+        color: $gris-clair-typo;
+        @include rollover-effect($orange); //Effet rollover CSS3
+
+        &:hover {
           text-decoration: none;
-          color: $gris-clair-typo;
-          @include rollover-effect($bleu-turquoise); //Effet rollover CSS3
-
-          &:hover {
-              text-decoration: none;
-              color: $gris-clair;//Couleur du hover, commenter si inutile
-          }
+          color: $gris-clair; //Couleur du hover, commenter si inutile
+        }
       }
-
+      em {//texte italique
+        color: $orange;
+      }
       strong {
-          color: $rose-fushia;
+        color: $violet;
       }
     } // Fin ##{$zone}.#{$type}
     } // @each $zone in $zones
@@ -297,7 +298,7 @@ $zones: zone-1 ; //1ere boucle - , zone-2, zone-3
     .label-field-lien-rp {
       font-weight: bold;
       color: $gris-clair;
-      background: $bleu-turquoise;
+      background: $orange;
       padding: span(0.02);
       margin: 0 0 0 span(0.2);
     }
@@ -331,7 +332,7 @@ $zones: zone-1 ; //1ere boucle - , zone-2, zone-3
     aside.autres-actus{
     a {
       background: $gris-clair;
-      @include rollover-effect($bleu-turquoise); //Effet rollover CSS3
+      @include rollover-effect($orange); //Effet rollover CSS3
     }
     ul {
       li {

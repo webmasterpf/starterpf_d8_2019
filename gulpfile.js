@@ -130,8 +130,8 @@ var processors = [
 //}
 
 //Variables spécifiques au thèmes
-var urlSite = ['http://d8-gasquet.vmdev/'];
-var aliasDrush = ['@vmdevd8mg'];
+var urlSite = ['http://d8-grawitz.vmdev/'];
+var aliasDrush = ['@vmdevd8cg'];
 // #############################
 // Tâches à accomplir - Tasks
 // #############################
@@ -219,7 +219,7 @@ gulp.task('browser-sync', function() {
 browserSync.init({
         //changer l'adresse du site pour lequel utiliser browserSync, solution par variable fonctionne pas
 //        proxy: '.urlSite.',
-        proxy: 'http://d8-gasquet.vmdev/',
+        proxy: 'http://d8-grawitz.vmdev/',
         open: false,
         logLevel: 'info',//pour avoir toutes les infos ,utiliser "debug", pour infos de base "info"
         logConnections: true

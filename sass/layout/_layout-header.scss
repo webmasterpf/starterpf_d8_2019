@@ -111,7 +111,7 @@ body .conteneur #header {
 /*---- HEADER BAS ----*/
 
 .headBas {
-    background: $bleu-turquoise;//Modifier la couleur du fond de la partie basse selon couleur du lycée
+    background: $orange;//Modifier la couleur du fond de la partie basse selon couleur du lycée
 }
 
 .headSearch {
@@ -133,7 +133,7 @@ body .conteneur #header {
 
 .site-name {
     clear: both;
-    background: $bleu-turquoise;
+    background: $orange;
    padding: span(0.01) 0 0 span(0.1);
     a {
         text-decoration: none;
@@ -152,7 +152,7 @@ body .conteneur #header {
     color: white;
     font-size: small;
     text-align: center;
-    background: $bleu-turquoise;
+    background: $orange;
     clear: both;
 
     @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){

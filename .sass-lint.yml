@@ -1,8 +1,8 @@
 files:
-  include: celony_d8_2019/css/**/*.scss
+  include: grawitz_d8_2021/css/**/*.scss
   ignore:
-    - 'celony_d8_2019/css/vendors/**.scss'
-    - 'celony_d8_2019/css/variables.scss'
+    - 'grawitz_d8_2021/css/vendors/**.scss'
+    - 'grawitz_d8_2021/css/variables.scss'
 options:
   formatter: stylish
   merge-default-rules: false

@@ -162,30 +162,43 @@ $zones: zone-1, zone-2;//1ere boucle
                 line-height: 1.5em;
                 list-style-position: inside;
             }
-            u{
-                font-weight: bold;
-                color: $rose-fushia;
+            u {
+              font-weight: bold;
+              color: $violet;
+            }
 
+            h2 {
+              @include font-size(l); //utilisation de typey
+              color: $orange;
             }
-            h2{
-                @include font-size(l);//utilisation de typey
-                color: $violet;
+
+            h3 {
+              @include font-size(m); //utilisation de typey
+              color: $violet;
             }
-            h3{
-                @include font-size(m);//utilisation de typey
-                color: $rose-fushia;
+
+            h4 {
+              @include font-size(m); //utilisation de typey
+              color: $vert;
             }
-            a{
+
+            a {
+              text-decoration: none;
+              color: $gris-clair-typo;
+              @include rollover-effect($orange); //Effet rollover CSS3
+
+              &:hover {
                 text-decoration: none;
-                color: $violet;
-                &:hover{
-                    text-decoration: underline;
-                }
+                color: $gris-clair; //Couleur du hover, commenter si inutile
+              }
             }
-            strong{
-                color: $rose-fushia;
+            em {//texte italique
+              color: $orange;
             }
-        }
+            strong {
+              color: $violet;
+            }
+        } // {{$zones}}
     }
 }
 
@@ -219,8 +232,8 @@ ______________________________*/
     aside.formulaire{
 
         input[type="text"],input[type="email"],textarea{
-            background: $bleu-turquoise; // Couleur fond des champs
-            color: $blanc-casse;
+            background: $orange; // Couleur fond des champs
+            color: $gris-clair-typo;
             padding: span(0.01);
         }
     }// aside.formulaire

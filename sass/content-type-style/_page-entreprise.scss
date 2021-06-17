@@ -12,25 +12,25 @@
 
 /*######-------- ||| ORDRE FLEXBOX ||| --------######*/
 body .conteneur .conteneur-flex{
-    #zone-1.type-page-actualites{order:2;}
-    #zone-2.type-page-actualites{order:1;}
-    #zone-3.type-page-actualites{order:3;}
+    #zone-1.node--type-page-lycee-entreprise{order:2;}
+    #zone-2.node--type-page-lycee-entreprise{order:1;}
+    #zone-3.node--type-page-lycee-entreprise{order:3;}
     @include breakpoint ($desktop){
-        #zone-1.type-page-actualites{order:1;}
-        #zone-2.type-page-actualites{order:2;}
-        #zone-3.type-page-actualites{order:3;}
+        #zone-1.node--type-page-lycee-entreprise{order:1;}
+        #zone-2.node--type-page-lycee-entreprise{order:2;}
+        #zone-3.node--type-page-lycee-entreprise{order:3;}
     }
 }
 
 /*######-------- ||| BORDURES ||| --------######*/
 body .conteneur {
     @include breakpoint ($desktop){
-        #zone-2.type-page-actualites{}
+        #zone-2.node--type-page-lycee-entreprise{}
     }
 
 }
 /*######-------- ||| LAYOUT SPECIFIQUE ||| --------######*/
-#zone-illustration.type-page-actualites{
+#zone-illustration.type-page-lycee-entreprise{
   //Pour marge au dessus illustration voir _layout-nodes
     #illustration-pleinepage{
         min-height: 35vw;
@@ -51,7 +51,7 @@ body .conteneur {
     }
 
 }// Fin zone-illustration
-#zone-1.type-page-actualites{
+#zone-1.type-page-lycee-entreprise{
     >.content{
         column-count: 0;
         @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
@@ -61,7 +61,7 @@ body .conteneur {
             padding: span(0.1);
         }
     }
-    aside.liste-actu-presse{ //Changer la classe selon celle utilisée dans le tpl
+    aside.liste-entreprise{ //Changer la classe selon celle utilisée dans le tpl
       //.bef-exposed-form
       .form--inline{
           @include breakpoint(($desktop,$desktopwide)){
@@ -222,9 +222,9 @@ h1.titre-page-actualites{
 }
 /*¤¤¤ STYLES COMMUNS ¤¤¤*/
 
-#zone-1.type-page-actualites,
-#zone-2.type-page-actualites,
-#zone-3.type-page-actualites{
+#zone-1.type-page-lycee-entreprise,
+#zone-2.type-page-lycee-entreprise,
+#zone-3.type-page-lycee-entreprise{
     p,ul,li{
         @include font-size(m);//utilisation de typey
         padding: em(5px);
@@ -258,9 +258,9 @@ h1.titre-page-actualites{
 /*------------------------------------
         ¤¤¤ STYLES PROPRES ¤¤¤
 ______________________________*/
-#zone-1.type-page-actualites{
+#zone-1.type-page-lycee-entreprise{
 
-      aside.liste-actu-presse{
+      aside.liste-entreprise{
         //Style du filtrage de la vue
         .bef-exposed-form{
             div.form-item{
@@ -281,7 +281,7 @@ ______________________________*/
                 // Exclusion du hover pour le choix Tout - Fonctionnel
                 &:hover:not(:first-child)
                 {
-                    @include backgroundImage(('BG/BG_Filtres_Exposes.png'), transparent, center 0vw , no-repeat );
+                    @include backgroundImage(('BG/BG_Filtres_Exposes.png'), transparent, center -3vw , no-repeat );
                     background-size:60%;
                     background-color: $orange;
                     color: $gris-clair;
@@ -351,14 +351,17 @@ ______________________________*/
 
                 }
 
-                &.tid-43{ //Annonce ponctuelle
+                &.tid-45{ //Interview de partenaire
                     background: $violet;
                     *{
                         //color: $gris-anthracite;//cas particulier du fond clair
                     }
                 }
-                &.tid-44{ //Revue de presse
+                &.tid-46{ //Journée interprofessionnelle
                     background: $orange;
+                }
+                &.tid-47{ //Visite d'entreprise
+                    background: $bleu-turquoise;
                 }
 
                 a{
@@ -423,7 +426,7 @@ ______________________________*/
     }// Fin aside
 }// Fin zone-1
 /*
-#zone-2.type-page-actualites{
+#zone-2.type-page-lycee-entreprise{
 }
-#zone-3.type-page-actualites{
+#zone-3.type-page-lycee-entreprise{
 }*/

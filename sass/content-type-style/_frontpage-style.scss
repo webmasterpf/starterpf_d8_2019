@@ -229,7 +229,7 @@ body .conteneur {
             list-style: none;
             &::before {
               //@include backgroundImage("PNG/Fichiers@3x.png");
-              @include maskImage(("PNG/notification-blanc@4x.png"),100%,alpha,$bleu-turquoise);
+              @include maskImage(("PNG/notification-blanc@4x.png"),100%,alpha,$orange);
               background-size: contain;
               content: "";
               position: absolute;
@@ -278,7 +278,7 @@ body .conteneur {
             .breaking-news-element{
               //Classe ajoutée dans la vue
                 border: em(3px) transparent solid;
-                background: $bleu-turquoise;
+                background: $orange;
                 transition-property: background !important;
                 transition: all .3s ease;
                 font-family: $FontRaleway;
@@ -294,7 +294,7 @@ body .conteneur {
                 &:hover{
                     transition: all .3s ease;
                     transform: translateZ(0)!important;
-                    border: em(3px) $bleu-turquoise solid;
+                    border: em(3px) $orange solid;
                     background: transparent;
                     color: $gris-anthracite;
                     &::before{
@@ -391,7 +391,7 @@ body .conteneur {
             }
             li{
                 margin: 0 0 em(5px) 0;
-                background: $bleu-turquoise;//Couleur de fond des acces Rub Admin
+                background: $orange;//Couleur de fond des acces Rub Admin
                 color: whitesmoke;
                 @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)){
 
@@ -419,7 +419,7 @@ body .conteneur {
                     bottom: 100%;
                     left: 0;
                     right: 0;
-                    background-color: $bleu-turquoise;
+                    background-color: $orange;
                     overflow: hidden;
                     width: 100%;
                     height:0;
@@ -508,7 +508,7 @@ body .conteneur {
                             @include font-size(s);//utilisation de typey
                         }
                         &:hover{
-                            background: $rose-fushia;//Changer la couleur du BG hover ici
+                            background: $orange;//Changer la couleur du BG hover ici
                             color: $gris-clair;
                         }
                     }
@@ -597,7 +597,7 @@ body .conteneur {
                                                 clip-path: circle(50% at 50% 50%);*/
                             /* Coins arrondis pour les boutons - passe mieux sur mobile*/
                             @include arrondis(4em);
-                            background-color: $bleu-turquoise; //Couleur de fond des boutons
+                            background-color: $orange; //Couleur de fond des boutons
 
                             @include breakpoint(($desktop,$desktopwide)){
                                 max-width: 11vw;
@@ -622,21 +622,21 @@ body .conteneur {
                             }
                         }
                     }
-                    &.nid-2{//contact
+                    &.nid-1{//contact
                              a:hover{
                                  @include backgroundImage(('SVG/bg_acces_contact_blanc_transp.svg'),$violet, -9% 58%, no-repeat);
                                  background-size: 400%;
                              }
                     }
-                    &.nid-16{//inscriptions
+                    &.nid-149,&.nid-8,&.nid-168{//inscriptions
                              a:hover{
-                                 @include backgroundImage(('SVG/bg_acces_contact_blanc_transp.svg'),$violet, 71% 58%, no-repeat);
+                                 @include backgroundImage(('SVG/bg_acces_contact_blanc_transp.svg'),$violet, 49% 58%, no-repeat);
                                  background-size: 400%;
                              }
                     }
-                    &.nid-18{//actus
+                    &.nid-223{//restaurant
                              a:hover{
-                                 @include backgroundImage(('SVG/bg_acces_contact_blanc_transp.svg'),$violet, 108% 58%, no-repeat);
+                                 @include backgroundImage(('SVG/bg_acces_contact_blanc_transp.svg'),$violet, 110% 58%, no-repeat);
                                  background-size: 400%;
                              }
                     }
@@ -676,7 +676,7 @@ body .conteneur {
                 }
                 li.views-row-2{
                     order:1;
-                    background: $bleu-turquoise;
+                    background: $orange;
                 }
                 li.views-row-3{
                     order:2;
@@ -703,7 +703,7 @@ body .conteneur {
                 }
                 li.views-row-8{
                     order:8;
-                    background: $bleu-turquoise;
+                    background: $orange;
                 }
                 li.views-row-9{
                     order:5;

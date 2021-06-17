@@ -12,9 +12,9 @@
 
 /*######-------- ||| ORDRE FLEXBOX ||| --------######*/
 body .conteneur .conteneur-flex{
-    #zone-1.type-page-vie-lycee{order:2;}
-    #zone-2.type-page-vie-lycee{order:1;}
-    #zone-3.type-page-vie-lycee{order:3;}
+    #zone-1.type-page-vdl{order:2;}
+    #zone-2.type-page-vdl{order:1;}
+    #zone-3.type-page-vdl{order:3;}
     @include breakpoint ($desktop){
 
     }
@@ -23,13 +23,13 @@ body .conteneur .conteneur-flex{
 /*######-------- ||| BORDURES ||| --------######*/
 body .conteneur {
     @include breakpoint ($desktop){
-        #zone-2.type-page-vie-lycee{}
+        #zone-2.type-page-vdl{}
     }
 
 }
 /*######-------- ||| LAYOUT SPECIFIQUE ||| --------######*/
 //Permet de créer facilement les styles communs à des IDs ou/et classes
-$typedecontenu: type-page-vie-lycee, type-page-affiche-mois ; //2e boucle
+$typedecontenu: type-page-vdl, type-page-affiche-mois ; //2e boucle
 $zones: zone-illustration ;//1ere boucle
 @each $zone in $zones {
   @each $type in $typedecontenu {
@@ -52,7 +52,7 @@ $zones: zone-illustration ;//1ere boucle
       max-height: 30vw;
 
       img {
-        transform: translate(0%,-25%);
+        transform: translate(0%,-10%);
       }
     }
   }
@@ -60,7 +60,7 @@ $zones: zone-illustration ;//1ere boucle
 } // @each $zone in $zones
 } // @each $type in $typedecontenu
 // Tableau initial des classes et IDs à créer.
-$typedecontenu: type-page-vie-lycee, type-page-archives;
+$typedecontenu: type-page-vdl, type-page-affiche-mois ;
 $zones: zone-1 ; //, zone-2, zone-3
 @each $zone in $zones {
   @each $type in $typedecontenu {
@@ -356,59 +356,70 @@ h1.titre-page-globale{
     }
 }
 /*¤¤¤ STYLES COMMUNS ¤¤¤*/
-
-#zone-1.type-page-vie-lycee,
-#zone-2.type-page-vie-lycee,
-#zone-3.type-page-vie-lycee{
-  p,ul,li{
-        @include font-size(m);//utilisation de typey
+//Permet de créer facilement les styles communs à des IDs ou/et classes
+// !! Le tableau type de contenu est repris du layout spécifique, idem pour les zones(L88-92)
+@each $zone in $zones {
+  @each $type in $typedecontenu {
+    ##{$zone}.#{$type} {
+      li,
+      p,
+      ul {
+        @include font-size(m); //utilisation de typey
         padding: em(5px);
         line-height: 1.5em;
         list-style-position: inside;
-    }
-    u{
-        font-weight: bold;
-        color: $rose-fushia;
-
-    }
-    h2{
-      @include font-size(m);//utilisation de typey
-      @include breakpoint(($desktop,$desktopwide,$tablet,$tabletlandscape)){
-        @include font-size(l);//utilisation de typey
       }
 
+      u {
+        font-weight: bold;
         color: $violet;
-    }
-    h3{
-      @include font-size(s);//utilisation de typey
-      @include breakpoint(($desktop,$desktopwide,$tablet,$tabletlandscape)){
-        @include font-size(m);//utilisation de typey
-        color: $bleu-turquoise;
-    }
-    a{
-        text-decoration: none;
-        color: $violet;
-        &:hover{
-            text-decoration: underline;
-        }
-    }
-    strong{
-        color: $bleu-turquoise;
-    }
-}
-}// Fin styles communs
+      }
 
+      h2 {
+        @include font-size(l); //utilisation de typey
+        color: $orange;
+      }
+
+      h3 {
+        @include font-size(m); //utilisation de typey
+        color: $violet;
+      }
+      h4{
+        @include font-size(s); //utilisation de typey
+        color: $orange;
+      }
+      h5{
+        @include font-size(xs); //utilisation de typey
+        color: $bleu-turquoise;
+      }
+      a {
+        text-decoration: none;
+        color: $orange;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+      em {//texte italique
+        color: $orange;
+      }
+      strong {
+        color: $violet;
+      }
+    }
+  }
+}
 
 /*------------------------------------
         ¤¤¤ STYLES PROPRES ¤¤¤
 ______________________________*/
-#zone-1.type-page-vie-lycee{
+#zone-1.type-page-vdl{
 
     aside.liste-vdl,aside.liste-actu-presse{
         //Style du filtrage de la vue
         .bef-exposed-form{
             div.form-item{
-                background: $bleu-turquoise;
+                background: $violet;
                 color: $blanc-casse;
                 text-align: center;
                 cursor: pointer;
@@ -424,12 +435,11 @@ ______________________________*/
                 //&:hover:not(#edit-term-node-tid-depth-limited-All-wrapper),
                 // Exclusion du hover pour le choix Tout - Fonctionnel
                 &:hover:not(:first-child)
-
                 {
-
                     @include backgroundImage(('BG/BG_Filtres_Exposes.png'), transparent, center -2.7vw , no-repeat );
                     background-size:60%;
-                    background-color: $violet;
+                    background-color: $orange;
+                    color: $gris-clair;
                     label{
                         @include opacity(0.45);
                     }
@@ -482,24 +492,24 @@ ______________________________*/
 
                 }
 
-                &.tid-3{//Sorties
+                &.tid-34{//Sorties
                     background: $bleu-turquoise;
 
                 }
-                &.tid-4{//Action
+                &.tid-30{//Association parents d'élèves
                     background: $violet;
                 }
-                &.tid-5{//Projets
-                  background: $rose-fushia;
+                &.tid-33{//Projets
+                  background: $orange;
                 }
-                &.tid-6{//Intervenants
+                &.tid-32{//Intervenants
                   background: $jaune;
                   *{
                       color: $gris-anthracite;//cas particulier du fond clair
                   }
 
                 }
-                &.tid-7{//Innovations
+                &.tid-31{//Innovations
 
                     background: $orange;
                 }
@@ -512,7 +522,7 @@ ______________________________*/
                     background: $vert;
                 }
                 &.tid-20{//Restaurant
-                    background: $rose-fushia;
+                    background: $orange;
                     *{
                         color: $gris-anthracite;//cas particulier du fond clair
                     }
@@ -569,7 +579,7 @@ ______________________________*/
           //Style général des éléments
               li {
                 list-style: none;
-                background: $rose-fushia;
+                background: $orange;
                 @include txt-cesure();
 
                 a {
@@ -621,7 +631,7 @@ ______________________________*/
                   }
 
                   &.is-active, &.pager__item--active{
-                    background: $bleu-turquoise;
+                    background: $orange;
                     display: block;
                   }
               a{
@@ -634,9 +644,9 @@ ______________________________*/
             }// Fin Aside liste-vdl
 
 
-#zone-2.type-page-vie-lycee{
+#zone-2.type-page-vdl{
 
 }
-#zone-3.type-page-vie-lycee{
+#zone-3.type-page-vdl{
 
 }
