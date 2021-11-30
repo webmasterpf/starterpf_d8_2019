@@ -357,8 +357,20 @@ ______________________________*/
                         //color: $gris-anthracite;//cas particulier du fond clair
                     }
                 }
-                &.tid-44{ //Revue de presse
-                    background: $orange;
+                &.tid-2{ //Revue de presse
+                    background: $rouge;
+                }
+                &.tid-14{//Entreprise - Journée Interprofessionnelle
+                    background: $rouge;
+                }
+                &.tid-15{//Entreprise - Documents pratiques
+                    background: $bleu-turquoise;
+                }
+                &.tid-16{//Entreprise - Visite d'entreprise
+                    background: $rose-fushia;
+                }
+                &.tid-33{//Entreprise - Partenaires
+                    background: $violet;
                 }
 
                 a{

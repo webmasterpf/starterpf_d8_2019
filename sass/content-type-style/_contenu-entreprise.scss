@@ -49,32 +49,79 @@ body .conteneur{
         }
     }
 }
+$typedecontenu: type-contenu-entreprise ;
+$zones: zone-1, zone-2, zone-3 ;
+@each $zone in $zones {
+  @each $type in $typedecontenu {
+    ##{$zone}.#{$type} {
+      > .content {
+        column-count: 0;
+        @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+          column-count: 1;
+          column-fill: balance;
+          white-space: normal;
+          padding: span(0.1);
+        }
+      }
 
+      .bloc_docs_utiles_entreprise {
+        @include breakpoint(($desktop,$desktopwide)) {
+          float: right;
+          margin: span(0.1);
+          padding: span(0.02);
+          min-width: span(2);
+          max-width: span(4);
+        }
+        @include breakpoint(($mobilelandscape,$tablet,$tabletlandscape)) {
+          float: right;
+          margin: span(0.1);
+          padding: span(0.02);
+          min-width: span(3);
+          max-width: span(5);
+        }
+
+
+        .label-field-fichier-joint-entreprise,
+        .label-field-passerelle-form,
+        .label-field-lien-entreprise {
+          //Besoin de simuler un br pour avoir un saut de ligne entre chaque éléments.HTML en liste plus efficace
+          @include clearfixsusy3;
+        }
+      }
+    }     // Fin ##{$zone}.#{$type}
+  }   // Fin @each $type in $typedecontenu
+} // Fin @each $zone in $zones
 /*######-------- ||| STYLE ||| --------######*/
 
 /*¤¤¤ STYLES COMMUNS ¤¤¤*/
-#zone-1.contenu-entreprise,
-#zone-2.contenu-entreprise,
-#zone-3.contenu-entreprise,
-#zone-4.contenu-entreprise,
-#zone-5.contenu-entreprise
-{
+$typedecontenu: type-contenu-entreprise ;
+$zones: zone-1, zone-2, zone-3, zone-4, zone-5 ;
+@each $zone in $zones {
+  @each $type in $typedecontenu {
+    ##{$zone}.#{$type} {
      p,li{
         @include font-size(m);//utilisation de typey
         padding: em(5px);
         line-height: 1.5em;
     }
-    h2{
-        @include font-size(l);//utilisation de typey
-        color: $orange-fonce;
+    u {
+      font-weight: bold;
+      color: $violet;
     }
-    h3{
-        @include font-size(m);//utilisation de typey
-        color: $orange-fonce;
+
+    h2 {
+      @include font-size(l); //utilisation de typey
+      color: $rouge;
     }
-    h4{
-        @include font-size(s);//utilisation de typey
-        color: $orange-fonce;
+
+    h3 {
+      @include font-size(m); //utilisation de typey
+      color: $violet;
+    }
+
+    h4 {
+      @include font-size(m); //utilisation de typey
+      color: $vert;
     }
     h5{
         @include font-size(xs);//utilisation de typey
@@ -130,24 +177,138 @@ body .conteneur{
         }
     }
 }
-
+  }     // Fin ##{$zone}.#{$type}
+  }   // Fin @each $type in $typedecontenu
+  } // Fin @each $zone in $zones
 /*------------------------------------
         ¤¤¤ STYLES PROPRES ¤¤¤
 ______________________________*/
+$typedecontenu: type-contenu-entreprise ;
+$zones: zone-1, zone-2, zone-3 ;
+@each $zone in $zones {
+  @each $type in $typedecontenu {
+    ##{$zone}.#{$type} {
+      .bloc_docs_utiles_entreprise {
+        @include backgroundImage(("BG/stripe_rosepale_violet_pastel.png"),transparent,repeat, top left);
+        @include arrondis(1em);
 
-#zone-1.contenu-entreprise{
-    //Pour node/111 Tableau objectifs BTS
-    table#doc-joints{
-                width: 80%;
-        border: em(3px) dotted $orange-fonce;
-        margin: 0 auto;
-        tr{
-            @include backgroundImage('zebra-gros-clair.gif',0, repeat );
-            
+        ul {
+          li {
+            //suppression des puces
+            list-style-type: none;
+            padding: span(0.1) 0;
+            @include font-size(s); //utilisation de typey
+          }
+
+          a {
+            background: $gris-clair;
+            color: $violet;
+            text-decoration: none;
+            padding: span(0.01) span(0.03);
+            @include rollover-effect($rouge); //Effet rollover CSS3 sur les liens
+            @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+              //Pour ne pas tronquer le picto fichier - décommenter si nécessaire
+              //min-height: em(65px);
+              border: inherit; //Pour éviter BP vide
+            }
+
+            &:hover {
+              //:not([href*="fiche"])
+              color: $gris-clair;
+              background: $rouge;
+            }
+          }
+
+          a {
+            &[href*=".pdf"] {
+              &::before {
+                //@include backgroundImage("PNG/Fichiers@3x.png");
+                @include maskImage(("PNG/Fichier-blanc@3x.png"),100%,alpha,$gris-clair-moyen);
+                background-size: contain;
+                content: "";
+                position: relative;
+                vertical-align: middle;
+                padding: em(13px);
+                margin: em(3px) em(10px) em(3px) 0;
+                transition: 0.5s all;
+                display: inline-block;
+                transform: scale(1);
+                min-height: em(30px);
+                @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+                  // Pour ne pas tronquer le picto
+                  min-height: em(33px);
+                }
+              }
+            }
+
+            img.filefield-icon {
+              display: none; //initial
+            }
+
+            &[href*="http"],
+            &[href*="https"],
+            &[href*="actualites/"]:not([href$=".pdf"]):not([href*="fiche"]),
+            &[href*="vie-du-lycee/"]:not([href$=".pdf"]):not([href*="fiche"]) {
+              //pour cibler les liens externes et internes, exclure les pdf et le lien interne
+              &::before {
+                @include maskImage(("PNG/liens-blanc@3x.png"),100%,alpha,$gris-clair-moyen);
+                background-size: contain;
+                content: "";
+                position: relative;
+                vertical-align: middle;
+                padding: em(13px);
+                margin: em(3px) em(10px) em(3px) 0;
+                transition: 0.5s all;
+                display: inline-block;
+                transform: scale(1);
+                min-height: em(30px);
+                @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
+                  // Pour ne pas tronquer le picto
+                  min-height: em(33px);
+                }
+              }
+            }
+          }
+
+          ul {
+            li {
+              //suppression des puces
+              list-style-type: none;
+              @include font-size(s); //utilisation de typey
+            }
+          }
+          //Style spécifique
+          .champ-field-relatif-formation {
+            max-width: 90%;
+
+            a {
+              @include font-size(m); //utilisation de typey
+              font-style: italic;
+            }
+          }
+
+          .label-field-passerelle-form {
+            font-weight: bold;
+            color: $gris-clair;
+            background: $rouge;
+            padding: span(0.02);
+            margin: 0 0 span(0.2) span(0.2);
+          }
+
+          .label-field-fichier-joint-entreprise, .label-field-lien-utile-entreprise,
+          .label-field-lien-entreprise {
+            font-weight: bold;
+            color: $gris-clair;
+            background: $rouge;
+            padding: span(0.02);
+            margin: 0 0 0 span(0.2);
+          }
         }
-        td{}
-    }
-}
+      }
+    }     // Fin ##{$zone}.#{$type}
+  }   // Fin @each $type in $typedecontenu
+} // Fin @each $zone in $zones
+
 #zone-2.contenu-entreprise{}
 #zone-3.contenu-entreprise{}
 #zone-4.contenu-entreprise{}

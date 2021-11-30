@@ -12,10 +12,10 @@ var basePaths = {
     dest:  './css/', // dossier à livrer
     tpl: '**/*.tpl.php',
     node_modules: './node_modules/',
-    gems:'/home/webmaster/vendor/bundle/gems/',
-    drushscript:'/home/webmaster/.config/composer/vendor/drush/drush/drush.php',
-    drushd6aliasfile:'/home/webmaster/.drush/sitesvmd6.aliases.drushrc.php',
-    drushd8aliasfile:'/home/webmaster/.drush/sitesvmd8.aliases.drushrc.php'
+    gems:'~/vendor/bundle/gems/',
+    drushscript:'~/.config/composer/vendor/drush/drush/drush.php',
+    drushd6aliasfile:'~/.drush/sitesvmd6.aliases.drushrc.php',
+    drushd8aliasfile:'~/.drush/sitesvmd8.aliases.drushrc.php'
 };
 
 //Chemins spécifiques
@@ -89,11 +89,17 @@ var autoprefixer = require('autoprefixer');
 var cp = require('child_process');
 
 // Inclusion des chemins vers SCSS de modules NPMs avec IncludePaths
+// Réglage pour compilation sur serveur de DEV AD
+var inclureScss = [].concat(
+                //assetsPath.gems,
+                assetsPath.node_modules,
+                folderPaths.styles.src
+              )
 // LE tableau est créé par la commande sassc $(sassIncludePaths --sassc --node_modules) [...]
-var inclureScss = [] // additional include paths
+/*var inclureScss = [] // additional include paths
 .concat(sassIncl.nodeModulesSync())
 .concat(sassIncl.rubyGemsSync())
-.concat(sassIncl.rubyGemsBundleSync());
+.concat(sassIncl.rubyGemsBundleSync());*/
 
 // Autoprefixer : Navigateurs à cibler pour le préfixage CSS
 // Liste fourni depuis 06/19 par .browserslistrc - Editer pour modifier.
@@ -219,8 +225,11 @@ gulp.task('browser-sync', function() {
 browserSync.init({
         //changer l'adresse du site pour lequel utiliser browserSync, solution par variable fonctionne pas
 //        proxy: '.urlSite.',
-        proxy: 'http://d8-grawitz.vmdev/',
-        open: false,
+        //proxy: 'http://d8-rostand.vmdev/',
+        proxy: 'https://d8er-pfdev.provence-formation.fr/',
+        host: 'd8er-pfdev.provence-formation.fr',
+        open: 'external',
+        //open: false,
         logLevel: 'info',//pour avoir toutes les infos ,utiliser "debug", pour infos de base "info"
         logConnections: true
     });

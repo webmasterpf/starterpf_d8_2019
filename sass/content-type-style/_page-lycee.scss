@@ -417,7 +417,29 @@ aside.formulaire{
     strong {
       color: $orange;
     }
-  }
+  } //Fin cartouche
+  table.table_generik{
+    border: 0px solid black;width: 75%;margin: 0 auto;
+         tbody{
+             border: 0;
+         }
+         tr{
+             border: 0px solid black;
+         }
+         tr.ligne_1{
+             background: transparent;
+             color: black;
+         }
+         tr.ligne_2{
+             background: $vert;
+             color: white;
+         }
+         td{
+             border: 0px solid black;
+             font-size: small;
+         }
+     }// Fin table_generik
+
 }
 /*######-------- ZONE 2 --------######*/
 #zone-2.type-contenu-cdi,

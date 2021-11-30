@@ -166,6 +166,7 @@ ul.rubriques-speciales{
         max-width: span(11);
         margin: span(0.5)  span(0.2);
         $nb-elements:3;//ajuster le nombre d'items réels pour éviter les bugs FF ou Edge - RAS Chrome
+        // si display: inline-flex;//Résoud bug FF sur titre des boutons,alors pas imperatif
         @include breakpoint(($desktop,$desktopwide,
         $tablet-hd,$tabletlandscape-hd
         )){
@@ -178,7 +179,7 @@ ul.rubriques-speciales{
         }
         @include breakpoint($tablet){
           display:inline-block;
-          column-count: 3;//Selon nombre éléments à afficher
+          column-count: $nb-elements;//Selon nombre éléments à afficher
           column-fill: balance;
           white-space: normal;
           margin-left: span(2 wide);//centrage des boutons sur tablette portrait
@@ -559,20 +560,24 @@ body .conteneur {
                             max-width: 11vw;
                             max-height: 11vw;
                             vertical-align: middle;
+                            display: inline-flex;//Résoud bug FF
                         }
                         @include breakpoint(($tablet,$tabletlandscape)){
                             max-width: 20vw;
                             min-height: 14vw;
+                            display: inline-flex;//Résoud bug FF
                         }
                         @include breakpoint($mobilelandscape){
                             max-width: 20vw;
                             min-width: 12vw;
                             min-height: 20vw;
+                            display: inline-flex;//Résoud bug FF
                         }
                         @include breakpoint(($mobile-galaxyShd,$mobile-iphonehd)){
                             max-width: 50vw;
                             max-height: 50vw;
                             margin: 0 auto;
+                            display: inline-flex;//Résoud bug FF
                         }
                         a{
                             display: block;

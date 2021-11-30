@@ -110,9 +110,12 @@ $zones: zone-1 ; //1ere boucle - , zone-2, zone-3
     }
   }
 }
+$typedecontenu: type-contenu-actualites, type-annonce-accueil, type-contenu-admin, type-page-presse ; //2e boucle
+$zones: zone-3 ; //1ere boucle - , zone-2, zone-3
+@each $zone in $zones {
+  @each $type in $typedecontenu {
+    ##{$zone}.#{$type} {
 
-#zone-3.type-contenu-actualites, #zone-3.type-contenu-admin {
-  #region-zone-3 {
     @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {
       max-width: span(8);
       margin: span(0.1) auto;
@@ -123,8 +126,31 @@ $zones: zone-1 ; //1ere boucle - , zone-2, zone-3
       max-width: 80%;
       margin: 0 auto;
     }
-  }
-}
+    .videos {
+      ul {
+        list-style: none;
+      }
+
+      iframe {
+        @include breakpoint(($desktop,$desktopwide)) {
+          max-height: 90vh;
+          max-width: 60vw;
+          margin: 0 auto;
+          padding: span(0.02);
+          border: em(3px) solid $violet;
+        }
+        @include breakpoint(($mobilelandscape,$tablet,$tabletlandscape)) {
+          max-height: 90vh;
+          max-width: 90vw;
+          margin: 0 auto;
+          padding: span(0.02);
+          border: em(3px) solid $violet;
+        }
+      }
+    }// Fin videos
+  } // Fin ##{$zone}.#{$type}
+  } // @each $zone in $zones
+  } // @each $type in $typedecontenu
 /*######-------- ||| STYLE ||| --------######*/
 h1.titre-page-globale {
   @include breakpoint(($desktop,$desktopwide,$mobilelandscape,$tablet,$tabletlandscape)) {

@@ -150,7 +150,8 @@ $zones: zone-1, zone-2, zone-3 ;
         .label-field-fichier-joint,
         .label-field-fichier-joint-vdl,
         .label-field-lien-utile-vdl,
-        .label-field-passerelle-form {
+        .label-field-passerelle-form,
+        .label-field-liens-vdl {
           //Besoin de simuler un br pour avoir un saut de ligne entre chaque éléments.HTML en liste plus efficace
           @include clearfixsusy3;
         }
@@ -394,7 +395,8 @@ $zones: zone-1, zone-2, zone-3 ;
             margin: 0 0 span(0.2) span(0.2);
           }
 
-          .label-field-fichier-joint-vdl, .label-field-lien-utile-vdl {
+          .label-field-fichier-joint-vdl, .label-field-lien-utile-vdl,
+          .label-field-liens-vdl {
             font-weight: bold;
             color: $gris-clair;
             background: $orange;

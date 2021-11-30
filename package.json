@@ -1,5 +1,5 @@
 {
-  "name": "grawitz_d8_2021",
+  "name": "rostand_d8_2021",
   "version": "1.0.0",
   "description": "Pour compilation locale du theme",
   "main": "gulpfile.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@gitlab.com/themes-d8/grawitz_d8_2021.git"
+    "url": "git+ssh://git@gitlab.com/themes-d8/rostand_d8_2021.git"
   },
   "author": "WPF Dell",
   "license": "ISC",
   "bugs": {
-    "url": "https://gitlab.com/themes-d8/grawitz_d8_2021/issues"
+    "url": "https://gitlab.com/themes-d8/rostand_d8_2021/issues"
   },
-  "homepage": "https://gitlab.com/themes-d8/grawitz_d8_2021#readme",
+  "homepage": "https://gitlab.com/themes-d8/rostand_d8_2021#readme",
   "devDependencies": {
     "autoprefixer": "^9.8.6",
     "breakpoint": "^0.1.6",
